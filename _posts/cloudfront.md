@@ -11,3 +11,5 @@
 - Origin : S3 bucket or http server(ex:web server)
 - Additional montly charge ($600/month) for using dedicated IP address
 - Invalidate : if objects update frequently, changing Object name is recommended
+- Ideal Usage Pattern : distribution of frequently accessed static content, or dynamic content or for streaming audio or video that benefits from edge delivery
+- Anti Pattern : data is infrequently accessed, cache invalidation(object versioning recommended) 
