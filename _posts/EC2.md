@@ -1,6 +1,7 @@
 ## EC2 Pricing Models 
   - On Demand 
   - Reserved : Standard, Convertible, Scheduled 
+    - You can modify the AZ, scope, network platform, or instance size (within the same instance type), but not Region.
   - Spot : Like stock market. (if you terminate, you will be charged, if its terminated by EC2, you will NOT be charged.) 
   - Dedicated Hosts : Instance Types F I G H T D R M A R K F X Z A U  
 ## Feature
@@ -8,6 +9,7 @@
 - on EBS-backed instance, root EBS volume to be deleted when the instance terminated 
 - you CAN encrypt EBS Root Volumes
 - Additional Volume also can be encrypted  
+- Individual instances are provisioned in Availablity Zones 
 ## Security Groups
    - All Inbound traffic blocked by default
    - All Outbound traffic is allowed
@@ -24,7 +26,7 @@
 - Bootstrap scripts run when an EC2 instance first boots
 - automating  infrastructures(software installs and updates)
 ## MetaData & User Data
-- get information about an instance
+- get information about an instance : When You need to know both the private IP address and public IP address of your EC2 instance.
 - curl http://169.254.169.254/latest/meta-data/
 - curl http://169.254.169.254/latest/user-data/  
 ## EC2 Placement Groups 
@@ -34,7 +36,8 @@
     - canNOT span multiple AZ
     - homogenous(same instance types) recommended 
   - Spread
-    - Indivisual Critical EC2 instances 
+    - Indivisual Critical EC2 instances
+    - you can only have max 7 running instances per AZ
   - Partitioned
     - Multiple EC2 instances HDFS, HBase, and Cassendra 
 - placement group name must be unique
