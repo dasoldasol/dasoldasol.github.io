@@ -1,6 +1,14 @@
+## EBS Types 
+- General Purpose SSD(gp2) : MAX IOPS 16,000, Most Work Loads 
+- Provisioned IOPS SSD(io1) : 64,000, Databases 
+- Throughput Optimized HDD(st1) : 500, Big Data & Data Warehouse 
+- Cold HDD(sc1) : 250
+- EBS Magnetic(standard) : 40-200 (not used)
+
 ## Volume & Snapshot
 - Volume : exist on EBS. always on same AZ
-- Snapshot : exist on S3. incremental. stop the instance before taking snapshots.
+- Snapshot : exist on S3. incremental.(only the blocks changed since the last) stop the instance before taking snapshots.
+- You can change EBS volume sizes on the fly
 - migrate to another AZ : snapshot -> create AMI from snapshot -> use the AMI to launch instance in new AZ
 - migrate to another region : snapshot -> create AMI from snapshot -> copy AMI to another region -> use the copied AMI to launch instance in new region
 - when EC2 instance terminated.. : root device volume deleted, additional volumes NOT deleted by default 
@@ -20,7 +28,7 @@
 - Volumes retored from encrypted snapshots are encrypted automatically.
 - you can share snapshots ONLY IF they are UNENCRYPTED
 - These snapshots can be shared with other AWS accounts or made public.
-- you can now encrypt ROOT device volumes when you create the EC2 instance. 
+- you can NOW encrypt ROOT device volumes when you create the EC2 instance. 
 - **HOW TO CHANGE UNENCRYPTED ROOT TO ENCRYPTED?**
   - Create a Snapshot of the unencrypted root device volume.
   - Copy the Snapshot and select the encrypt option
