@@ -16,8 +16,21 @@
 ## Using Role with EC2
 - instead of using credentials, Attach the role to the instance
 - hackers cannot take access key & secret access key from .aws  
-## Using Bootstrap Scripts 
-- automating  infrastructures 
+## Using Bootstrap Scripts
+- automating  infrastructures  
 ## MetaData(User Data)
 - curl 169254169254/latest/meta-data/
-- curl 169254169254/latest/user-data/
+- curl 169254169254/latest/user-data/  
+## EC2 Placement Groups 
+- 3 Placement Groups 
+  - Clustered
+    - Low Network Latency / High Network Throughput (put together real close)
+    - canNOT span multiple AZ
+    - homogenous(same instance types) recommended 
+  - Spread
+    - Indivisual Critical EC2 instances 
+  - Partitioned
+    - Multiple EC2 instances HDFS, HBase, and Cassendra 
+- placement group name must be unique
+- can NOT merge placement groups 
+- you can move after you stopped instances 
