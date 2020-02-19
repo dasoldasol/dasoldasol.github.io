@@ -8,6 +8,7 @@
 ## Volume & Snapshot
 - Volume : exist on EBS. always on same AZ
 - Snapshot : exist on S3. incremental.(only the blocks changed since the last) stop the instance before taking snapshots.
+  - CAN NOT delete a snapshot of an EBS Volume that is used as the root device of a registered AMI
 - You can change EBS volume sizes on the fly
 - migrate to another AZ : snapshot -> create AMI from snapshot -> use the AMI to launch instance in new AZ
 - migrate to another region : snapshot -> create AMI from snapshot -> copy AMI to another region -> use the copied AMI to launch instance in new region
