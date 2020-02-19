@@ -1,0 +1,3 @@
+- NFS(Network File System) protocol 
+- only pay for the storage you use(no pre-provisioning required like EBS Volume)
+- Data is stored across multiple AZ
