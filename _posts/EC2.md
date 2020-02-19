@@ -17,13 +17,16 @@
     - if you create an inbound rule allowing traffic in, that traffic automatically allowed back out again
    - you can NOT specify deny rules / can NOT block specific IP using Security Groups (cf. NACL can) 
 ## Using Role with EC2
+- Roles are more secure.
 - instead of using credentials, Attach the role to the instance
 - hackers cannot take access key & secret access key from .aws  
 ## Using Bootstrap Scripts
-- automating  infrastructures  
-## MetaData(User Data)
-- curl 169254169254/latest/meta-data/
-- curl 169254169254/latest/user-data/  
+- Bootstrap scripts run when an EC2 instance first boots
+- automating  infrastructures(software installs and updates)
+## MetaData & User Data
+- get information about an instance
+- curl http://169.254.169.254/latest/meta-data/
+- curl http://169.254.169.254/latest/user-data/  
 ## EC2 Placement Groups 
 - 3 Placement Groups 
   - Clustered
