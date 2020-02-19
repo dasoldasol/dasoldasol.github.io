@@ -1,18 +1,21 @@
 ## EC2 Pricing Models 
   - On Demand 
   - Reserved : Standard, Convertible, Scheduled 
-  - Spot : Like stock market. (if you terminate, you will be charged, if its terminated, you will NOT be charged.) 
-  - Dedicated Hosts : F I G H T D R M A R K F X Z A U  
+  - Spot : Like stock market. (if you terminate, you will be charged, if its terminated by EC2, you will NOT be charged.) 
+  - Dedicated Hosts : Instance Types F I G H T D R M A R K F X Z A U  
 ## Feature
 - Termination Protection is turned off by default 
+- on EBS-backed instance, root EBS volume to be deleted when the instance terminated 
 - you CAN encrypt EBS Root Volumes
+- Additional Volume also can be encrypted  
 ## Security Groups
    - All Inbound traffic blocked by default
    - All Outbound traffic is allowed
    - security group change takes immediately
    - you can have multiple security groups 
-   - STATEFUL
-   - you can NOT specify deny rules  
+   - STATEFUL : if you open up port, it's going to be open for both inbound and outbound traffic(cf. NACL is STATELESS)
+    - if you create an inbound rule allowing traffic in, that traffic automatically allowed back out again
+   - you can NOT specify deny rules / can NOT block specific IP using Security Groups (cf. NACL can) 
 ## Using Role with EC2
 - instead of using credentials, Attach the role to the instance
 - hackers cannot take access key & secret access key from .aws  
