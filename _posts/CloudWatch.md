@@ -1,0 +1,5 @@
+- CloudWatch : performance 
+- standard monitoring : every 5 min by default 
+- detailed monitoring : interval 1min available 
+- alarms trigger notifications 
+- CloudTrail : auditing. API calls in the AWS platform. (define who)
