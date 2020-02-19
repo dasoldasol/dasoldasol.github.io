@@ -1,3 +1,5 @@
 - NFS(Network File System) protocol 
 - only pay for the storage you use(no pre-provisioning required like EBS Volume)
+- support : scale up to petabytes, concurrent NFS connections
 - Data is stored across multiple AZ
+- Read after Write Consistency
