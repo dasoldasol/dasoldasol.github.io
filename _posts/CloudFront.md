@@ -1,4 +1,4 @@
-## Udemy Comcept
+## Udemy Concept
 - CDN
 - Edge Location : location where the data cached. separate to Region/AZ
 - Origin : the source of all the files that the CDN will distribute
