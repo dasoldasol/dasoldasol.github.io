@@ -5,6 +5,7 @@
 - RDS is NOT Serverless
 - Aurora is Serverless
 - Error node : the response from **RDS API** to check RDS for an error
+- provisioned IOPS over standard storage when.. : if you use online transaction processing in your production environment
 ## Backups, Multi-AZ, Read Replicas
 - **Backup**
   - Automated Backups (by default)
