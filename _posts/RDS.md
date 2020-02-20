@@ -1,4 +1,5 @@
 ## Features
+- OLTP (cf. DynamoDB:NoSQL, Redshift:OLAP)
 - RDS runs on VM
 - You cannot log in to these operation systmes however.(Amazon's responsibility)
 - RDS is NOT Serverless
