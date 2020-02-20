@@ -49,4 +49,21 @@
 - numbered list of rules : starts with the lowest numbered rule 
 - separate inbound & outbound rules can ALLOW or DENY traffic 
 - NACLs are STATELESS; responses to allowed inbound traffic are following the rules for outbound traffic.
-  
+
+## Bastion vs. NAT
+- NAT is used to provice internet traffic to EC2 instances in a private subnets.(not used to SSH)
+- Bastion is used to securely administer EC2 instances using SSH. 
+- you canNOT use a NAT Gateway as a Bastion host
+
+## Direct Connect
+- direct connects your data center to AWS
+- Use Case
+  - high throughput workloads(ie lots of network traffic)
+  - if you need a stable and reliable secure connection
+
+## VPC EndPoint
+- privately connect VPC to supported AWS services
+- PrivateLink without requiring Internet Gateway, NAT, VPC connection, Direct Connect connection.
+- Instances in your VPC do NOT require public IP to communicate with resources in the service.
+- Interface Endpoints
+- Gateway Endpoints : s3, dynamoDB
