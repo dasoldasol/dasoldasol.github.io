@@ -4,6 +4,7 @@
 - You cannot SSH log in to these operation systmes however.(Amazon's responsibility)
 - RDS is NOT Serverless
 - Aurora is Serverless
+- Error node : the response from **RDS API** to check RDS for an error
 ## Backups, Multi-AZ, Read Replicas
 - **Backup**
   - Automated Backups (by default)
