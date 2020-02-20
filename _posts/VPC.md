@@ -30,7 +30,7 @@
   - bottleneck? increase instance size.
   - high availability using Autoscaling Groups, multiple subnets in different AZs, script to automate failover
   - Behind a Security Group
-- ** NAT Gateways **
+- **NAT Gateways**
   - Redundant inside the AZ -> 1 NAT Gateway = 1 AZ
   - scale automatically
   - no need to patch
@@ -38,4 +38,15 @@
   - Automatically assigned a public ip
   - Remember to update route tables
   - No need to disable Source/Dest. Check 
+
+## NACL(Network Access Control Lists) vs. Security Groups 
+- VPC automatically comes with a default NACL, by default, it allows all outbound & inbound
+- Custom NACL : by default, it denies all outbound & inbound until you add rules.
+- Each Subnet must be associated with NACL. Subnet is automatically associated with the default NACL.
+- Block IP : using NACL not Security Groups 
+- you CAN associate a NACL with multiple subnets;
+  - However, 1 subnet = 1 NACL
+- numbered list of rules : starts with the lowest numbered rule 
+- separate inbound & outbound rules can ALLOW or DENY traffic 
+- NACLs are STATELESS; responses to allowed inbound traffic are following the rules for outbound traffic.
   
