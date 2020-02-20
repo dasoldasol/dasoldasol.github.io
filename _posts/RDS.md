@@ -6,7 +6,7 @@
 - Aurora is Serverless
 ## Backups, Multi-AZ, Read Replicas
 - **Backup**
-  - Automated Backups 
+  - Automated Backups (by default)
   - Database Snapshot
   - single AZ RDS : I/O may be briefly suspended while the backup process initializes (typically under a few seconds), and you may experience a brief period of elevated latency.
 - **Read Replicas**
