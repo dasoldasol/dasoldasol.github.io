@@ -8,6 +8,7 @@
 - **Backup**
   - Automated Backups 
   - Database Snapshot
+  - single AZ RDS : I/O may be briefly suspended while the backup process initializes (typically under a few seconds), and you may experience a brief period of elevated latency.
 - **Read Replicas**
   - Can be Multi-AZ, different regions
   - Used to increase performance (ex.for heavy traffics)
