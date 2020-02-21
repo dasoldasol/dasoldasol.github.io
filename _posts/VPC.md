@@ -27,12 +27,26 @@
 ## Build a VPC
 ### VPC default
 ![first-vpc-default](./image/vpc-2.png)
+- Process : **Create VPC** (10.0.0.0/16)
 - When you create VPC by default.. : Route Table, Network Access Control List(NACL), Security Group
 - NOT by default.. : subnets, internet gateway
-- US-EAST-1A in your account can be a completely different availability zone to US-EAST-1A in another account. The AZ's are randomized.
-- Amazon always reserves 5 IP addresses within you subnets.(the reason why you have 251 not 256)
+
+
+### Add Subnets
+![vpc-with-subnets](./image/vpc-3.png)
+- Process : **Create Subnet1**(10.0.1.0/24 - us-east-1a) -> **Create Subnet2**(10.0.2.0/24 - us-east-1b) -> **Make Subnet1 public**(enable auto-assign public IP) 
+- US-EAST-1A in your account can be a completely different availability zone to US-EAST-1A in another account. The AZ's are randomized. 
+- Amazon always reserves 5 IP addresses within you subnets.(the reason why you have 251 not 256) 
+
+
+### Attach Internet Gateway & Make Instances in Subnets
+![vpc-with-subnets](./image/vpc-4.png)
+- Process : **Create Internet gateway & Attach to VPC** -> Check there's no subnet assocation to default-made Router Table -> **Create Public Route Table** -> **Edit Routes**(Internet gateway as target) -> **Edit Subnet Associations**(add Public Subnet) -> **Create WebServer Instance**(using Public Subnet, create security group SSH,HTTP) ->**Create DBServer Instance**(using Private Subnet, select default security group) -> **Create DB Security Group**(to enable the connection from webserver to dbserver ICMP 0-65535 MySQL SSH HTTP) 
 - 1 Internet Gateway = 1 VPC
 - Security Groups can't span VPCs. Security groups act at the instance level, not the subnet level.
+
+###
+- 
 
 ## NAT Instances & NAT Gateways
 - NAT : Network Address Translation
