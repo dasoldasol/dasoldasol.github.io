@@ -34,39 +34,55 @@
 
 ### Add Subnets
 ![vpc-with-subnets](./image/vpc-3.png)
-- Process : **Create Subnet1**(10.0.1.0/24 - us-east-1a) -> **Create Subnet2**(10.0.2.0/24 - us-east-1b) -> **Make Subnet1 public**(enable auto-assign public IP) 
+- Process
+  - **Create Subnet1**(10.0.1.0/24 - us-east-1a) -> **Create Subnet2**(10.0.2.0/24 - us-east-1b) -> **Make Subnet1 public**(enable auto-assign public IP)  
 - US-EAST-1A in your account can be a completely different availability zone to US-EAST-1A in another account. The AZ's are randomized. 
 - Amazon always reserves 5 IP addresses within you subnets.(the reason why you have 251 not 256) 
 
 
-### Attach Internet Gateway & Make Instances in Subnets
+### Attach Internet Gateway & Make Instances in Subnets & Security Groups
 ![vpc-with-subnets](./image/vpc-4.png)
-- Process : **Create Internet gateway & Attach to VPC** -> Check there's no subnet assocation to default-made Router Table -> **Create Public Route Table** -> **Edit Routes**(Internet gateway as target) -> **Edit Subnet Associations**(add Public Subnet) -> **Create WebServer Instance**(using Public Subnet, create security group SSH,HTTP) ->**Create DBServer Instance**(using Private Subnet, select default security group) -> **Create DB Security Group**(to enable the connection from webserver to dbserver ICMP 0-65535 MySQL SSH HTTP) 
+- Process 
+  - **Attach Internet Gateway**
+    - **Create Internet gateway & Attach to VPC** -> Check there's no subnet assocation to default-made Router Table -> **Create Public Route Table** -> **Edit Routes**(Internet gateway as target) -> **Edit Subnet Associations**(add Public Subnet) 
+  - **Make Instances in Subnets** 
+    - **Create WebServer Instance**(using Public Subnet, create security group SSH,HTTP) ->**Create DBServer Instance**(using Private Subnet, select default security group) 
+  - **Connect Public & Private Subnets**
+    - **Create DB Security Group**(to enable the connection **from public to private** ICMP 0-65535 MySQL SSH HTTP) -> **Change Security Group on DBServer Instance**  
 - 1 Internet Gateway = 1 VPC
 - Security Groups can't span VPCs. Security groups act at the instance level, not the subnet level.
 
-###
-- 
 
 ## NAT Instances & NAT Gateways
 - NAT : Network Address Translation
-- idea : on private sn, i want to update & install software 
-- **NAT Instances**
-  - when creating, Disable Source/Dest. Check on the Instance 
-    - Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself. Therefore, you must disable source/destination checks on the NAT instance.
-  - must be in a PUBLIC subnet
-  - must be a route out of the private subnet to the NAT instance
-  - bottleneck? increase instance size.
-  - high availability using Autoscaling Groups, multiple subnets in different AZs, script to automate failover
-  - Behind a Security Group
-- **NAT Gateways**
-  - Redundant inside the AZ -> 1 NAT Gateway = 1 AZ
-  - scale automatically
-  - no need to patch
-  - not associated with security groups
-  - Automatically assigned a public ip
-  - Remember to update route tables
-  - No need to disable Source/Dest. Check 
+- idea : on private sn, i want to update & install software. public connection to internet.
+
+
+### NAT Instances
+![vpc-nat-instance](./image/vpc-5.png)
+- Process
+  - **Create NAT instance**(using Public subnet, Public security group) -> Change Source/Dest. Check disabled -> **Edit Private Route Table**(select NAT instance as target)
+- when creating, Disable Source/Dest. Check on the Instance 
+  - Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself. Therefore, you must disable source/destination checks on the NAT instance.
+- must be in a PUBLIC subnet
+- must be a route out of the private subnet to the NAT instance
+- bottleneck? increase instance size.
+- high availability using Autoscaling Groups, multiple subnets in different AZs, script to automate failover
+- Behind a Security Group
+
+
+### NAT Gateways
+![vpc-nat-gateway](./image/vpc-6.png)
+- Process
+  - **Create NAT Gateway**(using Public subnet, ElasticIP) -> **Edit Private Route Table**(select NAT gateway as target)
+- Redundant inside the AZ -> 1 NAT Gateway = 1 AZ
+- scale automatically
+- no need to patch
+- not associated with security groups
+- Automatically assigned a public ip
+- Remember to update route tables
+- No need to disable Source/Dest. Check 
+
 
 ## NACL(Network Access Control Lists) vs. Security Groups 
 - VPC automatically comes with a default NACL, by default, it allows all outbound & inbound
@@ -80,7 +96,8 @@
 - NACLs are STATELESS; responses to allowed inbound traffic are following the rules for outbound traffic.
 
 ## Bastion vs. NAT
-- NAT is used to provice internet traffic to EC2 instances in a private subnets.(not used to SSH)
+![vpc-bastion](./image/vpc-7.png)
+- NAT is used to provide internet traffic to EC2 instances in a private subnets.(not used to SSH)
 - Bastion is used to securely administer EC2 instances using SSH. 
 - you canNOT use a NAT Gateway as a Bastion host
 
@@ -91,8 +108,9 @@
   - if you need a stable and reliable secure connection
 
 ## VPC EndPoint
-- privately connect VPC to supported AWS services
+- privately connect VPC to supported AWS services(the private subnet can connect to outside world)
 - PrivateLink without requiring Internet Gateway, NAT, VPC connection, Direct Connect connection.
 - Instances in your VPC do NOT require public IP to communicate with resources in the service.
-- Interface Endpoints
-- Gateway Endpoints : s3, dynamoDB
+- 2 types of EndPoint
+  - Interface Endpoints
+  - Gateway Endpoints : s3, dynamoDB
