@@ -1,5 +1,5 @@
 ## VPC(Virtual Private Network) Overview
-- *** build your own VPC !!!! ***
+- *** build your own VPC from memory!!!! ***
 - What VPC can do 
 - Default VPC vs. Custom VPC
 - VPC Peering
@@ -11,6 +11,9 @@
 - 1 Subnet = 1 Availability Zone 
 - Security Groups are Stateful; Network Access Control Lists are Stateless
 - NO TRANSITIVE PEERING
+<div>
+  <img width="1134" alt="vpc-1" src="https://user-images.githubusercontent.com/29423260/74993146-7d728300-548d-11ea-94a3-6bd0a7e9a9c1.png">
+</div>
 
 ## Build a VPC
 - When you create VPC by default.. : Route Table, Network Access Control List(NACL), Security Group
