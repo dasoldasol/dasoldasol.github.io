@@ -11,23 +11,26 @@
 - 1 Subnet = 1 Availability Zone 
 - Security Groups are Stateful; Network Access Control Lists are Stateless
 - NO TRANSITIVE PEERING
+### VPC with Public & Private Subnets
 <div>
   <img width="1134" alt="vpc-1" src="https://user-images.githubusercontent.com/29423260/74993146-7d728300-548d-11ea-94a3-6bd0a7e9a9c1.png">
 </div>
 
 ## Build a VPC
+### VPC default
 - When you create VPC by default.. : Route Table, Network Access Control List(NACL), Security Group
 - NOT by default.. : subnets, internet gateway
 - US-EAST-1A in your account can be a completely different availability zone to US-EAST-1A in another account. The AZ's are randomized.
 - Amazon always reserves 5 IP addresses within you subnets.(the reason why you have 251 not 256)
 - 1 Internet Gateway = 1 VPC
-- Security Groups can't span VPCs. 
+- Security Groups can't span VPCs. Security groups act at the instance level, not the subnet level.
 
 ## NAT Instances & NAT Gateways
 - NAT : Network Address Translation
 - idea : on private sn, i want to update & install software 
 - **NAT Instances**
   - when creating, Disable Source/Dest. Check on the Instance 
+    - Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself. Therefore, you must disable source/destination checks on the NAT instance.
   - must be in a PUBLIC subnet
   - must be a route out of the private subnet to the NAT instance
   - bottleneck? increase instance size.
