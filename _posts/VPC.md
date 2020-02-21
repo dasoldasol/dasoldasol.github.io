@@ -36,7 +36,7 @@
 ![vpc-with-subnets](./image/vpc-3.png)
 - Process
   - **Create Subnet1**(10.0.1.0/24 - us-east-1a) -> **Create Subnet2**(10.0.2.0/24 - us-east-1b) -> **Make Subnet1 public**(enable auto-assign public IP)  
-- US-EAST-1A in your account can be a completely different availability zone to US-EAST-1A in another account. The AZ's are randomized. 
+- US-EAST-1A in your account can be a completely different availability zone to US-EAST-1A in another account. The AZ's are randomized between AWS accounts.
 - Amazon always reserves 5 IP addresses within you subnets.(the reason why you have 251 not 256) 
 
 
