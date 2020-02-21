@@ -1,9 +1,20 @@
+## Elastic Block Store CheatSheet 
+- is virtual network attached block storage 
+- Volumes **CANNOT be shared** with multiple EC2 instances (cf. EFS)
+- **muiltiple Volumes can be attached** to a single EC2 instance
+- **persist and independent of EC2 lifecycle**
+- Snapshots **CANNOT** span **across region**
+- for making Volume available to different AZ
+  - create a Snapshot of the Volume and restore it to a new Volume in any AZ within the region
+- for making Volume available to different Region
+
 ## EBS Types 
 - General Purpose SSD(gp2) : MAX IOPS 16,000, Most Work Loads 
 - Provisioned IOPS SSD(io1) : 64,000, Databases 
 - Throughput Optimized HDD(st1) : 500, Big Data & Data Warehouse 
 - Cold HDD(sc1) : 250
 - EBS Magnetic(standard) : 40-200 (not used)
+
 
 ## Volume & Snapshot
 - Volume : exist on EBS. always on same AZ
