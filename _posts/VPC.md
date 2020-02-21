@@ -1,23 +1,32 @@
 ## VPC(Virtual Private Network) Overview
 - *** build your own VPC from memory!!!! ***
 - What VPC can do 
+  - Launch instances into a subnet of your choosing 
+  - Assign custom IP in each subnet 
+  - Configure route tables between subnets
+  - Create internet gateway and attach it to VPC
+  - Instance security groups
+  - Subnet network access control lists(NACLs)
 - Default VPC vs. Custom VPC
 - VPC Peering
   - transitive peering X
 
+
 ## Features 
 - Think of a VPC as a logical datacenter in AWS
-- Consists of Internet Gate Ways(Or Virtual Private Gateways), Route Tables, Network Access Control Lists(NACL), Subnets, Security Groups
+- Consists of Internet Gateways, Route Tables, Network Access Control Lists(NACL), Subnets, Security Groups
 - 1 Subnet = 1 Availability Zone 
 - Security Groups are Stateful; Network Access Control Lists are Stateless
 - NO TRANSITIVE PEERING
+
+
 ### VPC with Public & Private Subnets
-<div>
-  <img width="1134" alt="vpc-1" src="https://user-images.githubusercontent.com/29423260/74993146-7d728300-548d-11ea-94a3-6bd0a7e9a9c1.png">
-</div>
+![complete-vpc](./image/vpc-1.png)
+
 
 ## Build a VPC
 ### VPC default
+![first-vpc-default](./image/vpc-2.png)
 - When you create VPC by default.. : Route Table, Network Access Control List(NACL), Security Group
 - NOT by default.. : subnets, internet gateway
 - US-EAST-1A in your account can be a completely different availability zone to US-EAST-1A in another account. The AZ's are randomized.
