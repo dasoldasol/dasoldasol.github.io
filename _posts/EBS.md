@@ -7,6 +7,7 @@
 - for making Volume available to different AZ
   - create a Snapshot of the Volume and restore it to a new Volume in any AZ within the region
 - for making Volume available to different Region
+  - 
 
 ## EBS Types 
 - General Purpose SSD(gp2) : MAX IOPS 16,000, Most Work Loads 
