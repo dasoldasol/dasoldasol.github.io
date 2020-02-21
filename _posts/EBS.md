@@ -7,7 +7,11 @@
 - for making Volume available to different AZ
   - create a Snapshot of the Volume and restore it to a new Volume in any AZ within the region
 - for making Volume available to different Region
-  - 
+  - the Snapshot of the Volume can be copied to a different region and restored as a Volume
+- provides **high durability** and are **redundant in an AZ**
+  - as the data is automatically replicated within that AZ to prevent data loss
+- PIOPS is designed to run transactions applications that require high and consistent IO such as RDB, NoSQL etc
+
 
 ## EBS Types 
 - General Purpose SSD(gp2) : MAX IOPS 16,000, Most Work Loads 
