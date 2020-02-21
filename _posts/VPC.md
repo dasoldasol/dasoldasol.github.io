@@ -114,3 +114,4 @@
 - 2 types of EndPoint
   - Interface Endpoints
   - Gateway Endpoints : s3, dynamoDB
+- traffic between your VPC and the other service does not leave the Amazon network when using VPC endpoints
