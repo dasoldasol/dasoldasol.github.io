@@ -18,3 +18,6 @@
   - **Sticky Sessions** enable your users to stick to the same EC2 instance. Can be useful if you are storing information locally to that instance
   - **Cross Zone Load Balancing** enables you to load balance across multiple availability zones 
   - **Path patterns** allow you to direct traffic to different EC2 instances based on the URL contained in the request ex) www.myurl.com -> EC2-01 / www.myurl.com/images -> EC2-02
+
+
+- **Target Group**
