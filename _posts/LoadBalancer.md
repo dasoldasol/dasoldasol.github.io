@@ -1,6 +1,6 @@
 ## Feautures
 - 3 types of Load Balancer
-  - **Application Load Balancers** for intelligent routing
+  - **Application Load Balancers** for intelligent routing : distinguish traffic for different targets (mysite.co/accounts vs. mysite.co/sales vs. mysite.co/support) and distribute traffic based on rules for target group, condition, and priority.
   - **Network Load Balancers** for very high performance or static IP, only L4
   - **Classic Load Balancers** for low cost and don't need any intelligence built in 
 - **504** Error : The gateway was timed out. The application not responding within the timeout period 
