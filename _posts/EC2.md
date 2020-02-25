@@ -1,3 +1,41 @@
+## EC2 CheatSheet
+### Features
+- provides **scalable computing capacity**
+- **EC2 instances** : Virtual computing environments
+- **Amazon Machine Images(AMI)** : Preconfigured templates for EC2 instances
+  - package the bits needed for the server (including the os and additional sw)
+- **Instance types** : Various configurations of CPU, memory, storage, and networking capacity for your instances 
+- **Key pairs** : Secure login information for your instances (public-private keys where private is kept by user)
+- **Instance store volumes** : Storage volumes for temporary data. Deleted when you stop/terminate your instance
+- **Elastic Block Store(EBS)** : Persistent storage volumes for data using
+- **Regions and Availability Zones** : Multiple physical locations for your resources such as instances and EBS volumes
+- **Security Groups** : A Firewall to specify the protocols, ports, and source IP ranges that can reach your instances 
+- **Elastic IP(EIP)** : Static IP addresses
+- **Tags** : Metadata. Created and assigned to EC2 resources.
+- **VPCs** : Virtual networks that are logically isolated from the rest of the AWS cloud, and can optionally connect to on premises network
+
+
+### Amazon Machine Image(AMI)
+- **Template** from which EC2 instances can be launched quickly 
+- **does NOT span across regions**, and needs to be copied 
+- **can be shared with other specific AWS accounts or made public**
+
+
+### Purchasing Option 
+- **On-Demand Instances**
+  - pay for instances and compute capacity that you use by the hour
+  - with no long-term commitments or up-front payments 
+- **Reserved Instances**
+  - provides **lower hourly running costs** by providing a billing discount 
+  - **capacity reservation**
+  - suited if **consistent, heavy, predictable** usage 
+  - you can **modify AZs** or the **instance size within the same instance type**
+  - **pay for entire term** regardless of the usage
+- **Spot Instance**
+  - cost-effective choice but doest **NOT guarantee availability**
+- **Dedicated Instances**
+  - tenancy option which enables instances to run in VPC on hardware that's isolated, dedicated to a single customer
+
 ## EC2 Pricing Models 
   - On Demand 
   - Reserved : Standard, Convertible, Scheduled 
