@@ -34,6 +34,18 @@
 - Use CloudTrail to keep a history of activity
 - Enforce a strong IAM password policy for IAM Users 
 - Remove all unused users and credentials
+
 ## Using Role with EC2
 - instead of using credentials, Attach the role to the instance
 - hackers cannot take access key & secret access key from .aws 
+
+## Concept
+- PCI DSS(Payment Card Industry Data Security Standard)
+- root account
+- MFA on root
+- universal : global (region xx)
+- **group** : job function, policy (NO permissions when first created)
+- **access key** : pragrammic access, not the same as a password, view just once 
+- **role** : policy + policy
+- password : customize password rotation policy 
+- **STS(Security Token Service)** - temporary security credentials
