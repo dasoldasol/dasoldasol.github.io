@@ -43,6 +43,7 @@
 
 ## RDS DB Instance Storage
 - DB instances use Amazon Elastic Block Store (Amazon EBS) volumes for database and log storage. 
+  - [EBS Storage Types](https://github.com/dasoldasol/dasolseo.github.io/blob/master/_posts/EBS.md#ebs-types)
 - **Provisioned IOPS (SSD) storage** : if you use **online transaction processing** in your production environment. for I/O-intensive, transactional (OLTP) database workloads
   - RDS Provisioned IOPS storage with MSSQL Server ) RDS volume 16TB
 - **General Purpose (SSD) storage**
