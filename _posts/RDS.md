@@ -45,10 +45,12 @@
   - Database Snapshot
   - single AZ RDS : I/O may be briefly suspended while the backup process initializes (typically under a few seconds), and you may experience a brief period of elevated latency.
 - **Read Replicas**
+  ![rds-replica](./image/rds-replica.png)
   - Can be Multi-AZ, different regions
   - Used to increase performance (ex.for heavy traffics)
   - Must have backups turned on 
   - Can be promoted to master, this will break the Read Replica 
 - **Multi-AZ**
+  ![rds-multi-az](./image/rds-multi-az.png)
   - Used For Disaster Recovery(failover by rebooting RDS instance)
  
