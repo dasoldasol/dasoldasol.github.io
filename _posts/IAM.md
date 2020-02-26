@@ -14,6 +14,7 @@
 - IAM Users or AWS Services can assume a role to obtain temporary security credentials that can be used to make AWS API calls
 - needs **Trust policy** to define who and **Permission policy** to define what the user or service can access
 - used with **Security Token Service(STS)**, a lightweight web service that provides **temporary, limited privilege** credentials for IAM users or for authenticated federated users
+- Using **SAML** (Security Assertion Markup Language 2.0), you can give your **federated users single sign-on (SSO) access** to the AWS Management Console.
 ### IAM Role Scenarios
 - Service access for e.g. EC2 to access S3/DynamoDB
 - Cross Account access for users 
@@ -46,6 +47,7 @@
 - universal : global (region xx)
 - **group** : job function, policy (NO permissions when first created)
 - **access key** : pragrammic access, not the same as a password, view just once 
+- **policy** : document that provides a formal statement of one or more permissions.
 - **role** : policy + policy
 - password : customize password rotation policy 
 - **STS(Security Token Service)** - temporary security credentials
