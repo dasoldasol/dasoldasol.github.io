@@ -17,7 +17,8 @@
 - maintains a **synchronous standby replica in a different AZ**
 - **transaction success** is returned only if **the commit is successful BOTH on the primary and the standby DB**
 - Oracle, PostgreSQL, MySQL, MariaDB DB instances use **Amazon technology**, while SQL Server DB instance use **SQL Server Mirroring**
-- **Snapshots and Backups are taken from standby & elimindate I/O freezes**
+- **Snapshots and Backups are taken from standby & eliminate I/O freezes**
+  - single AZ RDS : I/O may be briefly suspended while the backup process initializes (typically under a few seconds), and you may experience a brief period of elevated latency.
 - During automatic failover, its seamless and RDS switches to the standby instance and **updates the DNS record to point to standby**
 - failover can be **forced** with the **Reboot** with failover option
 
