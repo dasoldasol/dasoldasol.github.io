@@ -7,6 +7,7 @@
 - supports user initiated manual backups and snapshots
 - **daily automated backups with database transaction logs** enables **Point in Time recovery** up to the last 5 minutes of database usage
 - **Snapshots** : user-initiated storage volume snapshot of DB instance, backing up the **entire DB instance and not just individual databases** that can be restored as a independent RDS instance
+  - max backup retention period : 35 days
 - **Encryption** : support encryption at rest using KMS as well as encryption in transit using SSL endpoints
   - For encrypted database : logs, snapshots, backups, read replicas are all encrypted as well
 - RDS does not support all features of underlying databases, and if required the database instance can be launched on an EC2 instance
@@ -33,13 +34,19 @@
 
 
 ## Features
-- OLTP (cf. DynamoDB:NoSQL, Redshift:OLAP, Elasticache:Memcached/Redis)
+- **OLTP** (cf. DynamoDB:NoSQL, Redshift:OLAP, Elasticache:Memcached/Redis)
 - RDS runs on VM
 - You cannot SSH log in to these operation systmes however.(Amazon's responsibility)
 - RDS is NOT Serverless
 - Aurora is Serverless
 - Error node : the response from **RDS API** to check RDS for an error
-- provisioned IOPS over standard storage when.. : if you use online transaction processing in your production environment
+
+## RDS DB Instance Storage
+- DB instances use Amazon Elastic Block Store (Amazon EBS) volumes for database and log storage. 
+- **Provisioned IOPS (SSD) storage** : if you use **online transaction processing** in your production environment. for I/O-intensive, transactional (OLTP) database workloads
+  - RDS Provisioned IOPS storage with MSSQL Server ) RDS volume 16TB
+- **General Purpose (SSD) storage**
+
 ## Backups, Multi-AZ, Read Replicas
 - **Backup**
   - Automated Backups (by default)
@@ -51,7 +58,8 @@
   - Used to increase performance (ex.for heavy traffics)
   - Must have backups turned on 
   - Can be promoted to master, this will break the Read Replica 
+  - **data transfer charge** when replicating data from primary RDS to secondary RDS **is free**
 - **Multi-AZ**
   ![rds-multi-az](./image/rds-multi-az.png)
   - Used For Disaster Recovery(failover by rebooting RDS instance)
- 
+
