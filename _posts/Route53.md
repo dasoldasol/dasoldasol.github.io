@@ -56,3 +56,8 @@
 - **Geolocation Routing** : European Customer -> EU-WEST-1 / US Customer -> US-EAST-1
 - **Geoproximity Routing**(Traffic Flow Only)
 - **Multivalue Answer Routing** : similar to Simple Routing + put health checks on each record set. ex) service effectively creating a form or randomization
+
+## Scenarios 
+- Your company hosts 10 web servers all serving the same web content in AWS. They want Route 53 to serve traffic to random web servers. Which routing policy will meet this requirement, and provide the best resiliency?
+  - **Multivalue Routing**
+  - Multivalue answer routing lets you configure Amazon Route 53 to return multiple values, such as IP addresses for your web servers, in response to DNS queries. Route 53 responds to DNS queries with up to eight healthy records and gives different answers to different DNS resolvers. The choice of which to use is left to the requesting service effectively creating a form or randomization.
