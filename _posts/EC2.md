@@ -76,11 +76,11 @@
     - canNOT span multiple AZ
     - homogenous(same instance types) recommended 
   - **Spread Placement Group**
-    ![ec2-spread_placement_group](./image/ec2-spread_placement_group.png)
+    - ![ec2-spread_placement_group](./image/ec2-spread_placement_group.png)
     - **Indivisual Critical** EC2 instances
     - you can only have max 7 running instances per AZ
   - **Partitioned Placement Group**
-    ![ec2-partitioned_placement_group](./image/ec2-partitioned_placement_group.png)
+    - ![ec2-partitioned_placement_group](./image/ec2-partitioned_placement_group.png)
     - **Multiple** EC2 instances HDFS, HBase, and Cassendra 
 - placement group name must be unique
 - can NOT merge placement groups 
