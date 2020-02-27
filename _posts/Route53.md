@@ -1,3 +1,26 @@
+## Route53 CheatSheet
+### Features
+- Highly available and scalable **DNS & Domain Registration** Service 
+- Reliable and cost-effective way to route end users to Internet applications
+- **Multi-region and backup architectures for High Availability**
+  - ELB is limited to region, does NOT support multi region HA architecture
+- supports private Intranet facing DNS service 
+- **Internal resource record sets ONLY work for requests originating from within VPC** and currently cannot extend to on-premise
+- Global propagation of any changes made to the DN records within 1 min
+- **Alias resource record set** : points to ELB, S3, CloudFront. it is a Route53 extension to DNS. It's similar to a CNAME resource record set, but supports both for root domain-zone apex ex) example.com for subdomains for 'www.example.com
+- **CNAME resource record set** : ONLY for subdomains and cannot be mapped to the zone apex record 
+- **Split-view(Split-horizon)** DNS : enables you to access in internal version of your website using the same domain name that is used PUBLIC
+
+### Routing Policy 
+- **Simple Routing** : simple round robin policy 
+- **Weighted round robin** : assign weights to resource records sets to specify the proportion ex) 80% : 20%
+- **Latency Routing** : helps improve global applications as request are sent to server from the location with minimal latency, is based on the latency and CANNOT guarantee users from the same geographic will be served from the same location for any compliance reasons
+- **Geolocation Routing** : Specify geographic locations by continent, country, state limited to US, is based on IP accuracy
+- **Failover Routing** : failover to a backup site if the primary site fails and becomes unreachable 
+- On Failover..
+  - Active-Active : Weighted, Latency, Geolocation 
+  - Active-Passive : Failover 
+
 ## DNS
 - convert ip address to human friendly domain names
 - IPv4 vs. IPv6
