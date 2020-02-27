@@ -86,3 +86,10 @@
 - placement group name must be unique
 - can NOT merge placement groups 
 - you can move after you stopped instances 
+
+## Scenarios 
+- You have developed a new web application in the US-West-2 Region that requires six Amazon Elastic Compute Cloud (EC2) instances to be running at all times. US-West-2 comprises three Availability Zones (us-west-2a, us-west-2b, and us-west-2c). You need **100 percent fault tolerance**: should any single Availability Zone in us-west-2 become unavailable, the application must continue to run. How would you **make sure 6 servers are ALWAYS available**? NOTE: each answer has 2 possible deployment configurations. Select the answer that gives TWO satisfactory solutions to this scenario.
+  - **Solution 1 : 6 instances / 6 instances / 0 instance**
+  - **Solution 2 : 3 instances / 3 instances / 3 intstances**
+  - You need to work through each case to find which will provide you with the required number of running instances **even if one AZ is lost**. Hint: always assume that the AZ you lose is the one with the most instances. Remember that the client has stipulated that they MUST have 100% fault tolerance.
+  
