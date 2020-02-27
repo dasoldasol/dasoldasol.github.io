@@ -23,15 +23,17 @@
 
 
 ## Volume & Snapshot
-- Volume : exist on EBS. always on same AZ
-  - CAN NOT attach an EBS Volume to more than 1 EC2 instance at the same time.
-- Snapshot : exist on S3. incremental.(only the blocks changed since the last) stop the instance before taking snapshots.
-  - CAN NOT delete a snapshot of an EBS Volume that is used as the root device of a registered AMI
+### Volume
+- exist on EBS. always on same AZ
+- CAN NOT attach an EBS Volume to more than 1 EC2 instance at the same time.
 - You can change EBS volume sizes on the fly
+- **when EC2 instance terminated..** : **root device volume EBS deleted**, additional volumes NOT deleted by default 
+  - However, the DeleteOnTermination attribute may be changed at launch using Console or using CLI while running.
+### Snapshot 
+- exist on S3. **incremental**(only the blocks changed since the last) stop the instance before taking snapshots.
+- **CAN NOT delete a snapshot** of an EBS Volume that is used as the **root device** of a registered AMI
 - migrate to another AZ : snapshot -> create AMI from snapshot -> use the AMI to launch instance in new AZ
 - migrate to another region : snapshot -> create AMI from snapshot -> copy AMI to another region -> use the copied AMI to launch instance in new region
-- when EC2 instance terminated.. : root device volume deleted, additional volumes NOT deleted by default 
-  - However, the DeleteOnTermination attribute may be changed at launch using Console or using CLI while running.
 
 
 ## EBS vs. Instance Store 
