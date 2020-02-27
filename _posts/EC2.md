@@ -46,8 +46,9 @@
 - Termination Protection is turned off by default 
 - on EBS-backed instance, root EBS volume to be deleted when the instance terminated 
 - you CAN encrypt EBS Root Volumes
-- Additional Volume also can be encrypted  
-- Individual instances are provisioned in Availablity Zones 
+- Additional EBS Volume also can be encrypted  
+- Individual instances are **provisioned in Availablity Zones** 
+- You **can add multiple EBS volumes** to an EC2 instance and then create your own **RAID 5/RAID 10/RAID 0** configurations using those volumes.
 ## Security Groups
    - All Inbound traffic blocked by default
    - All Outbound traffic is allowed
@@ -69,15 +70,18 @@
 - curl http://169.254.169.254/latest/user-data/  
 ## EC2 Placement Groups 
 - 3 Placement Groups 
-  - Clustered
-    - Low Network Latency / High Network Throughput (put together real close)
+  - **Clustered Placement Group**
+    - grouping of instances **within a single AZ**
+    - Low **Network** Latency / High **Network** Throughput (put together real close)
     - canNOT span multiple AZ
     - homogenous(same instance types) recommended 
-  - Spread
-    - Indivisual Critical EC2 instances
+  - **Spread Placement Group**
+    ![ec2-spread_placement_group](./image/ec2-spread_placement_group.png)
+    - **Indivisual Critical** EC2 instances
     - you can only have max 7 running instances per AZ
-  - Partitioned
-    - Multiple EC2 instances HDFS, HBase, and Cassendra 
+  - **Partitioned Placement Group**
+    ![ec2-partitioned_placement_group](./image/ec2-partitioned_placement_group.png)
+    - **Multiple** EC2 instances HDFS, HBase, and Cassendra 
 - placement group name must be unique
 - can NOT merge placement groups 
 - you can move after you stopped instances 
