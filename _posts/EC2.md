@@ -88,6 +88,12 @@
 - you can move after you stopped instances 
 
 ## Scenarios 
+- **A web application allows customers to upload orders to an s3 bucket. The resulting Amazon S3 events trigger a Lambda function that insets a message to an SQS queues. A single EC2 instance reads messages from the queue, process them, and stores them in a DynamoDB table partitioned by unique order ID. Next month traffic is expected to increase by a factor of 10 and a Solutions Architect is reviewing the architecture for possible scaling problems.    
+Which component is MOST likely to need re-architecting to be able to scale to accommodate the new traffic?**
+  - **EC2 instance**
+  - A single EC2 instance will not scale and is a single point of failure in the architecture.
+  - A much better solution would be to have EC2 instances in an Auto Scaling group across 2 availability zones read messages from the queue. The other responses are all managed services that can be configured to scale or will scale automatically.
+  
 - You have developed a new web application in the US-West-2 Region that requires six Amazon Elastic Compute Cloud (EC2) instances to be running at all times. US-West-2 comprises three Availability Zones (us-west-2a, us-west-2b, and us-west-2c). You need **100 percent fault tolerance**: should any single Availability Zone in us-west-2 become unavailable, the application must continue to run. How would you **make sure 6 servers are ALWAYS available**? NOTE: each answer has 2 possible deployment configurations. Select the answer that gives TWO satisfactory solutions to this scenario.
   - **Solution 1 : 6 instances / 6 instances / 0 instance**
   - **Solution 2 : 3 instances / 3 instances / 3 intstances**
