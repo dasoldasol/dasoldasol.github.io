@@ -56,3 +56,10 @@
   - Copy the Snapshot and select the encrypt option
   - Create an AMI from the encrypted Snapshot
   - Use the AMI to launch new encrypted instances. 
+
+## Scenarios 
+- **A Solutions Architect is designing a critical business application with a relational database that runs on an EC2 instance. It requires a single EBS volume that can support up to 16,000 IOPS.    Which Amazon EBS volume type can meet the performance requirements of this application?**    
+  - **EBS Provisioned IOPS SSD**
+  - EBS Provisioned IOPS SSD : sustained performance for mission-critical low-latency workloads
+  - EBS General Purpose SSD : bursts of performance 3,000 - 10,000 IOPS
+  - HDD : lower cost, high throughput volumes
