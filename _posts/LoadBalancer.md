@@ -1,3 +1,36 @@
+## Load Balancer CheatSheet
+- Managed load balanding service and scales automatically 
+- **distributes** incoming application **traffic** across multiple EC2 instances 
+- **is distributed system that is fault tolerant and actively monitored by AWS scales it as per the demand**
+- are engineered to **not be a single point of failure**
+- need to **Pre-Warm** ELB if the demand is expected to shoot especially during load testing 
+- supports routing traffic to instances in **multiple AZs in the same region**
+- **Health Checks** : to route traffic only to the healthy instances 
+- supports Listners with HTTP, HTTPS, SSL, TCP protocols 
+- has an associated IPv4 and dual stack DNS name 
+- **Connect draining** : to help complete the in-flight requests in case an instance is deregistered
+- **For High Availability** : it is recommended to attach 1 subnet per AZ for 2 AZs, even if the instances are in a single subnet
+- **canNOT assign an Elastic IP** adresses to an ELB
+- IPv4 & IPv6 support
+
+### SSL
+- **SSL termination** : can offload the work of encryption and decryption so that the EC2 instances can focus on their main work
+- **HTTP listener does NOT support Client Side Certificate**
+- **SSL termination at backend instances/support for Client Side Certificate** use TCP for connections from the client to the ELB, use the SSL protocol for connections from the ELB to the back-end application, and deploy certificates on the back-end instances handling requests. 
+- supports a **single SSL certificate**, so for multiple SSL certificate multiple ELBs need to be created 
+
+### Cross Zone Load Balancing 
+- to help route traffic evenly across all EC2 instances regardless of the AZs they reside in
+- to help **identify client IP**
+  - **Proxy Protocol header** for TCP/SSL connections
+  - **X-Forward headers** for HTTP/HTTPS connections 
+
+### Stick Sessions (session affinity)
+- to bind a user's session to a specific application instance
+- it is NOT fault tolerant : if an instance is lost, the information is lost
+- requires HTTP/HTTPS listener and does NOT work with TCP
+- requires SSL termination on ELB as it uses the headers 
+
 ## Feautures
 - 3 types of Load Balancer
   - **Application Load Balancers** for intelligent routing : distinguish traffic for different targets (mysite.co/accounts vs. mysite.co/sales vs. mysite.co/support) and distribute traffic based on rules for target group, condition, and priority.
