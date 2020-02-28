@@ -1,3 +1,122 @@
+## VPC CheatSheet
+### Features 
+- helps define a logically isoloated dedicated virtual network within the AWS
+- provides control of IP addressing using CIDR block from a minimum of /28 to maximum of /16 block size
+- supports IPv4 and IPv6 addressing
+- can be extended by associating secondary IPv4 CIDR blocks to VPC
+
+### Components 
+- **Internet Gateway** : access to the Internet
+- **Virtual Gateway** : access to on-premises data center through **VPN** and **Direct Connect** connections
+- VPC can have only 1 IGW and VGW
+- **Route Tables** : determine where network traffic from subnet is directed 
+- Ability to create **subnet** with VPC CIDR blocks 
+- **NAT**(Network Address Translation) Server : provides outbound Internet access for EC2 instances in private subnets
+- **EIP(Elastic IP)** : static, persistent public IP addresses
+- Instances launched in the VPC will have a **Public IP** and can have a **Public or a Elastic UP** associated with it 
+- **Security Groups / NACLs** : define security 
+- **Flow logs** : capture information about the IP traffic going to and from network interfaces in VPC
+
+### Tenancy option for instances 
+- **shared** : by default. allows instances to be launched on shared tenancy
+- **dedicated** : allows instances to be launched on a dedicated hardware 
+
+### Route Tables 
+- define rules, termed as routes, which determine **where network traffic** from subnet would be **routed**
+- Each VPC has a Main ROute table, and can habe multiple custom route tables created 
+- Every route table contains a local route that enables communication within a VPC which cannot be modified or deleted 
+- Route priority is decided by matching the most specific route in the route table that matched the traffic 
+
+### Subnets 
+- **map to AZs** and do not span across AZs
+- have CIDR range that is a portion of the whole VPC
+- **CIDR ranged cannot overlap** between subnets within the VPC
+- AWS **reserves 5 IP addresses in each subnet - first 4 and last one**
+- Each subnet is **associated with a route table** which define its dehavior 
+  - **Public Subnets** : inboud/outbound Internet connectivity via IGW
+  - **Pricate Subnets** : outbound Internet connectivity via NAT or VGW
+  - **Protected Subnets** : no outboud connectivity and used for regulated workloads
+
+### Elastic Network Interface(ENI)
+- a default ENI, eth0, is attached to an instance which cannot be detached with one or more secondary detachable ENIs(eth1-ethn)
+- has primary private, one or more secondary private, public, Elastic IP address, security groups, MAC address and source/destination check flag attributes associated 
+- AN ENI in one subnet can be attached to an instance in the same or another subnet, in the **same VPC** and the **same AZ**
+- Security group membership of an ENI can be changed 
+- with pre-allocated MAC address can be used for applications with special licensing requirements 
+
+### Security Groups vs. Network Access Control Lists
+|Security Group|NACL|
+|:--------:|:--------:|
+|Stateful|Stateless|
+|at Instance level|at Subnet level|
+|ONLY allows Allow rule|allows BOTH Allow and Deny rules|
+|Evaluated as a Whole|Evaluated in defined Order|
+
+### Elasitc IP
+- is a **static IP address** designed for dynamic cloud computing 
+- is **associated with AWS account**, and not a particular instance 
+- can be **remapped** from one instance to another instance 
+- is **charged for non usage**, if not linked for any instance or instance associated is in stopped state 
+
+### NAT
+- allows **internet access** to instance in **private** subnet
+- performs the function of both address translation and port address translation(PAT)
+- needs **source/destination** check flag to be **disabled** as it is not actual destination of the traffic
+- not supported for IPv6 traffic
+
+### Egress-Only Internet Gateways 
+- outbound communication over IPv6 from instances in the VPC to the Internet, and prevents the Internet from initiating an IPv6 connection with your instances 
+- supports ONLY IPv6 traffic 
+
+### Shared VPCs
+- allows multiple AWS accounts to create their application resources, such as EC2 instances, RDS databases, Redshift clusters, and AWS Lambda functions, into shared, centrally-managed VPCs
+
+### VPC Peering 
+- allows routing of traffic between the peer VPCs **using private IP addresses** and no IGW or VGW required 
+- No single point of failure and bandwidth bottlenecks 
+- supports inter-region VPC peering 
+- IP space or **CIDR blocks cannot overlap**
+- **cannot be TRANSITIVE**, one-to-one relationship between 2 VPC
+- Only 1 between any 2 VPCs and have to be explicitly peered 
+- **Private DNS values cannot be resolved**
+- Security groups from peered VPC can now be refered, however the VPC should be in the same region
+
+### VPC Endpoints
+- enables you to privately connect VPC to supported AWS services and VPC endpoint services powered by PrivateLink
+- **does NOT require a public IP address, access over the Internet, NAT device, a VPN connection or Direct Connect**
+- traffic between VPC & AWS service does not leave the Amazon network 
+- are virtual devices 
+- are horizontally scaled, redundant, and highly available VPC components that allow communication between instances in your VPC and services without imposing availability risks or bandwidth constraints on your network traffic 
+- **Gateway Endpoints**
+  - is a gateway that is a target for a specified route in the route table, used for traffic destined to a supported AWS service 
+  - only **S3 and DynamoDB** are supported 
+- **Interface Endpoints**
+  - is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service 
+  - services supported API Gateway, CloudFormation, CloudWatch, CloudWatch Events, CloudWatch Logs, CodeBuild, CodeCommit, Config, EC2 API, Elastic Load Balancing API, Elastic Container Registry, Elastic Container Service, Key Management Service, Kinesis Data Streams, SageMager, Secrets Manager, Security Token Service(STS), Service Catalog, SNS, SQS
+  
+### VPN
+- provides secure IPSec connections from on-premise computers or services to AWS over the internet
+- is quick to setup, is cheap however it depends on the Internet speed 
+
+### Direct Connect 
+- is a network service that provides an alternative to using Internet to utilize AWS services by using **private dedicated network connection**
+- provides Virtual Interfaces 
+  - **Private VIF** : access instances within an VPC via VGW
+  - **Public VIF** : access non VPC services 
+- **requires time to setup** probably months, and should not be considered as an option if turnaround time is less 
+- **does NOT provide redundancy**, use either second direct connection or IPSec VPN connection
+- Virtual Private Gateway is on the AWS side and Customer Gateway is on the Customer side
+- **route propagation is enabled on VGW** and not on CGW
+
+### Direct Connect vs. VPN IPSec
+|Direct Connect|VPN IPSec|
+|:--------:|:--------:|
+|Expensive to setup & Takes time|Immediate|
+|Dedicated private connections|Internet|
+|Reduced data transfer rate|Internet data transfer cost|
+|Consistent performance|Internet inherent variability|
+|Do NOT provide Redundancy|Provide Redundancy|
+
 ## VPC(Virtual Private Network) Overview
 - *** build your own VPC from memory!!!! ***
 - What VPC can do 
