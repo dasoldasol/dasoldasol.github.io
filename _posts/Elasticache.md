@@ -28,10 +28,21 @@
 |automatic failover with Multi-AZ|Multi-AZ not supported|
 |scaling using Read Replicas|scaling using multiple nodes|
 |backup & restore supported|not supported|
-
-  
-  
+ 
 ## Features
 - Use Elasticache to increase database and web application performance
 - Redis : Multi-AZ, backups and retores
 - Memcached : if you need to scale horizontally
+
+## Scenarios 
+- **A company is developing a highly available web application using stateless web servers. Which
+services are suitable for storing session state data? (Select TWO.)**       
+        
+  A. CloudWatch       
+  **B. DynamoDB**       
+  C. Elastic Load Balancing       
+  **D. ElastiCache**        
+  E. Storage Gateway        
+    - Both DynamoDB and ElastiCache provide high performance storage of key-value pairs.
+    - CloudWatch and ELB are not storage services 
+    - Storage Gateway is a hybrid storage service that enables on-premises applpications to use cloud storage
