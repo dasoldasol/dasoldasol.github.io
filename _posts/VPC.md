@@ -238,19 +238,22 @@
 ## Scenarios 
 - **An application running on EC2 instances processes sensitive information stored on Amazon S3. The information is accessed over the Internet. The security team is concerned that the Internet connectivity to Amazon S3 is a security risk.    
 Which solution will resolve the security concern?**
-  - **Access the data through a VPC endpoint for Amazon S3.**
+  - **A) Access the data through a VPC endpoint for Amazon S3.**
   - VPC endpoints for Amazon S3 : provide secure connection to S3 bucket that do not require a gateway or NAT instances.
   - NAT Gateways & Internet Gateways : still route traffic over the Internet to the public endpoint for Amazon S3
   - VPN : There is NO WAY to connect to Amazon S3 via VPN
 
 - **An organization is building an Amazon Redshift cluster in their shared services VPC. The cluster will host sensitive data.    
 How can the organization control which networks can access the cluster?**
-  - **Define a cluster security group for the cluster that allows access from the allowed networks**
+  - **A) Define a cluster security group for the cluster that allows access from the allowed networks**
   - A security group can grant access to traffic from the allowed networks via the **CIDR range** for each network.
   - VPC peering & VPN : are connectivity services and cannot control traffic for security.
   - Amazon Redshift user accounts address authentication and authorization at the user level : have NO control over network traffic.
   
 - **A Solutions Architect is designing an online shopping application running in a VPC on EC2 instances behind an ELB Application Load Balancer. The instances run in an Auto Scaling group across multiple Availability Zones. The application tier must read and write data to a customer managed database cluster. There should be no access to the database from the Internet, but the cluster must be able to obtain software patches from the Internet.     
 Which VPC design meets these requirements?**
-  - **Public subnets for the application tier and NAT Gateway, and private subnets for the database cluster**
+  - **A) Public subnets for the application tier and NAT Gateway, and private subnets for the database cluster**
   - NAT Gateways must be deployed in public subnets.
+
+- **You are tasked to host a web application in a new VPC with private and public subnets. In order to do this, you will need to deploy a new MySQL database server and a fleet of EC2 instances to host the application. In which subnet should you launch the new database server into?**
+  - **A) The private subnet**
