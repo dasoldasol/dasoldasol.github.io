@@ -59,14 +59,14 @@
 
 ## Scenarios 
 - **A Solutions Architect is designing a critical business application with a relational database that runs on an EC2 instance. It requires a single EBS volume that can support up to 16,000 IOPS.    Which Amazon EBS volume type can meet the performance requirements of this application?**    
-  - **EBS Provisioned IOPS SSD**
+  - **A) EBS Provisioned IOPS SSD**
   - EBS Provisioned IOPS SSD : sustained performance for mission-critical low-latency workloads
   - EBS General Purpose SSD : bursts of performance 3,000 - 10,000 IOPS
   - HDD : lower cost, high throughput volumes
     
 - **You are building a new data analytics application in AWS which will be deployed in an AutoScaling group of On-Demand EC2 instances and MongoDB database. It is expected that the database will have high-throughput workloads performing small, random I/O operations. As the Solutions Architect, you are required to properly setup and launch the required resources in AWS.    
 Which of the following is the most suitable EBS type to use for your database?**
-  - **Provisioned IOPS SSD(io1)**
+  - **A) Provisioned IOPS SSD(io1)**
   - SSD-backed volumes : consistent performance whether an I/O operation is random or sequential.
     - General Purpose SSD(gp2) : it can handle small, random I/O operations
     - Provisioned IOPS SSD(io1) : suitable for I/O-intensive database workloads such as MongoDB, Oracle, MySQL.
