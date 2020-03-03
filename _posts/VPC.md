@@ -1,5 +1,5 @@
 ## VPC CheatSheet
-### Features 
+### Feature 
 - helps define a logically isoloated dedicated virtual network within the AWS
 - provides control of IP addressing using CIDR block from a minimum of /28 to maximum of /16 block size
 - supports IPv4 and IPv6 addressing
