@@ -48,7 +48,7 @@
 |Security Group|NACL|
 |:--------:|:--------:|
 |Stateful|Stateless|
-|at Instance level|at Subnet level|
+|at Instance level|at Subnet level - each instance in a subnet in your VPC could be assigned to a different set of security groups|
 |ONLY allows Allow rule|allows BOTH Allow and Deny rules|
 |Evaluated as a Whole|Evaluated in defined Order|
 
@@ -257,3 +257,8 @@ Which VPC design meets these requirements?**
 
 - **You are tasked to host a web application in a new VPC with private and public subnets. In order to do this, you will need to deploy a new MySQL database server and a fleet of EC2 instances to host the application. In which subnet should you launch the new database server into?**
   - **A) The private subnet**
+
+- **You have 1 security group associated with 10 On-Demand EC2 instances.  You then modified the security group to allow all inbound SSH traffic and then right after that, you created two new EC2 instances in the same security group.    
+When will the changes be applied to the EC2 instances?**
+  - **A) Immediately to all 12 instances in the security group.**
+  - When you add or remove rules, those changes are automatically applied to all instances to which you've assigned the security group. Since the first 10 instances are already assigned to the security group, you can SSH into them immediately after the change. After adding the two new instances to the security group, you should be able to SSH into them as well.
