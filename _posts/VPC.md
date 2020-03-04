@@ -48,9 +48,10 @@
 |Security Group|NACL|
 |:--------:|:--------:|
 |Stateful|Stateless|
-|at Instance level|at Subnet level - each instance in a subnet in your VPC could be assigned to a different set of security groups|
+|at Instance level|at Subnet level|
 |ONLY allows Allow rule|allows BOTH Allow and Deny rules|
 |Evaluated as a Whole|Evaluated in defined Order|
+- Security Groups at Instance level : Security groups act at the instance level, not the subnet level. each instance in a subnet in your VPC could be assigned to a different set of security groups
 
 ### Elasitc IP
 - is a **static IP address** designed for dynamic cloud computing 
