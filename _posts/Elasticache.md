@@ -46,3 +46,14 @@ services are suitable for storing session state data? (Select TWO.)**
     - Both DynamoDB and ElastiCache provide high performance storage of key-value pairs.
     - CloudWatch and ELB are not storage services 
     - Storage Gateway is a hybrid storage service that enables on-premises applpications to use cloud storage
+
+- **You are designing a banking portal which uses Amazon ElastiCache for Redis as its distributed session management component. Since the other Cloud Engineers in your department have access to your ElastiCache cluster, you have to secure the session data in the portal by requiring them to enter a password before they are granted permission to execute Redis commands.    
+As the Solutions Architect, which of the following should you do to meet the above requirement?**
+  - **A) Authenticate the users using Redis AUTH by creating a new Redis Cluster with both the `--transit-encryption-enabled` and `--auth-token` parameters enabled.**
+  - To require that users enter a password on a password-protected Redis server, include the parameter `--auth-token` with the correct password
+  - Enabling the `AtRestEncryptionEnabled` parameter : the Redis At-Rest Encryption ONLY secures the data inside.
+
+- **A startup based in Australia is deploying a new two-tier web application in AWS. The Australian company wants to store their most frequently used data in an in-memory data store to improve the retrieval and response time of their web application.    
+Which of the following is the most suitable service to be used for this requirements?
+  - A) Amazon ElastiCache**
+  - ElastiCache makes it easy to deploy, operate, and scale an **in-memory** data store or cache. The service improves the performance of web applications by allowing you to **retrieve** information from fast, managed, in-memory data stores, instead of slow disk-based DBs.
