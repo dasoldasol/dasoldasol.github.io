@@ -98,3 +98,9 @@ Which component is MOST likely to need re-architecting to be able to scale to ac
   - **Solution 1 : 6 instances / 6 instances / 0 instance**
   - **Solution 2 : 3 instances / 3 instances / 3 intstances**
   - You need to work through each case to find which will provide you with the required number of running instances **even if one AZ is lost**. Hint: always assume that the AZ you lose is the one with the most instances. Remember that the client has stipulated that they MUST have 100% fault tolerance.
+
+- Your company announced that there would be a surprise IT audit on all of the AWS resources being used in the production environment. During the audit activities, it was noted that you are using a combination of **Standard and Scheduled Reserved EC2 instances** in your applications. They argued that you should have used Spot EC2 instances instead as it is cheaper than the Reserved Instance.    
+Which of the following are the characteristics and **benefits** of using these two types of **Reserved EC2 instances**, which you can use as justification? (Choose 2)
+  - **Reserved Instances doesn't get interrupted unlike Spot instances in the event that there are not enough unused EC2 instances to meet the demand.**
+  - **You can have capacity reservations that recur on a daily, weekly, or montly basis, with a specified time and duration, for a one-year term through Scheduled Reserved Instances**
+  - Reserved Instances are not physical instances, but rather a billing discount applied to the use of On-Demand Instances in your account. When your computing needs change, you can modify your Standard or Convertible Reserved Instances and continue to take advantage of the billing benefit. You can modify the Availability Zone, scope, network platform, or instance size (within the same instance type) of your Reserved Instance. You can also sell your unused instance on the Reserved Instance Marketplace.
