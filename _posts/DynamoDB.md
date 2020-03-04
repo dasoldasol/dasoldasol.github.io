@@ -33,3 +33,8 @@ services are suitable for storing session state data? (Select TWO.)**
     - Both DynamoDB and ElastiCache provide high performance storage of key-value pairs.
     - CloudWatch and ELB are not storage services 
     - Storage Gateway is a hybrid storage service that enables on-premises applpications to use cloud storage
+ 
+- **You are working as a Solutions Architect for a technology company which is in the process of migrating their applications to AWS. One of their systems requires a database that can scale globally and can handle frequent schema changes. The application should not have any downtime or performance issues whenever there is a schema change in the database. It should also provide low-latency response to high-traffic queries.    
+Which is the most suitable database solution to use to achieve this requirement?**
+  - **A) Amazon DynamoDB**
+  - Scema flexibility : Since the scenario requires that the **schema** changes frequently, then you have to puck a database which provides a **non-rigid** and flexible way of adding or removing new types of data.(NoSQL database)
