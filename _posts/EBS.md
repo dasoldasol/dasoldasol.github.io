@@ -14,6 +14,7 @@
 
 
 ## EBS Types 
+![ebs-feat](./image/ebs-2.png)
 ![ebs-types](./image/ebs-types.png)
 - General Purpose SSD(gp2) : MAX IOPS 16,000, Most Work Loads 
 - Provisioned IOPS SSD(io1) : 64,000, Databases 
