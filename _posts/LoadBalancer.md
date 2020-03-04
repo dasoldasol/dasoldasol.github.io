@@ -49,3 +49,9 @@
   - **Cross Zone Load Balancing** enables you to load balance across multiple availability zones 
   - **Path patterns** allow you to direct traffic to different EC2 instances based on the URL contained in the request ex) www.myurl.com -> EC2-01 / www.myurl.com/images -> EC2-02
 - **Target Group**
+
+## Scenario
+- **There are many clients complaining that the online trading application of an investment bank is always down. Your manager instructed you to re-design the architecture of the application to prevent the unnecessary service interruptions. To ensure high availability, you set up the application to use an ELB to distribute the incoming requests across an auto-scaled group of EC2 instances in two single Availability Zones.    
+In this scenario, what happens when an EC2 instance behind an ELB fails a health check?**
+  - **A) The ELB stops sending traffic to the EC2 instance**
+  - When the load balancer determines that an instance is unhealthy, it stops routing requests to that instance. The load balancer resumes routing requests to the instance when it has been restored to a healthy state.
