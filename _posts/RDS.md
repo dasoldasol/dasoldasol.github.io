@@ -1,4 +1,4 @@
-## RDS CheatSheet
+## RDS
 ### Features
 - provides **Relational Database** service
 - supports MySQL, MariaDB, PostgreSQL, Oracle, MSSQL Server, MySQL-compatible Amazon Aurora DB engine
