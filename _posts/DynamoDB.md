@@ -1,4 +1,4 @@
-## DynamoDB CheatSheet
+## DynamoDB
 ### Features 
 - fully managed **NoSQL** database service 
 - synchronously **replicates data across 3 facilities** in an AWS Region, with high availability and data durability 
