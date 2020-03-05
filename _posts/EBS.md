@@ -72,4 +72,7 @@ Which of the following is the most suitable EBS type to use for your database?**
     - General Purpose SSD(gp2) : it can handle small, random I/O operations
     - Provisioned IOPS SSD(io1) : suitable for I/O-intensive database workloads such as MongoDB, Oracle, MySQL.
   - HHD-backed voluems : optimal performance ONLY when I/O operations are large and sequential.
-  
+
+- You have triggered the creation of a snapshot of your EBS volume attached to an Instance Store-backed EC2 Instance and is currently on-going. At this point, what are the things that the EBS volume can or cannot do?
+  - **A) The volume can be used as normal while the snapshot is in progress**
+  - EBS snapshots occur **asynchronously**. This means that the point-in-time snapshot is created immediately, but the status of the snapshot is `pending` until the snapshot is complete. In-progress snapshot is **not affected** by ongoing reads and writes to **the volume** hence, you can still use the volume.
