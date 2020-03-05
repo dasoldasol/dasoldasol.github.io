@@ -269,3 +269,11 @@ Which of the following is the best method to **quickly and temporarily deny acce
   - **A) Modify the Network Access Control List associated with all public subnets in the VPC to deny access from the IP Address block.**
   - network access control list (ACL) : To control the traffic coming in and out of your VPC network. It is an optional layer of security for your VPC that acts as a firewall for **controlling traffic in and out of one or more subnets.**
   - Security Group : although a Security Group acts as a firewall, it will only control both inbound and outbound traffic **at the instance level** and not on the whole VPC.
+
+- In your AWS VPC, you need to add a new subnet that will allow you to host a total of 20 EC2 instances.    
+Which of the following IPv4 CIDR block can you use for this scenario?
+  - **A) 172.0.0.0/27**
+  - **CIDR Block으로 총 IP 주소 갯수 구하는 법**
+    - 1. **32 - CIDR Block mask number** : ex) 32 - 27 = **5**
+    - 2. **2^(1번답)** : ex) 2^**5** = **32**
+    
