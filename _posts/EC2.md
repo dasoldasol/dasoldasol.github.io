@@ -122,11 +122,11 @@ Which AWS service will you use for your database tier?
 
 - You are managing a suite of applications in your on-premises network which are using trusted IP addresses that your partners and customers have whitelisted in their firewalls. There is a requirement to **migrate these applications** to AWS **without** requiring your partners and customers to **change their IP address whitelists.**      
 Which of the following is the most suitable solution to properly migrate your applications?
-  - **A) Create a Route Origin Authorization(ROA) then one done, provision and advertise your whitelisted IP address range to your AWS account. 
+  - **A) Create a Route Origin Authorization(ROA) then one done, provision and advertise your whitelisted IP address range to your AWS account.**
   - Setting up a list of Elastic IP addresses to map the whitelisted IP address range in your on-premises network :  is incorrect because you cannot map the IP address of your on-premises network, which you are migrating to AWS, to an EIP address of your VPC. To satisfy the requirement, you must authorize Amazon to advertise the address range that you own.
 
 - You have a requirement to make sure that an On-Demand EC2 instance can only be accessed from this IP address (110.238.98.71) via an **SSH** connection. Which configuration below will satisfy this requirement?
-  - **A) Security Group Inbound Rule : Protocol - TCP. Port Range-22, Source 110.238.98.71/32
+  - **A) Security Group Inbound Rule : Protocol - TCP. Port Range-22, Source 110.238.98.71/32**
   - SSH protocol uses TCP and port 22. The requirement is to only allow the individual IP of the client and not the entire network. Therefore, the proper CIDR notation should be used. The /32 denotes one IP address and the /0 refers to the entire network.
 
 - You are a Solutions Architect for a leading Enterprise Resource Planning (ERP) solutions provider and you are instructed to design and set up the architecture of your ERP application in AWS. Your manager instructed you to **avoid using fully-managed AWS services** and instead, only use specific services which allows you to access the underlying operating system for the resource. This is to allow the company to have a much better control of the underlying resources that their systems are using in the AWS cloud.       
@@ -135,3 +135,11 @@ Which of the following services should you choose to satisfy this requirement? (
   - **Amazon EC2** : provides you access to the operating system of the instance that you created.
   - **Amazon EMR** : provides you a managed Hadoop framework that makes it easy, fast, and cost-effective to process vast amounts of data across dynamically scalable Amazon EC2 instances. You can access the operating system of these EC2 instances that were created by Amazon EMR.
   - **Amazon Athena, DynamoDB, Amazon Neptune** : are incorrect as these are managed services, which means that **AWS manages the underlying operating system** and other server configurations that these databases use.
+
+- You are working for a software company that has moved a legacy application from an on-premises data center to the cloud. The legacy application **requires a static IP address hard-coded into the backend**, which blocks you from using an Application Load Balancer.    
+Which steps would you take to apply **high availability and fault tolerance** to this application **without ELB**? (Choose 2)
+  - **Solution 1: Assign an Elastic IP address to the instance**
+  - **Solution 2: Write a script that checks the health of the EC2 instance. If the instance stops responding, the script will switch the elastic IP address to a standby EC2 instance.**
+  - ![EIP_as_VIP](./image/EIP_as_VIP.png)    
+  - **Launching the instance using Auto Scaling which will deploy the instance again if it becomes unhealthy** : is incorrect as even though the Auto Scaling group provides high availability and scalability, it still depends on ELB which is not available in this scenario. Take note that you need to have a static IP address which can be in the form of an Elastic IP. Although an Auto Scaling group can scale out if one of the EC2 instances became unhealthy, you still cannot directly assign an EIP to an Auto Scaling group. In addition, you are only limited to use EC2 instance status checks for your Auto Scaling group if you do not have an ELB which can provide you the actual health check of your application (using its port), and not just the health of the EC2 instance.
+
