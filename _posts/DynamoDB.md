@@ -49,3 +49,10 @@ Amazon DynamoDB is integrated with AWS Lambda so that you can create **triggers*
 Which of the following would you consider to implement for your DynamoDB table?
   - **A) Use partition keys with high-cardinality attributes, which have a large number of distinct values for each item**
   - The optimal usage of a table's provisioned throughput depends on the partition-key design. The more distinct partition key values that your workload accesses, the more those requests will be spread across the partitioned space.
+
+- A popular mobile game uses CloudFront, Lambda, and DynamoDB for its backend services. The player data is persisted on a DynamoDB table and the static assets are distributed by CloudFront. However, there are a lot of **complaints** that saving and retrieving player information is **taking a lot of time**.       
+To improve the game's performance, which AWS service can you use to **reduce DynamoDB response times from milliseconds to microseconds**?
+  - **A) Amazon DynamoDB Accelerator(DAX)**
+  - **DynamoDB Accelerator (DAX)** : a fully managed, highly available, **in-memory cache** that can reduce Amazon DynamoDB response times from milliseconds to microseconds    
+  - ElastiCache : is incorrect because it cannot reduce time from milliseconds to microseconds
+  
