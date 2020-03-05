@@ -60,3 +60,9 @@ Which of the following is the most suitable solution that you should implement t
     - You don't want to change your current URLs.
   - Match Viewer : is incorrect. It is an Origin Protocol Policy which configures CloudFront to communicate with your origin using HTTP or HTTPS, depending on the protocol of the viewer request. CloudFront caches the object only once even if viewers make requests using both HTTP and HTTPS protocols.
   - CloudFront distribution to use Field-Level Encryption : is incorrect because Field-Level Encryption only allows you to securely upload user-submitted sensitive information to your web servers. It does not provide access to download multiple private files.
+
+- A popular social media website uses a CloudFront web distribution to serve their static contents to their millions of users around the globe. They are receiving a number of **complaints** recently that their users **take a lot of time to log into their website**. There are also occasions when their users are getting **HTTP 504 errors**. You are instructed by your manager to significantly reduce the user's login time to further optimize the system.    
+Which of the following options should you use together to set up a **cost-effective** solution that can improve your application's performance? (Choose 2)
+  - **Solution 1 : Set up an origin failover by creating an origin group with two origins. Specify one as the primary origin and the other as the second origin which CloudFront automatically switches to when the primary origin returns specific HTTP status code failure response.**
+  - **Solution 2 : Customize the content that the CloudFront web distribution delivers to your users using Lambda@Edge, which allows your Lambda functions to execute the authentication process in AWS locations closer to the users.**
+  - Lambda @ Edge는 Lambda 함수가 CloudFront가 제공하는 컨텐츠를 사용자 지정하고 사용자와 가까운 AWS 위치에서 인증 프로세스를 실행할 수 있도록합니다.
