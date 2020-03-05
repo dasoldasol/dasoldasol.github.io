@@ -91,3 +91,9 @@ Which of the following is the most suitable solution to properly **monitor your 
   In case of an infrastructure failure, Amazon RDS performs an automatic failover to the standby (or to a read replica in the case of Amazon Aurora), so that you can resume database operations as soon as the failover is complete.
   - Snapshot : is incorrect. it does not provide immediate availability in case of AZ failure.
   - Read replica : is incorrect because this simply provides **enhanced performance for read-heavy database workloads**. Although you can promote a read replica, its **asynchronous** replication might not provide you the latest version of your database.
+
+- An application that records weather data every minute is deployed in a fleet of Spot EC2 instances and uses a MySQL RDS database instance. Currently, there is only one RDS instance running in one Availability Zone. You plan to improve the database to ensure **high availability** by synchronous data replication to another RDS instance.    
+Which of the following performs **synchronous data replication** in RDS?
+  - **A) RDS DB instance running as a Multi-AZ deployment**
+  - **Multi-AZ Deployment vs. Read Replicas**    
+    ![rds-vs](./image/rds-vs.png)
