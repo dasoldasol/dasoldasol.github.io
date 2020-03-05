@@ -113,3 +113,9 @@ Which of the following is the most suitable configuration to help you achieve th
     - Raid 0 : Striping (하나의 데이터를 여러 드라이브에 분산 저장함으로써 **빠른 입출력**이 가능)
     - Raid 1 : Mirroring (똑같은 데이터를 동일한 용량과 스팩의 다른 디스크에도 저장함으로써 높은 안정성 확보)
   - Setting up the EC2 instance in a placement group : is incorrect because the placement groups feature is primarily used for **inter-instance communication.**
+
+- You are designing a multi-tier web application architecture that consists of a fleet of EC2 instances and an Oracle relational database server. It is required that the database is **highly available** and that you have **full control over its underlying operating system**.    
+Which AWS service will you use for your database tier?
+  - **A) Amazon EC2 instances with data replication between two different Availability Zones.**
+  - The Quick Start deploys the Oracle primary database (using the preconfigured, general-purpose starter database from Oracle) on an Amazon EC2 instance in the first Availability Zone. It then sets up a second EC2 instance in a second Availability Zone, copies the primary database to the second instance by using the `DUPLICATE` command, and configures Oracle Data Guard.
+  - **Amazon RDS and Amazon RDS with Multi-AZ deployments** : are both incorrect because the scenario requires you to have access to the underlying operating system of the database server. Remember that Amazon RDS is a managed database service, which means that **Amazon** is the one that **manages the underlying operating system** of the database instance and not you.
