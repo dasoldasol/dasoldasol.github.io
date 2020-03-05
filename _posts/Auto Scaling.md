@@ -26,3 +26,8 @@ Which of the following can be done to ensure that the application works properly
   - **A) Configure a Scheduled scaling policy for the Auto Scaling group to launch new instances before the start of the day**
   - **Scheduled scaling policy** will ensure that the instances are already scaled up and ready before the start of the day since this is when the application is used the most.
   - **Setting up an Application Load Balancer(ALB)** is incorrect Although the Application load balancer can also balance the traffic, it cannot increase the instances based on demand.
+
+- You have a web application deployed in AWS which is currently running in the eu-central-1 region. You have an Auto Scaling group of On-Demand EC2 instances which are **using pre-built AMIs**. Your manager instructed you to implement disaster recovery for your system so in the event that **the application goes down in the eu-central-1 region, a new instance can be started in the us-west-2 region. **
+As part of your disaster recovery plan, which of the following should you take into consideration?
+  - **A) Copy the AMI from the eu-central-1 region to the us-west-2 region. Afterwards, create a new Auto Scaling group in the us-west-2 region to use this new AMI ID.**
+  - In this scenario, the EC2 instances you are currently using depends on a pre-built AMI. This AMI is not accessible to another region hence, you have to copy it to the us-west-2 region to properly establish your disaster recovery instance.
