@@ -20,3 +20,9 @@ Considering that the Lambda function is storing sensitive database and API crede
   ![kms](./image/kms-1.png)
   - although Lambda encrypts the environment variables in your function by default, the sensitive information would still be visible to other users who have access to the Lambda console. This is because Lambda uses a default KMS key to encrypt the variables, which is usually accessible by other users. The best option in this scenario is to use encryption helpers to secure your environment variables.
   - SSL encryption on CloudHSM : enabling SSL would encrypt data ONLY when in-transit.
+
+- A media company has an Amazon ECS Cluster, which uses the Fargate launch type, to host its news website. **The database credentials should be supplied using environment variables, to comply with strict security compliance.** As the Solutions Architect, you have to ensure that **the credentials** are secure and that they **cannot be viewed in plaintext** on the cluster itself.    
+Which of the following is the most suitable solution in this scenario that you can implement with minimal effort?
+  - **A) Use the AWS Systems Manager Parameter Store to keep the database credentials and then encrypt them using AWS KMS. Create an IAM Role for your Amazon ECS task execution role and reference it with your task definition, which allows access to both KMS and the Parameter Store. Within your container definition, specify secrets with the name of the environment variable to set in the container and the full ARN of the System Manager Parameter Store parameter containing sensitive data to present to the container.**
+  - although you can use Docker Secrets to secure the sensitive database credentials, this feature is only applicable in Docker Swarm. In AWS, the recommended way to secure sensitive data is either through the use of Secrets Manager or Systems Manager Parameter Store.
+  - it is not recommended to store sensitive credentials in S3.
