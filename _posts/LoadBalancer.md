@@ -55,3 +55,10 @@
 In this scenario, what happens when an EC2 instance behind an ELB fails a health check?**
   - **A) The ELB stops sending traffic to the EC2 instance**
   - When the load balancer determines that an instance is unhealthy, it stops routing requests to that instance. The load balancer resumes routing requests to the instance when it has been restored to a healthy state.
+
+- You have a new e-commerce web application written in Angular framework which is deployed to a fleet of EC2 instances behind an Application Load Balancer. You configured the load balancer to perform health checks on these EC2 instances.    
+What will happen **if one of these EC2 instances failed the health checks**?
+  - **A) The Application Load Balancer stops sending traffic to the instance that failed its health check**
+  - Each load balancer node routes requests only to the healthy targets. Each load balancer node checks the health of each target, using the health check settings for the target group with which the target is registered. After your target is registered, it must pass one health check to be considered healthy. After each health check is completed, the load balancer node closes the connection that was established for the health check.
+
+
