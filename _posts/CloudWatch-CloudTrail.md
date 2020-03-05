@@ -22,3 +22,17 @@ Which of the following is the most suitable monitoring solution to implement?
   - by default, CloudWatch does not automatically provide memory and disk utilization metrics of your instances. You have to set up custom CloudWatch metrics to monitor the memory, disk swap, disk space and page file utilization of your instances.
   - **Enhanced Monitoring** : is incorrect because Enhanced Monitoring is a feature of RDS and not of CloudWatch.
   - **Amazon Inspector** : is incorrect because Amazon Inspector is an automated security assessment service that helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances. It does not provide a custom metric to track the memory and disk utilization of each and every EC2 instance in your VPC.
+
+- The company that you are working for has a highly available architecture consisting of an elastic load balancer and several EC2 instances configured with auto-scaling in three Availability Zones. You want to monitor your EC2 instances based on a particular metric, which is not readily available in CloudWatch.      
+Which of the following is a **custom metric in CloudWatch which you have to manually set up**?
+  - **A) Memory Utilization of an EC2 instance**
+  - You need to prepare a custom metric using CloudWatch Monitoring Scripts which is written in Perl. You can also install CloudWatch Agent to collect more system-level metrics from Amazon EC2 instances. Here's the list of custom metrics that you can set up:
+    - **Memory utilization**
+    - **Disk swap utilization**
+    - **Disk space utilization**
+    - **Page file utilization**
+    - **Log collection**
+  - CloudWatch by default :    
+    ![cloudwatch-default](./image/cloudwatch-default.png)
+ 
+  
