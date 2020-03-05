@@ -74,3 +74,13 @@ As the Solutions Architect of the company, which of the following should you do 
   - Configuring SSL in your application to encrypt the database connection to RDS : is incorrect because an SSL connection is not using an authentication token from IAM.
   - assigning IAM Role to your EC2 instances which will grant exclusive access to your RDS instance : is incorrect because although you can create and assign an IAM Role to your EC2 instances, you still need to configure your RDS to use IAM DB Authentication.
   - a combination of IAM and STS : is incorrect. Although STS is used to send temporary tokens for authentication, this is not a compatible use case for RDS.
+
+- An online cryptocurrency exchange platform is hosted in AWS which uses ECS Cluster and RDS in Multi-AZ Deployments configuration. The application is heavily using the RDS instance to process complex read and write database operations.    
+To maintain the reliability, availability, and performance of your systems, you have to closely monitor how the different processes or threads on a DB instance use the CPU, including the percentage of the **CPU bandwidth and total memory consumed by each process**.    
+Which of the following is the most suitable solution to properly **monitor your database**?
+  - **A) Enable Enhanced Monitoring in RDS
+  - Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
+  - CloudWatch : although you can use this to monitor the CPU Utilization of your database instance, it does not provide the percentage of the CPU bandwidth and total memory consumed by each database process in your RDS instance. 
+  - **CloudWatch Metrics vs. Enhanced Monitoring Metrics**    
+    - CloudWatch gathers metrics about CPU utilization from the **hypervisor** for a DB instance. hypervisor layer performs a small amount of work.  The data provided by CloudWatch is not as detailed as compared with the Enhanced Monitoring feature in RDS. Take note as well that you do not have direct access to the instances/servers of your RDS database instance, unlike with your EC2 instances where you can install a CloudWatch agent or a custom script to get CPU and memory utilization of your instance.
+    - Enhanced Monitoring gathers its metrics from an **agent** on the instance
