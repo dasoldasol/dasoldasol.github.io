@@ -84,3 +84,10 @@ Which of the following is the most suitable solution to properly **monitor your 
   - **CloudWatch Metrics vs. Enhanced Monitoring Metrics**    
     - CloudWatch gathers metrics about CPU utilization from the **hypervisor** for a DB instance. hypervisor layer performs a small amount of work.  The data provided by CloudWatch is not as detailed as compared with the Enhanced Monitoring feature in RDS. Take note as well that you do not have direct access to the instances/servers of your RDS database instance, unlike with your EC2 instances where you can install a CloudWatch agent or a custom script to get CPU and memory utilization of your instance.
     - Enhanced Monitoring gathers its metrics from an **agent** on the instance
+
+- There are a lot of **outages in the Availability Zone** of your RDS database instance to the point that you have **lost access to the database.** What could you do to prevent losing access to your database in case that this event happens again?
+  - **A) Enabled Multi-AZ failover**
+  - RDS Multi-AZ deployments : When you provision a Multi-AZ DB Instance, Amazon RDS automatically creates a primary DB Instance and synchronously replicates the data to a standby instance in a different Availability Zone (AZ). Each AZ runs on its own physically distinct, independent infrastructure, and is engineered to be highly reliable.    
+  In case of an infrastructure failure, Amazon RDS performs an automatic failover to the standby (or to a read replica in the case of Amazon Aurora), so that you can resume database operations as soon as the failover is complete.
+  - Snapshot : is incorrect. it does not provide immediate availability in case of AZ failure.
+  - Read replica : is incorrect because this simply provides **enhanced performance for read-heavy database workloads**. Although you can promote a read replica, its **asynchronous** replication might not provide you the latest version of your database.
