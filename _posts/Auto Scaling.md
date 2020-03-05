@@ -15,3 +15,8 @@
 ### AutoScaling & ELB
 - AutoScaling & ELB can used for **High Availability and Redundancy** by spanning Auto Scaling groups across multiple AZs within a region and then setting up ELB to distribute incoming traffic across those AZs
 - **With AutoScaling use ELB health check with the instances to ensure that traffic is routed only to the healthy instances**
+
+## Scenario
+- A suite of web applications is hosted in an Auto Scaling group of EC2 instances across three Availability Zones and is configured with default settings. There is an Application Load Balancer that forwards the request to the respective target group on the URL path. The scale-in policy has been triggered due to the low number of incoming traffic to the application.    
+**Which EC2 instance will be the first one to be terminated** by your Auto Scaling group?
+  - **A) The EC2 instance launched from the oldest launch configuration**
