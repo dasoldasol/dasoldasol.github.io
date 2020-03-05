@@ -263,3 +263,9 @@ Which VPC design meets these requirements?**
 When will the changes be applied to the EC2 instances?**
   - **A) Immediately to all 12 instances in the security group.**
   - When you add or remove rules, those changes are automatically applied to all instances to which you've assigned the security group. Since the first 10 instances are already assigned to the security group, you can SSH into them immediately after the change. After adding the two new instances to the security group, you should be able to SSH into them as well.
+  
+- You are working as a Solutions Architect in a top software development company in Silicon Valley. The company has multiple applications hosted in their VPC. While you are monitoring the system, you noticed that multiple **port scans are coming in from a specific IP** address block which are **trying to connect to several AWS resources** inside your VPC. The internal security team has requested that all offending IP addresses be denied for the next 24 hours for security purposes.    
+Which of the following is the best method to **quickly and temporarily deny access** from the specified IP addresses?
+  - **A) Modify the Network Access Control List associated with all public subnets in the VPC to deny access from the IP Address block.**
+  - network access control list (ACL) : To control the traffic coming in and out of your VPC network. It is an optional layer of security for your VPC that acts as a firewall for **controlling traffic in and out of one or more subnets.**
+  - Security Group : although a Security Group acts as a firewall, it will only control both inbound and outbound traffic **at the instance level** and not on the whole VPC.
