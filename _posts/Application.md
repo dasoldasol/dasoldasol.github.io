@@ -84,3 +84,15 @@
   - **User Pool** : A **User Directory** used to sign-in directly to the User Pool. Cognito acts as an Identity Broker between the id provider and AWS. Successful authentication generates a JSON Web Token(JWTs)
   - **Identity Pool** : enable **provide temporary AWS credentials**
 - Cognito Synchronisation : Various different devices
+
+## Scenario
+- You have a web application hosted in EC2 that consumes messages from an **SQS** queue and is integrated with SNS to send out an email to you once the process is complete. You received 5 orders but after a few hours, you saw 20 email notifications in your inbox.    
+Which of the following could be the possible culprit for this issue?
+  - **A) The web application is not deleting the messages in the SQS queue after it has processed them.**
+  - Always remember that the messages in the SQS queue will continue to exist even after the EC2 instance has processed it, until you delete that message. You have to ensure that you delete the message after processing to prevent the message from being received and processed again once the visibility timeout expires.
+
+- A multi-tiered application hosted in your on-premises data center is scheduled to be migrated to AWS. The application has a **message broker service** which uses **industry standard messaging APIs** and protocols that must be migrated as well, without rewriting the messaging code in your application.    
+Which of the following is the most suitable service that you should use to move your messaging service to AWS?
+  - **A) Amazon MQ**
+  - Amazon MQ, Amazon SQS, and Amazon SNS are messaging services that are suitable for anyone from startups to enterprises. If you're using messaging with existing applications and want to move your messaging service to the cloud quickly and easily, it is recommended that you consider Amazon MQ. It supports industry-standard APIs and protocols so you can switch from any standards-based message broker to Amazon MQ without rewriting the messaging code in your application
+  - Amazon SWF : is incorrect because this is a fully-managed state tracker and task coordinator service and not a messaging service
