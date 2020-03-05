@@ -97,3 +97,11 @@ Which of the following performs **synchronous data replication** in RDS?
   - **A) RDS DB instance running as a Multi-AZ deployment**
   - **Multi-AZ Deployment vs. Read Replicas**    
     ![rds-vs](./image/rds-vs.png)
+
+- A Forex trading platform, which frequently processes and stores global financial data every minute, is hosted in your on-premises data center and uses an Oracle database. Due to a recent cooling problem in their data center, the company urgently needs to migrate their infrastructure to AWS to improve the performance of their applications. As the Solutions Architect, you are responsible in ensuring that the database is properly migrated and should remain available in case of database server failure in the future.     
+Which of the following is the most suitable solution to meet the requirement?
+  - **A) creating an Oracle database in RDS with Multi-AZ deployments**
+  - Amazon RDS Multi-AZ deployments provide enhanced availability and durability for Database (DB) Instances, making them a natural fit for production database workloads. When you provision a Multi-AZ DB Instance, Amazon RDS automatically creates a primary DB Instance and synchronously replicates the data to a standby instance in a different Availability Zone (AZ). Each AZ runs on its own physically distinct, independent infrastructure, and is engineered to be highly reliable.
+  - **Launching an Oracle database instance in RDS with Recovery Manager (RMAN) enabled and launching an Oracle Real Application Clusters (RAC) in RDS** : are incorrect because Oracle RMAN and RAC are not supported in RDS.
+  - **Migrating your Oracle data to Amazon Aurora by converting the database schema using AWS Schema Conversion Tool and AWS Database Migration Service** : is incorrect because although this solution is feasible, it takes time to migrate your Oracle database to Aurora which is not acceptable. Based on this option, the Aurora database does not have a Read Replica and is not configured as an Amazon Aurora DB cluster, which could have improved the availability of the database.
+  
