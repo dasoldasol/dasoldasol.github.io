@@ -104,3 +104,12 @@ Which of the following are the characteristics and **benefits** of using these t
   - **Reserved Instances doesn't get interrupted unlike Spot instances in the event that there are not enough unused EC2 instances to meet the demand.**
   - **You can have capacity reservations that recur on a daily, weekly, or montly basis, with a specified time and duration, for a one-year term through Scheduled Reserved Instances**
   - Reserved Instances are not physical instances, but rather a billing discount applied to the use of On-Demand Instances in your account. When your computing needs change, you can modify your Standard or Convertible Reserved Instances and continue to take advantage of the billing benefit. You can modify the Availability Zone, scope, network platform, or instance size (within the same instance type) of your Reserved Instance. You can also sell your unused instance on the Reserved Instance Marketplace.
+
+- You have launched a new enterprise application with a web server and a database. You are using a large EC2 Instance with one 500 GB EBS volume to host a relational database. Upon checking the performance, it shows that **write throughput to the database needs to be improved**.    
+Which of the following is the most suitable configuration to help you achieve this requirement? (Choose 2)
+  - **Solution 1 : Increase the size of the EC2 Instance**
+  - **Solution 2 : Set up a standard RAID 0 configuration with 2 EBS Volumes**
+  - RAID
+    - Raid 0 : Striping (하나의 데이터를 여러 드라이브에 분산 저장함으로써 **빠른 입출력**이 가능)
+    - Raid 1 : Mirroring (똑같은 데이터를 동일한 용량과 스팩의 다른 디스크에도 저장함으로써 높은 안정성 확보)
+  - Setting up the EC2 instance in a placement group : is incorrect because the placement groups feature is primarily used for **inter-instance communication.**
