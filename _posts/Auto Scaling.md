@@ -20,3 +20,9 @@
 - A suite of web applications is hosted in an Auto Scaling group of EC2 instances across three Availability Zones and is configured with default settings. There is an Application Load Balancer that forwards the request to the respective target group on the URL path. The scale-in policy has been triggered due to the low number of incoming traffic to the application.    
 **Which EC2 instance will be the first one to be terminated** by your Auto Scaling group?
   - **A) The EC2 instance launched from the oldest launch configuration**
+
+- A tech company has a CRM application hosted on an Auto Scaling group of On-Demand EC2 instances. The application is **extensively used during office hours** from 9 in the morning till 5 in the afternoon. Their users are complaining that the performance of the application is **slow during the start of the day but then works normally after a couple of hours**. 
+Which of the following can be done to ensure that the application works properly at the beginning of the day?
+  - **A) Configure a Scheduled scaling policy for the Auto Scaling group to launch new instances before the start of the day**
+  - **Scheduled scaling policy** will ensure that the instances are already scaled up and ready before the start of the day since this is when the application is used the most.
+  - **Setting up an Application Load Balancer(ALB)** is incorrect Although the Application load balancer can also balance the traffic, it cannot increase the instances based on demand.
