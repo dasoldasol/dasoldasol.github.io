@@ -111,3 +111,6 @@ In this scenario, how can you **protect the backend systems** of the platform fr
   - **caching** : The cache is provisioned for a specific stage of your APIs. This improves performance and reduces the traffic sent to your back end. Cache settings allow you to control the way the cache key is built and the time-to-live (TTL) of the data stored for each method. Amazon API Gateway also exposes management APIs that help you invalidate the cache for each stage.
   ![api-gw-settings](./image/
   - **CloudFront** : is incorrect because CloudFront only speeds up content delivery which provides a better latency experience for your users. It does not help much for the backend.
+
+- You are using a combination of **API Gateway** and Lambda for the web services of your online web portal that is being accessed by hundreds of thousands of clients each day. Your company will be announcing a new revolutionary product and it is expected that your web portal will receive a massive number of visitors all around the globe. How can you **protect your backend systems and applications from traffic spikes**?
+  - **A) Use throttling limits in API Gateway**
