@@ -73,3 +73,8 @@ As the Solutions Architect of the company, which of the following should you do 
   - Configuring SSL in your application to encrypt the database connection to RDS : is incorrect because an SSL connection is not using an authentication token from IAM.
   - assigning IAM Role to your EC2 instances which will grant exclusive access to your RDS instance : is incorrect because although you can create and assign an IAM Role to your EC2 instances, you still need to configure your RDS to use IAM DB Authentication.
   - a combination of IAM and STS : is incorrect. Although STS is used to send temporary tokens for authentication, this is not a compatible use case for RDS.
+
+- A tech company that you are working for has undertaken a Total Cost Of Ownership (TCO) analysis evaluating the use of Amazon S3 versus acquiring more storage hardware. The result was that **all 1200 employees would be granted access to use Amazon S3** for storage of their personal documents.       
+Which of the following will you need to consider so you can set up a solution that **incorporates single sign-on** feature from your corporate AD or LDAP directory and also **restricts access** for each individual user to a designated user folder in an S3 bucket? (Choose 2)
+  - **Solution 1 : Set up a Federation proxy or an Identity provider, and use AWS Security Token Service to generate temporary tokens.**
+  - **Solution 2 : Configuring an IAM role and an IAM Policy to access the bucket
