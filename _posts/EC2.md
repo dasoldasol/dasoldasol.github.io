@@ -143,3 +143,26 @@ Which steps would you take to apply **high availability and fault tolerance** to
   - ![EIP_as_VIP](./image/EIP_as_VIP.png)    
   - **Launching the instance using Auto Scaling which will deploy the instance again if it becomes unhealthy** : is incorrect as even though the Auto Scaling group provides high availability and scalability, it still depends on ELB which is not available in this scenario. Take note that you need to have a static IP address which can be in the form of an Elastic IP. Although an Auto Scaling group can scale out if one of the EC2 instances became unhealthy, you still cannot directly assign an EIP to an Auto Scaling group. In addition, you are only limited to use EC2 instance status checks for your Auto Scaling group if you do not have an ELB which can provide you the actual health check of your application (using its port), and not just the health of the EC2 instance.
 
+- You work for a leading university as an AWS Infrastructure Engineer and also as a professor to aspiring AWS architects. As a way to familiarize your students with AWS, you gave them a project to host their applications to an EC2 instance. One of your students created an instance to host their online enrollment system project but is having a hard time **connecting to their newly created EC2 instance**. Your students have explored all of the troubleshooting guides by AWS and narrowed it down to login issues.       
+Which of the following can you use to **log into an EC2 instance**?
+  - **A) Key Pairs
+
+- Using the EC2 API, you requested 40 m5.large On-Demand EC2 instances in a single Availability Zone. Twenty instances were successfully created but the other 20 requests failed.       
+What is the solution for this issue and what is the root cause?
+  - **A) For new accounts, there is a soft limit of 20 EC2 instances per region. Submit an Amazon EC2 instance Request Form in order to lift this limit.**
+  - ![ec2-instance-request-form](./image/ec2-instance-request-form.PNG)
+
+- As a Network Architect developing a food ordering application, you need to retrieve the instance ID, public keys, and public IP address of the EC2 server you made for tagging and grouping the attributes into your internal application running on-premises.    
+Which EC2 feature will help you achieve your requirements?
+  - **A) Instance metadata**
+  - **metadata vs. userdata**
+    - **metadata** : the data about your instance that you can use to **configure or manage the running instance**. You can get the **instance ID, public keys, public IP address**
+    - **userdata** : perform common automated configuration tasks and **run scripts after the instance starts**.
+
+- You are an AWS Network Engineer working for a utilities provider where you are managing a monolithic application with EC2 instance using a Windows AMI. You want to implement a cost-effective and highly available architecture for your application where you have an exact replica of the Windows server that is in a running state. If the primary instance terminates, you can attach the ENI to the standby secondary instance which allows the traffic flow to resume within a few seconds.    
+When it comes to the **ENI attachment to an EC2 instance**, what does **'warm attach'** refer to?
+  - **A) attaching an ENI to an instance when it is stopped**
+  - **An elastic network interface (ENI)** : is a logical networking component in a VPC that represents a **virtual network card**. You can attach a network interface to an EC2 instance in the following ways:
+    - When it's **running (hot attach)**
+    - When it's **stopped (warm attach)**
+    - When the instance is **being launched (cold attach)**.
