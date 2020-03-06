@@ -59,5 +59,5 @@
 
 - An online shopping platform is hosted on an Auto Scaling group of Spot EC2 instances and uses Amazon Aurora PostgreSQL as its database. There is a requirement to **optimize your database workloads** in your cluster where you have to direct the **write** operations of the production traffic **to your high-capacity instances** and point the **reporting queries** sent by your internal staff **to the low-capacity instances**.    
 Which is the most suitable configuration for your application as well as your Aurora database cluster to achieve this requirement?
-  - **A) Create a custom endpoint in Aurora based on the specified criteria for the production traffic and another custom endpoint to handle the reporting queries.
+  - **A) Create a custom endpoint in Aurora based on the specified criteria for the production traffic and another custom endpoint to handle the reporting queries.  
  
