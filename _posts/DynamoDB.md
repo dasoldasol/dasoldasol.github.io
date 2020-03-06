@@ -56,3 +56,17 @@ To improve the game's performance, which AWS service can you use to **reduce Dyn
   - **DynamoDB Accelerator (DAX)** : a fully managed, highly available, **in-memory cache** that can reduce Amazon DynamoDB response times from milliseconds to microseconds    
   - ElastiCache : is incorrect because it cannot reduce time from milliseconds to microseconds
   
+- As a Junior Software Engineer, you are developing a hotel reservations application and are given the task of improving the database aspect of the app. You found out that RDS does not satisfy the needs of your application because it does not scale as easily compared with DynamoDB. You need to demonstrate to your Senior Software Engineer **the advantages of using DynamoDB over RDS**.       
+What are the **valid use cases for Amazon DynamoDB**? (Choose 2)
+  - **A1) Storing metadata for Amazon S3 objects**
+  - **A2) Managing web sessions**
+  - **Storing metadata for Amazon S3 objects** : is correct because the Amazon DynamoDB stores structured data indexed by primary key and allow low latency read and write access to items ranging from 1 byte up to 400KB. Amazon S3 stores unstructured blobs and is suited for storing large objects up to 5 TB. In order to optimize your costs across AWS services, **large objects or infrequently accessed data sets should be stored in Amazon S3, while smaller data elements or file pointers (possibly to Amazon S3 objects) are best saved in Amazon DynamoDB.**    
+To speed up access to relevant data, you can pair Amazon S3 with a search engine such as Amazon CloudSearch or a database such as Amazon DynamoDB or Amazon RDS. In these scenarios, Amazon S3 stores the actual information, and the search engine or database serves as the repository for associated **metadata such as the object name, size, keywords**, and so on. Metadata in the database can easily be indexed and queried, making it very efficient to locate an object’s reference by using a search engine or a database query. This result can be used to **pinpoint and retrieve the object itself from Amazon S3**.
+  - **Managing web sessions** : is correct because the **DynamoDB Time-to-Live (TTL) mechanism** enables you to manage web sessions of your application easily. It lets you set a specific timestamp to delete expired items from your tables. **Once the timestamp expires, the corresponding item is marked as expired and is subsequently deleted** from the table. By using this functionality, you do not have to track expired data and delete it manually. TTL can help you reduce storage usage and reduce the cost of storing data that is no longer relevant.
+  - **Storing BLOB data** : is incorrect because BLOB(Binary Large Object) data is too large to be put into a NoSQL database 
+
+- As an AWS Cloud Consultant working for a record company, you are building an application that will **store both key-value store and document models like band ID, album ID, song ID and composer ID**.       
+Which AWS service will suit your needs for your application?
+  - **A) DynamoDB **
+  - Amazon DynamoDB is a fast and flexible NoSQL database service. It supports both document and key-value store models. used for mobile, web, gaming, ad tech, IoT, and many other applications.
+  - ![dynamodb](./image/dynamodb.png)
