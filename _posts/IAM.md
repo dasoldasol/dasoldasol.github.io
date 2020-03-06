@@ -78,3 +78,10 @@ As the Solutions Architect of the company, which of the following should you do 
 Which of the following will you need to consider so you can set up a solution that **incorporates single sign-on** feature from your corporate AD or LDAP directory and also **restricts access** for each individual user to a designated user folder in an S3 bucket? (Choose 2)
   - **Solution 1 : Set up a Federation proxy or an Identity provider, and use AWS Security Token Service to generate temporary tokens.**
   - **Solution 2 : Configuring an IAM role and an IAM Policy to access the bucket
+
+- You work for an Intelligence Agency as its Principal Consultant developing a missile tracking application, which is hosted on both development and production AWS accounts. Alice, the Intelligence agency’s Junior Developer, only has access to the development account. She has received security clearance to access the agency’s production account but **the access is only temporary and only write access** to EC2 and S3 is allowed.    
+Which of the following allows you to **issue short-lived access tokens that acts as temporary security credentials to allow access** to your AWS resources?
+  - **A) AWS STS
+  - **AWS STS vs. AWS Cognito JWT**
+    - **STS** : provide trusted users with temporary **security credentials** that can control access to your AWS resources.
+    - **JWT** : the Amazon Cognito service is primarily used for **user authentication** and not for providing access to your AWS resources. A JSON Web Token (JWT) is used for user authentication and **session management**.
