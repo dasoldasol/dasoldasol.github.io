@@ -35,4 +35,12 @@ Which of the following is a **custom metric in CloudWatch which you have to manu
   - CloudWatch by default :    
     ![cloudwatch-default](./image/cloudwatch-default.png)
  
-  
+- The operations team of your company asked you for a way to monitor the health of your production EC2 instances in AWS. You told them to use the CloudWatch service.    
+Which of the following metrics is **not available by default in CloudWatch**? 
+  - **A) Memory Usage**
+  - by default : **Network In and Out, CPU Usage, Disk Read Operations**
+
+- One of your EC2 instances is reporting an unhealthy system status check. The operations team is looking for an easier way to monitor and repair these instances instead of fixing them manually.
+How will you **automate the monitoring and repair of the system status check failure** in an AWS environment?
+  - **A) Create CloudWatch alarms that stop and start the instance based on status check alarms**
+  - **Using Amazon CloudWatch alarm actions**, you can create alarms that automatically stop, terminate, reboot, or recover your EC2 instances.
