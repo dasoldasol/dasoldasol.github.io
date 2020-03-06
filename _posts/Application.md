@@ -66,12 +66,12 @@
 ## Kinesis
 - Streaming Data : Purchases from online stores, Stock Prices, Game data, Social network data, Geospatial data(uber), IoT sensor data
 ### 3 Types of Kinesis
-- Kinesis Streams 
-  - Shards : the total capacity of the stream is the sum of the capacities of its shards.
+- **Kinesis Streams**
+  - **Shards** : the total **capacity** of the stream is the sum of the capacities of its shards.
 ![kinesis-stream](./image/kinesis-stream.png)
-- Kinesis Firehose
+- **Kinesis Firehose**
 ![kinesis-firehose](./image/kinesis-firehose.png)
-- Kinesis Analytics
+- **Kinesis Analytics**
 ![kinesis-analytics](./image/kinesis-analytics.png)
 
 ## Cognito - Web Identity Federation
@@ -114,3 +114,9 @@ In this scenario, how can you **protect the backend systems** of the platform fr
 
 - You are using a combination of **API Gateway** and Lambda for the web services of your online web portal that is being accessed by hundreds of thousands of clients each day. Your company will be announcing a new revolutionary product and it is expected that your web portal will receive a massive number of visitors all around the globe. How can you **protect your backend systems and applications from traffic spikes**?
   - **A) Use throttling limits in API Gateway**
+
+- You have a data analytics application that updates a real-time, foreign exchange dashboard and another separate application that archives data to Amazon Redshift. Both applications are configured to consume data from the same stream concurrently and independently by using **Amazon Kinesis Data Streams.**      
+However, you noticed that there are a lot of occurrences where a **shard iterator expires unexpectedly**. Upon checking, you found out that the DynamoDB table used by Kinesis does not have enough **capacity to store** the lease data.    
+Which of the following is the most suitable solution to rectify this issue?
+  - **A) Increase the write capacity assigned to the shard table.**
+  - **Enabling In-Memory Acceleration with DynamoDB Accelerator (DAX)** : is incorrect because the DAX feature is primarily used for **read performance** improvement of your DynamoDB table from milliseconds response time to microseconds.
