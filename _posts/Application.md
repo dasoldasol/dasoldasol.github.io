@@ -123,3 +123,23 @@ However, you noticed that there are a lot of occurrences where a **shard iterato
 Which of the following is the most suitable solution to rectify this issue?
   - **A) Increase the write capacity assigned to the shard table.**
   - **Enabling In-Memory Acceleration with DynamoDB Accelerator (DAX)** : is incorrect because the DAX feature is primarily used for **read performance** improvement of your DynamoDB table from milliseconds response time to microseconds.
+
+- A software company has resources hosted in AWS and on-premises servers. You have been requested to create a **decoupled architecture** for applications which make use of both resources.    
+Which of the following options are valid? (Choose 2)
+  - **A1) Use SWF to utilize both on-premise servers and EC2 instances for your decoupled application**
+  - **A2) Use SQS to utilize both on-premise servers and EC2 instances for your decoupled application**
+  - **Decoupled architecture** : computing architecture that enables computing components or layers to execute independently while still interfacing with each other.
+  - **Amazon SQS** lets you move data between distributed application components and helps you decouple these components. **Amazon SWF** is a web service that makes it easy to coordinate work across distributed application components.
+
+- You have built a web application that checks for new items in an S3 bucket once every hour. If new items exist, a message is added to an **SQS** queue. You have a fleet of EC2 instances which retrieve messages from the SQS queue, process the file, and finally, send you and the user an email confirmation that the item has been successfully processed. Your officemate uploaded one test file to the S3 bucket and after a couple of hours, you noticed that you and your officemate have 50 emails from your application with the same message.    
+Which of the following is most likely the root cause why the application has sent you and the user multiple emails?
+  - **A) Your application does not issue a delete command to the SQS queue after processiong the message, which is why this message went back to the queue and was processed multiple times.**
+
+- You run a website which accepts high-quality photos and turns them into a downloadable video montage. The website offers a free account and a premium account that guarantees faster processing. All requests by both free and premium members go through a single **SQS** queue and then processed by a group of EC2 instances which generate the videos. You need to ensure that **the premium users** who paid for the service have **higher priority than your free members**.       
+How do you re-design your architecture to address this requirement?
+  - **A) Create an SQS queue for free members and another one for premium members. Configure your EC2 instances to consume message from the premium queue first and if it is empty, poll from the free member's SQS queue**
+
+- You developed a web application and deployed it on a fleet of EC2 instances, which is **using Amazon SQS**. The requests are saved as messages in the SQS queue which is configured with the maximum message retention period.  However, **after thirteen days** of operation, the web application suddenly **crashed** and there are 10,000 unprocessed messages that are still waiting in the queue. Since you developed the application, you can easily resolve the issue but you need to send a communication to the users on the issue.     
+What information will you provide and **what will happen to the unprocessed messages**?
+  - **A) Tell the users that the application will be operational shortly and all received requests will be processed after the web application is restarted.**
+  - The maximum message retention in SQS is 14 days 
