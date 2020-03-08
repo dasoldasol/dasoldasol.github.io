@@ -143,3 +143,11 @@ How do you re-design your architecture to address this requirement?
 What information will you provide and **what will happen to the unprocessed messages**?
   - **A) Tell the users that the application will be operational shortly and all received requests will be processed after the web application is restarted.**
   - The maximum message retention in SQS is 14 days 
+
+- A San Francisco-based tech startup is building a cross-platform mobile app that can notify the user with upcoming astronomical events such as eclipses, blue moon, novae or a meteor shower. Your mobile app authenticates with the Identity Provider (IdP) using the provider's SDK and Amazon Cognito. Once the end user is authenticated with the IdP, the OAuth or OpenID Connect token returned from the IdP is passed by your app to Amazon Cognito.    
+Which of the following is returned for the user to **provide a set of temporary, limited-privilege AWS credentials**?
+  - **A) Cognito ID
+  -  **Amazon Cognito identity pools** support both authenticated and unauthenticated identities. 인증되지 않은 사용자를 허용하는 경우 또는 사용자를 인증하는 경우 자격 증명 공급자(credentials provider)에서 로그인 토큰을 설정 한 후 최종 사용자의 고유 한 Amazon Cognito 식별자 (identity ID)를 즉시 검색 할 수 있습니다.
+  - **Cognito SDK** : is incorrect because this is a software development kit that is available in various programming languages.
+  - **Cognito Key Pair** : is incorrect because this is a cryptography key
+  - **Cognito API** : is incorrect because this is primarily used as an Application Programming Interface.
