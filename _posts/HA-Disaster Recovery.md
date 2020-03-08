@@ -14,3 +14,10 @@ Which of the following disaster recovery architectures is the most cost-effectiv
   - **Backup & Restore** : is incorrect because you are running mission-critical applications, and the speed of recovery from backup and restore solution might not meet your RTO and RPO.
   - **Warm Standby** : is incorrect. Warm standby is a method of redundancy in which the scaled-down secondary system runs in the background of the primary system. Doing so would not optimize your savings as much as running a pilot light recovery since some of your services are always running in the background.
   - **Multi Site** : is incorrect. it is expensive because of active/active configuration
+
+- A start-up company has an EC2 instance that is hosting a web application. The volume of users is expected to grow in the coming months and hence, you need to add **more elasticity and scalability** in your AWS architecture to cope with the demand.     
+Which of the following options can satisfy the above requirement for the given scenario? (Choose 2)
+  - **A1) Set up two EC2 instances and then put them behind an Elastic Loadbalancer(ELB)**
+  - **A2) Set up two EC2 instances and use Route53 to route traffic based on a Weighted Routing Policy**
+  - Using an **Elastic Load Balancer** is an ideal solution for adding **elasticity** to your application. Alternatively, you can also create a policy in Route 53, such as a Weighted routing policy, to evenly distribute the traffic to 2 or more EC2 instances.
+  - **AWS WAF** : is incorrect because AWS WAF is a web application firewall that helps protect your web applications from common **web exploits**. This service is more on providing **security** to your applications.
