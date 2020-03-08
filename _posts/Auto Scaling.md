@@ -35,7 +35,7 @@ As part of your disaster recovery plan, which of the following should you take i
 - You are working for a commercial bank as an AWS Infrastructure Engineer handling the forex trading application of the bank. You have an Auto Scaling group of EC2 instances that allow your company to cope up with the current demand of traffic and achieve cost-efficiency. You want the Auto Scaling group to behave in such a way that it will follow a **predefined set of parameters before it scales down** the number of EC2 instances, which **protects your system from unintended slowdown or unavailability**.       
 Which of the following statements are true regarding the **cooldown period**? (Choose 2)
   - **A1) Its default value is 300 seconds**
-  - **A2) It ensures that Auto Scaling group does not launch or terminate additional EC2 instances before the previous scaling activity takes effect. 
+  - **A2) It ensures that Auto Scaling group does not launch or terminate additional EC2 instances before the previous scaling activity takes effect.** 
   - **Cooldown Period** : 휴지 기간은 scale up 또는 scale down 활동을 완료한 후 다른 scale up 활동을 시작하기 전까지의 시간입니다. 이 시간을 지정하는 목적은 새로운 scale up 작업을 개시하기 전에 새로 프로비저닝된 리소스가 수요를 처리할 시간을 제공하는 것입니다.
   - **Cooldown Period** is a configurable setting for your Auto Scaling group.
   
