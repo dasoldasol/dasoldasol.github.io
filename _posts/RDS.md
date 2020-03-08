@@ -105,3 +105,14 @@ Which of the following is the most suitable solution to meet the requirement?
   - **Launching an Oracle database instance in RDS with Recovery Manager (RMAN) enabled and launching an Oracle Real Application Clusters (RAC) in RDS** : are incorrect because Oracle RMAN and RAC are not supported in RDS.
   - **Migrating your Oracle data to Amazon Aurora by converting the database schema using AWS Schema Conversion Tool and AWS Database Migration Service** : is incorrect because although this solution is feasible, it takes time to migrate your Oracle database to Aurora which is not acceptable. Based on this option, the Aurora database does not have a Read Replica and is not configured as an Amazon Aurora DB cluster, which could have improved the availability of the database.
   
+- An accounting application uses an RDS database configured with **Multi-AZ deployments** to improve availability. What would happen to RDS if the primary database instance fails?
+  - **A) The canonical name record(CNAME) is switched from the primary to standby instance.
+  - When failing over, Amazon RDS simply flips the canonical name record (CNAME) for your DB instance to point at the standby, which is in turn promoted to become the new primary.
+  - **The IP address of the primary DB instance is switched to the standby DB instance** : is incorrect since **IP addresses are per subnet, and subnets cannot span multiple AZs**.
+
+- An online events registration system is hosted in AWS and uses ECS to host its front-end tier and a **Multi-AZ** RDS for its database tier, which also has a standby replica. What are the events that will make Amazon RDS automatically perform a **failover to the standby replica**? (Choose 2)
+  - **A1) Storage failure on primary**
+  - **A2) Loss of availability in primary Availability Zone**
+  - **Loss of network connectivity to primary**
+  - **Compute unit failure on primary**
+  
