@@ -61,4 +61,14 @@ What will happen **if one of these EC2 instances failed the health checks**?
   - **A) The Application Load Balancer stops sending traffic to the instance that failed its health check**
   - Each load balancer node routes requests only to the healthy targets. Each load balancer node checks the health of each target, using the health check settings for the target group with which the target is registered. After your target is registered, it must pass one health check to be considered healthy. After each health check is completed, the load balancer node closes the connection that was established for the health check.
 
+- In Elastic Load Balancing, there are various security features that you can use such as Server Order Preference, Predefined Security Policy, Perfect Forward Secrecy and many others. **Perfect Forward Secrecy** is a feature that provides additional **safeguards against the eavesdropping of encrypted data** through the use of a unique random session key. This **prevents the decoding of captured data**, even if the secret long-term key is compromised.       
+**Perfect Forward Secrecy is used to offer SSL/TLS cipher** suites **for** which two AWS services?
+  - **A) CloudFront and Elastic Load Balancing**
+  - CloudFront and Elastic Load Balancing are the two AWS services that support Perfect Forward Secrecy. SSL/TLS is commonly used when you have sensitive data travelling through the public network.
 
+- You are helping out a new DevOps Engineer to design her first architecture in AWS. She is planning to develop a highly available and fault-tolerant architecture which is composed of an Elastic Load Balancer and an Auto Scaling group of EC2 instances deployed across multiple Availability Zones. This will be used by an online accounting application which **requires path-based routing, host-based routing, and bi-directional communication channels** using **WebSockets**.    
+Which is the most suitable type of Elastic Load Balancer that you should recommend for her to use?
+  - **A) Application Load Balancer**
+  - **Application Load Balancer** : If you need flexible application management and **Path based routing, host-based routing**. HTTP(L7)
+  - **Network Load Balancer** : If extreme **performance** and **static IP** is needed for your application. TLS Termination. TCP/UDP(L4)
+  - **Classic Load Balancer** : If your application is **built within the EC2 Classic network**
