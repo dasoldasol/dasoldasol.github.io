@@ -88,6 +88,12 @@
   - **Identity Pool** : enable **provide temporary AWS credentials**
 - Cognito Synchronisation : Various different devices
 
+## IoT Core
+![iot-core](./image/iot-core.png)
+- a managed cloud service that lets connected devices easily and securely interact with cloud applications and other devices.
+- provides secure communication and data processing across different kinds of **connected devices and locations** so you can **easily build IoT applications**.
+
+
 ## Scenario
 - You have a web application hosted in EC2 that consumes messages from an **SQS** queue and is integrated with SNS to send out an email to you once the process is complete. You received 5 orders but after a few hours, you saw 20 email notifications in your inbox.    
 Which of the following could be the possible culprit for this issue?
@@ -151,3 +157,7 @@ Which of the following is returned for the user to **provide a set of temporary,
   - **Cognito SDK** : is incorrect because this is a software development kit that is available in various programming languages.
   - **Cognito Key Pair** : is incorrect because this is a cryptography key
   - **Cognito API** : is incorrect because this is primarily used as an Application Programming Interface.
+
+- You are working as a Cloud Consultant for a government agency with a mandate of improving traffic planning, maintenance of roadways and preventing accidents. There is a need to manage traffic infrastructure in real time, alert traffic engineers and emergency response teams when problems are detected, and automatically change traffic signals to get emergency personnel to accident scenes faster by **using sensors and smart devices**.       
+Which AWS service will allow the developers of the agency to **connect the said devices to your cloud-based applications**?
+  - **A) AWS IoT Core**
