@@ -28,3 +28,11 @@ Which of the following is the most suitable solution to implement in this scenar
   - Audit Logging : is incorrect because the Audit Logging feature is primarily used to get the information about the connection, queries, and user activities in your Redshift cluster.
   - Amazon Redshift Spectrum : is incorrect because this is primarily used to run queries against exabytes of unstructured data in Amazon S3
   ![redshift-vpc-routing](./image/redshift-vpc-routing.png)
+
+- You are working for an online hotel booking firm with terabytes of customer data coming from your websites and applications. There is an annual corporate meeting where you need to present the booking behavior and acquire new insights from your customers’ data. You are looking for a service to perform **super-fast analytics on massive data sets in near real-time**.   
+Which of the following services gives you the ability to **store huge amounts of data and perform quick and flexible queries** on it? 
+  - **A) Redshift**
+  - **Redshift** : delivers ten times faster performance than other data warehouses by using machine learning, massively parallel query execution, and **columnar storage on high-performance disk**.
+  - **DynamoDB** : is incorrect. DynamoDB is a NoSQL database which is based on **key-value pairs used for fast processing of small data** that dynamically grows and changes. But if you need to scan large amounts of data (ie a lot of keys all in one query), the performance will not be optimal.
+  - **ElastiCache** : is incorrect because this is used to increase the performance, speed and redundancy with which applications can retrieve data by providing an **in-memory database caching system**, and not for database analytical processes.
+  - **RDS** : is incorrect because this is mainly used for On-Line Transaction Processing (OLTP) applications and not for Online Analytics Processing (OLAP)
