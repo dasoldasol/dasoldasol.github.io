@@ -161,3 +161,9 @@ Which of the following is returned for the user to **provide a set of temporary,
 - You are working as a Cloud Consultant for a government agency with a mandate of improving traffic planning, maintenance of roadways and preventing accidents. There is a need to manage traffic infrastructure in real time, alert traffic engineers and emergency response teams when problems are detected, and automatically change traffic signals to get emergency personnel to accident scenes faster by **using sensors and smart devices**.       
 Which AWS service will allow the developers of the agency to **connect the said devices to your cloud-based applications**?
   - **A) AWS IoT Core**
+
+- You are a Solutions Architect of a multi-national gaming company which develops video games for PS4, Xbox One and Nintendo Switch consoles, plus a number of mobile games for Android and iOS. Due to the wide range of their products and services, you proposed that they use API Gateway.       
+What are **the key features of API Gateway** that you can tell your client? (Choose 2)
+  - **A1) You can run your APIs without any servers.**
+  - **A2) You pay only for the API calls you receive and the amount of data transfered out**
+  
