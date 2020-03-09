@@ -277,3 +277,56 @@ Which of the following IPv4 CIDR block can you use for this scenario?
     - 1. **32 - CIDR Block mask number** : ex) 32 - 27 = **5**
     - 2. **2^(1번답)** : ex) 2^**5** = **32**
     
+- You are instructed by your manager to set up a **bastion host** in your Amazon VPC and it should only be accessed from the corporate data center via SSH. What is the best way for you to achieve this?
+  - **A) Create a small EC2 instance with a security group which only allows access on port 22 via the IP address of the corporate data center. Use a private key(.pem) file to connect to the bastion host.**
+  - The best way to implement a bastion host is to create a small EC2 instance which should only have a security group from a particular IP address for maximum security. This will block any SSH Brute Force attacks on your bastion host. 
+  -  It is also recommended to use a small instance rather than a large one because this host will only act as a jump server to connect to other instances in your VPC and nothing else.
+
+- One member of your DevOps team consulted you about a connectivity problem in one of your Amazon EC2 instances. The application architecture is initially set up with **four EC2 instances, each with an EIP address that all belong to a public non-default subnet**. You launched another instance to handle the increasing workload of your application. The EC2 instances also belong to the same security group. Everything works well as expected except for one of the EC2 instances which is not able to send nor receive traffic over the Internet.    
+Which of the following is the MOST likely reason for this issue?
+  - **A) The EC2 instance does not have a public IP address associated with it.**
+  - By default, nondefault subnets have the IPv4 public addressing attribute set to `false`, and default subnets have this attribute set to `true`.
+  - Take note as well that the four EC2 instances all belong to a public **non-default subnet**. Which means that a new EC2 instance will not have a public IP address by default since the since IPv4 public addressing attribute is initially set to `false`.
+  - **The route table is not properly configured to allow traffic to and from the Internet through the Internet gateway** : is incorrect because the other three instances, which are associated with the same route table and security group, do not have any issues.
+
+- You have set up a VPC with public subnet and an Internet gateway. You set up an EC2 instance with a public IP as well. However, you are still **not able to connect to the instance via the Internet**. You checked its associated security group and it seems okay.    
+What should you do to ensure you can connect to the EC2 instance from the Internet?
+  - **A) Check the main route table and ensure that the right route entry to the Internet Gateway(IGW) is configured.**
+
+- You have two On-Demand EC2 instances inside your Virtual Private Cloud in the same Availability Zone but are deployed to different subnets. One EC2 instance is running a database and the other EC2 instance a web application that connects with the database. You want to ensure that these two instances can communicate with each other for your system to work properly.    
+What are the things you have to check **so that these EC2 instances can communicate inside the VPC**? (Choose 2)
+  - **A1) Check the Network ACL if it allows communication between the two subnets.**
+  - **A2) Check if all security groups are set to allow the application host to communicate to the database on the right port and protocol.**
+  - **Check if the default route is set to a NAT instance or Internet Gateway (IGW) for them to communicate** : is incorrect because an Internet gateway is primarily used to communicate to the Internet.
+
+- You are a Solutions Architect working for a large insurance company that deployed their production environment on a custom Virtual Private Cloud in AWS with a default configuration. The VPC consists of two private subnets and one public subnet. Inside the public subnet is a group of EC2 instances which are created by an Auto Scaling group and all of the instances are in the same Security Group. Your development team has created a new application which will be accessed by mobile devices via a custom port. This application has been deployed to the production environment and you need to open this port globally to the Internet.    
+Which of the following is the correct procedure to meet this requirement?
+  - **A) Open the custom port on the Security Group. Your EC2 instances will be able to use this port immediately.**
+  - To allow the custom port, you have to change the Inbound Rules in your Security Group to allow traffic coming from the mobile devices. **Security Groups** usually **control the list of ports** that are allowed to be used by your **EC2 instances** and the **NACLs** **control** which network or **list of IP addresses** can connect to your **whole VPC**.
+  - By default, **Network ACL allows all** inbound and outbound IPv4 traffic, then there is no point of explicitly allowing the port in the Network ACL. **Security Groups does not allow incoming traffic by default**, unlike Network ACL.
+
+- A media company has two VPCs: VPC-1 and VPC-2 with **peering** connection between each other. **VPC-1 only contains private subnets** while VPC-2 only contains public subnets. The company uses a single AWS **Direct Connect** connection and a virtual interface to connect their on-premises network with VPC-1.    
+Which of the following options **increase the fault tolerance of the connection to VPC-1**? (Choose 2)
+  - **A1) Establish a hardware VPN over the Internet between VPC-1(private) and the on-premises network.**
+  - **A2) Establish another AWS Direct Connect connection and private virtual interface in the same AWS region as VPC-1(private).**
+  - Note that a **VPC peering** connection does not support edge to edge routing (**NOT TRANSITIVE**) for : 
+    - A VPN connection or an AWS Direct Connect connection to a corporate network
+    - An Internet connection through an Internet gateway
+    - An Internet connection in a private subnet through a NAT device
+    - A VPC endpoint to an AWS service; for example, an endpoint to Amazon S3.
+    - (IPv6) A ClassicLink connection. You can enable IPv4 communication between a linked EC2-Classic instance and instances in a VPC on the other side of a VPC peering connection. However, IPv6 is not supported in EC2-Classic, so you cannot extend this connection for IPv6 communication.
+    
+- Your client is an insurance company that utilizes SAP HANA for their day-to-day ERP operations. Since you can’t migrate this database due to customer preferences, you need to integrate it with your current AWS workload in your VPC in which you are required to establish a **site-to-site VPN connection**.       
+What needs to be configured outside of the VPC for you to have a successful site-to-site VPN connection?
+  - **A) An Internet-routable IP address (static) of the customer gateway's external interface for the on-premises network**
+  - 하드웨어 VPN 연결 또는 Direct Connect 연결이 지원되는 VPC의 경우, 인스턴스는 가상 프라이빗 게이트웨이의 인터넷 트래픽을 사용자의 기존 데이터 센터로 라우팅할 수 있습니다. 여기서 기존 송신 지점 및 네트워크 보안/모니터링 디바이스를 통해 인터넷에 액세스할 수 있습니다.
+  - AWS Site-to-Site VPN 연결은 사용자의 VPC를 데이터센터에 연결합니다. Amazon은 인터넷 프로토콜 보안(IPsec) VPN 연결을 지원합니다. VPC와 데이터센터 간에 전송되는 데이터는 암호화된 VPN 연결을 통해 라우팅되어 전송 데이터의 기밀성과 무결성이 유지됩니다. Site-to-Site VPN 연결을 형성하는데 인터넷 게이트웨이는 필요하지 않습니다.
+  - A customer gateway is a physical device or software application on your side of the VPN connection.    
+To create a VPN connection, you must create a **customer gateway resource** in AWS, which provides information to AWS about your customer gateway device. Next, you have to set up an **Internet-routable IP address (static) of the customer gateway's external interface**.    
+    
+![vpn-connection](./image/vpn-connection.png)
+
+- Your company is running a multi-tier web application farm in a virtual private cloud (VPC) that is not connected to their corporate network. They are connecting to the VPC over the Internet to manage the fleet of Amazon EC2 instances running in both the public and private subnets. You have added **a bastion host with Microsoft Remote Desktop Protocol (RDP) access** to the application instance security groups, but the company wants to further limit **administrative access** to all of the instances in the VPC.    
+Which of the following bastion host deployment options will meet this requirement?
+  - **A) Deploy a Windows Bastion host with an Elastic IP address in the "public" subnet and allow RDP access to bastion only from the corporate IP addresses.**
+  - [vpc-bastion](./image/vpc-bastion.png)
