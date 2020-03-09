@@ -324,9 +324,9 @@ What needs to be configured outside of the VPC for you to have a successful site
   - A customer gateway is a physical device or software application on your side of the VPN connection.    
 To create a VPN connection, you must create a **customer gateway resource** in AWS, which provides information to AWS about your customer gateway device. Next, you have to set up an **Internet-routable IP address (static) of the customer gateway's external interface**.    
     
-![vpn-connection](./image/vpn-connection.png)
+  ![vpn-connection](./image/vpn-connection.png)
 
 - Your company is running a multi-tier web application farm in a virtual private cloud (VPC) that is not connected to their corporate network. They are connecting to the VPC over the Internet to manage the fleet of Amazon EC2 instances running in both the public and private subnets. You have added **a bastion host with Microsoft Remote Desktop Protocol (RDP) access** to the application instance security groups, but the company wants to further limit **administrative access** to all of the instances in the VPC.    
 Which of the following bastion host deployment options will meet this requirement?
   - **A) Deploy a Windows Bastion host with an Elastic IP address in the "public" subnet and allow RDP access to bastion only from the corporate IP addresses.**
-  - [vpc-bastion](./image/vpc-bastion.png)
+  - ![vpc-bastion](./image/vpc-bastion.png)
