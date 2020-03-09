@@ -12,4 +12,17 @@ Which of the following does **AWS provide for you as part of the shared responsi
 In the AWS Shared Responsibility Model, which security aspects are **the responsibilities of the customer**? (Choose 2)
   - **A1) OS Patching of an EC2 instance**
   - **A2) IAM Policies and Credentials Management**
-  - The shared responsibility model for infrastructure services, such as Amazon Elastic Compute Cloud (Amazon EC2) for example, specifies that AWS manages the security of the following assets:
+  - **The shared responsibility model for infrastructure services**, such as Amazon Elastic Compute Cloud (Amazon EC2) for example, specifies that **AWS manages** the security of the following assets:    
+    - Facilities 
+    - Physical security of hardware
+    - Network infrastructure
+    - Virtualization infrastructure 
+  - You as **the customer are responsible** for the security of the following assets:
+    - Amazon Machine Images(AMIs)
+    - Operating systems 
+    - Applications
+    - Data in transit 
+    - Data at rest
+    - Data stores 
+    - Credentials 
+    - Policies and configuration
