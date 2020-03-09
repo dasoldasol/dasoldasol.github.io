@@ -61,3 +61,23 @@
 - Your company hosts 10 web servers all serving the same web content in AWS. They want Route 53 to serve traffic to random web servers. Which routing policy will meet this requirement, and provide the best resiliency?
   - **Multivalue Routing**
   - Multivalue answer routing lets you configure Amazon Route 53 to return multiple values, such as IP addresses for your web servers, in response to DNS queries. Route 53 responds to DNS queries with up to eight healthy records and gives different answers to different DNS resolvers. The choice of which to use is left to the requesting service effectively creating a form or randomization.
+
+- You have a static corporate website hosted in a standard S3 bucket and a new web domain name which was registered using Route 53. You are instructed by your manager to integrate these two services in order to successfully launch their corporate website.    
+What are the **prerequisites when routing traffic using Amazon Route 53 to a website that is hosted in an Amazon S3 Bucket**? (Choose 2)
+  - **A1) The S3 bucket name must be the same as the domain name**
+  - **A2) A registered domain name**
+  - A1) An S3 bucket that is configured to host a static website. The bucket must have the same name as your domain or subdomain. For example, if you want to use the subdomain portal.tutorialsdojo.com, the name of the bucket must be portal.tutorialsdojo.com.
+  - A2) A registered domain name. You can use Route 53 as your domain registrar, or you can use a different registrar.
+
+- You are an IT Consultant for an advertising company that is currently working on a proof of concept project that automatically provides SEO analytics for their clients. Your company has a VPC in AWS that operates in dual-stack mode in which IPv4 and IPv6 communication is allowed. You deployed the application to an Auto Scaling group of EC2 instances with an Application Load Balancer in front that evenly distributes the incoming traffic. You are ready to go live but you need to **point your domain name (tutorialsdojo.com) to the Application Load Balancer. **      
+In Route 53, which record types will you use to **point the DNS name of the Application Load Balancer**? (Choose 2)
+  - **A1) Alias with a type "AAAA" record set**
+  - **A2) Alias with a type "A" record set**
+
+- You have a cryptocurrency exchange portal which is hosted in an Auto Scaling group of EC2 instances behind an Application Load Balancer, and are deployed across multiple AWS regions. Your users can be found all around the globe, but the majority are from Japan and Sweden. Because of the compliance requirements in these two locations, you want your Japanese users to connect to the servers in the ap-northeast-1 Asia Pacific (Tokyo) region, while your Swedish users should be connected to the servers in the eu-west-1 EU (Ireland) region.    
+Which of the following services would allow you to easily fulfill this requirement?
+  - **A) Use Route53 Geolocation Routing Policy**
+  - Setting up a new CloudFront web distribution with the geo-restriction feature enabled : is incorrect because the CloudFront geo-restriction feature is primarily used to prevent users in specific geographic locations from accessing content that you're distributing through a CloudFront web distribution. It does not let you choose the resources that serve your traffic based on the geographic location of your users.
+
+- You have a new, dynamic web app written in MEAN stack that is going to be launched in the next month. There is a probability that the traffic will be quite high in the first couple of weeks. In the event of a load failure, **how can you set up DNS failover to a static website**?
+  - **A) Use Route53 with the failover option to a static S3 website bucket or CloudFront distribution**
