@@ -166,3 +166,10 @@ When it comes to the **ENI attachment to an EC2 instance**, what does **'warm at
     - When it's **running (hot attach)**
     - When it's **stopped (warm attach)**
     - When the instance is **being launched (cold attach)**.
+
+- You are **unable to connect to your new EC2 instance via SSH from your home computer**, which you have recently deployed. However, you were **able to successfully access other existing instances in your VPC** without any issues.       
+Which of the following should you check and possibly correct to restore **connectivity**?
+  - **A) Configure the Security Group of the EC2 instance to permit ingress traffic over port 22 from your IP**
+  - When connecting to your EC2 instance via SSH, you need to ensure that port 22 is allowed on the security group of your EC2 instance.
+  - **NACL** : is incorrect because Network ACL is much suitable to control the traffic that goes in and out of your **entire VPC** and **not just on one EC2 instance**.
+  
