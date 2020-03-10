@@ -167,3 +167,20 @@ What are **the key features of API Gateway** that you can tell your client? (Cho
   - **A1) You can run your APIs without any servers.**
   - **A2) You pay only for the API calls you receive and the amount of data transfered out**
   
+- You are working for a startup as its AWS Chief Architect. You are currently assigned on a project that develops an online registration platform for events, which uses Simple Workflow for complete control of your orchestration logic. A decider ingests the customer name, address, contact number, and email address while the activity workers update the customer with the status of their online application status via email. Recently, you were having problems with your online registration platform which was solved by checking the decision task of your workflow.       
+In **SWF**, what is the purpose of a **decision task**?
+  - **A) It tells the decider the state the workflow execution**
+  - **Workflow** : It defines all the activities in the workflow. 
+  - **Activity Task** : It tells the worker to perform a function.
+  - **Lambda Task** : It executes a Lambda Function
+  - **Decision Task** : It tells a decider that the state of the workflow execution has changed    
+  so that the decider can determine the next activity that needs to be performed.(**current workflow history**)
+  - **Workflow Starter** : Any application that can initiate workflow executions.
+  - **Activity Worker** : A program that receives activity tasks, performs them, and provides results back.
+  - **Decider** : It schedules activity tasks, provides input data to the activity workers, processes events.
+ 
+- A leading media company has an application hosted in an EBS-backed EC2 instance which uses **Simple Workflow Service (SWF)** to handle its sequential background jobs. The application works well in production and your manager asked you to also implement the same solution to other areas of their business.        
+In which other scenarios can you **use both Simple Workflow Service (SWF) and Amazon EC2** as a solution? (Choose 2)
+  - **A1) Managing a multi-step and multi-decision checkout process of an e-commerce mobile app.**
+  - **A2) Orchestrating the execution of distributed business processes.**
+  - **For a distributed session management for your mobile application** : is incorrect as **Elasticache**
