@@ -85,3 +85,8 @@ Which of the following allows you to **issue short-lived access tokens that acts
   - **AWS STS vs. AWS Cognito JWT**
     - **STS** : provide trusted users with temporary **security credentials** that can control access to your AWS resources.
     - **JWT** : the Amazon Cognito service is primarily used for **user authentication** and not for providing access to your AWS resources. A JSON Web Token (JWT) is used for user authentication and **session management**.
+
+- You are the Solutions Architect for your company's AWS account of approximately 300 IAM users. They have a new company policy that will change the access of 100 of the IAM users to have a particular sort of access to Amazon S3 buckets.    
+What will you do to avoid the time-consuming task of applying the policy at the individual user?
+  - **A) Create a new IAM group and then add the users that require access to the S3 bucket. Afterwards, apply the policy to IAM group.**
+  - This will enable you to easily add, remove, and manage the users instead of manually adding a policy to each and every 100 IAM users.
