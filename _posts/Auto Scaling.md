@@ -39,3 +39,13 @@ Which of the following statements are true regarding the **cooldown period**? (C
   - **Cooldown Period** : 휴지 기간은 scale up 또는 scale down 활동을 완료한 후 다른 scale up 활동을 시작하기 전까지의 시간입니다. 이 시간을 지정하는 목적은 새로운 scale up 작업을 개시하기 전에 새로 프로비저닝된 리소스가 수요를 처리할 시간을 제공하는 것입니다.
   - **Cooldown Period** is a configurable setting for your Auto Scaling group.
   
+- You are working as a Solutions Architect for a global game development company. They have a web application currently running on twenty EC2 instances as part of an Auto Scaling group. All twenty instances have been running at a maximum of 100% CPU Utilization for the past 40 minutes however, the Auto Scaling group has not added any additional EC2 instances to the group.      
+What could be the root cause of this issue? (Choose 2)
+  - **A1) The maximum size of your Auto Scaling group is set to 20**
+  - **A2) You already have 20 on-demand instances running in your entire VPC.**
+  - If the maximum size of your Auto Scaling group has already been reached, then it would not create any new EC2 instance.
+
+- A tech company is currently using Auto Scaling for their web application. A new AMI now needs to be used for launching a fleet of EC2 instances.    
+Which of the following changes needs to be done?
+  - **A) Create a new launch configuration. **
+  
