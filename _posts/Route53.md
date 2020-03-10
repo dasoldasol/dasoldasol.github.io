@@ -81,3 +81,12 @@ Which of the following services would allow you to easily fulfill this requireme
 
 - You have a new, dynamic web app written in MEAN stack that is going to be launched in the next month. There is a probability that the traffic will be quite high in the first couple of weeks. In the event of a load failure, **how can you set up DNS failover to a static website**?
   - **A) Use Route53 with the failover option to a static S3 website bucket or CloudFront distribution**
+
+- You are setting up the cloud architecture for an international money transfer service to be deployed in AWS which will have thousands of users around the globe. The service should be available 24/7 to avoid any business disruption and should be resilient enough to handle the outage of an entire AWS region. To meet this requirement, you have deployed your AWS resources to multiple AWS Regions. You need to use Route 53 and configure it to set all of your resources to be available all the time as much as possible. When a resource becomes unavailable, your Route 53 should detect that it's unhealthy and stop including it when responding to queries.       
+Which of the following is the most fault tolerant routing configuration that you should use in this scenario? 
+  - **A) Configure an Active-Active Failover with Weighted routing policy.**
+  - **Active-Active Failover**
+    - Use this failover configuration when you want all of your resources to be available the majority of the time. When a resource becomes unavailable, Route 53 can detect that it's unhealthy and stop including it when responding to queries.
+    - In active-active failover, all the records that have the same name, the same type (such as A or AAAA), and the same routing policy (such as weighted or latency) are active unless Route 53 considers them unhealthy. Route 53 can respond to a DNS query using any healthy record. Remember that an **Active-Active Failover uses all available resources all the time without a primary nor a secondary resource**.
+  - **Active-Passive Failover**
+    - Use an active-passive failover configuration when you want a primary resource or group of resources to be available the majority of the time and you want a secondary resource or group of resources to be on standby in case all the primary resources become unavailable. When responding to queries, Route 53 includes only the healthy primary resources. If all the primary resources are unhealthy, Route 53 begins to include only the healthy secondary resources in response to DNS queries.
