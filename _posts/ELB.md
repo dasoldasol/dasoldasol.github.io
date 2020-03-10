@@ -78,6 +78,7 @@ Which of the following is the most cost-effective solution to meet the above req
   - **A) Upload all SSL certificates of the domains in the ALB using the console**     
   **and bind multiple certificates to the same secure listener on your load balancer.**    
   **ALB automatically choose the optimal TLS certificate for each client using Server Name Indication(SNI)**
+  - **SSL(Server Secure Layer)** : SSL은 또한 웹 서버 인증, 서버 인증이라고 불리는데, 클라이언트와 서버 간의 통신을 제3자가 보증해주는 전자화된 문서다. 클라이언트가 서버에 접속한 직후에 서버는 클라이언트에게 이 인증서 정보를 전달한다.  HTTPS SSL 프로토콜 위에서 돌아가는 프로토콜이다. 즉 HTTPS로 데이터 전송을 시작할 때, SSL이 데이터 보안을 제공한다.
   - SNI Custom SSL relies on the SNI extension of the Transport Layer Security protocol, which allows multiple domains to serve SSL traffic over the same IP address by including the hostname which the viewers are trying to connect to.    
   You can host multiple TLS secured applications, each with its own TLS certificate, behind a single load balancer. In order to use SNI, all you need to do is bind multiple certificates to the same secure listener on your load balancer. ALB will automatically choose the optimal TLS certificate for each client. These features are provided at no additional charge.
   - **Using a wildcard certificate** : is incorrect because a wildcard certificate can only handle multiple sub-domains but not different domains.
