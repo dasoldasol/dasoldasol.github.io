@@ -84,3 +84,24 @@ Which of the following is the most cost-effective solution to meet the above req
   - **Using a wildcard certificate** : is incorrect because a wildcard certificate can only handle multiple sub-domains but not different domains.
   - **Adding a Subject Alternative Name (SAN) for each additional domain to your certificate** : is incorrect because although using SAN is correct, you will still have to reauthenticate and reprovision your certificate every time you add a new domain.
   - **Create a new CloudFront web distribution and configure it to serve HTTPS requests using dedicated IP addresses in order to associate your alternate domain names with a dedicated IP address in each CloudFront edge location** : is incorrect because although it is valid to use dedicated IP addresses to meet this requirement, this solution is not cost-effective. Remember that if you configure CloudFront to serve HTTPS requests using dedicated IP addresses, you incur an additional monthly charge. The charge begins when you associate your SSL/TLS certificate with your CloudFront distribution. You can just simply upload the certificates to the ALB and use SNI to handle multiple domains in a cost-effective manner.
+
+- You are a Solutions Architect for a major TV network. They have a web application running on eight Amazon EC2 instances, consuming about 55% of resources on each instance. You are **using Auto Scaling** to make sure that eight instances are running at all times. The number of requests that this application processes are consistent and do not experience spikes. Your manager instructed you to ensure **high availability of this web application at all times to avoid any loss of revenue**. You want **the load to be distributed evenly between all instances**. You also want to **use the same Amazon Machine Image (AMI) for all EC2 instances**.    
+How will you be able to achieve this?
+  - **A) Deploy 4 EC2 instances with Auto Scaling in 1 Availability Zone and 4 in another availability zone in the same region behind an Amazon Elastic Load Balancer.**
+  - Take note that Auto Scaling will launch additional EC2 instances to the remaining Availability Zone/s in the event of an Availability Zone outage in the region.
+  - the ELB is designed to only run in one region and not across multiple regions.
+
+- In your VPC, you have a **Classic Load Balancer** distributing traffic to 2 running EC2 instances in `ap-southeast-1a` AZ and 8 EC2 instances in `ap-southeast-1b` AZ.    
+However, you noticed that half of your incoming traffic goes to `ap-southeast-1a` AZ which over-utilize its 2 instances but underutilize the other 8 instances in the other AZ.     
+What could be the most likely cause of this problem?
+  - **A) Cross-Zone Balancing is disabled.**
+  - **Cross-zone load balancing** reduces the need to maintain same numbers of instances in each enabled Availability Zone, and improves your application's ability to handle the loss of one or more instances.     
+  - If cross-zone load balancing is **enabled**, each of the 10 targets receives 10% of the traffic. This is because each load balancer node can route its 50% of the client traffic to all 10 targets.    
+     
+  - ![cross_zone_load_balancing_enabled](./image/cross_zone_load_balancing_enabled.png)
+     
+  - If cross-zone load balancing is **disabled**, each of the 2 targets in Availability Zone A receives 25% of the traffic and each of the 8 targets in Availability Zone B receives 6.25% of the traffic. This is because each load balancer node can route its 50% of the client traffic only to targets in its Availability Zone.    
+     
+  - ![cross_zone_load_balancing_disabled](./image/cross_zone_load_balancing_disabled.png)
+
+  
