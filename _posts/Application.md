@@ -184,3 +184,14 @@ In which other scenarios can you **use both Simple Workflow Service (SWF) and Am
   - **A1) Managing a multi-step and multi-decision checkout process of an e-commerce mobile app.**
   - **A2) Orchestrating the execution of distributed business processes.**
   - **For a distributed session management for your mobile application** : is incorrect as **Elasticache**
+
+- You are working as a Solutions Architect for a leading airline company where you are building a decoupled application in AWS using EC2, Auto Scaling group, S3 and SQS. You designed the architecture in such a way that the EC2 instances will consume the message from the SQS queue and will automatically scale up or down based on the number of messages in the queue.   
+In this scenario, which of the following statements is false about **SQS**?
+  - **A) Standard queues preserve the order of messages**
+  - **Only FIFO queues can preserve the order of messages and not standard queues.**
+
+- A manufacturing company has EC2 instances running in AWS. The EC2 instances are configured with Auto Scaling. There are a lot of requests being lost because of too much load on the servers. The Auto Scaling is launching new EC2 instances to take the load accordingly yet, there are still some requests that are being lost.    
+Which of the following is the MOST suitable solution that you should implement to **avoid losing recently submitted requests**?
+  - **A) Use an SQS queue to decouple the application components**
+  - **Keeping one extra Spot EC2 instance always ready in case a spike occurs or using larger instances for your application** : are incorrect because using a Spot or a larger EC2 instance would not prevent data from being lost in case of a larger spike. You can take advantage of the durability and elasticity of SQS to keep the messages available for consumption by your instances.
+  - **Pre-warming your Elastic Load Balancer** : is incorrect because it would be difficult to predict how much traffic your load balancer will be receiving in a certain period of time, which corresponds to how long you will pre-warm the load balancer. It is still better to use SQS in this scenario rather than re-configuring your load balancer.
