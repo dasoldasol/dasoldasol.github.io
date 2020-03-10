@@ -26,3 +26,19 @@ Which of the following **configuration types** will allow you to specify the per
 Which of the following options will allow you to **asynchronously process the request** to the application in the **most cost-effective** manner?
   - **A) Create a Lambda function that will asynchronously process the requests.**
   - **Using a combination of Lambda and Step Functions to orchestrate service components and asynchronously process the requests** : is incorrect because the **AWS Step Functions service** lets you coordinate multiple AWS services into serverless workflows so you can build and update apps quickly. Although this can be a valid solution, it is not cost-effective since the application does not have a lot of components to orchestrate.
+
+- Your company has recently deployed a new web application which uses a serverless-based architecture in AWS. Your manager instructed you to implement CloudWatch metrics to monitor your systems more effectively. You know that Lambda automatically monitors functions on your behalf and reports metrics through Amazon CloudWatch.      
+In this scenario, what types of data do these metrics monitor? (Choose 2)
+  - **A1) `Invocations`**
+  - **A2) `DeadLetterErrors`**
+  - AWS Lambda automatically monitors functions on your behalf, reporting metrics through Amazon CloudWatch.     
+  These metrics include **total invocation requests, latency, error rates. The throttles, Dead Letter Queues errors and Iterator age for stream-based invocations** are also monitored.
+  ![metrics-functions-list](./image/metrics-functions-list.png)
+  - **IteratorSize and ApproximateAgeOfOldestMessage** : are incorrect because these two are not Lambda metrics.
+
+- You have a VPC that has a CIDR block of `10.31.0.0/27` which is connected to your on-premises data center. There was a requirement to create a Lambda function that will process massive amounts of cryptocurrency transactions every minute and then store the results to EFS. After you set up the serverless architecture and connected Lambda function to your VPC, you noticed that there is an increase in **invocation errors** with EC2 error types such as `EC2ThrottledException` on certain times of the day.    
+Which of the following are the possible causes of this issue? (Choose 2)
+  - **A1) Your VPC does not have sufficient ENIs or subnet IPs.**
+  - **A2) You only specified one subnet in your Lambda function configuration. That single subnet runs out of available IP addresses and there is no other subnet or Availability Zone which can handle the peak load.**
+  - AWS Lambda runs your function code securely within a VPC by default. However, to enable your Lambda function to access resources inside your private VPC, you must provide additional VPC-specific configuration information that includes VPC subnet IDs and security group IDs. AWS Lambda uses this information to set up elastic network interfaces (ENIs) that enable your function to connect securely to other resources within your private VPC.
+  - If your VPC does not have sufficient ENIs or subnet IPs, your Lambda function will not scale as requests increase, and you will see an increase in invocation errors with EC2 error types like EC2ThrottledException. For asynchronous invocation, if you see an increase in errors without corresponding CloudWatch Logs, invoke the Lambda function synchronously in the console to get the error responses.
