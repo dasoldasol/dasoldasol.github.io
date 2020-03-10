@@ -70,3 +70,24 @@ Which AWS service will suit your needs for your application?
   - **A) DynamoDB **
   - Amazon DynamoDB is a fast and flexible NoSQL database service. It supports both document and key-value store models. used for mobile, web, gaming, ad tech, IoT, and many other applications.
   - ![dynamodb](./image/dynamodb.png)
+
+- You are working as a Solutions Architect for a tech company where you are instructed to build a web architecture using On-Demand EC2 instances and a database in AWS. However, due to **budget constraints**, the company instructed you to choose a database service in which they **no longer need to worry about** database management tasks such as hardware or software provisioning, setup, configuration, **scaling** and backups.   
+Which database service in AWS is best to use in this scenario?
+  - **A) DynamoDB**
+  - you simply create a database table, set your target utilization for Auto Scaling, and let the service handle the rest. You no longer need to worry about database management tasks such as hardware or software provisioning, setup and configuration, software patching, operating a reliable, distributed database cluster, or partitioning data over multiple instances as you scale. DynamoDB also lets you backup and restore all your tables for data archival, helping you meet your corporate and governmental regulatory requirements.
+  - **RDS** : In RDS, you still have to manually scale up your resources and create Read Replicas to improve scalability while in DynamoDB, this is automatically done. RDS is incorrect because this is just a "managed" service and not "fully managed". This means that you still have to handle the backups and other administrative tasks such as when the automated OS patching will take place.
+  - **Amazon ElastiCache** : is incorrect because although ElastiCache is fully managed, it is not a database service but an In-Memory Data Store.
+  - **Redshift** : is incorrect because although this is fully managed, it is not a database service but a Data Warehouse.
+
+- You currently have an Augment Reality (AR) mobile game which has a serverless backend. It is using a **DynamoDB table** which was launched using the AWS CLI to store all the user data and information gathered from the players and a **Lambda function** to pull the data from DynamoDB. The game is being used by millions of users each day to read and store data.     
+How would you design the application to **improve its overall performanc**e and make it **more scalable** while keeping the **costs low**? (Choose 2)
+  - **A1) Enable DynamoDB Accelerator(DAX) and ensure that the Auto Scaling is enabled and increase the maximum provisioned read and write capacity.**
+  - **A2) Use API Gateway in conjunction with Lambda and turn on the caching on frequently accessed data and enable DynamoDB global replication**
+  - DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables
+  - Amazon API Gateway lets you create an API that acts as a "front door" for applications to access data, business logic, or functionality from your back-end services, such as code running on AWS Lambda. 
+  - **Configure CloudFront with DynamoDB as the origin; cache frequently accessed data on client device using ElastiCache** : is incorrect because **CloudFront and DynamoDB are imcompatible**
+
+- Your manager has asked you to deploy a mobile application that can collect votes for a popular singing competition. Millions of users from around the world will submit votes using their mobile phones. These votes must be collected and stored in a highly scalable and highly available data store which will be queried for real-time ranking.    
+Which of the following combination of services should you use to meet this requirement?
+  - **A) Amazon DynamoDB and AWS AppSync**
+  - **DynamoDB** is durable, scalable, and highly available data store which can be used for **real-time tabulation**. You can also use **AppSync** with DynamoDB to make it easy for you to build collaborative apps that keep **shared data updated in real time**.
