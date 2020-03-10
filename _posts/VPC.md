@@ -330,3 +330,62 @@ To create a VPN connection, you must create a **customer gateway resource** in A
 Which of the following bastion host deployment options will meet this requirement?
   - **A) Deploy a Windows Bastion host with an Elastic IP address in the "public" subnet and allow RDP access to bastion only from the corporate IP addresses.**
   - ![vpc-bastion](./image/vpc-bastion.png)
+
+- A VPC has a **non-default public subnet** which has four On-Demand EC2 instances that can be accessed over the Internet. Using the AWS CLI, you launched a fifth instance that uses the same subnet, Amazon Machine Image (AMI), and security group which are being used by the other instances. Upon testing, you are **not able to access the new instance**.       
+Which of the following is the most suitable solution to solve this problem?
+  - **A) Associate an Elastic IP address to the fifth EC2 instance.**
+  - By default, non-default subnets have the IPv4 public addressing attribute set to `false`, and default subnets have this attribute set to `true`. 
+  - fifth instance does not have a public IP address since it was deployed on a nondefault subnet. The other 4 instances are accessible over the Internet because they each have an Elastic IP address attached, unlike the last instance which only has a private IP address. An Elastic IP address is a public IPv4 address, which is reachable from the Internet. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the Internet.
+
+- You have an On-Demand EC2 instance located in a subnet in AWS which hosts a web application. The security group attached to this EC2 instance has the following Inbound Rules:    
+![test-1](./image/test-1.PNG)    
+The Route table attached to the VPC is shown below. **You can establish an SSH connection into the EC2 instance from the internet**. However, you are **not able to connect to the web server using your Chrome browser**.    
+![test-2](./image/test-2.PNG)    
+Which of the below steps would resolve the issue?    
+  - **A) In the Security Group, add an Inbound HTTP rule.**
+  - The scenario is that you can already connect to the EC2 instance via SSH. This means that there is no problem in the Route Table of your VPC. To fix this issue, you simply need to update your Security Group and add an Inbound rule to allow HTTP traffic.
+
+- You are a Solutions Architect for a global news company. You are configuring a fleet of EC2 instances in a subnet which currently is in a VPC with an Internet gateway attached. **All of these EC2 instances can be accessed from the Internet**. You then **launch another subnet and launch an EC2 instance** in it, however you are **not able to access the EC2 instance from the Internet**.       
+What could be the possible reasons for this issue? (Choose 2)
+  - **A1) The route table is not configured properly to send traffic from the EC2 instance to the Internet through the Internet gateway.**
+  - **A2) The Amazon EC2 instance does not have a public IP address associated with it.**
+  - In cases where your EC2 instance cannot be accessed from the Internet (or vice versa), you usually have to check two things:
+    - **Does it have an EIP or public IP address?**
+    - **Is the route table properly configured?**
+  - **The Amazon EC2 instance doesn't have an attached Elastic Fabric Adapter (EFA)** : is incorrect because the Elastic Fabric Adapter is just a network device that you can attach to your Amazon EC2 instance to accelerate High Performance Computing (HPC) and machine learning applications. EFA enables you to achieve the application performance of an on-premises HPC cluster, with the scalability, flexibility, and elasticity provided by AWS. However, this component is not required in order for your EC2 instance to access the public Internet.
+  - **The route table is not configured properly to send traffic from the EC2 instance to the Internet through the customer gateway (CGW)** : is incorrect since CGW is used when you are setting up a VPN. 
+  
+- You are a Solutions Architect working for an aerospace engineering company which recently adopted a hybrid cloud infrastructure with AWS. One of your tasks is to launch a VPC with both public and private subnets for their EC2 instances as well as their database instances respectively.       
+Which of the following statements are true regarding Amazon VPC subnets? (Choose 2)
+  - **A1) Every subnet that you create is automatically associated with the main route table for the VPC**
+  - **A2) Each subnet maps to a single Availability Zone**
+  - **If a subnet's traffic is routed to an Internet gateway, the subnet is known as a public subnet.**
+  - EC2 instances in a private subnet can communicate with the Internet not just by having an Elastic IP, but also with a public IP address.
+  - **allowed block size in VPC** is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses) ]
+
+- An online job site is using NGINX for its application servers hosted in EC2 instances and MongoDB Atlas for its database-tier. MongoDB Atlas is a fully automated third-party cloud service which is not provided by AWS, but supports VPC peering to connect to your VPC.     
+Which of the following items are **invalid VPC peering configurations**? (Choose 2)
+  - **A) Transitive Peering**
+  - **A) Edge to Edge routing via a gateway**
+  - The following VPC peering connection configurations are not supported.
+    - **Overlapping CIDR Blocks**
+    ![overlapping-cidrs-diagram](./image/overlapping-cidrs-diagram.png)
+    - **Transitive Peering**
+    - **Edge to Edge Routing Through a Gateway or Private Connection**
+    ![edge-to-edge-vpn-diagram](./image/edge-to-edge-vpn-diagram.png)
+ 
+ - You were recently promoted to a technical lead role in your DevOps team. Your company has an existing VPC which is quite unutilized for the past few months. The business manager instructed you to integrate your on-premises data center and your VPC. You explained the list of tasks that you'll be doing and mentioned about a Virtual Private Network (VPN) connection. The business manager is not tech-savvy but he is interested to know what a VPN is and its benefits.    
+What is one of the major **advantages of having a VPN in AWS**?
+  - **A) It allows you to connect your AWS cloud resources to your on-premises data center using secure and private sessions with IP Security(IPSec) or Transport Layer Security(TLS) tunnels.**
+  - **VPC Peering** : It provides a networking connection between two VPCs which enables you to route traffic between them using private IPv4 addresses or IPv6 addresses is incorrect because this actually describes VPC Peering and not a VPN connection.
+
+- You are a new Solutions Architect in your company. Upon checking the existing Inbound Rules of your Network ACL, you saw this configuration:    
+![test-3](./image/test-3.PNG)    
+If a computer with an IP address of 110.238.109.37 sends a request to your VPC, what will happen?
+  - **A) It will be allowed**
+  - Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it's applied immediately regardless of any higher-numbered rule that may contradict it.
+
+- A large insurance company has an AWS account that contains three VPCs (DEV, UAT and PROD) in the same region. UAT is peered to both PROD and DEV using a VPC peering connection. All VPCs have non-overlapping CIDR blocks. The company wants to push minor code releases from Dev to Prod to speed up time to market.    
+Which of the following options helps the company accomplish this?
+  - **A) Create a new VPC Peering connection between PROD and DEV with the appropriate routes.**
+  - A VPC peering connection is a networking connection between two VPCs that enables you to route traffic between them privately. 
