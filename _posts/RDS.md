@@ -116,3 +116,14 @@ Which of the following is the most suitable solution to meet the requirement?
   - **Loss of network connectivity to primary**
   - **Compute unit failure on primary**
   
+- You are working for an insurance firm as their Senior Solutions Architect. The firm has an application which processes thousands of customer data stored in an Amazon MySQL database with Multi-AZ deployments configuration for high availability in case of downtime. For the past few days, you noticed an increasing trend of read and write operations, which is increasing the latency of the queries to your database. You are planning to use the standby database instance to balance the read and write operations from the primary instance.     
+When running your primary Amazon RDS Instance as a **Multi-AZ** deployment, can you **use the standby instance for read and write operations**? 
+  - **A) No**
+  - The standby instance will not perform any read and write operations while the primary instance is running.
+
+- Due to the large volume of query requests, the database performance of an online reporting application significantly slowed down. The Solutions Architect is trying to convince her client to use Amazon RDS Read Replica for their application instead of setting up a Multi-AZ Deployments configuration.    
+What are two **benefits of using Read Replicas over Multi-AZ** that the Architect should point out? (Choose 2)
+  - **A1) It elastically scales out beyond the capacity constraints of a single DB instance for read-heavy database workloads.**
+  - **A2) Provides asynchronous replication and improves the performance of the primary database by taking read-heacy database workloads from it.**
+  - **Provides synchronous replication and automatic failover in the case of Availability Zone service failures** : is incorrect as this is a benefit of **Multi-AZ** and not of a Read Replica.
+  - **It enhances the read performance of your primary database by increasing its IOPS and accelerates its query processing via AWS Global Accelerator** : is incorrect. **AWS Global Accelerator** is a networking service, not related to RDS, that direct user traffic to the nearest application endpoint to the client, thus reducing internet latency and jitter. It simply routes the traffic to the closest edge location via Anycast.
