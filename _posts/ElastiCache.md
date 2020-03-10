@@ -53,7 +53,15 @@ As the Solutions Architect, which of the following should you do to meet the abo
   - To require that users enter a password on a password-protected Redis server, include the parameter `--auth-token` with the correct password
   - Enabling the `AtRestEncryptionEnabled` parameter : the Redis At-Rest Encryption ONLY secures the data inside.
 
-- **A startup based in Australia is deploying a new two-tier web application in AWS. The Australian company wants to store their most frequently used data in an in-memory data store to improve the retrieval and response time of their web application.    
+- A startup based in Australia is deploying a new two-tier web application in AWS. The Australian company wants to store their most frequently used data in an **in-memory data store to improve the retrieval and response time** of their web application.    
 Which of the following is the most suitable service to be used for this requirements?
-  - A) Amazon ElastiCache**
+  - **A) Amazon ElastiCache**
   - ElastiCache makes it easy to deploy, operate, and scale an **in-memory** data store or cache. The service improves the performance of web applications by allowing you to **retrieve** information from fast, managed, in-memory data stores, instead of slow disk-based DBs.
+
+- Your web application is relying entirely on slower disk-based databases, causing it to perform slowly. To improve its performance, you integrated an in-memory data store to your web application using ElastiCache. **How does Amazon ElastiCache improve database performance?**
+  - **A) By caching database query results.**
+  - The primary purpose of an in-memory key-value store is to provide ultra-fast (submillisecond latency) and inexpensive access to copies of data. Most data stores have areas of data that are frequently accessed but seldom updated. Additionally, querying a database is always slower and more expensive than locating a key in a key-value pair cache. Some database queries are especially expensive to perform, for example, queries that involve joins across multiple tables or queries with intensive calculations.    
+By caching such query results, you pay the price of the query once and then are able to quickly retrieve the data multiple times without having to re-execute the query.
+  - **DynamoDB Accelerator (DAX)** : provides an in-memory cache that delivers up to 10x performance improvement from milliseconds to microseconds or even at millions of requests per second
+  - **CloudFront** : securely delivers data to customers globally with low latency and high transfer speeds
+  - **RDS Read Replica** : reduces the load on your database by routing read queries from your applications to the Read Replica
