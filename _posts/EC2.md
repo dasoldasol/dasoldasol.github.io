@@ -173,3 +173,65 @@ Which of the following should you check and possibly correct to restore **connec
   - When connecting to your EC2 instance via SSH, you need to ensure that port 22 is allowed on the security group of your EC2 instance.
   - **NACL** : is incorrect because Network ACL is much suitable to control the traffic that goes in and out of your **entire VPC** and **not just on one EC2 instance**.
   
+- You are working as a Solutions Architect for an aerospace manufacturer which heavily uses AWS. They are running a cluster of multi-tier applications that spans multiple servers for your wind simulation model and how it affects your state-of-the-art wing design. Currently, you are experiencing a slowdown in your applications and upon further investigation, it was discovered that it is due to latency issues.     
+Which of the following EC2 features should you use to optimize performance for a **compute cluster that requires low network latency**?
+  - **A) Placement Groups**
+  - **Multiple Availability Zones** : is incorrect because they are mainly used for achieving **high availability** when one of the AWS AZ’s goes down, and are not used for low network latency. Use Spread Placement Groups instead for multiple availability zones.
+
+- You are working for a large financial firm and you are instructed to set up a Linux bastion host. It will allow access to the Amazon EC2 instances running in their VPC. For security purposes, **only the clients connecting from the corporate external public IP address 175.45.116.100 should have SSH access to the host**.    
+Which is the best option that can meet the customer's requirement?
+  - **A) Security Group Inbound Rule : Protocol - TCP. Port Rage - 22, Source 175.45.116.100/32**
+
+- You are working for a large financial firm in the country. They have an AWS environment which contains several Reserved EC2 instances hosted in a web application that has been decommissioned last week. To save cost, you need to **stop incurring charges for the Reserved instances** as soon as possible.    
+What cost-effective steps will you take in this circumstance? (Choose 2)
+  - **A1) Terminate the Reserved instances as soon as possible to avoid getting billed at the on-demand price when it expires.**
+  - **A2) Go to the AWS Reserved Instance Marketplace and sell the Reserved instances.**
+  - **Stopping the Reserved instances as soon as possible** : is incorrect because a stopped instance can still be restarted. 
+
+- You are working for a FinTech startup as their AWS Solutions Architect. You deployed an application on different EC2 instances with Elastic IP addresses attached for easy DNS resolution and configuration. These servers are only accessed from 8 AM to 6 PM and can be stopped from 6 PM to 8 AM for cost efficiency using Lambda with the script that automates this based on tags.       
+Which of the following will occur **when an EC2-VPC instance with an associated Elastic IP is stopped and started**? (Choose 2) 
+  - **A1) All data on the attached instance-store devices will be lost.**
+  - **A2) The underlying host for the instance is possibly changed.**
+  - Since **only EBS-backed instances can be stopped and restarted**, it is implied that the instance is EBS-backed. If you stopped an EBS-backed EC2 instance, the volume is preserved but the data in any attached Instance store volumes will be erased. 
+  - its Elastic IP address is disassociated from the instance if it is an EC2-Classic instance. Otherwise, if it is an EC2-VPC instance, the Elastic IP address remains associated.
+  - Take note that an EBS-backed EC2 instance can have attached Instance Store volumes.
+
+- Your IT Manager instructed you to set up a **bastion host** in the cheapest, most secure way, and that **you should be the only person that can access it via SSH**.      
+Which of the following steps would satisfy your IT Manager's request?
+  - **A) Set up a small EC2 instance and a security group which only allows access on port 22 via your IP address**
+  - **bastion host** is a server whose purpose is to provide access to a private network from an external network, such as the Internet. Because of its exposure to potential attack, a bastion host must minimize the chances of penetration.
+
+- The media company that you are working for has a video transcoding application running on Amazon EC2. Each EC2 instance polls a queue to find out which video should be transcoded, and then runs a transcoding process. **If this process is interrupted, the video will be transcoded by another instance based on the queuing system**. This application has a large backlog of videos which need to be transcoded. Your manager would like to reduce this backlog by adding more EC2 instances, however, **these instances are only needed until the backlog is reduced.**    
+In this scenario, which type of Amazon EC2 instance is the most cost-effective type to use?
+  - **A) Spot instances**
+  - You require an instance that will be used not as a primary server but as a spare compute resource. These instances should also be terminated once the backlog has been significantly reduced. if the current process is interrupted, the video can be transcoded by another instance based on the queuing system. This means that the application can gracefully handle an unexpected termination of an EC2 instance
+  - Amazon EC2 Spot instances are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices. Take note that there is no "bid price" anymore for Spot EC2 instances since March 2018. You simply have to set your "maximum price" instead.
+
+- In Amazon EC2, you can manage your instances from the moment you launch them up to their termination. You can flexibly control your computing costs by changing the EC2 instance state. Which of the following statements is true regarding EC2 billing? (Choose 2)
+  - **A1) You will be billed when your Reserved instance is in `terminated` state.**
+    - Take note that Reserved Instances that applied to terminated instances are still billed until the end of their term according to their payment option.
+  - **A2) You will be billed when your On-Demand instance is preparing to hibernate with a `stopping` state**
+    - when the instance state is `stopping`, you will not billed if it is preparing to stop however, you will still be billed if it is just preparing to hibernate.
+  - **You will not be billed when your On-Demand instance is in `pending` state**
+  - **You will not be billed when your Spot instance is preparing to stop with a `stopping` state**
+  - **You will not be billed for any instance usage while an instance is not in the running state** : is incorrect because You can still be billed if your instance is preparing to hibernate with a `stopping` state.
+
+- You are automating the creation of EC2 instances in your VPC. Hence, you wrote a python script to trigger the Amazon EC2 API to request 50 EC2 instances in a single Availability Zone. However, you noticed that after 20 successful requests, subsequent requests failed.    
+What could be a reason for this issue and how would you resolve it?
+  - **A) There is a soft limit of 20 instances per region which is why subsequent requests failed. Just submit the limit increase form to AWS and retry the failed requests once approved.**
+
+- A company is using a custom shell script to automate the deployment and management of their EC2 instances. The script is using various AWS CLI commands such as `revoke-security-group-ingress`, `revoke-security-group-egress`, `run-scheduled-instances` and many others.   
+In the shell script, what does the **`revoke-security-group-ingress` command do**?
+  - **A) Removes one or more ingress rules from a security group**
+
+- You are a Solutions Architect in your company where you are tasked to set up a cloud infrastructure. In the planning, it was discussed that you will need two EC2 instances which should **continuously run for three years**. The CPU utilization of the EC2 instances is also expected to be stable and predictable.    
+Which is the most cost-efficient Amazon EC2 Pricing type that is most appropriate for this scenario?
+  - **A) Reserved Instances**
+  - Reserved Instances are recommended for:
+    - Applications with steady state usage
+    - Applications that may require reserved capacity
+    - Customers that can commit to using EC2 over a 1 or 3 year term to reduce their total computing costs
+
+- A company is hosting EC2 instances that are on non-production environment and processing non-priority batch loads, which **can be interrupted at any time.**       
+What is the best instance purchasing option which can be applied to your EC2 instances in this case?
+  - **A) Spot Instances**
