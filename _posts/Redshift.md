@@ -36,3 +36,8 @@ Which of the following services gives you the ability to **store huge amounts of
   - **DynamoDB** : is incorrect. DynamoDB is a NoSQL database which is based on **key-value pairs used for fast processing of small data** that dynamically grows and changes. But if you need to scan large amounts of data (ie a lot of keys all in one query), the performance will not be optimal.
   - **ElastiCache** : is incorrect because this is used to increase the performance, speed and redundancy with which applications can retrieve data by providing an **in-memory database caching system**, and not for database analytical processes.
   - **RDS** : is incorrect because this is mainly used for On-Line Transaction Processing (OLTP) applications and not for Online Analytics Processing (OLAP)
+
+- You are working as an IT Consultant for a large investment bank that generates **large financial datasets with millions of rows**. The data must be stored in a **columnar** fashion to reduce the number of disk I/O requests and reduce the amount of data needed to load from the disk. The bank has an existing third-party business intelligence application which will connect to the storage service and then generate **daily and monthly financial reports** for its clients around the globe.     
+In this scenario, which is the best storage service to use to meet the requirement?
+  - **A) Amazon Redshift**
+  
