@@ -35,3 +35,7 @@ Which service is designed to let the customer **leverage existing Chef recipes**
   - **A) AWS Elastic Beanstalk**
   - **AWS CloudFormation** : is incorrect because although this service provides deployment capabilities, you will **still have to design a custom template** that contains the required AWS resources for your application needs. Hence, this will require more time to complete instead of just directly using Elastic Beanstalk.
   - **AWS CodeCommit** : is incorrect because although you can **upload your NodeJS code** in AWS CloudCommit, this service is **just a fully-managed source control service** that hosts secure Git-based repositiories and hence, it **does not provide a way to deploy** or manage your applications in AWS.
+
+- You are a new Solutions Architect in your department and you have created 7 CloudFormation templates. Each template has been defined for a specific purpose.    
+What determines **the cost** of using these new **CloudFormation** templates?
+  - **A) CloudFormation templates are free but you are charged for the underlying resources it builds.**
