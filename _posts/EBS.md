@@ -139,3 +139,18 @@ Can **EBS tolerate an Availability Zone failure** each and every time?
   - when you create an EBS volume in an Availability Zone, it is automatically replicated within that zone only to prevent data loss due to a failure of any single hardware component. After you create a volume, you can attach it to any EC2 instance in the same Availability Zone.
   - it is the **EBS snapshots**, not the EBS volume, that has a copy of the data which is stored redundantly in **multiple Availability Zones.**
   - **EBS volumes** only exist in a **single availability zone** while **EBS snapshots** are available in **one AWS region**.
+
+- You are working for an investment bank as their IT Consultant. You are working with their IT team to handle the launch of their digital wallet system. The applications will run on multiple EBS-backed EC2 instances which will store the logs, transactions, and billing statements of the user in an S3 bucket. Due to tight security and compliance requirements, you are exploring options on **how to safely store sensitive data on the EBS volumes and S3**.    
+Which of the below options should be carried out when storing sensitive data on AWS? (Choose 2)
+  - **A1) Enable Amazon S3 Server-Side or use Client-Side Encryption**
+  - **A2) Enable EBS Encryption**
+  - **Using AWS Shield and WAF** : is incorrect because these protect you from common security threats for your web applications. However, what you are trying to achieve is securing and encrypting your data inside EBS and S3.
+
+- You are working for a tech company that uses a lot of EBS volumes in their EC2 instances. An incident occurred that requires you to delete the EBS volumes and then re-create them again.       
+What step should you do **before you delete the EBS volumes**?
+  - **A) Store a snapshot of the volume.**
+
+- A global online sports betting company has its popular web application hosted in AWS. They are planning to develop a new online portal for their new business venture and they hired you to implement the cloud architecture for a new online portal that will accept bets globally for world sports. You started to design the system with a relational database that runs on a single EC2 instance, which requires a single EBS volume that can support up to **30,000 IOPS**.       
+In this scenario, which Amazon EBS volume type can you use that will meet the performance requirements of this new online portal?
+  - **A) EBS Provisioned IOPS SSD(io1)**
+  - Remember that the dominant performance attribute of SSD is **IOPS** while HDD is **Throughput**.
