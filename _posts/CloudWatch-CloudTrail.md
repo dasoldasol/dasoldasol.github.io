@@ -44,3 +44,9 @@ Which of the following metrics is **not available by default in CloudWatch**?
 How will you **automate the monitoring and repair of the system status check failure** in an AWS environment?
   - **A) Create CloudWatch alarms that stop and start the instance based on status check alarms**
   - **Using Amazon CloudWatch alarm actions**, you can create alarms that automatically stop, terminate, reboot, or recover your EC2 instances.
+
+- You are working for a startup company that has resources deployed on the AWS Cloud. Your company is now going through a set of scheduled audits by an external auditing firm for compliance.       
+Which of the following services available in AWS can be utilized to help ensure the right information are present for **auditing purposes**?
+  - **A) AWS CloudTrail**
+  -  CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services. This event history simplifies security analysis, resource change tracking, and troubleshooting.
+  - CloudTrail records important information about each action, including **who** made the request, the services used, the actions performed, parameters for the actions, and the response elements returned by the AWS service. CloudTrail makes it easier to ensure **compliance with internal policies and regulatory standards**.
