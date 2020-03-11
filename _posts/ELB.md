@@ -104,4 +104,9 @@ What could be the most likely cause of this problem?
      
   - ![cross_zone_load_balancing_disabled](./image/cross_zone_load_balancing_disabled.png)
 
-  
+- A bank portal application is hosted in an Auto Scaling group of EC2 instances behind a **Classic Load Balancer (CLB)**. You are required to set up the architecture so that any back-end EC2 instances that you de-register should complete the in-progress requests first before the de-registration process takes effect. Conversely, if a back-end instance fails health checks, **the load balancer should not send any new requests to the unhealthy instance but should allow existing requests to complete**.        
+How will you configure your load balancer to satisfy the above requirement?
+  - **A) Configure Connection Draining**
+  - **Connection Draining** : To ensure that a Classic Load Balancer **stops sending requests** to instances that are **de-registering or unhealthy** while **keeping the existing connections open**
+  - **Sticky Sessions** : is incorrect because the sticky sessions feature is mainly used to ensure that all requests from the user during the session are **sent to the same instance**.
+  - **Cross-Zone Load Balancing** : is incorrect because Cross-Zone load balancing is mainly used to distribute requests evenly across the registered instances in all enabled Availability Zones.
