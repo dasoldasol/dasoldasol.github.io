@@ -4,7 +4,7 @@
 - Massive Parallel Processing(MPP) : distributing & parallelizing queries across multiple physical resources
 - comlumnar data storage : improving query performance and allowing advance compression techniques
 - **only supports Single-AZ deployments** and the nodes are available within the same AZ, if the AZ supports Redshift clusters.
-- spot instances are **NOT** and option
+- spot instances are **NOT** an option
 
 ## Features
 - used for business intelligence(OLAP)
@@ -41,3 +41,10 @@ Which of the following services gives you the ability to **store huge amounts of
 In this scenario, which is the best storage service to use to meet the requirement?
   - **A) Amazon Redshift**
   
+- A real-time data analytics application is using AWS Lambda to process data and **store results in JSON format to an S3** bucket. To speed up the existing workflow, you have to use a service where you can **run sophisticated Big Data analytics on your data without moving them into a separate analytics system**.       
+Which of the following group of services can you use to meet this requirement? 
+  - **A) S3 Select, Amazon Athena, Amazon Redshift Spectrum**
+  -  In AWS, there is a suite of tools that make analyzing and processing large amounts of data in the cloud faster, including ways to optimize and integrate existing workflows with Amazon S3:
+  - **S3 Select** : retrieve a subset of data from an object in Amazon S3 using simple SQL expressions. 
+  - **Athena** : interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL expressions.
+  - **Redshift Spectrum** : directly run SQL queries against exabytes of unstructured data in Amazon S3.
