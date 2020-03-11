@@ -5,5 +5,33 @@
 ## Scenario
 - A telecommunications company is planning to give AWS Console access to developers. Company policy mandates the use of identity federation and role-based access control. Currently, the roles are already assigned using groups in the **corporate Active Directory**.    
 In this scenario, what combination of the following services can provide developers access to the AWS console? (Choose 2)
-  - A) IAM Roles, AWS Directory Service AD Connector
+  - **A) IAM Roles, AWS Directory Service AD Connector**
   - Considering that the company is using a corporate Active Directory, it is best to use AWS Directory Service AD Connector for easier integration. In addition, since the roles are already assigned using groups in the corporate Active Directory, it would be better to also use IAM Roles. Take note that you can assign an IAM Role to the users or groups from your Active Directory once it is integrated with your VPC via the AWS Directory Service AD Connector.
+
+- A company is using the AWS Directory Service to integrate their on-premises Microsoft Active Directory (AD) domain with their Amazon EC2 instances via an AD connector. The below identity-based policy is attached to the IAM Identities that use the AWS Directory service:    
+````
+  {
+ "Version":"2012-10-17",
+ "Statement":[
+  {
+   "Sid":"DirectoryTutorialsDojo1234",
+   "Effect":"Allow",
+   "Action":[
+    "ds:*"
+   ],
+   "Resource":"arn:aws:ds:us-east-1:987654321012:directory/d-1234567890"
+  },
+  {
+   "Effect":"Allow",
+   "Action":[
+   "ec2:*"
+   ],
+   "Resource":"*"
+  }
+ ]
+}
+````
+  Which of the following BEST describes what the above resource policy does?    
+    - **A) Allows all AWS Directory Service(`ds`) calls as long as the resource contains the directory ID: `d-1234567890`**
+    - **Statement ID(SID)** : `DirectoryTutorialsDojo1234`
+    - **Account ID** : `987654321012`
