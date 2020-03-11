@@ -18,3 +18,8 @@ Which of the following options are **not** suitable to be implemented in this sc
   - **Set up alerts in Amazon CloudWatch to look for high `Network In` and CPU utilization metrics.**
   - **Use AWS Shield and AWS WAF**
 
+- You are working as a Solutions Architect for a leading financial firm where you are responsible in ensuring that their applications are highly available and safe from common web security vulnerabilities. Which is the most suitable AWS service to use to **mitigate Distributed Denial of Service (DDoS) attacks from hitting your back-end EC2 instances**?   
+  - **A) AWS Shield**
+  - **AWS WAF** : is incorrect because this is a web application firewall service that helps protect your web apps from common exploits that could affect app availability, compromise security, or consume excessive resources. Although this can help you against DDoS attacks, AWS WAF alone is not enough to fully protect your VPC.
+  - **AWS Firewall Manager** : is incorrect because this just simplifies your AWS WAF administration and maintenance tasks across multiple accounts and resources.
+  - **Amazon GuardDuty** : is incorrect because this is just an intelligent threat detection service to protect your AWS accounts and workloads. Using this alone will not fully protect your AWS resources against DDoS attacks.
