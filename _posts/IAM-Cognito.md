@@ -113,3 +113,8 @@ Which of the following is returned for the user to **provide a set of temporary,
   - **Cognito SDK** : is incorrect because this is a software development kit that is available in various programming languages.
   - **Cognito Key Pair** : is incorrect because this is a cryptography key
   - **Cognito API** : is incorrect because this is primarily used as an Application Programming Interface.
+
+- You have a requirement to integrate the Lightweight Directory Access Protocol (**LDAP**) **directory service** of your on-premises data center to your AWS VPC using IAM. **The identity store** which is currently being used is **not compatible with SAML**.       
+Which of the following provides the most valid approach to implement the integration?
+  - **A) Develop an on-premises custom identity broker application and use STS to issue short-lived AWS credentials.**
+  - ![enterprise-authentication-with-identity-broker-application.diagram](./image/enterprise-authentication-with-identity-broker-application.diagram.png)
