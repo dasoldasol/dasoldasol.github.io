@@ -12,5 +12,9 @@ Which AWS services can be used together to collect logs and then easily perform 
   - Access logging in the ELB is stored in Amazon S3 which means that the following are valid options:
     - Amazon S3 for storing the ELB log files and an EC2 instance for analyzing the log files using a custom-built application.
     - Amazon S3 for storing ELB log files and Amazon EMR for analyzing the log files.
-  - However, log analysis can be automatically provided by Amazon EMR, which is more economical than building a custom-built log analysis application and hosting it in EC2.    
+  - However, **log analysis can be automatically provided by Amazon EMR**, which is more economical than building a custom-built log analysis application and hosting it in EC2.    
   
+- You have a set of linux servers running on multiple On-Demand EC2 Instances. The Audit team wants to **collect and process the application log files** generated from these servers for their report.    
+Which of the following services is the best to use in this case?
+  - **A) Amazon S3 for storing the application log files and Amazon Elastic MapReduce for processing the log files**
+  - **Amazon RedShift to store the logs and Amazon Lambda for running custom log analysis scripts** : is incorrect as Amazon RedShift is mainly used as a data warehouse service.
