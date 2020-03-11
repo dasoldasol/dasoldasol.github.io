@@ -81,7 +81,7 @@ Which of the following will you need to consider so you can set up a solution th
 
 - You work for an Intelligence Agency as its Principal Consultant developing a missile tracking application, which is hosted on both development and production AWS accounts. Alice, the Intelligence agency’s Junior Developer, only has access to the development account. She has received security clearance to access the agency’s production account but **the access is only temporary and only write access** to EC2 and S3 is allowed.    
 Which of the following allows you to **issue short-lived access tokens that acts as temporary security credentials to allow access** to your AWS resources?
-  - **A) AWS STS
+  - **A) AWS STS**
   - **AWS STS vs. AWS Cognito JWT**
     - **STS** : provide trusted users with temporary **security credentials** that can control access to your AWS resources.
     - **JWT** : the Amazon Cognito service is primarily used for **user authentication** and not for providing access to your AWS resources. A JSON Web Token (JWT) is used for user authentication and **session management**.
@@ -90,3 +90,8 @@ Which of the following allows you to **issue short-lived access tokens that acts
 What will you do to avoid the time-consuming task of applying the policy at the individual user?
   - **A) Create a new IAM group and then add the users that require access to the S3 bucket. Afterwards, apply the policy to IAM group.**
   - This will enable you to easily add, remove, and manage the users instead of manually adding a policy to each and every 100 IAM users.
+
+- A tech startup has recently received a Series A round of funding to continue building their mobile forex trading application. You are hired to set up their cloud architecture in AWS and to implement a highly available, fault tolerant system. For their database, they are using DynamoDB and for authentication, they have chosen to use **Cognito**. Since the mobile application contains confidential financial transactions, there is a **requirement to add a second authentication method that doesn't rely solely on user name and password**.       
+How can you implement this in AWS?
+  - **A) Add multi-factor authentication (MFA) to a user pool in Cognito to protect the identity of your users.**
+  
