@@ -52,6 +52,17 @@
 - password : customize password rotation policy 
 - **STS(Security Token Service)** - temporary security credentials
 
+## Cognito - Web Identity Federation
+- **Web Identity Federation**
+  - Give your users access to AWS resources after they have authenticated with a Web ID Provider(Amazon, Facebook, Google..)
+  - Following successful authentication, the user receives an **authentication code** from web id provider, which they can trade for **temporary AWS security credentials**.
+- Use Cases
+![cognito-process](./image/cognito-1.png)
+- Cognito User Pools vs. Identity Pools(actual granting)
+  - **User Pool** : A **User Directory** used to sign-in directly to the User Pool. Cognito acts as an Identity Broker between the id provider and AWS. Successful authentication generates a JSON Web Token(JWTs)
+  - **Identity Pool** : enable **provide temporary AWS credentials**
+- Cognito Synchronisation : Various different devices
+
 ## Scenarios 
 - **A company is storing an access key (access key ID and secret access key) in a text file on a custom
 AMI. The company uses the access key to access DynamoDB tables from instances created from the AMI. The security team has mandated a more secure solution. Which solution will meet the security team’s mandate?**        
@@ -95,3 +106,10 @@ What will you do to avoid the time-consuming task of applying the policy at the 
 How can you implement this in AWS?
   - **A) Add multi-factor authentication (MFA) to a user pool in Cognito to protect the identity of your users.**
   
+- A San Francisco-based tech startup is building a cross-platform mobile app that can notify the user with upcoming astronomical events such as eclipses, blue moon, novae or a meteor shower. Your mobile app authenticates with the Identity Provider (IdP) using the provider's SDK and Amazon Cognito. Once the end user is authenticated with the IdP, the OAuth or OpenID Connect token returned from the IdP is passed by your app to Amazon Cognito.    
+Which of the following is returned for the user to **provide a set of temporary, limited-privilege AWS credentials**?
+  - **A) Cognito ID
+  -  **Amazon Cognito identity pools** support both authenticated and unauthenticated identities. 인증되지 않은 사용자를 허용하는 경우 또는 사용자를 인증하는 경우 자격 증명 공급자(credentials provider)에서 로그인 토큰을 설정 한 후 최종 사용자의 고유 한 Amazon Cognito 식별자 (identity ID)를 즉시 검색 할 수 있습니다.
+  - **Cognito SDK** : is incorrect because this is a software development kit that is available in various programming languages.
+  - **Cognito Key Pair** : is incorrect because this is a cryptography key
+  - **Cognito API** : is incorrect because this is primarily used as an Application Programming Interface.
