@@ -91,3 +91,10 @@ How would you design the application to **improve its overall performanc**e and 
 Which of the following combination of services should you use to meet this requirement?
   - **A) Amazon DynamoDB and AWS AppSync**
   - **DynamoDB** is durable, scalable, and highly available data store which can be used for **real-time tabulation**. You can also use **AppSync** with DynamoDB to make it easy for you to build collaborative apps that keep **shared data updated in real time**.
+
+- A popular augmented reality (AR) mobile game is heavily using a RESTful API which is hosted in AWS. The API uses Amazon API Gateway and a DynamoDB table with a preconfigured read and write capacity. Based on your systems monitoring, the DynamoDB table begins to throttle requests during high peak loads which causes the slow performance of the game.     
+Which of the following can you do to improve the performance of your app? 
+  - **A)Use DynamoDB Auto Scaling**
+  - DynamoDB는 응용 프로그램에 필요한 읽기 및 쓰기 용량을 설정할 수 있는 프로비저닝 용량 모델을 제공합니다. 이로 인해, 용량 걱정 없이 간단한 API 호출 또는 AWS 관리 콘솔에서 버튼 클릭으로 테이블에 대한 용량을 변경할 수 있습니다.    
+이에 더 나아가 오늘 DynamoDB에 자동 스케일링(Auto Scaling)을 도입하여 테이블 및 글로벌 보조 인덱스 용량 관리를 자동화 기능을 출시합니다. 이는 원하는 대상 활용 방법에 대해  읽기 및 쓰기 용량의 상한 및 하한선을 설정하면 됩니다. 그런 다음 DynamoDB는 Amazon CloudWatch 알림을 사용하여 처리량 소비를 모니터링 한 다음 필요할 때 프로비저닝 된 용량을 조정합니다. Auto Scaling은 모든 새로운 테이블과 인덱스에 대해 기본적으로 설정 되며, 기존 테이블과 인덱스에도 구성 할 수 있습니다.    
+DynamoDB Auto Scaling은 테이블 및 인덱스를 모니터링하여 응용 프로그램 트래픽의 변화에 따라 처리량을 자동 조정합니다. 이를 통해 DynamoDB 데이터를 보다 쉽게 관리하고 응용 프로그램의 가용성을 극대화하며 DynamoDB 비용을 줄일 수 있습니다.
