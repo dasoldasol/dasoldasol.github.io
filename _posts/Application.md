@@ -194,3 +194,13 @@ What **service can you use to easily capture, transform, and load streaming data
   - **A) Amazon Kinesis Data Firehose**
   - **Amazon Kinesis** : is incorrect because this is the streaming data platform of AWS and has four distinct services under it: Kinesis Data Firehose, Kinesis Data Streams, Kinesis Video Streams, and Amazon Kinesis Data Analytics. 
   - **Amazon Macie** : is incorrect because this is mainly utilized as a security service that uses machine learning to automatically discover, classify, and protect sensitive data in AWS.
+
+- An application is using a RESTful API hosted in AWS which uses **Amazon API Gateway** and AWS Lambda. There is a requirement to **trace and analyze user requests as they travel through your Amazon API Gateway APIs** to the underlying services.     
+Which of the following is the most suitable service to use to meet this requirement?
+  - **A) AWS X-Ray**
+  - X-Ray gives you an end-to-end view of an entire request, so you can analyze latencies in your APIs and their backend services. 
+  - debug and analyze your microservices applications with request tracing so you can find the root cause of your issues and performance.
+    ![apigateway-xray-traceview-1](./image/apigateway-xray-traceview-1.png)    
+        
+  - **VPC Flow Logs** : is incorrect because this is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your entire VPC.
+  - **CloudTrail** : is incorrect because this is primarily used for API logging of all of your AWS resources.
