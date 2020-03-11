@@ -49,3 +49,7 @@ What could be the root cause of this issue? (Choose 2)
 Which of the following changes needs to be done?
   - **A) Create a new launch configuration. **
   
+- You have an Auto Scaling group which is configured to launch new `t2.micro` EC2 instances when there is a significant load increase in the application. To cope with the demand, you now need to replace those instances with a larger `t2.2xlarge` instance type. How would you implement this change?
+  - **A) Create a new launch configuration with the new instance type and update the Auto Scaling Group.**
+  - You can only specify one launch configuration for an Auto Scaling group at a time, and you can't modify a launch configuration after you've created it. 
+  -  You have to create a new launch configuration first, with a new instance type, then attach it to your existing Auto Scaling group.
