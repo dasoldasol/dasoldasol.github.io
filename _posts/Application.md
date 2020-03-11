@@ -54,6 +54,17 @@
   - Amazon SES는 이메일을 통해 커뮤니케이션을 전송해야 하는 애플리케이션을 위한 서비스입니다. 그리고 사용자 지정 이메일 헤더 필드와 여러 MIME 유형을 지원합니다. Amazon SES는 사내 이메일 솔루션을 구축하거나 타사 이메일 서비스를 라이선싱, 설치 및 운영하는 데 따르는 복잡성과 비용을 없애줍니다.
   - 반면에 Amazon Simple Notification Service(Amazon SNS)는 메시징 지향 애플리케이션입니다. 여기에서는 타이밍이 중요한 "푸시" 알림을 요청하고 수신하는 구독자가 여러 명으로, HTTP, Amazon SQS, 이메일 등의 전송 프로토콜을 직접 선택할 수 있습니다. Amazon SNS 알림의 본문은 UTF-8 스트링 8,192자로 제한되고, 멀티미디어 콘텐츠는 지원하지 않습니다.
 
+## Amazon MQ
+### Features
+- a managed message broker service for **Apache ActiveMQ** that makes it easy to set up and operate message brokers in the cloud. 
+- Easy Connecting : industry-standard APIs and protocols for messaging (**JMS, NMS, AMQP, STOMP, MQTT, WebSocket**)
+- **UseCase**
+  - If you're using messaging with **existing applications** and want to move your messaging service to the cloud quickly and easily
+  - It supports industry-standard APIs and protocols so you can switch from any standards-based message broker to Amazon MQ without rewriting the messaging code in your applications.
+- **SQS/SNS UseCase**
+  - If you are building **brand new applications** in the cloud
+  - Amazon SQS and SNS are lightweight, fully managed message queue and topic services that scale almost infinitely and provide simple, easy-to-use APIs.
+  
 ## Elastic Transcoder
 - Media transcoder in the cloud.
 
@@ -204,3 +215,7 @@ Which of the following is the most suitable service to use to meet this requirem
         
   - **VPC Flow Logs** : is incorrect because this is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your entire VPC.
   - **CloudTrail** : is incorrect because this is primarily used for API logging of all of your AWS resources.
+
+- A customer is transitioning their **ActiveMQ messaging broker service** onto the AWS cloud in which they require an alternative asynchronous service that **supports NMS and MQTT messaging protocol**. The customer does not have the time and resources needed to recreate their messaging service in the cloud. The service has to be highly available and should require almost no management overhead.    
+Which of the following is the most suitable service to use to meet the above requirement?
+  - **A) Amazon MQ**
