@@ -235,3 +235,11 @@ Which is the most cost-efficient Amazon EC2 Pricing type that is most appropriat
 - A company is hosting EC2 instances that are on non-production environment and processing non-priority batch loads, which **can be interrupted at any time.**       
 What is the best instance purchasing option which can be applied to your EC2 instances in this case?
   - **A) Spot Instances**
+
+- You are using an On-Demand EC2 instance to host a legacy web application that uses an Amazon **Instance Store-Backed AMI**. The web application should be decommissioned as soon as possible and hence, you need to terminate the EC2 instance.    
+When the instance is terminated, what happens to the data on the root volume?
+  - **A) Data is automatically deleted**
+  - AMIs are categorized as either **backed by Amazon EBS** or **backed by instance store**.
+    - **backed by Amazon EBS** : the root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot
+    - **backed by instance store** : the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3.
+  - the data on instance store volumes persist only during the life of the instance which means that if the instance is terminated, the data will be automatically deleted.
