@@ -77,17 +77,6 @@
 - **Kinesis Analytics**
 ![kinesis-analytics](./image/kinesis-analytics.png)
 
-## Cognito - Web Identity Federation
-- **Web Identity Federation**
-  - Give your users access to AWS resources after they have authenticated with a Web ID Provider(Amazon, Facebook, Google..)
-  - Following successful authentication, the user receives an **authentication code** from web id provider, which they can trade for **temporary AWS security credentials**.
-- Use Cases
-![cognito-process](./image/cognito-1.png)
-- Cognito User Pools vs. Identity Pools(actual granting)
-  - **User Pool** : A **User Directory** used to sign-in directly to the User Pool. Cognito acts as an Identity Broker between the id provider and AWS. Successful authentication generates a JSON Web Token(JWTs)
-  - **Identity Pool** : enable **provide temporary AWS credentials**
-- Cognito Synchronisation : Various different devices
-
 ## IoT Core
 ![iot-core](./image/iot-core.png)
 - a managed cloud service that lets connected devices easily and securely interact with cloud applications and other devices.
@@ -149,14 +138,6 @@ How do you re-design your architecture to address this requirement?
 What information will you provide and **what will happen to the unprocessed messages**?
   - **A) Tell the users that the application will be operational shortly and all received requests will be processed after the web application is restarted.**
   - The maximum message retention in SQS is 14 days 
-
-- A San Francisco-based tech startup is building a cross-platform mobile app that can notify the user with upcoming astronomical events such as eclipses, blue moon, novae or a meteor shower. Your mobile app authenticates with the Identity Provider (IdP) using the provider's SDK and Amazon Cognito. Once the end user is authenticated with the IdP, the OAuth or OpenID Connect token returned from the IdP is passed by your app to Amazon Cognito.    
-Which of the following is returned for the user to **provide a set of temporary, limited-privilege AWS credentials**?
-  - **A) Cognito ID
-  -  **Amazon Cognito identity pools** support both authenticated and unauthenticated identities. 인증되지 않은 사용자를 허용하는 경우 또는 사용자를 인증하는 경우 자격 증명 공급자(credentials provider)에서 로그인 토큰을 설정 한 후 최종 사용자의 고유 한 Amazon Cognito 식별자 (identity ID)를 즉시 검색 할 수 있습니다.
-  - **Cognito SDK** : is incorrect because this is a software development kit that is available in various programming languages.
-  - **Cognito Key Pair** : is incorrect because this is a cryptography key
-  - **Cognito API** : is incorrect because this is primarily used as an Application Programming Interface.
 
 - You are working as a Cloud Consultant for a government agency with a mandate of improving traffic planning, maintenance of roadways and preventing accidents. There is a need to manage traffic infrastructure in real time, alert traffic engineers and emergency response teams when problems are detected, and automatically change traffic signals to get emergency personnel to accident scenes faster by **using sensors and smart devices**.       
 Which AWS service will allow the developers of the agency to **connect the said devices to your cloud-based applications**?
