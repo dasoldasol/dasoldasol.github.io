@@ -36,6 +36,9 @@
 |duplicated|a task is assigned only once. NEVER duplicated|you need to handle duplicated messages|
 |tracking|keeps track of all the tasks and events|you need to implement your own application-level tracking
 
+## Step Functions
+-  serverless orchestration for modern applications
+
 ## SNS
 ### Features 
 - Simple Notification Service
@@ -219,3 +222,9 @@ Which of the following is the most suitable service to use to meet this requirem
 - A customer is transitioning their **ActiveMQ messaging broker service** onto the AWS cloud in which they require an alternative asynchronous service that **supports NMS and MQTT messaging protocol**. The customer does not have the time and resources needed to recreate their messaging service in the cloud. The service has to be highly available and should require almost no management overhead.    
 Which of the following is the most suitable service to use to meet the above requirement?
   - **A) Amazon MQ**
+
+- A financial company instructed you to automate the recurring tasks in your department such as patch management, infrastructure selection, and data synchronization to improve their current processes. You need to have a service which can **coordinate multiple AWS services into serverless workflows**.       
+Which of the following is the most cost-effective service to use in this scenario?
+  - **A) AWS Step Functions**
+  - **Step Functions** makes it easy to coordinate applications and microservices using **visual workflows**.
+  - **SWF** : is incorrect because this is a fully-managed state tracker and task coordinator service. It does not provide serverless orchestration to multiple AWS resources.
