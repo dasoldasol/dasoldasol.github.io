@@ -45,6 +45,11 @@ In this scenario, which is the best storage service to use to meet the requireme
 Which of the following group of services can you use to meet this requirement? 
   - **A) S3 Select, Amazon Athena, Amazon Redshift Spectrum**
   -  In AWS, there is a suite of tools that make analyzing and processing large amounts of data in the cloud faster, including ways to optimize and integrate existing workflows with Amazon S3:
-  - **S3 Select** : retrieve a subset of data from an object in Amazon S3 using simple SQL expressions. 
-  - **Athena** : interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL expressions.
-  - **Redshift Spectrum** : directly run SQL queries against exabytes of unstructured data in Amazon S3.
+  - **S3 Select** : retrieve a subset of data from an object in Amazon S3 using **simple SQL** expressions. 
+  - **Athena** : interactive query service that makes it easy to **analyze data** in Amazon S3 using standard SQL expressions.(**ac-hoc**)
+  - **Redshift Spectrum** : directly run SQL queries against **exabytes** of unstructured data in Amazon S3.
+
+- A data analytics company, which uses machine learning to collect and analyze consumer data, is using **Redshift cluster** as their data warehouse. You are instructed to implement a **disaster recovery** plan for their systems to ensure business continuity even **in the event of an AWS region outage**.      
+Which of the following is the best approach to meet this requirement?
+  - **A) Enable Cross-Region Snapshots Copy in your Amazon Redshift Cluster.**
+  - You can configure Amazon Redshift to copy snapshots for a cluster to another region. When cross-region copy is enabled for a cluster, all new manual and automatic snapshots are copied to the specified region.
