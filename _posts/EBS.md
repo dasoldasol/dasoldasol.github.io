@@ -1,4 +1,11 @@
 ## Elastic Block Store CheatSheet 
+### Point
+- Amazon Elastic Compute Cloud(EC2)에서 사용하도록 설계된 사용하기 쉬운 고성능 블록 스토리지 서비스
+- **어떤 워크로드에든 적합한 성능** : EBS 볼륨은 SAP, Oracle 및 Microsoft 제품과 같은 미션 크리티컬 애플리케이션을 포함하여, 가장 까다로운 워크로드에 적합합니다. SSD 지원 옵션으로는, 고성능 애플리케이션을 위해 설계된 볼륨(IOPS) 및 대부분의 워크로드에 적합한 뛰어난 요금/성능 옵션을 제공하는 범용 볼륨(General Purpose)이 포함됩니다. HDD 지원 옵션은 빅 데이터 분석 엔진, 로그 처리 및 데이터 웨어하우징과 같은 대용량 순차 워크로드를 위해 설계되었습니다(Throughput Optimized HDD). FSR(빠른 스냅샷 복원)을 사용하여 스냅샷에서 EBS 볼륨 생성 시 전체 성능을 즉시 수신합니다.
+- **사용 편의성** : Amazon EBS 볼륨은 쉽게 생성하고 사용하고 암호화하고 보호할 수 있습니다. 탄력적인 볼륨(**Elastic Volumes**) 기능을 사용하면 **워크로드를 중단하지 않고도** 스토리지를 늘리고, 성능을 높이거나 낮추고, 볼륨 유형을 변경할 수 있습니다. **EBS 스냅샷**을 사용하면 데이터의 지리적 보호를 위해 볼륨의 백업을 쉽게 생성할 수 있습니다. **Data Lifecycle Manager(DLM)** 는 추가 오버헤드나 비용 없이 스냅샷 관리를 자동화하는 사용하기 쉬운 도구입니다.
+
+- **HA & durability** : Amazon EBS 아키텍처는 미션 크리티컬 애플리케이션에 안정성을 제공합니다. 각 볼륨은 **AZ(가용 영역) 내에서 복제**를 통해 장애로부터 사용자 환경을 보호하도록 설계되었으며, 99.999%의 가용성과 0.1% - 0.2% 사이의 AFR(연간 장애 비율)을 제공합니다. 단순하고 강력한 백업을 위해 Amazon Data Lifecycle Manager(DLM) 정책과 함께 EBS 스냅샷을 사용하여 스냅샷 관리를 자동화합니다. 백업 공급자로서 스냅샷용 EBS direct API를 사용하여 EBS 볼륨의 빠른 백업과 보다 세분화된 RPO(복구 시점 목표)를 달성합니다.  이것은 새 EC2 인스턴스 또는 EBS 볼륨을 생성하지 않고도 EBS 스냅샷 데이터를 읽을 수 있는 기능을 통해 가능합니다.
+
 - is virtual network attached block storage 
 - Volumes **CANNOT be shared** with multiple EC2 instances (cf. EFS)
 - **muiltiple Volumes can be attached** to a single EC2 instance
