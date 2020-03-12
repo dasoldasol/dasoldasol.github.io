@@ -123,3 +123,7 @@ Which of the following can you do to improve the performance of your app?
   - DynamoDB는 응용 프로그램에 필요한 읽기 및 쓰기 용량을 설정할 수 있는 프로비저닝 용량 모델을 제공합니다. 이로 인해, 용량 걱정 없이 간단한 API 호출 또는 AWS 관리 콘솔에서 버튼 클릭으로 테이블에 대한 용량을 변경할 수 있습니다.    
 이에 더 나아가 오늘 DynamoDB에 자동 스케일링(Auto Scaling)을 도입하여 테이블 및 글로벌 보조 인덱스 용량 관리를 자동화 기능을 출시합니다. 이는 원하는 대상 활용 방법에 대해  읽기 및 쓰기 용량의 상한 및 하한선을 설정하면 됩니다. 그런 다음 DynamoDB는 Amazon CloudWatch 알림을 사용하여 처리량 소비를 모니터링 한 다음 필요할 때 프로비저닝 된 용량을 조정합니다. Auto Scaling은 모든 새로운 테이블과 인덱스에 대해 기본적으로 설정 되며, 기존 테이블과 인덱스에도 구성 할 수 있습니다.    
 DynamoDB Auto Scaling은 테이블 및 인덱스를 모니터링하여 응용 프로그램 트래픽의 변화에 따라 처리량을 자동 조정합니다. 이를 통해 DynamoDB 데이터를 보다 쉽게 관리하고 응용 프로그램의 가용성을 극대화하며 DynamoDB 비용을 줄일 수 있습니다.
+
+- A leading IT consulting company has an application which processes a large stream of financial data by an Amazon ECS Cluster then stores the result to a DynamoDB table. You have to design a solution to **detect new entries in the DynamoDB table then automatically trigger a Lambda function** to run some tests to verify the processed data.    
+What solution can be easily implemented to alert the Lambda function of new entries while requiring minimal configuration change to your architecture?
+  - **A) Enable DynamoDB Streams to capture table activity and automatically trigger the Lambda function**
