@@ -50,3 +50,8 @@ Which of the following services available in AWS can be utilized to help ensure 
   - **A) AWS CloudTrail**
   -  CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services. This event history simplifies security analysis, resource change tracking, and troubleshooting.
   - CloudTrail records important information about each action, including **who** made the request, the services used, the actions performed, parameters for the actions, and the response elements returned by the AWS service. CloudTrail makes it easier to ensure **compliance with internal policies and regulatory standards**.
+
+- You are managing an online platform which allows people to easily buy, sell, spend, and manage their cryptocurrency. To meet the strict IT audit requirements, each of the API calls on all of your AWS resources should be properly captured and recorded. You used CloudTrail in your VPC to help you in the compliance, operational auditing, and risk auditing of your AWS account.       
+In this scenario, **where does CloudTrail store all of the logs that it creates**? 
+  - **A) S3**
+  - AWS CloudTrail은 사용자 계정에서 이루어진 활동을 기록하고, 로그 파일을 사용자의 Amazon S3 버킷으로 전달하는 웹 서비스입니다.
