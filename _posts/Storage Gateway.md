@@ -30,3 +30,9 @@ Which of the following **AWS services encrypts data at rest by default**? (Choos
   - All data transferred between **any type of gateway appliance and AWS storage is encrypted using SSL**. By default, all data stored by **AWS Storage Gateway in S3** is encrypted server-side with Amazon S3-Managed Encryption Keys (**SSE-S3**). Also, when using the file gateway, you can optionally configure each file share to have your objects encrypted with AWS KMS-Managed Keys using SSE-KMS.
   - Data stored in **Amazon Glacier** is protected by default; only vault owners have access to the Amazon Glacier resources they create. Amazon Glacier encrypts your data at rest by default and supports **secure data transit with SSL**.
   - **Amazon RDS, Amazon ECS, and AWS Lambda** :  are incorrect because although Amazon RDS, ECS and Lambda all support encryption, you still **have to enable** and configure them first with tools like **AWS KMS to encrypt** the data at rest.
+
+- You are working for a tech company which currently has an **on-premises** infrastructure. They are currently **running low on storage** and **want to have the ability to extend their storage** using AWS cloud.    
+Which AWS service can help you achieve this requirement?
+  - **A) Amazon Storage Gateway**
+  - AWS Storage Gateway는 사실상 무제한의 클라우드 스토리지에 대한 온프레미스 액세스 권한을 제공하는 하이브리드 클라우드 스토리지 서비스입니다. Storage Gateway를 사용하는 고객은 하이브리드 클라우드 스토리지의 주요 사용 사례인 스토리지 관리 간소화 및 비용 절감 효과를 얻을 수 있습니다. 
+  - **EBS** :  is incorrect since EBS is primarily used as a storage of your EC2 instances.
