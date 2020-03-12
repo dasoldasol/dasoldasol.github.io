@@ -1,11 +1,24 @@
 ## Aurora CheatSheet 
+### Point 
+- Amazon Aurora는 고성능 상용 데이터베이스(high-end commercial databases) 의 성능(speed)과 가용성(realiability)에 오픈 소스 데이터베이스의 간편성과 비용 효율성을 결합하였으며 클라우드를 위해 구축된 MySQL 및 PostgreSQL 호환(compatible) 관계형 데이터베이스입니다.
+- Amazon Aurora는 표준 MySQL 데이터베이스보다 최대 5배 빠르고 표준 PostgreSQL 데이터베이스보다 3배 빠릅니다. 또한, 1/10의 비용으로 상용 데이터베이스의 보안, 가용성 및 안정성을 제공합니다. 하드웨어 프로비저닝, 데이터베이스 설정, 패치 및 백업과 같은 시간 소모적인 관리 작업을 자동화하는 Amazon Relational Database Service(RDS)에서 Amazon Aurora의 모든 것을 관리합니다.
+- Amazon Aurora는 내결함성(fault tolerance)을 갖춘 자가 복구 분산 스토리지 시스템으로, 데이터베이스 인스턴스당 최대 64TB까지 자동으로 확장(Auto Scaling)됩니다. 지연 시간이 짧은 읽기 전용 복제본 최대 15개, 특정 시점으로 복구, Amazon S3로 지속적 백업, 3개의 가용 영역(AZ)에 걸친 복제를 통해 뛰어난 성능과 가용성을 제공합니다.
+
+### UseCase
+- **엔터프라이즈 애플리케이션**
+  - Amazon Aurora는 **관계형 데이터베이스**를 사용할 수 있는 엔터프라이즈 애플리케이션에 매우 적합한 옵션입니다. Amazon Aurora는 상용 데이터베이스와 비교하여 데이터베이스 비용을 90% 이상 낮추면서도 데이터베이스의 안정성과 가용성은 높일 수 있습니다. Amazon Aurora는 **프로비저닝, 패치 적용, 백업, 복원, 장애 탐지, 복구 등 시간이 많이 소요되는 작업을 자동화**함으로써 시간을 절약하는 데 도움이 되는 완전관리형 서비스입니다.
+- **Software as a Service(SaaS) 애플리케이션**
+  - SaaS 애플리케이션은 인스턴스와 스토리지 확장을 위해 상당한 유연성과 뛰어난 성능 및 안정성이 필요한 **멀티 테넌트 아키텍처**를 주로 사용합니다. Amazon Aurora는 관리형 데이터베이스 서비스에서 이러한 기능을 모두 제공하여, SaaS 업체가 애플리케이션을 지원하는 기본 데이터베이스에 대한 걱정 없이 고품질의 애플리케이션을 구축하는 데 집중할 수 있도록 해줍니다.
+- **웹 및 모바일 게임**
+  - 대규모로 운영하도록 구축된 웹 및 모바일 게임에는 높은 처리량, 고가용성 및 뛰어난 스토리지 확장성을 갖춘 데이터베이스가 필요합니다. Amazon Aurora는 이렇게 까다로운 애플리케이션 요구 사항을 모두 충족하고, 이후의 성장을 위한 충분한 공간을 제공합니다. Amazon Aurora에는 라이선스 제약이 없으므로, 이러한 애플리케이션의 다양한 사용 패턴에 아주 적합합니다.
+
 ### Features 
 - A **relational database engine** that combines the speed and realiability of high-end commercial databases with the simplicity and cost-effective of open source databases 
 - Fully managed, **MySQL/PostgreSQL compatible**, relational database engine
   - applications developed with MySQL can switch to Aurora with no changes
 - Delivers up to **5x performance** of MySQL without requiring any changes to most MySQL applications 
 - Aurora PostgreSQL delivers up to 3x performance of PostgreSQL
-- RDS managed the Aurora databases, handling time-consiming tasks such as provisioning, patching, backup, recovery, failure detection and repair
+- RDS managed the Aurora databases, handling time-consuming tasks such as provisioning, patching, backup, recovery, failure detection and repair
 - Based on the database usage, Aurora **storage will automatically grow**, from **10GB to 64GB**
 
 ### High Availability and Replication
