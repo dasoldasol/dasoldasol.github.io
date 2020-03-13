@@ -228,3 +228,18 @@ Which of the following is the most cost-effective service to use in this scenari
   - **A) AWS Step Functions**
   - **Step Functions** makes it easy to coordinate applications and microservices using **visual workflows**.
   - **SWF** : is incorrect because this is a fully-managed state tracker and task coordinator service. It does not provide serverless orchestration to multiple AWS resources.
+
+- A data analytics application requires a service that can collect, process, and **analyze clickstream data** from various websites in **real-time**. Which of the following is the most suitable service to use for the application?
+  - **A) Kinesis**
+  - **Redshift Spectrum** :  is incorrect because this is primarily used to directly query open data formats stored in Amazon S3. it enables you to analyze data across your data warehouse and data lake, together, with a single service. It does not provide the ability to process your data in real-time.
+  - **AWS Glue** : is incorrect because this is a fully managed ETL service that makes it easy for customers to prepare and load their data for analytics. It does not provide the ability to process your data in real-time.
+  - **Amazon EMR with Compute Optimized Instances** : is incorrect because this is a web service that uses an open-source Hadoop framework to quickly & cost-effectively process vast amounts of data. It does not provide the ability to process your data in real-time. Compute-optimized instances are ideal for compute-bound applications that benefit from high-performance processors but not for analyzing clickstream data from various websites in real-time.
+
+- You are working as a Solutions Architect for a startup in which you are tasked to develop a custom messaging service that will also be used to train their AI for an automatic response feature which they plan to implement in the future. Based on their research and tests, the service can receive up to thousands of messages a day, and all of these data are to be sent to Amazon EMR for further processing. It is crucial that **none of the messages will be lost, no duplicates will be produced** and that they are processed in EMR in the same order as their arrival.    
+Which of the following options should you implement to meet the startup's requirements?
+  - **A) Create an Amazon Kinesis Data Stream to collect the messages.**
+  - **A Kinesis data stream** is a set of **shards** that has a sequence of data records, and each data record has a sequence number that is assigned by Kinesis Data Streams.    
+  **Kinesis** can also easily handle the high volume of messages being sent to the service.
+  - **SQS** : is incorrect. A default queue in SQS is just a standard queue and not a FIFO (First-In-First-Out) queue. In addition, SQS does **not guarantee that no duplicates will be sent**.
+  - **SNS** : is incorrect. SNS mig. ht not be capable of handling such a large volume of messages. It does not also guarantee that the data will be transmitted in the same order they were received.
+  - **AWS Data Pipeline** : is incorrect because this is primarily used as a **cloud-based data workflow service** that helps you process and move data between different AWS services and **on-premises data sources**. It is not suitable for collecting data from distributed sources such as users, IoT devices, or clickstreams.
