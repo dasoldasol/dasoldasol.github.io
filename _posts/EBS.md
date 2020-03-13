@@ -161,3 +161,20 @@ What step should you do **before you delete the EBS volumes**?
 In this scenario, which Amazon EBS volume type can you use that will meet the performance requirements of this new online portal?
   - **A) EBS Provisioned IOPS SSD(io1)**
   - Remember that the dominant performance attribute of SSD is **IOPS** while HDD is **Throughput**.
+
+- A company has a High Performance Computing (HPC) cluster that is composed of EC2 Instances with Provisioned IOPS volume to process transaction-intensive, low-latency workloads. The Solutions Architect must maintain high IOPS while keeping the latency down by setting the optimal queue length for the volume. The size of each volume is 10 GiB.    
+Which of the following is the MOST suitable configuration that the Architect should set up?
+  - **A) Set the IOPS to 500 then maintain a low queue length**
+  - The maximum ratio **"provisioned IOPS : requested volume size (in GiB)" is "50:1"**
+    - ex. 최대 5,000 IOPS로 100GiB 볼륨을 프로비저닝 할 수 있습니다. 지원되는 인스턴스 유형에서 1,280 GiB 이상의 볼륨은 최대 64,000 IOPS (50 × 1,280 GiB = 64,000)까지 프로비저닝 할 수 있습니다.
+    - **xIOPS : 10GiB = 50:1 -> 500IOPS**
+  - **The volume queue length** is **the # of pending I/O requests** for a device.
+    - **SSD-backed volumes** : 낮은 큐 길이(**low queue length**)와 볼륨에 사용 가능한 많은 IOPS를 유지하여 대기 시간(latency)을 줄이면서 높은 IOPS를 유지할 수 있습니다. 사용 가능한 것보다 많은 양의 IOPS를 지속적으로 구동하면 I / O 대기 시간이 증가 할 수 있습니다.
+    - **HDD-backed volumes** : Throughput-intensive applications are less sensitive to increased I/O latency. You can maintain high throughput to HDD-backed volumes by maintaining a **high queue length** when performing large, sequential I/O.
+
+- You are working as a Solutions Architect for a financial firm which is building an internal application that processes loans, accruals, and interest rates for their clients. They require a storage service that is able to handle future increases in **storage capacity of up to 16 TB** and can provide the **lowest-latency** access to their data. Their web application will be hosted in a **single** m5ad.24xlarge Reserved **EC2 instance** which will process and store data to the storage service.    
+Which of the following would be the most suitable storage service that you should use to meet this requirement?
+  - **A) EBS**
+  - **EBS** can deliver performance for workloads that require the **lowest-latency** access to data from a **single EC2 instance**. You can also increase EBS storage for **up to 16TB** or add new volumes for additional storage.
+  - **S3** : is incorrect because although this is also highly available and highly scalable, it still **does not provide the lowest-latency** access to the data, unlike EBS. Remember that **S3 does not reside within your VPC by default**, which means **the data will go through the public Internet that may result to higher latency**. You can set up a VPC Endpoint for S3 yet still, its latency is greater than that of EBS.
+  - **EFS** : is incorrect because the scenario does not require concurrently-accessible storage for **multiple instances**. Although EFS can provide low latency data access to the EC2 instance as compared with S3, the storage service that can provide **the lowest latency access is still EBS**.
