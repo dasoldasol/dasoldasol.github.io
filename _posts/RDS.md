@@ -127,3 +127,17 @@ What are two **benefits of using Read Replicas over Multi-AZ** that the Architec
   - **A2) Provides asynchronous replication and improves the performance of the primary database by taking read-heacy database workloads from it.**
   - **Provides synchronous replication and automatic failover in the case of Availability Zone service failures** : is incorrect as this is a benefit of **Multi-AZ** and not of a Read Replica.
   - **It enhances the read performance of your primary database by increasing its IOPS and accelerates its query processing via AWS Global Accelerator** : is incorrect. **AWS Global Accelerator** is a networking service, not related to RDS, that direct user traffic to the nearest application endpoint to the client, thus reducing internet latency and jitter. It simply routes the traffic to the closest edge location via Anycast.
+
+- A company has an **OLTP (Online Transactional Processing)** application that is hosted in an Amazon ECS cluster using the Fargate launch type. It has an Amazon **RDS** database that stores data of its production website. The Data Analytics team needs to run queries against the database to track and audit all user transactions. These query operations against the production database must not impact application performance in any way.    
+Which of the following is the MOST suitable and cost-effective solution that you should implement?
+  - **A) Set up a new Amazon RDS Read Replica of the production database. Direct the Data Analyitcs team to query the production data from the replica.**
+
+- You are managing a global news website which is deployed to AWS and is using **MySQL RDS**. The website has millions of viewers from all over the world which means that the website has **read-heavy** database workloads. **All database transactions must be ACID compliant to ensure data integrity**.    
+In this scenario, which of the following is the best option to use to increase the read throughput on the MySQL database?
+  - **A) Enable Amazon RDS replicas**
+  - 읽기 중심의 데이터베이스 워크로드를 위해 단일 DB 인스턴스의 컴퓨팅 파워 또는 I/O 용량을 확장합니다. 이 과도한 읽기 트래픽을 하나 이상의 읽기 전용 복제본으로 이동할 수 있습니다.
+
+- You are working as a Junior Solutions Architect where you are responsible in enhancing the availability and durability of the database instances in your VPC.  Your company has a Multi-AZ RDS instance in the ap-northeast-1 region. If a storage volume on the primary instance fails in a Multi-AZ deployment, Amazon RDS automatically initiates a failover to the up-to-date standby instance.       
+In case of a failover, which record in Route 53 is changed?
+  - **A) CNAME**
+  - 장애 조치 시, Amazon RDS는 DB 인스턴스의 정식 이름 레코드(CNAME)가 예비 복제본을 가리키도록 변경합니다. 그러면 이 예비 복제본이 승격되어 새 기본 복제본이 됩니다. 
