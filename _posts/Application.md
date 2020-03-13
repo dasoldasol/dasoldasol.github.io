@@ -243,3 +243,18 @@ Which of the following options should you implement to meet the startup's requir
   - **SQS** : is incorrect. A default queue in SQS is just a standard queue and not a FIFO (First-In-First-Out) queue. In addition, SQS does **not guarantee that no duplicates will be sent**.
   - **SNS** : is incorrect. SNS mig. ht not be capable of handling such a large volume of messages. It does not also guarantee that the data will be transmitted in the same order they were received.
   - **AWS Data Pipeline** : is incorrect because this is primarily used as a **cloud-based data workflow service** that helps you process and move data between different AWS services and **on-premises data sources**. It is not suitable for collecting data from distributed sources such as users, IoT devices, or clickstreams.
+
+- A tech company is currently using **Amazon Simple Workflow (SWF)** service with a default configuration for their order processing system. The system works fine but you noticed that some of the **orders seem to be stuck for almost 4 weeks**.
+What could be the possible reason for this?
+  - **A) It is because SWF is waiting human input from an activity task.**
+  - 기본적으로 각 워크 플로 실행은 Amazon SWF에서 최대 1 년 동안 실행될 수 있습니다. 즉, 워크 플로에 유휴 상태가되는 수동 작업이 필요한 일부 작업이있을 수 있습니다.
+  - Amazon SWF는 워크플로 실행이 오랫동안 유휴 상태(idle)로 있어도 특별한 조치를 취하지 않습니다. 유휴 실행에 대해서는 귀하가 설정한 시간제한이 적용됩니다. 예를 들어, 하나의 실행을 수행할 수 있는 최대 시간을 1일로 설정하는 경우 유휴 실행이 1일 제한을 초과하면 시간 초과가 됩니다. 하나의 실행이 진행될 수 있는 시간에 대한 Amazon SWF의 제한(1년)도 유휴 실행에 적용됩니다.
+
+- You have a web-based order processing system which is currently using a queue in **Amazon SQS**. The support team noticed that there are a lot of cases where **an order was processed twice**. This issue has caused a lot of trouble in your processing and made your customers very unhappy. Your IT Manager has asked you to ensure that this issue does not happen again.
+What can you do to prevent this from happening again in the future?
+   - **A) Replace Amazon SQS and instead, use Amazon Simple Workflow service**
+   - Amazon SWF에는 작업 배정을 보장하는 유용한 기능이 있습니다. 이를 통해 작업 배정이 중복 없이 한 번만 이루어지도록 보장할 수 있습니다. 따라서 특정 활동 유형에 대해 여러 워커가 있는 경우라도(또는 한 디사이더에 여러 인스턴스가 있는 경우), Amazon SWF에서 하나의 특정 작업은 하나의 워커(또는 하나의 디사이더 인스턴스)에게만 전달될 것입니다. 또한 Amazon SWF에서는 한 워크플로우 실행에 대해 한 번에 최대 하나의 의사 결정 작업만 보관합니다. 즉, 여러 디사이더 인스턴스를 실행하는 경우에도 동일한 실행에 두 인스턴스가 동시에 작동하지는 않습니다. 이러한 기능을 통해 워크플로를 조정하면 작업의 중복, 손실, 충돌 등에 대해 걱정할 필요가 없습니다.
+   - **Altering the retention period in Amazon SQS** :  is incorrect because the **retention period** simply specifies if the Amazon SQS should **delete the messages** that have been in a queue for a certain period of time.
+   - **Altering the visibility timeout of SQS** : is incorrect. 제한 시간 초과는 Amazon SQS가 메시지를 소비하는 다른 구성 요소에서 메시지를 수신 및 처리하지 못하도록 하는 기간. 표준 대기열(Standard queues)에서 제한 시간 초과는 메시지가 두 번 수신되지 않도록 보장하지 않습니다. 
+    - **SQS At-Least-Once Delivery** : Amazon SQS는 중복성과 고가용성을 위해 여러 대의 서버에 메시지 사본을 저장합니다. 드물게는 메시지 사본을 받거나 삭제할 때 메시지 사본을 저장하는 서버 중 하나를 사용할 수 없을 수도 있습니다.    
+이 문제가 발생할 경우 사용 불가능한 해당 서버에서 메시지의 사본이 삭지되지 않으며, 메시지를 받을 때 해당 메시지 사본을 다시 가져올 수 있습니다. 따라서 애플리케이션이 idempotent가 되도록 설계해야 합니다(다시 말해 동일한 메시지를 두 번 이상 처리할 경우 부정적인 영향을 받지 않아야 함).
