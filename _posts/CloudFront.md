@@ -47,6 +47,20 @@
 - Ideal Usage Pattern : distribution of frequently accessed static content, or dynamic content or for streaming audio or video that benefits from edge delivery
 - Anti Pattern : data is infrequently accessed, cache invalidation(object versioning recommended) 
 
+## S3 Pre-signed URLs vs. CloudFront Signed URLs vs. Origin Access Identity(OAI)
+### S3 Pre-signed URLs
+- 모든 객체 및 버킷은 기본적으로 **private**입니다. 개체 소유자만 이러한 개체에 액세스할 수 있는 권한을 갖습니다. Pre-signed URL은 소유자의 security credential을 사용하여 다른 사람들에게 개체를 다운로드하거나 **업로드**할 수 있는 시간 제한 권한을 부여합니다. 
+- Pre-signed URL을 생성하는 경우 소유자로서 다음을 제공해야 합니다 
+  - security credentials
+  - 버킷 이름, 객체 키
+  - HTTP 메서드(다운로드하려면 GET 업로드하려면 PUT)
+  - URL의 만료 날짜/시간
+### CloudFront Signed URLs
+- 개인콘텐츠에 대한 사용자 액세스 제어 방법 2가지
+  - CloudFront Edge caches에 대한 액세스 제한 
+  - 웹 사이트 엔드포인트로 구성하지 않은 경우, S3 버킷 파일에 대한 액세스 제한 
+- 
+
 ## Scenarios
 - A web application is using CloudFront to distribute their images, videos, and other static contents stored in their S3 bucket to its users around the world. The company has recently introduced a **new member-only access** to some of its high quality media files. There is a requirement to **provide access to multiple private media files only to their paying subscribers** without having to change their current URLs.      
 Which of the following is the most suitable solution that you should implement to satisfy this requirement?
@@ -86,3 +100,15 @@ Which combination of actions should you implement to meet the above requirements
     - Require that your users access your Amazon S3 content by using CloudFront URLs, **not Amazon S3 URLs**. Requiring CloudFront URLs isn't necessary, but it is recommended to **prevent users from bypassing the restrictions** that you specify in signed URLs or signed cookies. You can do this by setting up an **origin access identity (OAI)** for your Amazon S3 bucket. You can also configure the custom headers for a private HTTP server or an Amazon S3 bucket configured as a website endpoint.
   - All objects and buckets by default are private. The **presigned URLs** are useful **if you want your user/customer to be able to upload a specific object to your bucket, but you don't require them to have AWS security credentials or permissions.** Anyone who receives a valid presigned URL can then programmatically upload an object.
   - **Use S3 pre-signed URLs to ensure that only their client can access the files. Remove permission to use Amazon S3 URLs to read the files for anyone else** : is incorrect because although this could be a valid solution, it doesn't satisfy the requirement to serve the private content securely via CloudFront only to speed up the distribution of files. A better solution is to set up an origin access identity (OAI) then use Signed URL or Signed Cookies in your CloudFront web distribution.
+
+- You are responsible for running a **global news website** hosted in a fleet of EC2 Instances. Lately, the load on the website has increased which resulted to slower response time for the site visitors. This issue impacts the revenue of the company as some readers tend to leave the site if it does not load after 10 seconds.       
+Which of the below services in AWS can be used to solve this problem? (Select TWO.)
+  - **A1) Use Amazon ElastiCache for the website's in-memory data store or cache.**
+  - **A2) Use Amazon CloudFront with website as the custom origin.**
+  - this is a news website, most of its data are read-only, which can be cached to improve the read throughput and avoid the repetitive requests from the server.
+  - Amazon CloudFront is the global content delivery network (CDN) service that you can use and for web caching
+
+- You are working for a large global media company with multiple office locations all around the world. You are instructed to build a system to distribute training videos to all employees. Using **CloudFront**, what method would be used **to serve content that is stored in S3, but not publicly accessible from S3 directly**?
+  - **A) Create an Origin Access Identity (OAI) for CloudFront and grant access to the objects in your S3 bucket to that OAI.**
+  - Amazon S3 버킷에서 제공하는 콘텐츠에 대한 액세스를 제한하려면 CloudFront 서명된 URL 또는 서명된 쿠키를 만들어 Amazon S3 버킷에서 파일에 대한 액세스를 제한하고, **OAI(원본 액세스 ID)**라는 특별한 CloudFront 사용자를 만들어 배포와 연결합니다. 그런 다음 CloudFront가 OAI를 사용하여 사용자에 액세스하고 파일을 제공할 수 있지만, 사용자는 S3 버킷에 대한 직접 URL을 사용하여 파일에 액세스할 수 없도록 권한을 구성합니다. 
+  - Alternatively, you can choose to manually change the bucket policy or change ACLs, which control permissions on individual objects in your bucket.
