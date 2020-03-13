@@ -3,20 +3,22 @@
 - Quick Start is a bunch of CloudFormation **templates** already built by AWS Solutions Architects allowing you to create complex environments very quickly.
 - **collection of related AWS resources**
 - **"infrastructure as code"**
-- UseCase : 개발자와 기업이 손쉽게 관련 AWS 및 타사 리소스의 모음을 쉽게 생성하고 순서에 따라 예측 가능한 방식으로 프로비저닝할 수 있는 방법을 제공하는 서비스
+- Point : 개발자와 기업이 손쉽게 관련 AWS 및 타사 리소스의 모음을 쉽게 생성하고 순서에 따라 예측 가능한 방식으로 프로비저닝할 수 있는 방법을 제공하는 서비스
+  ![create-stack-diagram](./image/create-stack-diagram.png)
+  ![designer-jsoneditor](./image/designer-jsoneditor.png)
 
 
 ## Elastic Beanstalk
 - quickly **deploy** and manage applications 
 - automatically handles deployment details 
 - PAAS(platform-as-a-service)
-- UseCase : AWS 클라우드에서 애플리케이션을 몇 분 내에 배포하고 관리하기를 원하는 사람. 이전에 클라우드 컴퓨팅을 사용해 본 경험이 없어도 괜찮습니다. AWS Elastic Beanstalk는 Java, .NET, PHP, Node.js, Python, Ruby, Go 및 Docker 웹 애플리케이션을 지원합니다.
+- Point : AWS 클라우드에서 애플리케이션을 몇 분 내에 배포하고 관리하기를 원하는 사람. 이전에 클라우드 컴퓨팅을 사용해 본 경험이 없어도 괜찮습니다. AWS Elastic Beanstalk는 Java, .NET, PHP, Node.js, Python, Ruby, Go 및 Docker 웹 애플리케이션을 지원합니다.
 
 ## AWS OpsWorks
 - configuration management service that provides managed instances of Chef and Puppet.
 - lets you use **Chef and Puppet** to automate how servers are configured, deployed, and managed across your EC2 instances or on-premise
 - Layers depend on **Chef recipes** to handle tasks such as installing packages on instances, deploying apps, and running scripts. 
-- UseCase : 모든 커뮤니티 스크립트 및 도구를 비롯하여 Chef/Puppet과 완벽하게 호환되는 구성 관리 환경을 원하지만 운영 오버헤드는 피하고자하는 고객
+- Point : 모든 커뮤니티 스크립트 및 도구를 비롯하여 Chef/Puppet과 완벽하게 호환되는 구성 관리 환경을 원하지만 운영 오버헤드는 피하고자하는 고객
 
 ## AWS CodeDeploy
 - You create a **deployment configuration file** to specify how deployments proceed.
@@ -39,3 +41,15 @@ Which service is designed to let the customer **leverage existing Chef recipes**
 - You are a new Solutions Architect in your department and you have created 7 CloudFormation templates. Each template has been defined for a specific purpose.    
 What determines **the cost** of using these new **CloudFormation** templates?
   - **A) CloudFormation templates are free but you are charged for the underlying resources it builds.**
+
+- The company you are working for has a set of AWS resources hosted in ap-northeast-1 region. You have been asked by your IT Manager to create an AWS CLI shell script that will call an AWS service which could create duplicate resources in another region in the event that ap-northeast-1 region fails. **The duplicated resources should also contain the VPC Peering configuration and other networking components from the primary stack**.    
+Which of the following AWS services could help fulfill this task?
+  - **A) AWS CloudFormation**
+  - With CloudFormation, you can deploy an exact copy of your AWS architecture, along with all of the AWS resources which are hosted in one region to another.
+
+- A technology company is building a new cryptocurrency trading platform that allows buying and selling of Bitcoin, Ethereum, XRP, Ripple and many others. You were hired as a Cloud Engineer to build the required infrastructure needed for this new trading platform. On your first week at work, you started to create **CloudFormation YAML scripts that defines all of the needed AWS resources** for the application. Your manager was shocked that you haven't created the EC2 instances, S3 buckets and other AWS resources straight away. He does not understand the text-based scripts that you have done and was disappointed that you are just slacking off at your job.     
+In this scenario, what are the **benefits of using the Amazon CloudFormation** service that you should tell your manager to clarify his concerns? (Select TWO.)
+  - **A1) Allows you to model your entire infrastructure in a text file**
+  - **A2) Enables modeling, provisioning, and version-controlling of your entire AWS infrastructure**
+  - CloudFormation allows you to use a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications **across all regions and accounts**. 
+  - you pay only for the AWS resources needed to run your applications.
