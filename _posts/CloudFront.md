@@ -59,7 +59,19 @@
 - 개인콘텐츠에 대한 사용자 액세스 제어 방법 2가지
   - CloudFront Edge caches에 대한 액세스 제한 
   - 웹 사이트 엔드포인트로 구성하지 않은 경우, S3 버킷 파일에 대한 액세스 제한 
-- 
+- 사용자가 **signed URL**이나 **signed cookies**를 사용하여 파일에 액세스하도록 CloudFront 구성. 그런 다음 **signed URL**생성하여 인증된 사용자에게 배포하거나 인증된 사용자를 위해 뷰어에 signed cookies를 설정하는 Set-Cookie 헤더를 보내도록 응용프로그램 개발 
+- 오리진이 S3버킷인지 아니면 HTTP서버인지에 관계 없이 모든 CloudFront 배포에 사용 가능 
+- 파일에 대한 액세스를 제어하기 위해 signed URL/signed cookies를 작성할 때 다음 제한 사항을 지정할 수 있습니다.
+  - URL의 만료 날짜(expiration date)/시간
+  - (선택사항) URL 유효 날짜(valid date)/시간
+  - (선택사항) 콘텐츠에 액세스하는데 사용할 수 있는 컴퓨터의 IP주소
+### Origin Access Identity(OAI)
+- CloudFront 배포의 원본으로도 S3 버킷을 구성할 수 있습니다. **OAI는 사용자가 direct URL을 이용해 S3 파일을 보지 못하게 합니다**. 대신 CloudFront URL을 통해 액세스해야 합니다.
+- 사용자가 CloudFront URL을 통해 컨텐츠에 액세스하도록 요구하려면 다음 작업이 필요 
+  - **origin access identity** 라는 특별한 CloudFront 사용자를 생성
+  - 버킷의 파일을 읽을 수 있는 Origin Access ID 권한(permission) 부여 
+  - 다른 사람이 S3 URL을 사용하여 파일을 읽을 수 있는 권한 제거(bucket policy or ACL)
+- S3 버킷이 웹사이트 엔드 포인트로 구성된 경우 OAI를 설정할 수 없습니다. 
 
 ## Scenarios
 - A web application is using CloudFront to distribute their images, videos, and other static contents stored in their S3 bucket to its users around the world. The company has recently introduced a **new member-only access** to some of its high quality media files. There is a requirement to **provide access to multiple private media files only to their paying subscribers** without having to change their current URLs.      
@@ -112,3 +124,15 @@ Which of the below services in AWS can be used to solve this problem? (Select TW
   - **A) Create an Origin Access Identity (OAI) for CloudFront and grant access to the objects in your S3 bucket to that OAI.**
   - Amazon S3 버킷에서 제공하는 콘텐츠에 대한 액세스를 제한하려면 CloudFront 서명된 URL 또는 서명된 쿠키를 만들어 Amazon S3 버킷에서 파일에 대한 액세스를 제한하고, **OAI(원본 액세스 ID)**라는 특별한 CloudFront 사용자를 만들어 배포와 연결합니다. 그런 다음 CloudFront가 OAI를 사용하여 사용자에 액세스하고 파일을 제공할 수 있지만, 사용자는 S3 버킷에 대한 직접 URL을 사용하여 파일에 액세스할 수 없도록 권한을 구성합니다. 
   - Alternatively, you can choose to manually change the bucket policy or change ACLs, which control permissions on individual objects in your bucket.
+
+- A web application is hosted in an Auto Scaling group of EC2 instances deployed across multiple Availability Zones in front of an Application Load Balancer. You need to implement an SSL solution for your system to improve its security which is why you requested an SSL/TLS certificate from a third-party certificate authority (CA).       
+Where can you safely **import the SSL/TLS certificate of your application**? (Select TWO.)
+  - **A1) AWS Certificate Manager**
+  - **A2) IAM certificate store**
+  - **AWS Certificate Manager(ACM)**
+    - AWS 인증 관리자 (ACM) 서비스는 SSL/TLS 인증서 발급 및 관리에 대한 많은 작업을 자동화 하고 단순화 하기 위해 시작되었습니다. ACM에서 제공되는 인증서는 Amazon의 인증 기관(CA)인 Amazon Trust Services (ATS)에서 발급됩니다.    
+인증서에 발급되는 추가 비용이 발생하지 않습니다. SSL/TLS 인증서는 AWS Certificate Manager에서 무료로 사용하실 수 있습니다.    
+ACM을 사용하면 몇 분만에 SSL 암호화 기능을 사용할 수 있습니다. 인증서 발급을 요청하면, Elastic Load Balancers 및 Amazon CloudFront에서 몇 번의 클릭으로 설정할 수 있습니다. 그 후 ACM은 자동으로 인증서를 정기적으로 업데이트 해줍니다.
+  - **IAM Certificate Store**
+    - ACM에서 지원되지 않는 리전에서 HTTPS 연결을 지원해야 하는 경우에만 IAM을 인증서 관리자로 사용합니다. IAM은 프라이빗 키를 안전하게 암호화하고 암호화된 버전을 IAM SSL 인증서 스토리지에 저장합니다.
+  - **CloudFront** : is incorrect. CloudFront에 인증서를 업로드 할 수 있지만 SSL 인증서를 가져올 수있는 것은 아닙니다. CloudFront에 로드한 인증서를 내보내거나 단일 CloudFront 배포에 연결된 EC2 또는 ELB 인스턴스에 할당 할 수 없습니다.
