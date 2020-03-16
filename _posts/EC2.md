@@ -243,3 +243,44 @@ When the instance is terminated, what happens to the data on the root volume?
     - **backed by Amazon EBS** : the root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot
     - **backed by instance store** : the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3.
   - the data on instance store volumes persist only during the life of the instance which means that if the instance is terminated, the data will be automatically deleted.
+
+- You have a web application hosted in an On-Demand EC2 instance in your VPC. You are creating a shell script that needs the instance's public and private IP addresses.    
+What is the best way **to get the instance's associated IP addresses** which your shell script can use?
+  - **A) By using a Curl or Get Command to get the latest metadata information from http://169.254.169.254/latest/meta-data/**
+
+- To save costs, your manager instructed you to analyze and review the setup of your AWS cloud infrastructure. You should also provide an estimate of how much your company will pay for all of the AWS resources that they are using. In this scenario, **which of the following will incur costs**? (Select TWO.)
+  - **A1) EBS Volumes attached to stopped EC2 Instances.**
+  - **A2) A running EC2 Instance**
+  - Amazon EC2가 AMI 인스턴스의 부팅 시퀀스를 시작(initiate)할 때 청구가 시작됩니다. 웹 서비스 명령, "shutdown -h"를 실행하거나 인스턴스 실패(failure)를 통해 인스턴스가 종료(terminate)되면 청구가 종료됩니다. 인스턴스를 중지(stop)하면 AWS가 인스턴스를 종료(shut down)하지만 중지된(stopped) 인스턴스 또는 데이터 전송 요금에 대한 시간당 요금은 청구하지 않지만, AWS는 Amazon EBS 볼륨의 스토리지 요금을 청구합니다.
+  - **VPC** : VPC 자체 생성 및 사용에 대한 추가 비용은 없습니다.
+  - **Public Data Set** : Amazon은 데이터 세트를 무료로 커뮤니티에 저장하고, 컴퓨팅 및 스토리지에 대해서만 비용을 지불합니다.
+
+- A web application requires a **minimum of six** Amazon Elastic Compute Cloud (EC2) instances **running at all times**. You are tasked to deploy the application to **three availability zones** in the EU Ireland region (eu-west-1a, eu-west-1b, and eu-west-1c). It is required that the system is **fault-tolerant up to the loss of one Availability Zone**.    
+Which of the following setup is the most cost-effective solution which also maintains the fault-tolerance of your system?
+  - **A) 3 instances in eu-west-1a, 3 instances in eu-west-1b, and 3 instances in eu-west-1c**
+
+- You have a distributed application in AWS that **periodically processes** large volumes of data across multiple instances. **You designed the application to recover gracefully from any instance failures**. You are required to launch the application in the most cost-effective way.    
+Which type of EC2 instance will meet your requirements?
+  - **A) Spot Instances**
+
+- ou are the technical lead of the Cloud Infrastructure team in your company and you were consulted by a software developer regarding the required AWS resources of the web application that he is building. He knows that an Instance Store only provides ephemeral storage where the data is automatically deleted when the instance is terminated. To ensure that the data of his web application persists, the app should be launched in an EC2 instance that has a durable, block-level storage volume attached. He knows that they need to use an EBS volume, but they are not sure what type they need to use.     
+In this scenario, which of the following is **true about Amazon EBS volume types** and their respective usage? (Select TWO.)
+  - **A1) Provisioned IOPS volumes offer storage with consistent and low-latency performance, and are designed for I/O instensive applications such as large relational or NoSQL databases.**
+  - **A2) Magnetic volumes provice the lowest cost per gigabyte of all EBS volume types and are ideal for workloads where data is accessed infrequently, and applications where the lowest storage cost is important**
+  - **General Purpose (SSD) is the new, SSD-backed, general purpose EBS volume type that we recommend as the default choice for customers. General Purpose (SSD) volumes are suitable for a broad range of workloads, including small to medium sized databases, development, and test environments, and boot volumes.**
+
+- You have a prototype web application that uses one **Spot EC2 instance**. What will happen to the instance by default if it gets interrupted by Amazon EC2 for capacity requirements?
+  - **A) The instance will be terminated**
+  - **Spot Instance**
+    -스팟 인스턴스는 일반적으로 온 디맨드 가격을 크게 할인합니다.
+    -2 분의 알림으로 용량 요구 사항에 따라 Amazon EC2에서 인스턴스를 중단 할 수 있습니다.
+    -Spot 가격은 여분의 EC2 용량에 대한 장기 공급 및 수요에 따라 점진적으로 조정됩니다.
+  - 중단(interruption)시 스팟 인스턴스를 terminated, stopped 또는 최대 절전 모드(hibernated)로 설정할 수 있습니다. 유지 옵션(**maintain** option)이 활성화(enabled) 된 영구 스팟 요청(persistent Spot requests) 및 스팟 집합(Spot Fleets)에 대해 Stop 및 hibernated 옵션을 사용할 수 있습니다. **By default, your instances are terminated**
+
+- You had recently set up a CloudWatch Alarm that performs status checks on your EBS volume. However, you noticed that the volume check has a status of `insufficient-data`. What does this status mean?
+  - **A) The check on the EBS volume is still in progress**
+  - **Volume Status Monitoring**
+    - 볼륨 상태 확인을 사용하여 Amazon EBS 볼륨에 있는 데이터의 잠재적 불일치를 더 잘 파악, 추적 및 관리할 수 있습니다. 볼륨 상태 확인은 Amazon EBS 볼륨이 손상되었는지 여부를 확인하는 데 필요한 정보를 제공하며, 잠재적으로 일치하지 않는 볼륨을 처리하는 방법을 제어하는 데 도움이 됩니다.
+    - **`impaired'** : 볼륨 상태 확인은 5분마다 테스트를 자동으로 실행하여 통과 또는 실패 상태를 반환합니다. 모든 확인을 통과한 경우 볼륨의 상태는 `ok`이고, 확인에 실패한 경우 볼륨의 상태는 `impaired`입니다. Amazon EBS에서 볼륨의 데이터가 잠재적으로 일치하지 않는 것으로 확인하면 데이터 손상을 방지하기 위해 기본적으로 연결된 EC2 인스턴스에서 볼륨으로의 I/O가 비활성화됩니다. I/O가 비활성화되면 다음 볼륨 상태 확인에 실패하고 볼륨 상태는 `impaired`가 됩니다. 
+    - **`insufficient-data`** : 볼륨에 대한 확인이 아직 진행 중일 수 있습니다. 볼륨 상태 확인의 결과를 보고 손상된 볼륨을 식별하고 필요한 조치를 취할 수 있습니다.
+    - 볼륨 상태는 볼륨 상태 검사 결과를 기준으로 한 것으로, 볼륨 상태를 직접 반영하는 것은 아닙니다. 따라서 볼륨 상태가 `error` 상태의 볼륨을 나타내는 것은 아닙니다(예: 볼륨이 I/O를 허용할 수 없을 때).
