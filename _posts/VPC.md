@@ -389,3 +389,48 @@ If a computer with an IP address of 110.238.109.37 sends a request to your VPC, 
 Which of the following options helps the company accomplish this?
   - **A) Create a new VPC Peering connection between PROD and DEV with the appropriate routes.**
   - A VPC peering connection is a networking connection between two VPCs that enables you to route traffic between them privately. 
+
+- You recently launched a new **FTP** server using an On-Demand EC2 instance in a newly created VPC with default settings. The server should not be **accessible** publicly but **only through your IP** address `175.45.116.100` and nowhere else.    
+Which of the following is the most suitable way to implement this requirement?
+  - **A) Create a new inbound rule in the security group of the EC2 instance with the following details:**    
+          **Protocol : TCP**    
+          **Port Range : 20-21**    
+          **Source : `175.45.116.100/32`**   
+  - The FTP protocol uses TCP via ports 20 and 21. This should be configured in your security groups or in your Network ACL inbound rules. As required by the scenario, you should only allow the individual IP of the client and not the entire network. Therefore, in the Source, the proper CIDR notation should be used. The /32 denotes one IP address and the /0 refers to the entire network.    
+이 시나리오에서는 기본 설정으로 새로 생성 된 VPC에서 EC2 인스턴스를 시작했습니다. VPC에는 자동으로 수정 가능한 기본 네트워크 ACL이 제공됩니다. 기본적으로 모든 인바운드 및 아웃 바운드 IPv4 트래픽과 해당되는 경우 IPv6 트래픽을 허용합니다. 따라서 VPC에 기본 설정이있는 경우 실제로 인바운드 트래픽을 허용하기 위해 네트워크 ACL에 인바운드 규칙을 명시 적으로 추가 할 필요가 없습니다.
+
+- You launched an EC2 instance in your newly created VPC. You have noticed that the generated **instance does not have an associated DNS hostname**.        
+Which of the following options could be a valid reason for this issue?
+  - **A) The DNS resolution and DNS hostname of the VPC configuration should be enabled.**
+  - EC2 인스턴스를 default VPC로 시작하면 AWS는 인스턴스의 public IPv4 및 private  IPv4 주소에 해당하는 public 및 private  DNS hostname을 제공합니다.     
+그러나 non-default VPC로 인스턴스를 시작하면 AWS는 인스턴스에 private DNS hostname 만 제공합니다. 새 인스턴스에는이 두 가지 DNS 속성, 즉 DNS 확인 및 DNS 호스트 이름(DNS resolution and DNS hostname), VPC에 지정한 DNS 인스턴스 및 public IPv4 주소가있는 경우에만 public DNS hostname이 제공됩니다.    
+이 경우 새로 생성 된 VPC에서 DNS 확인 및 DNS 호스트 이름(DNS resolution and DNS hostname) 속성이 비활성화되므로 새 EC2 인스턴스는 자동으로 DNS hostname을 가져오지 않습니다.
+  - **Route 53** : is incorrect since Route 53 is the DNS service of AWS, but the VPC is the one that enables assigning of instance hostnames.
+
+- Your company has a two-tier environment in its on-premises data center which is composed of an application tier and database tier. You are instructed to migrate their environment to the AWS cloud, and to design the subnets in their VPC with the following requirements:    
+a) There is an **application load balancer** that would distribute the incoming traffic among the servers in the application tier.    
+b) The application tier and the database tier must **not be accessible from the public Internet**. The application tier should only accept traffic coming from the load balancer.    
+c) The database tier contains very sensitive data. It must **not share the same subnet** with other AWS resources and its custom route table with other instances in the environment.    
+d) The environment must be **highly available** and scalable to handle a surge of incoming traffic over the Internet.    
+How many subnets should you create to meet the above requirements?
+  - **A) 6 subnets**
+  - **a) you have to use an application load balancer (ALB) to distribute the incoming traffic to your application servers.**
+  - **b) you could create a single private subnet for both of your application and database tier.**
+  - **c) you should provision one private subnet for your application tier and another private subnet for your database tier.**
+  - **d) using at least 2 Availability Zones to achieve high availability. (2 app server/2 data server)**
+  - 요약하자면, 애플리케이션 티어 용 하나의 프라이빗 서브넷과 데이터베이스 티어 용 하나의 프라이빗 서브넷이 필요합니다. 그런 다음 퍼블릭 인터넷 연결로드 밸런서를 인스턴스에 올바르게 연결하려면 프라이빗 EC2 인스턴스가 호스팅되는 동일한 가용 영역에 다른 퍼블릭 서브넷을 만들어야합니다. 이는 2 개의 프라이빗 서브넷과 1 개의 퍼블릭 서브넷으로 구성된 총 3 개의 서브넷을 사용해야 함을 의미합니다.
+  - ![2tiers](./image/2tiers.png)
+
+- A Solutions Architect is designing the cloud architecture for the enterprise application suite of the company. **Both the web and application tiers need to access the Internet to fetch data from public APIs. However, these servers should be inaccessible from the Internet.**    
+Which of the following steps should the Architect implement to meet the above requirements?
+  - **A) Deploy a NAT gateway in the public subnet and add a route to it from the private subnet where the web and application tiers are hosted.**
+  - **Elastic IP** : is incorrect because an Elastic IP address is just a static, public IPv4 address. Moreover, **you should deploy the web and application tier in the private subnet** instead of a public subnet to make it inaccessible from the Internet and then just add a NAT Gateway to allow outbound Internet connection.
+
+- A newly hired Solutions Architect is checking all of the security groups and network access control list rules of the company's AWS resources. For security purposes, the MS SQL connection via port 1433 of the database tier should be secured. Below is the security group configuration of their Microsoft SQL Server database:    
+![test-vpc](./image/test-vpc.PNG)    
+  The application tier hosted in an Auto Scaling group of EC2 instances is the only identified resource that needs to connect to the database. The Architect should ensure that the architecture complies with the best practice of granting least privilege.    
+  Which of the following changes should be made to the security group configuration?
+  - **A) For the MS SQL rule, change the `Source` to the security group ID attached to the application tier.**
+  - 시나리오에서 보안 그룹 구성을 사용하면 모든 서버 (0.0.0.0/0)가 1433 포트를 통해 데이터베이스에 MS SQL 연결을 설정할 수 있습니다. 여기서 가장 적합한 솔루션은 소스 필드를 애플리케이션 티어에 연결된 보안 그룹 ID로 변경하는 것입니다.
+  - **For the MS SQL rule, change the Source to the static AnyCast IP address attached to the application tier** : is incorrect because a static AnyCast IP address is primarily used for AWS Global Accelerator and not for security group configurations.
+  - **For the MS SQL rule, change the Source to the Network ACL ID attached to the application tier** : is incorrect because you have to use the security group ID instead of the Network ACL ID of the application tier. Take note that the **Network ACL covers the entire subnet** which means that other applications that use the same subnet will also be affected.
