@@ -3,7 +3,7 @@
 - Quick Start is a bunch of CloudFormation **templates** already built by AWS Solutions Architects allowing you to create complex environments very quickly.
 - **collection of related AWS resources**
 - **"infrastructure as code"**
-- Point : 개발자와 기업이 손쉽게 관련 AWS 및 타사 리소스의 모음을 쉽게 생성하고 순서에 따라 예측 가능한 방식으로 프로비저닝할 수 있는 방법을 제공하는 서비스
+- Point : 개발자와 기업이 손쉽게 관련 AWS 및 타사 리소스의 모음을 쉽게 생성하고 순서에 따라 예측 가능한 방식으로 프로비저닝할 수 있는 방법을 제공하는 서비스    
   ![create-stack-diagram](./image/create-stack-diagram.png)
   ![designer-jsoneditor](./image/designer-jsoneditor.png)
 
@@ -53,3 +53,19 @@ In this scenario, what are the **benefits of using the Amazon CloudFormation** s
   - **A2) Enables modeling, provisioning, and version-controlling of your entire AWS infrastructure**
   - CloudFormation allows you to use a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications **across all regions and accounts**. 
   - you pay only for the AWS resources needed to run your applications.
+
+- You created a new **CloudFormation template** that creates 4 EC2 instances and are connected to one Elastic Load Balancer (ELB). Which section of the template should you configure **to get the Domain Name Server hostname of the ELB upon the creation of the AWS stack**?
+  - **A) Outputs**
+  - 템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML 형식의 텍스트 파일입니다. 
+  - **output** :  다른 스택으로 가져오거나(교차 스택 참조를 생성하기 위해), 응답으로 반환하거나(스택 호출을 설명하기 위해), 또는 AWS CloudFormation 콘솔에서 볼 수 있는 출력 값을 선언    
+  ```yml
+  Outputs:
+  BackupLoadBalancerDNSName:
+    Description: The DNSName of the backup load balancer
+    Value: !GetAtt BackupLoadBalancer.DNSName
+    Condition: CreateProdResources
+  InstanceID:
+    Description: The Instance ID
+    Value: !Ref EC2Instance
+  ```
+  
