@@ -118,3 +118,8 @@ Which of the following is returned for the user to **provide a set of temporary,
 Which of the following provides the most valid approach to implement the integration?
   - **A) Develop an on-premises custom identity broker application and use STS to issue short-lived AWS credentials.**
   - ![enterprise-authentication-with-identity-broker-application.diagram](./image/enterprise-authentication-with-identity-broker-application.diagram.png)
+
+- You are a Solutions Architect working for a startup which is currently migrating their production environment to AWS. Your manager asked you to set up access to the AWS console using Identity Access Management (IAM). **Using the AWS CLI, you have created 5 users for your systems administrators.**    
+What further steps do you need to take for your systems administrators **to get access to the AWS console**?
+  - **A) Provide a password for each user created and give these passwords to your system administrators.**
+  
