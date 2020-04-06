@@ -262,3 +262,12 @@ What can you do to prevent this from happening again in the future?
 - You have just launched a new **API Gateway** service which uses AWS Lambda as a serverless computing service. In what **type of protocol will your API endpoint** be exposed?
   - **A) HTTPS**
   - Amazon API Gateway를 통해 생성된 모든 API는 HTTPS 엔드포인트만 제공합니다. Amazon API Gateway는 암호화되지 않은(HTTP) 엔드포인트를 지원하지 않습니다. 기본적으로 Amazon API Gateway는 Amazon API Gateway 인증서를 자동으로 사용하는 API에 내부 도메인을 할당합니다. API가 커스텀 도메인 이름에서 실행되도록 구성할 때, 도메인에 대한 자체 인증서를 제공할 수 있습니다.
+
+- You are working for a multinational telecommunications company. Your IT Manager is willing to consolidate their log streams including the access, application, and security logs in one single system. Once consolidated, the company wants to **analyze these logs in real-time** based on heuristics. There will be some time in the future where the company will need to validate heuristics, which requires going back to data samples extracted from the last 12 hours.     
+What is the best approach to meet this requirement?
+  - **A) First, send all of the log events to Amazon Kinesis then afterwards, develop a client process to apply heuristics on the logs.**
+  - Amazon Kinesis를 사용하면 실시간 스트리밍 데이터를 쉽게 수집, 처리 및 분석 할 수 있으므로 시기 적절한 통찰력을 확보하고 새로운 정보에 신속하게 대응할 수 있습니다. Amazon Kinesis는 애플리케이션의 요구 사항에 가장 적합한 도구를 선택할 수 있는 유연성과 함께 모든 규모의 스트리밍 데이터를 비용 효율적으로 처리 할 수있는 주요 기능을 제공합니다.
+
+- A financial analytics application that collects, processes and analyzes stock data in real-time is using Kinesis Data Streams. The producers continually push data to Kinesis Data Streams while the consumers process the data in real time. In Amazon Kinesis, where can the consumers store their results? (Select TWO.)
+  - **A) Amazon S3, Amazon Redshift**
+  - Amazon Kinesis에서 생산자는 지속적으로 데이터를 Kinesis Data Streams에 푸시하고 소비자는 실시간으로 데이터를 처리합니다. 소비자 (예 : Amazon EC2에서 실행되는 사용자 지정 애플리케이션 또는 Amazon Kinesis Data Firehose 전송 스트림)는 Amazon DynamoDB, Amazon Redshift 또는 Amazon S3와 같은 AWS 서비스를 사용하여 결과를 저장할 수 있습니다.
