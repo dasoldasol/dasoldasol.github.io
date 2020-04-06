@@ -141,3 +141,9 @@ In this scenario, which of the following is the best option to use to increase t
 In case of a failover, which record in Route 53 is changed?
   - **A) CNAME**
   - 장애 조치 시, Amazon RDS는 DB 인스턴스의 정식 이름 레코드(CNAME)가 예비 복제본을 가리키도록 변경합니다. 그러면 이 예비 복제본이 승격되어 새 기본 복제본이 됩니다. 
+
+- You are working for a large financial company. In their enterprise application, they want to apply a group of database-specific settings to their Relational Database Instances.       
+Which of the following options can be used to easily **apply the settings in one go for all of the Relational database instances**?
+  - **A) Parameter Groups**
+  - 데이터베이스 파라미터 그룹(DB 파라미터그룹)은 하나 이상의 DB 인스턴스에 적용 가능한 엔진 설정값의 “컨테이너” 역할을 합니다. DB 파라미터 그룹을 지정하지 않고 DB 인스턴스를 만드는 경우 기본 DB 파라미터 그룹이 사용됩니다. 이 기본값 그룹에는 실행하는 DB 인스턴스에 최적화된 엔진 기본값과 Amazon RDS 시스템 기본 값이 포함됩니다. 그러나 사용자 지정 엔진 설정값을 사용해 DB 인스턴스를 실행하려면 새 DB 파라미터 그룹을 만들고, 필요한 파라미터를 수정하고, 새 DB 파라미터 그룹을 사용하기 위해 DB 인스턴스를 수정하기만 하면 됩니다. 연결이 이루어지면 특정 DB 파라미터 그룹을 사용하는 모든 DB 인스턴스가 해당 DB 파라미터 그룹에 대한 모든 파라미터 업데이트를 가져옵니다.
+  
