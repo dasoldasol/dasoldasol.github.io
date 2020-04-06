@@ -69,3 +69,6 @@ In this scenario, what are the **benefits of using the Amazon CloudFormation** s
     Value: !Ref EC2Instance
   ```
   
+- You are setting up a configuration management in your existing cloud architecture where you have to deploy and manage your EC2 instances including the other AWS resources using **Chef and Puppet**. Which of the following is the most suitable service to use in this scenario?
+  - **A) AWS OpsWorks**
+  - AWS OpsWorks는 Chef 및 Puppet의 관리 형 인스턴스를 제공하는 구성 관리 서비스입니다. Chef와 Puppet은 코드를 사용하여 서버 구성을 자동화 할 수있는 자동화 플랫폼입니다. OpsWorks를 사용하면 Chef 및 Puppet을 사용하여 Amazon EC2 인스턴스 또는 온 프레미스 컴퓨팅 환경에서 서버를 구성, 배포 및 관리하는 방법을 자동화 할 수 있습니다.
