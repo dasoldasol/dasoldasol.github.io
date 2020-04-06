@@ -65,3 +65,10 @@ By caching such query results, you pay the price of the query once and then are 
   - **DynamoDB Accelerator (DAX)** : provides an in-memory cache that delivers up to 10x performance improvement from milliseconds to microseconds or even at millions of requests per second
   - **CloudFront** : securely delivers data to customers globally with low latency and high transfer speeds
   - **RDS Read Replica** : reduces the load on your database by routing read queries from your applications to the Read Replica
+
+- You are designing an online banking application which needs to have a **distributed session** data management. Currently, the application is hosted on an Auto Scaling group of On-Demand EC2 instances across multiple Availability Zones with a Classic Load Balancer that distributes the load.        
+Which of the following options should you do to satisfy the given requirement?
+  - **A) Use Amazon ElastiCache**
+  - **Classic Load Balancer Sticky Sessions** is incorrect : Classic Load Balancer의 고정 세션 기능은 세션 관리도 제공 할 수 있지만 이 기능에는 장애 발생시 장애가 발생한 노드에 상주 한 세션이 유실될 수 있는 등의 제한 사항이 있습니다. Auto Scaling이 시작될 때 웹 서버의 수가 변경되는 경우 특정 서버에 활성 세션이 있을 수 있으므로 트래픽이 웹 서버에 불균형하게 분산 될 수 있습니다. 제대로 완화되지 않으면 응용 프로그램의 확장성을 방해 할 수 있습니다. 따라서 고정 세션은 ElastiCache와 비교하여 확장 가능하거나 "분배되지"않습니다.
+  - Redis 및 Memcached와 같은 In memory Key / Value Store를 사용하여 웹 서버에서 HTTP 세션 데이터를 관리 할 수 있습니다. Redis는 데이터베이스, 캐시 및 메시지 브로커로 사용되는 오픈 소스 In memory data structure store입니다. Memcached는 데이터베이스 호출, API 호출 또는 페이지 렌더링 결과에서 작은 임의의 데이터 (문자열, 객체)를위한 In memory Key-Value Store입니다.       
+  AWS에서는 완전 관리 형 Redis 및 Memcached 서비스를 제공하는 Amazon ElastiCache를 사용하여 웹 애플리케이션의 세션 데이터를 관리하고 저장할 수 있습니다.
