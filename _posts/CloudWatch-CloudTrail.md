@@ -102,3 +102,12 @@ What is the best solution that will fix this issue?
   - Amazon EC2 (Amazon Elastic Compute Cloud) Linux 기반 인스턴스 용 **Amazon CloudWatch monitoring scripts**는 Amazon CloudWatch 사용자 지정 지표를 생성하고 소비하는 방법을 보여줍니다.
   - The scenario tells that the EC2 servers have **high memory usage**, but since this specific metric is not tracked by the Auto Scaling group by default, the scaling up activity is not being triggered. Remember that **by default, CloudWatch doesn't monitor memory usage** but **only the CPU utilization, Network utilization, Disk performance and Disk Reads/Writes**.
   - This is the reason why you have to install CloudWatch Monitoring Scripts in your EC2 instances to collect and monitor the custom metric (memory usage), which will be used by your Auto Scaling Group as a trigger for scaling activities.
+
+- An application is hosted in an On-Demand EC2 instance and is using Amazon SDK to communicate to other AWS services such as S3, DynamoDB, and many others. As part of the upcoming IT audit, you need to ensure that all **API calls to your AWS resources are logged** and durably stored.     
+Which is the most suitable service that you should use to meet this requirement?
+  - **A) AWS CloudTrail**
+
+- You are working as a Solutions Architect for a leading technology company where you are instructed to troubleshoot the operational issues of your cloud architecture by logging the AWS API call history of your AWS resources. You need to quickly identify the most recent changes made to resources in your environment, including creation, modification, and deletion of AWS resources. One of the requirements is that the **generated log files should be encrypted** to avoid any security issues.       
+Which of the following is the most suitable approach to implement the encryption?
+  - **A) Use CloudTrail with its default settings**
+  - 기본적으로 CloudTrail 이벤트 로그 파일은 Amazon S3 서버 측 암호화 (SSE)를 사용하여 암호화됩니다. AWS KMS (AWS Key Management Service) 키를 사용하여 로그 파일을 암호화하도록 선택할 수도 있습니다. 원하는만큼 로그 파일을 버킷에 저장할 수 있습니다. 로그 파일을 자동으로 아카이브하거나 삭제하도록 Amazon S3 수명주기 규칙을 정의 할 수도 있습니다. 로그 파일 전송 및 유효성 검사에 대한 알림을 원하는 경우 Amazon SNS 알림을 설정할 수 있습니다.
