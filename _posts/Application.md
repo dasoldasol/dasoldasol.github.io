@@ -258,3 +258,7 @@ What can you do to prevent this from happening again in the future?
    - **Altering the visibility timeout of SQS** : is incorrect. 제한 시간 초과는 Amazon SQS가 메시지를 소비하는 다른 구성 요소에서 메시지를 수신 및 처리하지 못하도록 하는 기간. 표준 대기열(Standard queues)에서 제한 시간 초과는 메시지가 두 번 수신되지 않도록 보장하지 않습니다. 
     - **SQS At-Least-Once Delivery** : Amazon SQS는 중복성과 고가용성을 위해 여러 대의 서버에 메시지 사본을 저장합니다. 드물게는 메시지 사본을 받거나 삭제할 때 메시지 사본을 저장하는 서버 중 하나를 사용할 수 없을 수도 있습니다.    
 이 문제가 발생할 경우 사용 불가능한 해당 서버에서 메시지의 사본이 삭지되지 않으며, 메시지를 받을 때 해당 메시지 사본을 다시 가져올 수 있습니다. 따라서 애플리케이션이 idempotent가 되도록 설계해야 합니다(다시 말해 동일한 메시지를 두 번 이상 처리할 경우 부정적인 영향을 받지 않아야 함).
+
+- You have just launched a new **API Gateway** service which uses AWS Lambda as a serverless computing service. In what **type of protocol will your API endpoint** be exposed?
+  - **A) HTTPS**
+  - Amazon API Gateway를 통해 생성된 모든 API는 HTTPS 엔드포인트만 제공합니다. Amazon API Gateway는 암호화되지 않은(HTTP) 엔드포인트를 지원하지 않습니다. 기본적으로 Amazon API Gateway는 Amazon API Gateway 인증서를 자동으로 사용하는 API에 내부 도메인을 할당합니다. API가 커스텀 도메인 이름에서 실행되도록 구성할 때, 도메인에 대한 자체 인증서를 제공할 수 있습니다.
