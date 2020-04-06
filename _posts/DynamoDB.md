@@ -127,3 +127,10 @@ DynamoDB Auto Scaling은 테이블 및 인덱스를 모니터링하여 응용 �
 - A leading IT consulting company has an application which processes a large stream of financial data by an Amazon ECS Cluster then stores the result to a DynamoDB table. You have to design a solution to **detect new entries in the DynamoDB table then automatically trigger a Lambda function** to run some tests to verify the processed data.    
 What solution can be easily implemented to alert the Lambda function of new entries while requiring minimal configuration change to your architecture?
   - **A) Enable DynamoDB Streams to capture table activity and automatically trigger the Lambda function**
+
+- In a startup company you are working for, you are asked to design a web application that requires a NoSQL database that has no limit on the storage size for a given table. The startup is still new in the market and it has very limited human resources who can take care of the database infrastructure.    
+Which is the most suitable service that you can implement that provides a **fully managed**, scalable and highly available NoSQL service?
+  - **A)DynamoDB**
+  - "**fully managed**(완전 관리)"라는 용어는 Amazon이 서비스의 기본 인프라를 관리하므로 서비스를 지원하거나 유지 관리하기 위해 추가 인적 자원이 필요하지 않음을 의미합니다. 따라서 Amazon DynamoDB가 정답입니다. Amazon RDS는 관리형 서비스이지만 데이터베이스의 기본 서버를 유지 관리 및 구성 할 수있는 옵션이 있으므로 "완전히 관리되지는 않음"을 기억하십시오.
+  - **Neptune** : graph database
+  - **Aurora** : relational database
