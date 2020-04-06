@@ -289,3 +289,12 @@ In this scenario, which of the following is **true about Amazon EBS volume types
 - You are required to deploy a Docker-based batch application to your VPC in AWS. The application will be used to process both mission-critical data as well as non-essential batch jobs. Which of the following is the most cost-effective option to use in implementing this architecture? 
   - **A) Use ECS as the container management service then set up a combination of Reserved and Spot EC2 Instances for processing mission-critical and non-essential batch jobs respectively.**
   - Amazon ECS를 사용하면 Amazon EC2 온 디맨드 인스턴스, 예약 인스턴스 또는 스팟 인스턴스에서 관리 형 또는 사용자 지정 스케줄러를 사용하여 배치 워크로드를 실행할 수 있습니다. EC2 인스턴스 조합을 시작하여 워크로드에 따라 비용 효율적인 아키텍처를 설정할 수 있습니다.
+
+- You are building a prototype for a cryptocurrency news website of a small startup. The website will be deployed to a Spot EC2 Linux instance and will use Amazon Aurora as its database. You requested a spot instance at a maximum price of $0.04/hr which has been fulfilled immediately and after 90 minutes, the spot price increases to $0.06/hr and then your instance was terminated by AWS.    
+In this scenario, what would be the total cost of running your spot instance?
+  - **A) $0.06**
+  - $0.04 (60 minutes) + $0.02 (30 minutes) = $0.06
+  - Q: 내 스팟 인스턴스가 중지되거나 중단된 경우 요금은 어떻게 청구됩니까?
+    - 스팟 인스턴스가 첫 번째 인스턴스 시간에 Amazon EC2에 의해 종료되거나 중단되면 해당 사용에 대해서는 요금이 청구되지 않습니다. 하지만 사용자가 인스턴스를 직접 중지하거나 종료하는 경우 초 단위로 요금이 청구됩니다. 스팟 인스턴스가 이후 사용 시간 중에 Amazon EC2에 의해 종료되거나 중단되면 가장 가까운 초 단위로 올림하여 요금이 청구됩니다. Windows 또는 RHEL(Red Hat Enterprise Linux)에서 실행 중이고, 사용자가 스팟 인스턴스를 직접 중지하거나 종료하는 경우 1시간 전체 요금이 청구됩니다.
+  - 스팟 인스턴스는 실행 중 다른 EC2 인스턴스와 똑같이 작동하며 더 이상 필요하지 않으면 종료 될 수 있습니다. 인스턴스를 종료하면 온 디맨드 또는 예약 인스턴스와 마찬가지로 사용 된 부분 시간에 대해 요금을 지불합니다. 그러나 스팟 가격이 최대 가격을 초과하고 Amazon EC2가 스팟 인스턴스를 중단 한 경우 부분 시간 사용에 대해서는 요금이 청구되지 않습니다.
+  - 위의 단락은 스팟 인스턴스가 이후 1 시간 안에 Amazon EC2에 의해 종료되거나 중지 된 경우 가장 가까운 초 단위 요금이 청구된다고 공식 EC2 FAQ에서 말한 내용과 모순되는 것처럼 보일 수 있습니다. 따라서 위 단락은 스팟 인스턴스가 첫 번째 인스턴스 시간에만 Amazon EC2에 의해 종료되고 시나리오가 묘사하는 후속 시간 (60 분 이상) 동안이 아닌 경우에만 적용 할 수 있습니다.
