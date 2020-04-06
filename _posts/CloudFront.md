@@ -136,3 +136,6 @@ ACM을 사용하면 몇 분만에 SSL 암호화 기능을 사용할 수 있습�
   - **IAM Certificate Store**
     - ACM에서 지원되지 않는 리전에서 HTTPS 연결을 지원해야 하는 경우에만 IAM을 인증서 관리자로 사용합니다. IAM은 프라이빗 키를 안전하게 암호화하고 암호화된 버전을 IAM SSL 인증서 스토리지에 저장합니다.
   - **CloudFront** : is incorrect. CloudFront에 인증서를 업로드 할 수 있지만 SSL 인증서를 가져올 수있는 것은 아닙니다. CloudFront에 로드한 인증서를 내보내거나 단일 CloudFront 배포에 연결된 EC2 또는 ELB 인스턴스에 할당 할 수 없습니다.
+
+- You recently launched a news website which is expected to be visited by millions of people around the world. You chose to deploy the website in AWS to take advantage of its extensive range of cloud services and global infrastructure. Aside from AWS Region and Availability Zones, which of the following is part of the AWS **Global Infrastructure** that is used for **content distribution**?
+  - **A) Edge Location**
