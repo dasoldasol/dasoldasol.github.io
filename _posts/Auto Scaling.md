@@ -27,7 +27,7 @@ Which of the following can be done to ensure that the application works properly
   - **Scheduled scaling policy** will ensure that the instances are already scaled up and ready before the start of the day since this is when the application is used the most.
   - **Setting up an Application Load Balancer(ALB)** is incorrect Although the Application load balancer can also balance the traffic, it cannot increase the instances based on demand.
 
-- You have a web application deployed in AWS which is currently running in the eu-central-1 region. You have an Auto Scaling group of On-Demand EC2 instances which are **using pre-built AMIs**. Your manager instructed you to implement disaster recovery for your system so in the event that **the application goes down in the eu-central-1 region, a new instance can be started in the us-west-2 region. **
+- You have a web application deployed in AWS which is currently running in the eu-central-1 region. You have an Auto Scaling group of On-Demand EC2 instances which are **using pre-built AMIs**. Your manager instructed you to implement disaster recovery for your system so in the event that **the application goes down in the eu-central-1 region, a new instance can be started in the us-west-2 region.**
 As part of your disaster recovery plan, which of the following should you take into consideration?
   - **A) Copy the AMI from the eu-central-1 region to the us-west-2 region. Afterwards, create a new Auto Scaling group in the us-west-2 region to use this new AMI ID.**
   - In this scenario, the EC2 instances you are currently using depends on a pre-built AMI. This AMI is not accessible to another region hence, you have to copy it to the us-west-2 region to properly establish your disaster recovery instance.
@@ -47,7 +47,7 @@ What could be the root cause of this issue? (Choose 2)
 
 - A tech company is currently using Auto Scaling for their web application. A new AMI now needs to be used for launching a fleet of EC2 instances.    
 Which of the following changes needs to be done?
-  - **A) Create a new launch configuration. **
+  - **A) Create a new launch configuration.**
   
 - You have an Auto Scaling group which is configured to launch new `t2.micro` EC2 instances when there is a significant load increase in the application. To cope with the demand, you now need to replace those instances with a larger `t2.2xlarge` instance type. How would you implement this change?
   - **A) Create a new launch configuration with the new instance type and update the Auto Scaling Group.**
