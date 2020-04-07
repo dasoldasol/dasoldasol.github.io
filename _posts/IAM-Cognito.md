@@ -88,7 +88,7 @@ As the Solutions Architect of the company, which of the following should you do 
 - A tech company that you are working for has undertaken a Total Cost Of Ownership (TCO) analysis evaluating the use of Amazon S3 versus acquiring more storage hardware. The result was that **all 1200 employees would be granted access to use Amazon S3** for storage of their personal documents.       
 Which of the following will you need to consider so you can set up a solution that **incorporates single sign-on** feature from your corporate AD or LDAP directory and also **restricts access** for each individual user to a designated user folder in an S3 bucket? (Choose 2)
   - **Solution 1 : Set up a Federation proxy or an Identity provider, and use AWS Security Token Service to generate temporary tokens.**
-  - **Solution 2 : Configuring an IAM role and an IAM Policy to access the bucket
+  - **Solution 2 : Configuring an IAM role and an IAM Policy to access the bucket**
 
 - You work for an Intelligence Agency as its Principal Consultant developing a missile tracking application, which is hosted on both development and production AWS accounts. Alice, the Intelligence agency’s Junior Developer, only has access to the development account. She has received security clearance to access the agency’s production account but **the access is only temporary and only write access** to EC2 and S3 is allowed.    
 Which of the following allows you to **issue short-lived access tokens that acts as temporary security credentials to allow access** to your AWS resources?
@@ -108,7 +108,7 @@ How can you implement this in AWS?
   
 - A San Francisco-based tech startup is building a cross-platform mobile app that can notify the user with upcoming astronomical events such as eclipses, blue moon, novae or a meteor shower. Your mobile app authenticates with the Identity Provider (IdP) using the provider's SDK and Amazon Cognito. Once the end user is authenticated with the IdP, the OAuth or OpenID Connect token returned from the IdP is passed by your app to Amazon Cognito.    
 Which of the following is returned for the user to **provide a set of temporary, limited-privilege AWS credentials**?
-  - **A) Cognito ID
+  - **A) Cognito ID**
   -  **Amazon Cognito identity pools** support both authenticated and unauthenticated identities. 인증되지 않은 사용자를 허용하는 경우 또는 사용자를 인증하는 경우 자격 증명 공급자(credentials provider)에서 로그인 토큰을 설정 한 후 최종 사용자의 고유 한 Amazon Cognito 식별자 (identity ID)를 즉시 검색 할 수 있습니다.
   - **Cognito SDK** : is incorrect because this is a software development kit that is available in various programming languages.
   - **Cognito Key Pair** : is incorrect because this is a cryptography key
