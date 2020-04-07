@@ -1,4 +1,5 @@
 ## EFS
+- **Amazon Elastic File System**
 - NFS(Network File System) protocol 
 - only pay for the storage you use(no pre-provisioning required like EBS Volume)
 - support : scale up to petabytes, concurrent NFS connections
