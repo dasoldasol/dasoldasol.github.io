@@ -44,6 +44,6 @@ In this scenario, what combination of the following services can provide develop
 
 - You are a working as a Solutions Architect for a fast-growing startup which just started operations during the past 3 months. They currently have an **on-premises Active Directory** and 10 computers. To save costs in procuring physical workstations, they decided to **deploy virtual desktops** for their new employees in a virtual private cloud in AWS. The new cloud infrastructure should **leverage on the existing security controls** in AWS **but can still communicate with their on-premises network**.     
 Which set of AWS services will you use to meet these requirements?
-  - **A) AWS Directory Services, VPN connection, Amazon Workspaces.
+  - **A) AWS Directory Services, VPN connection, Amazon Workspaces.**
   - 먼저 VPC와 온-프레미스 네트워크를 연결하려면 **VPN connection**이 필요합니다. 둘째, 온 프레미스 Active Directory와 통합하려면 **AWS Directory Services**가 필요하며 마지막으로 **Amazon Workspace**를 사용하여 VPC에 필요한 가상 데스크톱을 생성해야합니다.
   - **Amazon Workspace** : 클라우드 데스크톱 서비스. 사용자를 위한 디렉터리를 만들거나 기존 AD 환경과 통합하여 사용자가 현재 자격 증명을 사용하여 회사 리소스에 원활하게 액세스 할 수 있습니다. 
