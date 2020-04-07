@@ -78,7 +78,7 @@ As the Solutions Architect of the company, which of the following should you do 
 - An online cryptocurrency exchange platform is hosted in AWS which uses ECS Cluster and RDS in Multi-AZ Deployments configuration. The application is heavily using the RDS instance to process complex read and write database operations.    
 To maintain the reliability, availability, and performance of your systems, you have to closely monitor how the different processes or threads on a DB instance use the CPU, including the percentage of the **CPU bandwidth and total memory consumed by each process**.    
 Which of the following is the most suitable solution to properly **monitor your database**?
-  - **A) Enable Enhanced Monitoring in RDS
+  - **A) Enable Enhanced Monitoring in RDS**
   - Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.
   - CloudWatch : although you can use this to monitor the CPU Utilization of your database instance, it does not provide the percentage of the CPU bandwidth and total memory consumed by each database process in your RDS instance. 
   - **CloudWatch Metrics vs. Enhanced Monitoring Metrics**    
@@ -106,7 +106,7 @@ Which of the following is the most suitable solution to meet the requirement?
   - **Migrating your Oracle data to Amazon Aurora by converting the database schema using AWS Schema Conversion Tool and AWS Database Migration Service** : is incorrect because although this solution is feasible, it takes time to migrate your Oracle database to Aurora which is not acceptable. Based on this option, the Aurora database does not have a Read Replica and is not configured as an Amazon Aurora DB cluster, which could have improved the availability of the database.
   
 - An accounting application uses an RDS database configured with **Multi-AZ deployments** to improve availability. What would happen to RDS if the primary database instance fails?
-  - **A) The canonical name record(CNAME) is switched from the primary to standby instance.
+  - **A) The canonical name record(CNAME) is switched from the primary to standby instance.**
   - When failing over, Amazon RDS simply flips the canonical name record (CNAME) for your DB instance to point at the standby, which is in turn promoted to become the new primary.
   - **The IP address of the primary DB instance is switched to the standby DB instance** : is incorrect since **IP addresses are per subnet, and subnets cannot span multiple AZs**.
 
