@@ -1,7 +1,3 @@
-
-## Step Functions
--  serverless orchestration for modern applications
-
 ## Elastic Transcoder
 - Media transcoder in the cloud.
 
@@ -92,12 +88,6 @@ Which of the following is the most suitable service to use to meet this requirem
         
   - **VPC Flow Logs** : is incorrect because this is a feature that enables you to capture information about the IP traffic going to and from network interfaces in your entire VPC.
   - **CloudTrail** : is incorrect because this is primarily used for API logging of all of your AWS resources.
-
-- A financial company instructed you to automate the recurring tasks in your department such as patch management, infrastructure selection, and data synchronization to improve their current processes. You need to have a service which can **coordinate multiple AWS services into serverless workflows**.       
-Which of the following is the most cost-effective service to use in this scenario?
-  - **A) AWS Step Functions**
-  - **Step Functions** makes it easy to coordinate applications and microservices using **visual workflows**.
-  - **SWF** : is incorrect because this is a fully-managed state tracker and task coordinator service. It does not provide serverless orchestration to multiple AWS resources.
 
 - A data analytics application requires a service that can collect, process, and **analyze clickstream data** from various websites in **real-time**. Which of the following is the most suitable service to use for the application?
   - **A) Kinesis**
