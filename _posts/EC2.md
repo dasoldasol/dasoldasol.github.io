@@ -131,7 +131,7 @@ Which of the following is the most suitable solution to properly migrate your ap
 
 - You are a Solutions Architect for a leading Enterprise Resource Planning (ERP) solutions provider and you are instructed to design and set up the architecture of your ERP application in AWS. Your manager instructed you to **avoid using fully-managed AWS services** and instead, only use specific services which allows you to access the underlying operating system for the resource. This is to allow the company to have a much better control of the underlying resources that their systems are using in the AWS cloud.       
 Which of the following services should you choose to satisfy this requirement? (Choose 2)
-  - **A) EMR, EC2
+  - **A) EMR, EC2**
   - **Amazon EC2** : provides you access to the operating system of the instance that you created.
   - **Amazon EMR** : provides you a managed Hadoop framework that makes it easy, fast, and cost-effective to process vast amounts of data across dynamically scalable Amazon EC2 instances. You can access the operating system of these EC2 instances that were created by Amazon EMR.
   - **Amazon Athena, DynamoDB, Amazon Neptune** : are incorrect as these are managed services, which means that **AWS manages the underlying operating system** and other server configurations that these databases use.
@@ -145,7 +145,7 @@ Which steps would you take to apply **high availability and fault tolerance** to
 
 - You work for a leading university as an AWS Infrastructure Engineer and also as a professor to aspiring AWS architects. As a way to familiarize your students with AWS, you gave them a project to host their applications to an EC2 instance. One of your students created an instance to host their online enrollment system project but is having a hard time **connecting to their newly created EC2 instance**. Your students have explored all of the troubleshooting guides by AWS and narrowed it down to login issues.       
 Which of the following can you use to **log into an EC2 instance**?
-  - **A) Key Pairs
+  - **A) Key Pairs**
 
 - Using the EC2 API, you requested 40 m5.large On-Demand EC2 instances in a single Availability Zone. Twenty instances were successfully created but the other 20 requests failed.       
 What is the solution for this issue and what is the root cause?
