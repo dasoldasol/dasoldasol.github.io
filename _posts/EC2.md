@@ -328,7 +328,22 @@ Which of the following would be the best way to achieve this?
   - 태그를 사용하면 목적, 소유자 또는 환경과 같은 다양한 방법으로 AWS 리소스를 분류 할 수 있습니다. 동일한 유형의 리소스가 많은 경우에 유용합니다. 할당 한 태그를 기반으로 특정 리소스를 빠르게 식별 할 수 있습니다.
   - 기본적으로 IAM 사용자에게는 Amazon EC2 리소스를 생성 또는 수정하거나 Amazon EC2 API를 사용하여 작업을 수행 할 권한이 없습니다. (즉, Amazon EC2 콘솔 또는 CLI를 사용하여 그렇게 할 수도 없습니다.) IAM 사용자가 리소스를 생성 또는 수정하고 작업을 수행 할 수 있도록하려면 IAM 사용자에게 특정 리소스 및 API를 사용할 수있는 권한을 부여하는 IAM 정책을 생성해야합니다. 필요한 작업을 수행 한 다음 해당 권한이 필요한 IAM 사용자 또는 그룹에 해당 정책을 연결합니다.
 
-- A company is planning to launch a High Performance Computing (HPC) cluster in AWS that does Computational Fluid Dynamics (CFD) simulations. The solution should scale-out their simulation jobs to experiment with more tunable parameters for faster and more accurate results. The cluster is composed of Windows servers hosted on t3a.medium EC2 instances. As the Solutions Architect, you should ensure that the architecture provides higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies.    
+- A company is planning to launch a **High Performance Computing (HPC) cluster** in AWS that does Computational Fluid Dynamics (CFD) simulations. The solution should scale-out their simulation jobs to experiment with more tunable parameters for faster and more accurate results. The cluster is composed of Windows servers hosted on **t3a.medium** EC2 instances. As the Solutions Architect, you should ensure that the architecture provides **higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies**.    
 Which is the MOST suitable and cost-effective solution that the Architect should implement to achieve the above requirements?
   - **A) Enable Enhanced Networking with Elastic Network Adapter(ENA) on the Windows EC2 Instances**
-  - 향상된 네트워킹(Enhanced Networking)에서는 지원되는 인스턴스 유형에서 단일 루트 I/O 가상화(SR-IOV)를 사용하여 고성능 네트워킹 기능을 제공합니다. SR-IOV는 기존 가상 네트워크 인터페이스에 비해 높은 I/O 성능 및 낮은 CPU 사용률을 제공하는 디바이스 가상화 방법입니다. 향상된 네트워킹을 통해 대역폭과 PPS(Packet Per Second) 성능이 높아지고, 인스턴스 간 지연 시간이 지속적으로 낮아집니다. 향상된 네트워킹 사용에 따르는 추가 요금은 없습니다.
+  - **향상된 네트워킹(Enhanced Networking)** : 지원되는 인스턴스 유형에서 단일 루트 I/O 가상화(SR-IOV)를 사용하여 고성능 네트워킹 기능을 제공합니다. SR-IOV는 기존 가상 네트워크 인터페이스에 비해 높은 I/O 성능 및 낮은 CPU 사용률을 제공하는 디바이스 가상화 방법입니다. 향상된 네트워킹을 통해 대역폭과 PPS(Packet Per Second) 성능이 높아지고, 인스턴스 간 지연 시간이 지속적으로 낮아집니다. 향상된 네트워킹 사용에 따르는 추가 요금은 없습니다.
+  ![ec2-ena](./image/ec2-ena.png)
+  - **ENA(Elastic Network Adapter)** : Amazon EC2는 ENA (Elastic Network Adapter)를 통해 향상된 네트워킹 기능을 제공합니다. 지원되는 인스턴스 유형에 대해 최대 100Gbps의 네트워크 속도를 지원합니다. ENA (Elastic Network Adapter)는 VPC 네트워킹을 지원하는 데 필요한 기존 IP 네트워킹 기능을 제공합니다.
+  - **EFA(Elastic Fabric Adapter)** : EFA (Elastic Fabric Adapter)는 **단순히 기능이 추가 된 ENA** (Elastic Network Adapter)입니다. **추가 OS 바이 패스 기능과 함께 ENA의 모든 기능을 제공**합니다. OS 바이 패스는 HPC 및 머신 러닝 응용 프로그램이 네트워크 인터페이스 하드웨어와 직접 통신하여 지연 시간이 짧고 안정적인 전송 기능을 제공 할 수있는 액세스 모델입니다. **OS 우회는 HPC 및 기계 학습 애플리케이션이 운영 체제 커널을 우회하여 EFA 디바이스와 직접 통신할 수 있도록 합니다.**
+  - **EFA와 window 인스턴스** : **EFA의 OS 바이 패스 기능은 Windows 인스턴스에서 지원되지 않습니다**. EFA를 Windows 인스턴스에 연결하면 인스턴스는 EFA 기능이 추가되지 않은 ENA로 작동합니다.
+  - **Enhanced Networking with Intel 82599 Virtual Function (VF)** : is incorrect. 네트워킹 기능을 향상시키기 위해 Windows EC2 인스턴스에 Intel 82599 VF (Virtual Function) 인터페이스를 연결할 수 있지만 HPC 클러스터에서 사용되는 t3a.medium 인스턴스 유형을 지원하지 않습니다. (**C3, C4, D2, I2, M4(m4.16xlarge 제외), R3**)
+  - **AWS ParallelCluster** : is incorrect. AWS ParallelCluster는 단지 AWS에서 **고성능 컴퓨팅 (HPC) 클러스터를 쉽게 배포하고 관리** 할 수 있는 AWS 지원 오픈 소스 **클러스터 관리 도구**일 뿐입니다. 
+
+- You are running an **EC2 instance store-based instance**. You shut it down and then start the instance. You noticed that the data which you have saved earlier is no longer available.    
+What might be the cause of this?
+  - **A) The EC2 instance was using instance store volumes, which are ephemeral and only live for the life of the instance.**
+
+- You recently launched a fleet of on-demand EC2 instances to host a massively multiplayer online role-playing game (MMORPG) server in your VPC. The EC2 instances are configured with Auto Scaling and AWS Systems Manager. What can you use to configure your EC2 instances **without having to establish a RDP or SSH connection to each instance**?
+  - **A) Run Command**
+  - 콘솔에서 Run Command를 사용하여 각 인스턴스에 로그인하지 않고도 인스턴스를 구성 할 수 있습니다.
+  - **AWS Systems Manager Run Command**를 통해 관리형 인스턴스의 구성을 원격으로 안전하게 관리할 수 있습니다. *관리형 인스턴스*는 모든 Amazon EC2 인스턴스이거나, Systems Manager용으로 구성된 하이브리드 환경의 온프레미스 머신입니다. Run Command를 사용하면 일반적인 관리 작업을 자동화하고 대규모로 애드혹 구성을 변경할 수 있습니다. **AWS 콘솔, AWS Command Line Interface, AWS Tools for Windows PowerShell 또는 AWS SDK에서 Run Command를 사용**할 수 있습니다. Run Command는 무료로 제공됩니다.
