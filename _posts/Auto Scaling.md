@@ -88,3 +88,10 @@ Which of the following is the most suitable type of scaling policy that you shou
     - 단순 조정(**Simple scaling**) : 그룹의 현재 용량을 단일 조정 조절에 따라 늘리거나 줄입니다.
   - Auto Scaling 그룹의 인스턴스 수에 비례하여 증가하거나 감소하는 사용률 수치를 기준으로 조정하는 경우 대상 추적 조정 정책을 사용하는 것이 좋습니다. 그렇지 않은 경우 단계 조정 정책을 사용하는 것이 좋습니다.
   - **예약조정(Scheduled Scaling)** : is incorrect. 예약된 조정 정책은 **예측 가능한(predictable)** 로드 변경을 위해 자체 조정 일정을 설정할 수있는 일정을 기반으로하기 때문입니다. 이것은 동적 스케일링 유형 중 하나로 간주되지 않습니다
+
+- You just joined a large tech company with an existing Amazon VPC. When reviewing the Auto Scaling events, you noticed that their web application is **scaling up and down multiple times within the hour**.    
+What design change could you make to **optimize cost while preserving elasticity**?
+  - **A) Change the cooldown period of the Auto Scaling group and set the CloudWatch metric to a higher threshold.**
+  - **휴지 기간(cooldown period)** 은 Auto Scaling 그룹에 대해 구성 가능한 설정으로, **이전 조정 활동이 적용되기 전에 추가 인스턴스를 시작하거나 종료하지 않도록**합니다. Auto Scaling 그룹은 간단한 조정 정책을 사용하여 **동적으로 조정 한 후 조정 작업을 다시 시작하기 전에 휴지 기간이 완료 될 때까지 기다립니다**.
+  - Auto Scaling 그룹을 **수동으로 조정**하는 경우 기본값은 휴지 기간을 기다리는 것이 아니라 **기본값을 무시하고 휴지 기간을 준수** 할 수 있습니다.    
+  인스턴스가 비정상 상태가되면 Auto Scaling 그룹은 비정상 인스턴스를 교체하기 전에 휴지 기간이 완료 될 때까지 기다리지 않습니다.
