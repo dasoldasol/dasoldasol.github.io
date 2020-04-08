@@ -123,3 +123,8 @@ Which of the following provides the most valid approach to implement the integra
 What further steps do you need to take for your systems administrators **to get access to the AWS console**?
   - **A) Provide a password for each user created and give these passwords to your system administrators.**
   
+- You are consulted by a multimedia company that needs to deploy web services to an AWS region which they have never used before. The company currently has an IAM role for their Amazon EC2 instance which permits the instance to access Amazon DynamoDB. They want their **EC2 instances in the new region to have the exact same privileges**.    
+What should you do to accomplish this?
+	- **A) Assign the existing IAM role to instances in the new region**
+	- 이 시나리오에서는 회사에 기존 IAM 역할이 있으므로 새 역할을 만들 필요가 없습니다. IAM 역할은 모든 리전에서 사용할 수있는 글로벌 서비스이므로 기존 IAM 역할을 새 리전의 인스턴스에 할당하기 만하면됩니다.
+	- **Creating an Amazon Machine Image (AMI) of the instance and copying it to the new region** : is incorrect. AMI 이미지 생성은 인스턴스의 IAM 역할에 영향을 미치지 않습니다.
