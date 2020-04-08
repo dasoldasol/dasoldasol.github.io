@@ -153,3 +153,32 @@ Which of the following is the most cost-effective service to use in this scenari
   - **A) AWS Step Functions**
   - **Step Functions** makes it easy to coordinate applications and microservices using **visual workflows**.
   - **SWF** : is incorrect because this is a fully-managed state tracker and task coordinator service. It does not provide serverless orchestration to multiple AWS resources.
+
+- The start-up company that you are working for has a batch job application that is currently hosted on an EC2 instance. **It is set to process messages from a queue created in SQS with default settings**. You configured the application to process the messages once a week. After 2 weeks, you **noticed that not all messages are being processed** by the application.    
+What is the root cause of this issue?
+  - **A) Amazon SQS has automatically deleted the messages that have been in a queue for more than the maximum message retention period.**
+  - Amazon SQS는 최대 메시지 보존 기간(retention period)보다 오래 대기열에 있었던 메시지를 자동으로 삭제합니다. **기본 메시지 보존 기간은 4 일**입니다. 대기열이 기본 설정으로 구성되어 있고 일괄 작업 응용 프로그램은 일주일에 한 번만 메시지를 처리하므로 4 일 이상 대기열에있는 메시지는 삭제됩니다. 이것이 문제의 근본 원인입니다.    
+  이 문제를 해결하려면 SetQueueAttributes 작업을 사용하여 메시지 보존 기간을 최대 14 일로 늘릴 수 있습니다.
+
+- Your company has a web-based ticketing service that utilizes Amazon SQS and a fleet of EC2 instances. The EC2 instances that consume messages from the SQS queue are configured to poll the queue as often as possible to keep end-to-end throughput as high as possible. You noticed that **polling the queue in tight loops is using unnecessary CPU cycles, resulting in increased operational costs due to empty responses.**        
+In this scenario, what will you do to make the system more cost-effective?
+  - **A) Configure Amazon SQS to use long polling by setting the ReceiveMessageWaitTimeSeconds to a number greater than zero.**
+  - Amazon SQS는 기본적으로 짧은 폴링을 사용하여 가중치 가중 분포를 기반으로 서버의 하위 집합 만 쿼리하여 응답에 포함 할 수있는 메시지가 있는지 확인합니다. **짧은 폴링(short polling)은 더 높은 처리량이 필요한 시나리오에서 작동**합니다. 그러나 대신 긴 폴링(long polling)을 사용하도록 큐를 구성하여 비용을 줄일 수도 있습니다.    
+  **ReceiveMessageWaitTimeSeconds**는 **Short 또는 Long 폴링을 사용 중인지 여부를 결정하는 큐 속성**입니다. 기본적으로이 값은 0이며 이는 짧은 폴링을 사용하고 있음을 의미합니다. 0보다 큰 값으로 설정되면 Long polling입니다.
+  - **SQS Long Polling**
+    - 긴 폴링은 Amazon SQS 큐로 전송 된 ReceiveMessage 요청에 대한 응답으로 회신 할 수있는 메시지가 없을 때 빈 응답 수를 줄이고 , 큐에서 메시지를 사용할 수있지만 응답에는 포함되지 않을 때 false 빈 응답을 제거하여 Amazon SQS 사용 비용을 절감합니다. 
+    - 긴 폴링은 Amazon SQS가 응답을 보내기 전에 대기열에서 메시지를 사용할 수있을 때까지 대기 할 수 있도록하여 빈 응답 수를 줄입니다. 연결 시간이 초과되지 않으면 ReceiveMessage 요청에 대한 응답에는 사용 가능한 메시지 중 하나 이상 (ReceiveMessage 작업에 지정된 최대 메시지 수까지)이 포함됩니다.
+    - 긴 폴링은 제한된 수가 아닌 모든 서버를 쿼리하여 빈 응답을 제거합니다. 긴 폴링은 메시지를 사용할 수있게되면 즉시 메시지를 반환합니다.
+ 
+ - An investment bank has a distributed batch processing application which is hosted in an Auto Scaling group of Spot EC2 instances with an SQS queue. You configured your components to use client-side buffering so that the calls made from the client will be buffered first and then sent as a batch request to SQS. What is **a period of time during which the SQS queue prevents other consuming components from receiving and processing a message**?
+  - **A) Visibility Timeout**
+  - 제한 시간 초과(Visibility Timeout)는 **Amazon SQS가 메시지를 소비하는 다른 구성 요소에서 메시지를 수신 및 처리하지 못하도록 하는 기간**입니다.
+  - 소비자가 대기열에서 메시지를 수신하고 처리하면 메시지는 계속 대기열에 있습니다. Amazon SQS는 메시지를 자동으로 삭제하지 않습니다. Amazon SQS는 분산 시스템이므로 소비자가 메시지를 실제로 받는지 보장할 수 없습니다(예를 들어, 연결 문제 또는 소비자 애플리케이션 문제로 인해). 또한, 소비자는 메시지를 수신하고 처리한 후 대기열에서 이 메시지를 삭제해야 합니다.    
+  메시지를 수신한 직후에는 메시지가 대기열에 그대로 있습니다. **다른 소비자가 메시지를 다시 처리할 수 없도록 하기 위해 Amazon SQS에서는 다른 소비자가 Amazon SQS에서 메시지를 수신 및 처리할 수 없는 기간인 제한 시간 초과를 설정**합니다. 메시지의 기본 제한 시간은 30초입니다. 최소값은은 0초입니다. 최대는 12시간입니다.
+  
+  - An e-commerce application is using a **fanout messaging pattern** for its order management system. For every order, it sends an Amazon SNS message to an SNS topic, and the message is replicated and pushed to multiple Amazon SQS queues for parallel asynchronous processing. A Spot EC2 instance retrieves the message from each SQS queue and processes the message. There was an incident that while an EC2 instance is currently processing a message, **the instance was abruptly terminated, and the processing was not completed in time**.    
+In this scenario, **what happens to the SQS message**?
+  - **A) When the message visivility timeout expires, the message becomes available for processing by other EC2 instances.**
+  - **"팬아웃" 시나리오**는 Amazon SNS 메시지가 주제에 전송 및 복제되어 다중 Amazon SQS 대기열, HTTP 엔드포인트 또는 이메일 주소로 푸시되는 경우를 말합니다. 따라서 평행한 비동시적 처리가 가능합니다. 예를 들어, 사용자는 제품에 대한 **주문이 생성될 때 주제에 Amazon SNS 메시지를 전송**하는 애플리케이션을 개발할 수 있습니다. 그러면 **해당 주제를 구독하는 Amazon SQS 대기열**은 새 주문에 대해 동일한 **알림을 수신**합니다. 대기열 중 하나에 연결된 Amazon EC2 서버 인스턴스는 주문의 처리 또는 이행을 처리할 수 있으며, 그동안 다른 서버 인스턴스는 수신된 모든 주문을 분석하기 위해 데이터 웨어하우스에 연결할 수 있습니다.
+  - 소비자가 대기열에서 메시지를 수신하고 처리하면 메시지는 계속 대기열에 있습니다. **Amazon SQS는 메시지를 자동으로 삭제하지 않습니다**. Amazon SQS는 분산 시스템이므로 소비자가 메시지를 실제로 받는지 보장할 수 없습니다(예를 들어, 연결 문제 또는 소비자 애플리케이션 문제로 인해). 또한, **소비자는 메시지를 수신하고 처리한 후 대기열에서 이 메시지를 삭제해야 합니다**.    
+  메시지를 수신한 직후에는 메시지가 대기열에 그대로 있습니다. **다른 소비자가 메시지를 다시 처리할 수 없도록 하기 위해 Amazon SQS에서는 다른 소비자가 Amazon SQS에서 메시지를 수신 및 처리할 수 없는 기간인 제한 시간 초과를 설정**합니다. 메시지의 기본 제한 시간은 30초입니다. 최소값은은 0초입니다. 최대는 12시간입니다.
