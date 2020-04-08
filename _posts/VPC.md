@@ -434,3 +434,64 @@ Which of the following steps should the Architect implement to meet the above re
   - 시나리오에서 보안 그룹 구성을 사용하면 모든 서버 (0.0.0.0/0)가 1433 포트를 통해 데이터베이스에 MS SQL 연결을 설정할 수 있습니다. 여기서 가장 적합한 솔루션은 소스 필드를 애플리케이션 티어에 연결된 보안 그룹 ID로 변경하는 것입니다.
   - **For the MS SQL rule, change the Source to the static AnyCast IP address attached to the application tier** : is incorrect because a static AnyCast IP address is primarily used for AWS Global Accelerator and not for security group configurations.
   - **For the MS SQL rule, change the Source to the Network ACL ID attached to the application tier** : is incorrect because you have to use the security group ID instead of the Network ACL ID of the application tier. Take note that the **Network ACL covers the entire subnet** which means that other applications that use the same subnet will also be affected.
+
+- An On-Demand EC2 instance is launched into a VPC subnet with the Network ACL configured to allow all inbound traffic and deny all outbound traffic. The instance’s security group has an inbound rule to allow SSH from any IP address and does not have any outbound rules.     
+In this scenario, what are the changes needed **to allow SSH connection** to the instance?
+  - **A) The outbound network ACL needs to be modified to allow outbound traffic.**
+  - 가정용 컴퓨터에서 EC2 인스턴스로 SSH 연결을 설정하려면 다음을 수행해야합니다.
+    -**보안 그룹에서 인바운드 규칙을 추가**하여 EC2 인스턴스에 대한 SSH 트래픽을 허용하십시오.
+    -**NACL에서 인바운드 및 아웃 바운드 규칙을 모두 추가**하여 EC2 인스턴스에 대한 SSH 트래픽을 허용하십시오.
+  - **NACL**은 stateless(상태저장하지않음) :  인바운드 규칙 만 사용하도록 설정 한 경우 아웃 바운드 규칙이 없으므로 트래픽은 들어갈 수만 있지만 SSH 응답은 나가지 않습니다.
+  - **보안그룹**은 stateful(상태저장) : 들어오는 요청이 승인되면 아웃 바운드 규칙에 관계없이 나가는 트래픽도 자동으로 부여됩니다.
+
+- You are working for a top IT Consultancy that has a VPC with two On-Demand EC2 instances with Elastic IP addresses. You were notified that your EC2 instances are currently under **SSH brute force attacks over the Internet**. Their **IT Security team has identified the IP addresses** where these attacks originated. You have to immediately implement a temporary fix to stop these attacks while the team is setting up AWS WAF, GuardDuty, and AWS Shield Advanced to permanently fix the security vulnerability.    
+Which of the following provides **the quickest way to stop the attacks to your instances**?
+  - **A) Block the IP addresses in the Network Access Control List**
+  - **네트워크 액세스 제어 목록 (NACL)** 은 VPC의 선택적 보안 계층으로, 하나 이상의 서브넷의 트래픽을 제어하기위한 방화벽 역할을합니다. VPC에 보안 계층을 추가하기 위해 보안 그룹과 유사한 규칙으로 네트워크 ACL을 설정할 수 있습니다.
+    - VPC는 수정 가능한 **기본 네트워크 ACL**과 함께 자동으로 제공됩니다. **기본적으로 모든 인바운드 및 아웃바운드 IPv4 트래픽을 허용**하며, 해당되는 경우 IPv6 트래픽도 허용합니다.
+    - 사용자 지정 네트워크 ACL을 생성하여 서브넷과 연결할 수 있습니다. **기본적으로 각 사용자 지정 네트워크 ACL은 규칙을 추가하기 전에는 모든 인바운드 및 아웃바운드 트래픽을 거부**합니다.
+    - VPC에 있는 **각 서브넷을 네트워크 ACL과 연결**해야 합니다. 서브넷을 네트워크 ACL에 명시적으로 연결하지 않을 경우, 서브넷은 기본 네트워크 ACL에 자동적으로 연결됩니다.
+    - **네트워크 ACL을 여러 서브넷과 연결할 수 있습니다**. 그러나 서브넷은 한 번에 하나의 네트워크 ACL에만 연결할 수 있습니다. 네트워크 ACL을 서브넷과 연결하면 이전 연결은 제거됩니다.
+    - 네트워크 ACL에는 **번호가 매겨진 규칙 목록**이 포함되어 있습니다. 가장 낮은 번호가 지정된 규칙부터 시작해서 트래픽이 네트워크 ACL과 연결된 서브넷의 내부 또는 외부로 전달되도록 허용되는지 결정합니다. 규칙에 사용할 수 있는 가장 높은 번호는 32766입니다. 나중에 필요한 곳에 새 규칙을 삽입할 수 있도록, 처음 시작할 때는 증분 방식으로(예: 10 또는 100 단위씩 증분) 규칙을 생성하는 것이 좋습니다.
+    - 네트워크 ACL에는 별개의 인바운드 및 아웃바운드 규칙이 있으며, 각 규칙은 트래픽을 허용하거나 거부할 수 있습니다.
+    - 네트워크 ACL은 **상태 비저장**입니다. 
+  - 이 시나리오에는 보안 취약점을 해결하는 가장 빠른 방법이 필요하다고 명시되어 있습니다. 이 상황에서는 IT 보안 팀이 이미 위반 IP 주소 목록을 식별 했으므로 네트워크 ACL을 사용하여 위반 IP 주소를 수동으로 차단할 수 있습니다. 또는 요새 호스트(Bastion Host)를 설정할 수 있지만이 옵션을 사용하면 요새 호스트(Bastion Host)의 보안 구성을 구성해야하므로 제대로 설정하는 데 추가 시간이 필요합니다.
+  - **Placing the EC2 instances into private subnets** : is incorrect. 퍼블릭 또는 EIP 주소없이 프라이빗 서브넷에 EC2 인스턴스를 배포하면 당신또한 인터넷을 통해서 액세스 할 수 없습니다.
+  - **Assigning a static Anycast IP address to each EC2 instance** : is incorrect. 정적 Anycast IP 주소는 조직이 여러 지역으로 원활하게 트래픽을 라우팅하고 최종 사용자의 가용성과 성능을 향상시킬 수 있도록 AWS Global Accelerator에서 주로 사용합니다.
+
+- A web application is deployed in an On-Demand EC2 instance in your VPC. There is an issue with the application which requires you to connect to it via an SSH connection. Which of the following is needed in order **to access an EC2 instance from the Internet**? (Select THREE.)
+  - **A1) A public IP address attached to the EC2 instnace.**
+  - **A2) An Internet Gateway(IGW) attached to the VPC.**
+  - **A3) A route entry to the Internet gateway in the Route table of the VPC.**
+
+- You have a web application running on EC2 instances which processes sensitive financial information. All of the data are stored on an Amazon S3 bucket. **The financial information is accessed by users over the Internet**. The security team of the company is concerned that the Internet connectivity to Amazon S3 is a security risk. In this scenario, what will you do **to resolve this security concern**?
+  - **A)Change the web architecture to access the financial data through a Gateway VPC Endpoint**
+  - VPC는 더 큰 AWS 네트워크 내에 있으며 S3, DynamoDB, RDS 및 기타 여러 서비스와 같은 서비스는 VPC 외부에 있지만 여전히 AWS 네트워크 내에 있습니다. **기본적으로 VPC가 S3 버킷 또는 다른 서비스에 연결하는 데 사용하는 연결은 인터넷 게이트웨이를 통해 퍼블릭 인터넷을 통과**합니다.
+  - **VPC 엔드 포인트**를 사용하면 인터넷 게이트웨이, NAT 디바이스, VPN 연결 또는 AWS Direct Connect 연결없이 PrivateLink를 통해 지원되는 **AWS 서비스 및 VPC 엔드 포인트 서비스에 VPC를 비공개로 연결**할 수 있습니다. VPC의 인스턴스는 서비스의 리소스와 통신하기 위해 퍼블릭 IP 주소가 필요하지 않습니다. **VPC와 다른 서비스 간의 트래픽은 Amazon 네트워크를 떠나지 않습니다**.
+  - VPC 엔드 포인트에는 인터페이스 엔드 포인트(interface endpoints) 와 게이트웨이 엔드 포인트(gateway endpoints)의 두 가지 유형이 있습니다.
+    - **인터페이스 엔드 포인트** 는 지원되는 서비스로 향하는 트래픽의 진입점 역할을하는 개인 IP 주소를 가진 탄력적 네트워크 인터페이스입니다. 
+    - **게이트웨이 엔드 포인트**는 지원되는 AWS 서비스로 향하는 트래픽에 사용되는 라우팅 테이블에서 지정된 경로의 대상인 게이트웨이입니다. **Amazon S3 및 DynamoDB 서비스**의 경우 게이트웨이 엔드 포인트를 생성 한 다음 다른 서비스에 인터페이스 엔드 포인트를 사용해야합니다.
+    
+  - **storage gateway vs. vpn connection vs. direct connect vs. VPC Endpoint**
+    - **storage gateway** : **온프레미스 <-> S3** (온프레미스 스토리지 공간 줄이기 위해)
+    - **VPN** : 내 컴퓨터가 마치 다른 네트워크상에 있는 호스트인것처럼. VPN을 통해 **AWS 외부 <-> VPC Private 서브넷** 같은 내부망에 연결할 수 있도록. 내 컴퓨터가 VPC 네트워크에 있는 호스트인것처럼. 
+    - **VPN Endpoint, VPN Connection, VPN Tunnel** : **VPC <-> 로컬네트워크, 온프레미스** (보호할 리소스를 private subnet에 그대로 두고 VPN을 통해 접근)
+      - 그러나 **프라이빗 서브넷의 EC2 인스턴스에 SSH**로 접근하려는 의도라면 **SSM**을 쓴다
+    - **direct connect** : **온프레미스 <-> AWS** (인터넷 대신쓰는 지정/프라이빗 네트워크 서비스)
+    - **VPC Endpoint** : **VPC <-> AWS service** (비공개로 연결, Amazon네트워크를 벗어나지 않음)
+    
+   - **Changing the web architecture to access the financial data hosted in your S3 bucket by creating a custom VPC endpoint service** : is incorrect. "VPC 엔드 포인트 서비스"는 "VPC 엔드 포인트"와는 상당히 다릅니다. VPC 엔드 포인트 서비스를 사용하면 VPC에서 자체 애플리케이션을 생성하고이를 AWS PrivateLink 기반 서비스 (엔드 포인트 서비스라고 함)로 구성 할 수있는 서비스 제공 업체입니다. 다른 AWS 보안 주체는 인터페이스 VPC 엔드 포인트를 사용하여 VPC에서 엔드 포인트 서비스로 연결을 생성 할 수 있습니다.
+   - **Changing the web architecture to access the financial data in S3 through an *interface* VPC endpoint, which is powered by AWS PrivateLink** : is incorrect. 잘못된 유형의 VPC 엔드 포인트를 선택했습니다. S3 및 DynamoDB 서비스의 경우 인터페이스 VPC 엔드 포인트가 아닌 게이트웨이 VPC 엔드 포인트를 사용해야합니다.
+   
+- A local bank has an in-house application which handles sensitive financial data in a private subnet. After the data is processed by the EC2 worker instances, they will be delivered to S3 for ingestion by other services.
+How should you design this solution so that **the data does not pass through the public Internet**?
+  - **A) Configure a VPC Gateway Endpoint along with a corresponding route entry that directs the data to S3.**
+  - VPC에서 S3 버킷으로 들어오는 트래픽은 기본적으로 퍼블릭 인터넷을 통과합니다. 전송중인 데이터를보다 효과적으로 보호하기 위해 VPC 엔드 포인트를 설정하여 **VPC에서 들어오는 트래픽이 퍼블릭 인터넷을 통하지 않고 프라이빗 AWS 네트워크를 통해 전달**되도록 할 수 있습니다.
+      
+  [vpc-endpoint-s3-diagram](./image/vpc-endpoint-s3-diagram.png)
+      
+  - VPC 엔드 포인트에는 인터페이스 엔드 포인트와 게이트웨이 엔드 포인트의 두 가지 유형이 있습니다. 지원되는 서비스에 필요한 VPC 엔드 포인트 유형을 생성해야합니다. 일반적으로 대부분의 AWS 서비스는 **VPC 게이트웨이 엔드 포인트를 사용하는 S3 및 DynamoDB**를 제외하고 **VPC 인터페이스 엔드 포인트**를 사용합니다.
+
+- You are implementing a hybrid architecture for your company where you are connecting their Amazon Virtual Private Cloud (VPC) to their on-premises network. Which of the following can be used **to create a private connection between the VPC and your company's on-premises network**?
+  - **A) Direct Connect**
+  - Direct Connect는 **온 프레미스 데이터 센터에서 AWS로 직접 프라이빗 연결을 생성**하므로 이더넷 광섬유 케이블을 사용하여 1 기가비트 또는 10 기가비트 전용 네트워크 연결을 설정할 수 있습니다.
