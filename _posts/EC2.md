@@ -87,6 +87,15 @@
 - can NOT merge placement groups 
 - you can move after you stopped instances 
 
+## Elastic Fabric Adapter (EFA)
+- a **network device** that you can **attach to your Amazon EC2** instance to **accelerate High Performance Computing (HPC)** and machine learning applications
+- achieve the application performance of an on-premises HPC cluster, with the scalability, flexibility, and elasticity
+- EFA provides lower and more **consistent latency and higher throughput than the TCP transport** traditionally used in cloud-based HPC systems.
+- It enhances the performance of **inter-instance communication** that is critical **for scaling** HPC and machine learning applications.
+- **OS-bypass** enables HPC and machine learning applications to bypass the operating system kernel and to **communicate directly with the EFA device.**
+  - The **OS-bypass** capabilities of EFAs are **not supported on Windows** instances. If you attach an EFA to a Windows instance, the instance functions as an **Elastic Network Adapter(ENA)**, without the added EFA capabilities.
+  - **Elastic Network Adapters (ENAs)** : provide traditional IP networking features that are required to support VPC networking. **EFA**s provide all of the same traditional IP networking features as ENAs, and they also support OS-bypass capabilities. 
+
 ## Scenarios 
 - **A web application allows customers to upload orders to an s3 bucket. The resulting Amazon S3 events trigger a Lambda function that insets a message to an SQS queues. A single EC2 instance reads messages from the queue, process them, and stores them in a DynamoDB table partitioned by unique order ID. Next month traffic is expected to increase by a factor of 10 and a Solutions Architect is reviewing the architecture for possible scaling problems.    
 Which component is MOST likely to need re-architecting to be able to scale to accommodate the new traffic?**
@@ -347,3 +356,9 @@ What might be the cause of this?
   - **A) Run Command**
   - 콘솔에서 Run Command를 사용하여 각 인스턴스에 로그인하지 않고도 인스턴스를 구성 할 수 있습니다.
   - **AWS Systems Manager Run Command**를 통해 관리형 인스턴스의 구성을 원격으로 안전하게 관리할 수 있습니다. *관리형 인스턴스*는 모든 Amazon EC2 인스턴스이거나, Systems Manager용으로 구성된 하이브리드 환경의 온프레미스 머신입니다. Run Command를 사용하면 일반적인 관리 작업을 자동화하고 대규모로 애드혹 구성을 변경할 수 있습니다. **AWS 콘솔, AWS Command Line Interface, AWS Tools for Windows PowerShell 또는 AWS SDK에서 Run Command를 사용**할 수 있습니다. Run Command는 무료로 제공됩니다.
+
+- An automotive company is working on an autonomous vehicle development and deployment project using AWS. The solution requires **High Performance Computing (HPC)** in order to collect, store and manage massive amounts of data as well as to support deep learning frameworks. The **Linux** EC2 instances that will be used **should have a lower latency and higher throughput than the TCP transport** traditionally used in cloud-based HPC systems. It should also enhance the **performance of inter-instance communication** and must include an **OS-bypass** functionality to allow the **HPC to communicate directly with the network interface hardware** to provide low-latency, reliable transport functionality.    
+Which of the following is the MOST suitable solution that you should implement to achieve the above requirements?
+  - **A) Attach an Elastic Fabric Adapter (EFA) on each Amazon EC2 instance to acclerate High Performance Computing(HPC).**
+  - **Elastic Network Adapter (ENA)** : is incorrect because Elastic Network Adapter (ENA) doesn't have OS-bypass capabilities, unlike EFA.
+  - **Elastic Network Interface (ENI)** : is incorrect because an Elastic Network Interface (ENI) is simply a logical networking component in a VPC that represents a virtual network card. 
