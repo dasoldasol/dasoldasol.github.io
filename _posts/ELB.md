@@ -110,3 +110,29 @@ How will you configure your load balancer to satisfy the above requirement?
   - **Connection Draining** : To ensure that a Classic Load Balancer **stops sending requests** to instances that are **de-registering or unhealthy** while **keeping the existing connections open**
   - **Sticky Sessions** : is incorrect because the sticky sessions feature is mainly used to ensure that all requests from the user during the session are **sent to the same instance**.
   - **Cross-Zone Load Balancing** : is incorrect because Cross-Zone load balancing is mainly used to distribute requests evenly across the registered instances in all enabled Availability Zones.
+
+- You are managing a global news website which has a very high traffic. To improve the performance, you redesigned the application architecture to use a **Classic Load Balancer with an Auto Scaling Group in multiple Availability Zones**. However, you noticed that **one of the Availability Zones is not receiving any traffic**. What is the root cause of this issue?
+  - **A) The Availability Zone is not properly added to the load balancer which is why it is not receiving any traffic**
+  - EC2-Classic에서 로드 밸런서를 설정하여 단일 가용 영역 또는 여러 가용 영역의 EC2 인스턴스에 수신 요청을 분산시킬 수 있습니다. 
+    - 먼저 사용하려는 모든 가용 영역에서 EC2 인스턴스를 시작하십시오. 
+    - 그런 다음 이러한 **인스턴스를 로드 밸런서에 등록**하십시오. 
+    - 마지막으로 **가용 영역을 로드 밸런서에 추가**하십시오. 가용 영역을 추가하면 로드 밸런서가 해당 가용 영역에 등록된 인스턴스로 요청을 라우팅하기 시작합니다. 언제든지 로드 밸런서의 가용 영역을 수정할 수 있습니다.
+   - 기본적으로 로드 밸런서는 가용 영역 전체에 걸쳐 요청을 균등하게 라우팅합니다. 가용 영역에 등록된 인스턴스간에 요청을 균등하게 라우팅하려면 영역 간 로드 밸런싱(cross-zone load balancing)을 활성화하십시오.
+
+- You are assigned to design a highly available architecture in AWS. You have **two target groups with three EC2 instances each**, which are added to an **Application Load Balancer**. In the **security group** of the EC2 instance, you have verified that the **port 80 for HTTP is allowed**. However, the instances are still showing **out of service from the load balancer**.    
+What could be the root cause of this issue?
+  - **A) The health check configuration is not properly defined**
+  - 보안 그룹이 올바르게 구성되었으므로 대상 그룹(Target group)의 상태 확인 구성(health check configuration)이 잘못되어 문제가 발생할 수 있습니다.    
+  - **health check** : Application Load Balancer는 주기적으로 요청을 등록된 대상으로 보내 상태를 테스트합니다. 이러한 테스트를 바로 상태 확인이라고 합니다. 로드 밸런서는 정상 상태 인스턴스로만 요청을 라우팅합니다. 인스턴스가 비정상 상태라고 판단되면 로드 밸런서는 이 인스턴스로의 요청 라우팅을 중지합니다. 인스턴스가 정상 상태로 복구가 되면 로드 밸런서는 이 인스턴스로의 요청 라우팅을 재개합니다.
+
+- You have a web application hosted on a fleet of EC2 instances located in two Availability Zones that are all placed behind an **Application Load Balancer**. As a Solutions Architect, you have to add a health check configuration to ensure your application is highly-available.    
+Which health checks will you implement?
+  - **A) HTTP or HTTPS health check**
+  - 여기에 언급 된 ELB 유형은 Application Elastic Load Balancer입니다. HTTP 및 HTTPS 트래픽이있는 웹 애플리케이션에 유연한 기능 세트를 원하는 경우에 사용됩니다. 반대로 HTTP 및 HTTPS의 두 가지 상태 확인 만 허용합니다.
+  - **TCP 상태 확인은 다른 유형의 ELB 인 Network Load Balancer에서만 제공**됩니다. 응용 프로그램에 초-고성능 및 고정 IP 주소가 필요한 경우에 사용됩니다.
+
+- The social media company that you are working for needs to capture the detailed information of **all HTTP requests that went through their public-facing application load balancer** every five minutes. They want to use this data for **analyzing traffic patterns** and for troubleshooting their web applications in AWS.    
+Which of the following options meet the customer requirements?
+  - **A) Enable access logs on the application load balancer.**
+  - Elastic Load Balancing은 로드 밸런서로 전송 된 요청에 대한 자세한 정보를 캡처하는 **액세스 로그를 제공**합니다. 각 로그에는 요청을 받은 시간, 클라이언트의 IP 주소, 대기 시간, 요청 경로 및 서버 응답과 같은 정보가 포함됩니다. **이러한 액세스 로그를 사용하여 트래픽 패턴을 분석하고 문제를 해결**할 수 있습니다.
+  - **액세스 로깅은 Elastic Load Balancing의 선택적 기능이며 기본적으로 비활성화**되어 있습니다. 로드 밸런서에 대한 액세스 로깅을 활성화 한 후 Elastic Load Balancing은 **로그를 캡처하여 압축 파일로 지정한 Amazon S3 버킷에 저장**합니다. 언제든지 액세스 로깅을 비활성화 할 수 있습니다.
