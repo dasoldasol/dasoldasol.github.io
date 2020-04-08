@@ -298,3 +298,19 @@ In this scenario, what would be the total cost of running your spot instance?
     - 스팟 인스턴스가 첫 번째 인스턴스 시간에 Amazon EC2에 의해 종료되거나 중단되면 해당 사용에 대해서는 요금이 청구되지 않습니다. 하지만 사용자가 인스턴스를 직접 중지하거나 종료하는 경우 초 단위로 요금이 청구됩니다. 스팟 인스턴스가 이후 사용 시간 중에 Amazon EC2에 의해 종료되거나 중단되면 가장 가까운 초 단위로 올림하여 요금이 청구됩니다. Windows 또는 RHEL(Red Hat Enterprise Linux)에서 실행 중이고, 사용자가 스팟 인스턴스를 직접 중지하거나 종료하는 경우 1시간 전체 요금이 청구됩니다.
   - 스팟 인스턴스는 실행 중 다른 EC2 인스턴스와 똑같이 작동하며 더 이상 필요하지 않으면 종료 될 수 있습니다. 인스턴스를 종료하면 온 디맨드 또는 예약 인스턴스와 마찬가지로 사용 된 부분 시간에 대해 요금을 지불합니다. 그러나 스팟 가격이 최대 가격을 초과하고 Amazon EC2가 스팟 인스턴스를 중단 한 경우 부분 시간 사용에 대해서는 요금이 청구되지 않습니다.
   - 위의 단락은 스팟 인스턴스가 이후 1 시간 안에 Amazon EC2에 의해 종료되거나 중지 된 경우 가장 가까운 초 단위 요금이 청구된다고 공식 EC2 FAQ에서 말한 내용과 모순되는 것처럼 보일 수 있습니다. 따라서 위 단락은 스팟 인스턴스가 첫 번째 인스턴스 시간에만 Amazon EC2에 의해 종료되고 시나리오가 묘사하는 후속 시간 (60 분 이상) 동안이 아닌 경우에만 적용 할 수 있습니다.
+
+- A Junior DevOps Engineer deployed a large EBS-backed EC2 instance to host a NodeJS web app in AWS which was developed by an IT contractor. He properly configured the security group and used a key pair named "tutorialsdojokey" which has a `tutorialsdojokey.pem` private key file. The EC2 instance works as expected and the junior DevOps engineer can connect to it using an SSH connection. The IT contractor was also given the key pair and he has made various changes in the instance as well to the files located in `.ssh` folder to make the NodeJS app work. After a few weeks, the IT contractor and the junior DevOps engineer cannot connect the EC2 instance anymore, even with a valid private key file. They are constantly getting a **"Server refused our key" error even though their private key is valid.**
+In this scenario, which one of the following options is a possible reason for this issue?
+  - **A1) You're using an SSH private key but the corresponding public key is not in the authorized_keys file**
+  - **A2) You don't have permissions for your authorized_key file.**
+  - **A3) You don't have permissions for the `.ssh` folder.**
+  - **Q. SSH를 사용하여 Amazon Elastic Compute Cloud(Amazon EC2) 인스턴스에 연결할 수 없고 "서버에서 키가 거부됨”이라는 오류 메시지를 받았습니다. 해결하려면 어떻게 해야 합니까?**
+  - 다음과 같은 경우 EC2 인스턴스에 로그인하지 못할 수 있습니다.
+    - 사용한 SSH 프라이빗 키에 해당하는 퍼블릭 키가 authorized_keys 파일에 없습니다.
+    - authorized_keys 파일에 대한 권한이 없습니다.
+    - .ssh 폴더에 대한 권한이 없습니다.
+    - authorized_keys 파일 또는 .ssh 폴더의 이름이 올바르지 않습니다.
+    - authorized_keys 파일 또는 .ssh 폴더가 삭제되었습니다.
+    - 인스턴스가 키 없이 시작되었거나 잘못된 키로 시작되었습니다.
+  - "서버에서 키가 거부됨” 오류를 수신한 후 EC2 인스턴스에 연결하려면 인스턴스의 사용자 데이터를 업데이트하여 지정된 SSH 퍼블릭 키를 authorized_keys 파일에 추가할 수 있습니다. 그러면 SSH 디렉터리 및 디렉터리의 파일에 대한 적절한 소유권 및 권한이 설정됩니다.
+  - 사용중인 개인 키의 파일 권한이 0777 인 경우 "Unprotected Private Key File" 오류가 발생합니다.
