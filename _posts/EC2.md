@@ -314,3 +314,21 @@ In this scenario, which one of the following options is a possible reason for th
     - 인스턴스가 키 없이 시작되었거나 잘못된 키로 시작되었습니다.
   - "서버에서 키가 거부됨” 오류를 수신한 후 EC2 인스턴스에 연결하려면 인스턴스의 사용자 데이터를 업데이트하여 지정된 SSH 퍼블릭 키를 authorized_keys 파일에 추가할 수 있습니다. 그러면 SSH 디렉터리 및 디렉터리의 파일에 대한 적절한 소유권 및 권한이 설정됩니다.
   - 사용중인 개인 키의 파일 권한이 0777 인 경우 "Unprotected Private Key File" 오류가 발생합니다.
+
+- A website is running on an Auto Scaling group of On-Demand EC2 instances which are **abruptly getting terminated** from time to time. To automate the monitoring process, you started to create a simple script which uses the AWS CLI to find the root cause of this issue.     
+Which of the following is the most suitable command to use?
+  - **A)`aws ec2 describe-instances`**
+  - The `describe-instances` command shows the status of the EC2 instances including the recently terminated instances. It also returns a `StateReason` of why the instance was terminated.
+
+- You have EC2 instances running on your VPC. You have both UAT and production EC2 instances running. You want to ensure that **employees who are responsible for the UAT instances don’t have the access to work on the production instances** to minimize security risks.     
+Which of the following would be the best way to achieve this?
+  - **A) Define the tags on the UAT and production servers and add a condition to the IAM policy which allows access to specific tags.**
+  - **UAT(User Acceptance Testing)** : 소프트웨어 테스트 프로세스. 
+  - 이 시나리오에서이 솔루션을 달성하는 가장 좋은 방법은 태그와 IAM 정책의 조합을 사용하는 것입니다. **UAT 및 프로덕션 EC2 인스턴스에서 태그를 정의하고 특정 태그에 대한 액세스를 허용하는 조건을 IAM 정책에 추가** 할 수 있습니다.
+  - 태그를 사용하면 목적, 소유자 또는 환경과 같은 다양한 방법으로 AWS 리소스를 분류 할 수 있습니다. 동일한 유형의 리소스가 많은 경우에 유용합니다. 할당 한 태그를 기반으로 특정 리소스를 빠르게 식별 할 수 있습니다.
+  - 기본적으로 IAM 사용자에게는 Amazon EC2 리소스를 생성 또는 수정하거나 Amazon EC2 API를 사용하여 작업을 수행 할 권한이 없습니다. (즉, Amazon EC2 콘솔 또는 CLI를 사용하여 그렇게 할 수도 없습니다.) IAM 사용자가 리소스를 생성 또는 수정하고 작업을 수행 할 수 있도록하려면 IAM 사용자에게 특정 리소스 및 API를 사용할 수있는 권한을 부여하는 IAM 정책을 생성해야합니다. 필요한 작업을 수행 한 다음 해당 권한이 필요한 IAM 사용자 또는 그룹에 해당 정책을 연결합니다.
+
+- A company is planning to launch a High Performance Computing (HPC) cluster in AWS that does Computational Fluid Dynamics (CFD) simulations. The solution should scale-out their simulation jobs to experiment with more tunable parameters for faster and more accurate results. The cluster is composed of Windows servers hosted on t3a.medium EC2 instances. As the Solutions Architect, you should ensure that the architecture provides higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies.    
+Which is the MOST suitable and cost-effective solution that the Architect should implement to achieve the above requirements?
+  - **A) Enable Enhanced Networking with Elastic Network Adapter(ENA) on the Windows EC2 Instances**
+  - 향상된 네트워킹(Enhanced Networking)에서는 지원되는 인스턴스 유형에서 단일 루트 I/O 가상화(SR-IOV)를 사용하여 고성능 네트워킹 기능을 제공합니다. SR-IOV는 기존 가상 네트워크 인터페이스에 비해 높은 I/O 성능 및 낮은 CPU 사용률을 제공하는 디바이스 가상화 방법입니다. 향상된 네트워킹을 통해 대역폭과 PPS(Packet Per Second) 성능이 높아지고, 인스턴스 간 지연 시간이 지속적으로 낮아집니다. 향상된 네트워킹 사용에 따르는 추가 요금은 없습니다.
