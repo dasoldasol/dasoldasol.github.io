@@ -1,6 +1,6 @@
 ## Aurora CheatSheet 
 ### Point 
-- Amazon Aurora는 고성능 상용 데이터베이스(high-end commercial databases) 의 성능(speed)과 가용성(realiability)에 오픈 소스 데이터베이스의 간편성과 비용 효율성을 결합하였으며 클라우드를 위해 구축된 MySQL 및 PostgreSQL 호환(compatible) 관계형 데이터베이스입니다.
+- Amazon Aurora는 고성능 상용 데이터베이스(high-end commercial databases) 의 성능(speed)과 가용성(realiability)에 오픈 소스 데이터베이스의 간편성과 비용 효율성을 결합하였으며 클라우드를 위해 구축된 MySQL 및 PostgreSQL 호환(compatible) **관계형 데이터베이스**입니다.
 - Amazon Aurora는 표준 MySQL 데이터베이스보다 최대 5배 빠르고 표준 PostgreSQL 데이터베이스보다 3배 빠릅니다. 또한, 1/10의 비용으로 상용 데이터베이스의 보안, 가용성 및 안정성을 제공합니다. 하드웨어 프로비저닝, 데이터베이스 설정, 패치 및 백업과 같은 시간 소모적인 관리 작업을 자동화하는 Amazon Relational Database Service(RDS)에서 Amazon Aurora의 모든 것을 관리합니다.
 - Amazon Aurora는 내결함성(fault tolerance)을 갖춘 자가 복구 분산 스토리지 시스템으로, 데이터베이스 인스턴스당 최대 64TB까지 자동으로 확장(Auto Scaling)됩니다. 지연 시간이 짧은 읽기 전용 복제본 최대 15개, 특정 시점으로 복구, Amazon S3로 지속적 백업, 3개의 가용 영역(AZ)에 걸친 복제를 통해 뛰어난 성능과 가용성을 제공합니다.
 
@@ -73,16 +73,17 @@
 - An online shopping platform is hosted on an Auto Scaling group of Spot EC2 instances and uses Amazon Aurora PostgreSQL as its database. There is a requirement to **optimize your database workloads** in your cluster where you have to direct the **write** operations of the production traffic **to your high-capacity instances** and point the **reporting queries** sent by your internal staff **to the low-capacity instances**.    
 Which is the most suitable configuration for your application as well as your Aurora database cluster to achieve this requirement?
   - **A) Create a custom endpoint in Aurora based on the specified criteria for the production traffic and another custom endpoint to handle the reporting queries.**  
- 
+  - Aurora 사용자 정의 엔드포인트 작성
+  
 - A tech startup is launching an on-demand food delivery platform using Amazon ECS cluster with an AWS Fargate serverless compute engine and Amazon Aurora. It is expected that the database **read queries will significantly increase** in the coming weeks ahead. A Solutions Architect recently launched two Read Replicas to the database cluster to improve the platform's scalability.    
 Which of the following is the MOST suitable configuration that the Architect should implement to load balance all of the **incoming read requests equally to the two Read Replicas**?
   - **A) Use the built-in Reader endpoint of the Amazon Aurora database.**
-  - **A reader endpoint** for an Aurora DB cluster provides load-balancing support for read-only connections to the DB cluster.     
-  Use the reader endpoint for read operations, such as queries.    
-  By processing those statements on the read-only Aurora Replicas, this endpoint reduces the overhead on the primary instance.     
-  It also helps the cluster to scale the capacity to handle simultaneous SELECT queries, proportional to the number of Aurora Replicas in the cluster. Each Aurora DB cluster has one reader endpoint.
-  - **A cluster endpoint** : is incorrect because a cluster endpoint (also known as a writer endpoint) simply connects to the current primary DB instance for that DB cluster. This endpoint can perform write operations in the database such as DDL statements, which is perfect for handling production traffic but not suitable for handling queries for reporting since there will be no write database operations that will be sent.
-  - **Aurora Parallel Query** : is incorrect because this feature simply enables Amazon Aurora to push down and distribute the computational load of a single query across thousands of CPUs in Aurora's storage layer. Take note that it does not load balance all of the incoming read requests equally to the two Read Replicas. With Parallel Query, query processing is pushed down to the Aurora storage layer. The query gains a large amount of computing power, and it needs to transfer far less data over the network. In the meantime, the Aurora database instance can continue serving transactions with much less interruption. This way, you can run transactional and analytical workloads alongside each other in the same Aurora database, while maintaining high performance.
+  - **Aurora DB 클러스터의 리더 엔드 포인트**는 DB 클러스터에 대한 읽기 전용 연결을위한로드 밸런싱 지원을 제공합니다.     
+  쿼리와 같은 **읽기 작업에 리더 엔드 포인트를 사용**하십시오.    
+  이 엔드 포인트는 **읽기 전용 Aurora 복제본에서 해당 명령문을 처리**함으로써 기본 인스턴스의 오버 헤드를 줄입니다.     
+  또한 클러스터의 **Aurora 복제본 수에 비례하여 동시 SELECT 쿼리를 처리** 할 수 있도록 용량을 확장 할 수 있습니다. 각 Aurora DB 클러스터에는 하나의 리더 엔드 포인트가 있습니다.
+  - **A cluster endpoint** : is incorrect. 클러스터 엔드 포인트 (**writer 엔드 포인트**라고도 함)는 **해당 DB 클러스터의 현재 기본 DB 인스턴스에 연결하기만**합니다. 이 엔드 포인트는 **DDL** 문과 같은 데이터베이스에서 **쓰기 작업**을 수행 할 수 있습니다. 이 작업은 프로덕션 트래픽을 처리하는 데 적합하지만 전송 될 데이터베이스 쓰기 작업이 없으므로 보고를위한 쿼리 처리에는 적합하지 않습니다.
+  - **Aurora Parallel Query** : is incorrect. 이는 단지 Amazon Aurora가 **Aurora의 스토리지 계층에있는 수천 개의 CPU에 단일 쿼리의 계산로드를 푸시 다운하고 분산**시킬 수 있습니다. 수신되는 **모든 읽기 요청을 두 개의 읽기 전용 복제본과 동일하게 로드 밸런싱하지는 않습니다.** 병렬 쿼리를 사용하면 쿼리 처리가 Aurora 스토리지 계층으로 푸시 다운됩니다. 이 쿼리는 많은 양의 컴퓨팅 성능을 제공하며 네트워크를 통해 훨씬 적은 양의 데이터를 전송해야합니다. 그 동안 Aurora 데이터베이스 인스턴스는 중단없이 트랜잭션을 계속 제공 할 수 있습니다. 이렇게하면 동일한 Aurora 데이터베이스에서 트랜잭션 및 분석 워크로드를 함께 실행하면서 고성능을 유지할 수 있습니다.
 
 - A company has recently adopted a hybrid cloud architecture and is planning to migrate a database hosted on-premises to AWS. The database currently has over **12 TB of consumer data**, handles highly transactional (**OLTP**) workloads, and is expected to grow exponentially. The Solutions Architect should ensure that the database is **ACID-compliant and can handle complex queries** of the application.      
 Which type of database service should the Architect use?
