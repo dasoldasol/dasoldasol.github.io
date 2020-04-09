@@ -178,3 +178,62 @@ Which of the following would be the most suitable storage service that you shoul
   - **EBS** can deliver performance for workloads that require the **lowest-latency** access to data from a **single EC2 instance**. You can also increase EBS storage for **up to 16TB** or add new volumes for additional storage.
   - **S3** : is incorrect because although this is also highly available and highly scalable, it still **does not provide the lowest-latency** access to the data, unlike EBS. Remember that **S3 does not reside within your VPC by default**, which means **the data will go through the public Internet that may result to higher latency**. You can set up a VPC Endpoint for S3 yet still, its latency is greater than that of EBS.
   - **EFS** : is incorrect because the scenario does not require concurrently-accessible storage for **multiple instances**. Although EFS can provide low latency data access to the EC2 instance as compared with S3, the storage service that can provide **the lowest latency access is still EBS**.
+
+- You have an On-Demand EC2 instance with an **attached non-root EBS volume**. There is a scheduled job that creates a snapshot of this EBS volume every midnight at 12 AM when the instance is not used. On one night, there's been a production incident where you need to perform a change on both the instance and on the EBS volume at the same time, when the snapshot is currently taking place.    
+Which of the following scenario is true when it comes to the usage of an EBS volume while the snapshot is in progress?
+  - **A) The EBS volume can be used while the snapshot is in progress**
+  - 스냅샷은 **비동기적**으로 발생합니다. 특정 시점 스냅샷이 즉시 생성되지만 **스냅샷이 완료 될 때까지 (모든 수정된 블록이 Amazon S3로 전송 될 때까지) 스냅샷 상태는 `pending`(대기 중)** 이며, 크기가 큰 최초의 스냅샷이나 변경된 블록이 많은 후속 스냅샷의 경우 몇 시간씩 시간이 걸릴 수 있습니다. 
+  - 완료되는 동안 진행중인 스냅샷은 볼륨에 대한 지속적인 읽기 및 쓰기의 영향을 받지 않으므로 EBS 볼륨을 계속 정상적으로 사용할 수 있습니다.
+  - **스냅 샷을 기반으로 EBS 볼륨을 생성하면** 새 볼륨은 스냅 샷 생성에 사용 된 원래 볼륨의 정확한 복제본으로 시작됩니다. 복제 된 볼륨은 백그라운드에서 데이터를 느리게로드하여 즉시 사용할 수 있습니다. **아직 로드되지 않은 데이터에 액세스하면 볼륨이 Amazon S3에서 요청 된 데이터를 즉시 다운로드** 한 다음 나머지 볼륨 데이터를 백그라운드에서 계속로드합니다.
+  - **스냅 샷이 진행되는 동안 루트가 아닌 EBS 볼륨을 분리하거나 새 EC2 인스턴스에 연결할 수 있습니다.** 여기서 유일한 예외는 루트 볼륨의 스냅 샷을 만드는 경우입니다.
+
+- A leading bank has an application that is hosted on an Auto Scaling group of EBS-backed EC2 instances. As the Solutions Architect, you need to provide the ability to fully **restore the data stored in their EBS volumes by using EBS snapshots.**       
+Which of the following approaches provide **the lowest cost for Amazon Elastic Block Store snapshots**?
+  - **A) Just maintain a single snapshot of the EBS volume since the latest snapshot is both incremental and complete**
+  - 특정 시점 스냅 샷을 생성하여 Amazon EBS 볼륨의 데이터를 Amazon S3에 백업 할 수 있습니다. **스냅 샷은 증분 백업이므로 가장 최근의 스냅 샷 이후에 변경된 장치의 블록 만 저장**됩니다. 이를 통해 스냅 샷 생성에 필요한 시간을 최소화하고 데이터를 복제하지 않으므로 스토리지 비용을 절약 할 수 있습니다.
+  - 스냅 샷을 삭제하면 해당 스냅 샷에 고유 한 데이터만 제거됩니다. 각 스냅 샷에는 스냅 샷이 생성 된 순간부터 새로운 EBS 볼륨으로 데이터를 복원하는 데 필요한 모든 정보가 포함되어 있습니다.
+
+- A health organization is using a large Dedicated EC2 instance with multiple EBS volumes to host its health records web application. The EBS volumes must be encrypted due to the **confidentiality of the data that they are handling and also to comply with the HIPAA (Health Insurance Portability and Accountability Act) standard**.       
+In EBS encryption, what service does AWS use to secure the volume's data at rest? (Select TWO.)
+  - **A1) By using Amazon-managed keys in AWS Key Management Service(KMS)**
+  - **A2) By using your own keys in AWS Key Management Service(KMS)**
+  - **Amazon EBS 암호화**는 EBS 데이터 볼륨, 부팅 볼륨 및 스냅 샷을 완벽하게 암호화하므로 안전한 **키 관리 인프라를 구축하고 유지할 필요가 없습니다**. EBS 암호화는 **Amazon 관리 키 또는 AWS Key Management Service (KMS)를 사용**하여 생성 및 관리하는 키를 사용하여 데이터를 암호화함으로써 유휴 데이터를 안전하게 보호합니다. EC2 인스턴스를 호스팅하는 서버에서 암호화가 발생하여 EC2 인스턴스와 EBS 스토리지간에 데이터를 이동할 때 암호화됩니다.
+  - **S3 Server-Side Encrypton & S3 Client-Side Encryption** : is incorrect. only S3.
+  - **Cloud HSM** : is incorrect. 비밀번호는 저장하지 않고 키만 저장합니다.
+  - **SSL certificates provided by the AWS Certificate Manager (ACM)** : is incorrect. ACM은 SSL 인증서만 제공하며 EBS 볼륨의 데이터 암호화는 제공하지 않습니다.
+
+- You are setting up a cost-effective architecture for a log processing application which has **frequently accessed, throughput-intensive workloads with large, sequential I/O operations**. The application should be hosted in an already existing On-Demand EC2 instance in your VPC. You have to attach a new EBS volume that will be used by the application.    
+Which of the following is the most suitable EBS volume type that you should use in this scenario?
+  - **A) EBS Throughput Optimized HDD (st1)**
+  - **처리량 최적화 HDD (st1) 볼륨**은 IOPS보다는 처리량 측면에서 성능을 정의하는 저비용 마그네틱 스토리지를 제공합니다. 이 볼륨 유형은 Amazon EMR, ETL, 데이터웨어 하우스 및 로그 처리와 같은 **대규모 순차적 워크로드**에 적합합니다. 부팅 가능한 st1 볼륨은 지원되지 않습니다.    
+  **처리량 최적화 HDD (st1) 볼륨은 콜드 HDD (sc1) 볼륨과 유사하지만 자주 액세스하는 데이터를 지원**하도록 설계되었습니다.
+  - **EBS 프로비저닝 IOPS SSD(io1)** : incorrect. 가장 비용 효율적인 EBS 유형이 아니며 주로 IOPS 성능을 유지해야하는 중요한 비즈니스 애플리케이션에 사용
+  - **Amazon EBS 범용 SSD 볼륨(gp2)** : incorrect. Amazon EBS 범용 SSD 볼륨은 다양한 워크로드에 대한 가격과 성능의 균형을 유지하므로 자주 액세스하는 처리량이 많은 워크로드에는 적합하지 않습니다. 처리량 최적화 HDD는 범용 SSD보다 사용하기에 더 적합한 옵션입니다.
+  - **EBS Cold HDD (sc1)** : incorrect. 이는 범용 SSD에 비해 저렴한 HDD 볼륨을 제공하지만 **액세스 빈도가 낮은 워크로드에 더 적합**합니다.
+
+- You are planning to migrate a **MySQL database** from your on-premises data center to your AWS Cloud. This database will be used by a legacy batch application which has **steady-state workloads in the morning but has its peak load at night for the end-of-day processing**. You need to choose an EBS volume which can handle a maximum of 450 GB of data and can also be **used as the system boot volume** for your EC2 instance.     
+Which of the following is the most cost-effective storage type to use in this scenario?
+  - **A) Amazon EBS General Purpose SSD(gp2)**
+  - 이 시나리오에서 정상 상태 워크로드가 있는 레거시 배치 애플리케이션에는 **관계형 MySQL 데이터베이스**가 필요합니다. 사용해야하는 EBS 볼륨은 최대 450GB의 데이터를 처리해야하며 EC2 인스턴스의 시스템 부팅 볼륨으로도 사용할 수 있습니다. **HDD 볼륨은 부팅 가능한 볼륨으로 사용할 수 없으므로 SSD 볼륨을 선택하여 옵션 범위를 좁힐 수 있습니다**. 또한 SSD 볼륨은 트랜잭션 데이터베이스 워크로드에 더 적합합니다.
+  - 범용 SSD (gp2) 볼륨은 광범위한 워크로드에 이상적인 비용 효율적인 스토리지를 제공합니다. 이 볼륨은 한 자리 밀리 초의 지연 시간을 제공하며 장시간 3,000 IOPS로 버스트 할 수 있습니다. 최소 100 IOPS (33.33 GiB 이하)와 최대 10,000 IOPS (3,334 GiB 이상) 사이에서 기준 성능은 볼륨 크기의 GiB 당 3 IOPS로 선형으로 확장됩니다. AWS는 gp2 볼륨을 설계하여 99 %의 프로비저닝 된 성능을 제공합니다. gp2 볼륨의 크기는 1GiB ~ 16TiB입니다.    
+  ![ebs-type-ko](./image/ebs-type-ko.PNG)
+
+- You have an existing On-demand EC2 instance and you are planning to create a new EBS volume that will be attached to this instance. The data that will be stored are **confidential medical records** so you have to make sure that the data is protected.    
+How can you **secure the data at rest of the new EBS volume** that you will create?
+  - **A) Create an encrypted EBS Volume by ticking the encryption tickbox and attach it to the instance.**
+  - 암호화 확인란을 선택(ticking the encryption tickbox)하여 암호화 된 EBS 볼륨을 생성하고 EC2 인스턴스에 연결할 수 있습니다.
+  - Amazon EBS 암호화는 자체 키 관리 인프라를 구축, 유지 관리 및 보호 할 필요없이 EBS 볼륨에 간단한 암호화 솔루션을 제공합니다. 암호화 된 EBS 볼륨을 만들어 지원되는 인스턴스 유형에 연결하면 다음 유형의 데이터가 암호화됩니다:
+    - 볼륨 내부의 유휴 데이터
+    - 볼륨과 인스턴스간에 이동하는 모든 데이터
+    - 볼륨에서 생성 된 모든 스냅 샷
+    - 해당 스냅 샷에서 생성 된 모든 볼륨
+ 
+- An application is hosted on an EC2 instance with multiple EBS Volumes attached and uses Amazon Neptune as its database. To improve data security, you encrypted all of the EBS volumes attached to the instance to protect the confidential data stored in the volumes.     
+Which of the following statements are true about **encrypted Amazon Elastic Block Store volumes**? (Select TWO.)
+  - **A1) All data moving between the volume and the instances are encrypted.**
+  - **A2) Snapshots are automatically encrypted.**
+  - Amazon EBS 암호화는 자체 키 관리 인프라를 구축, 유지 관리 및 보호 할 필요없이 EBS 볼륨에 간단한 암호화 솔루션을 제공합니다. 암호화 된 EBS 볼륨을 만들어 지원되는 인스턴스 유형에 연결하면 다음 유형의 데이터가 암호화됩니다:
+    - 볼륨 내부의 유휴 데이터
+    - 볼륨과 인스턴스간에 이동하는 모든 데이터
+    - 볼륨에서 생성 된 모든 스냅 샷
+    - 해당 스냅 샷에서 생성 된 모든 볼륨
