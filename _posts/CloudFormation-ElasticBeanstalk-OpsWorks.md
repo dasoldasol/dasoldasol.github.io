@@ -29,14 +29,14 @@ AWS CodeDeploy는 개발자가 Amazon EC2 인스턴스 및 온프레미스에서
 - You are a Solutions Architect working with a company that uses Chef Configuration management in their datacenter.      
 Which service is designed to let the customer **leverage existing Chef recipes** in AWS?
   - **A) AWS OpsWorks**
-  - **AWS OpsWorks** is a configuration management service that provides managed instances of **Chef and Puppet**. Chef and Puppet are automation platforms that allow you to use code to automate the configurations of your servers. OpsWorks lets you use Chef and Puppet to automate how servers are configured, deployed, and managed across your Amazon EC2 instances or on-premises compute environments.
-  - **AWS Elastic Beanstalk** : is incorrect because this **handles an application's deployment details** of **capacity provisioning, load balancing, auto-scaling, and application health monitoring**. It does not let you leverage Chef recipes.
-  - **AWS CloudFormation** : is incorrect because this is a service that lets you **create a collection of related AWS resources and provision them** in a predictable fashion **using infrastructure as code**. It does not let you leverage Chef recipes.
+  - **AWS OpsWorks**는 **Chef 및 Puppet**의 관리형 인스턴스를 제공하는 구성 관리 서비스입니다. Chef와 Puppet은 코드를 사용하여 서버 구성을 자동화 할 수 있는 자동화 플랫폼입니다. OpsWorks를 사용하면 Chef 및 Puppet을 사용하여 Amazon EC2 인스턴스 또는 온 프레미스 컴퓨팅 환경에서 서버를 구성, 배포 및 관리하는 방법을 자동화 할 수 있습니다.
+  - **AWS Elastic Beanstalk** : is incorrect. 용량 프로비저닝,로드 밸런싱, 자동 확장 및 애플리케이션 상태 모니터링에 대한 애플리케이션의 **배포 세부 사항**을 처리합니다. Chef 레시피를 활용할 수 없습니다.
+  - **AWS CloudFormation** : is incorrect. 이 서비스는 관련 AWS 리소스 모음을 생성하고 인프라를 코드로 사용하여 예측 가능한 방식으로 프로비저닝 할 수있는 서비스입니다. Chef 레시피를 활용할 수 없습니다.
   
 - Your company is in a hurry of deploying their new web application written in NodeJS to AWS. As the Solutions Architect of the company, you were assigned to do the deployment without worrying about the underlying infrastructure that runs the application. Which service will you use to **easily deploy and manage your new web application** in AWS? 
   - **A) AWS Elastic Beanstalk**
-  - **AWS CloudFormation** : is incorrect because although this service provides deployment capabilities, you will **still have to design a custom template** that contains the required AWS resources for your application needs. Hence, this will require more time to complete instead of just directly using Elastic Beanstalk.
-  - **AWS CodeCommit** : is incorrect because although you can **upload your NodeJS code** in AWS CloudCommit, this service is **just a fully-managed source control service** that hosts secure Git-based repositiories and hence, it **does not provide a way to deploy** or manage your applications in AWS.
+  - **AWS CloudFormation** : is incorrect. 이 서비스는 배포 기능을 제공하지만 애플리케이션 요구 사항에 필요한 AWS 리소스가 포함 된 **사용자 지정 템플릿**을 디자인해야합니다. 따라서 Elastic Beanstalk를 직접 사용하는것보다 완료하는 데 더 많은 시간이 필요합니다.
+  - **AWS CodeCommit** : is incorrect because AWS CloudCommit에서 NodeJS 코드를 업로드 할 수 있지만이 서비스는 **안전한 Git 기반 리포지토리를 호스팅**하는 완전 관리형 소스 제어 서비스이므로 AWS에서 애플리케이션을 배포하거나 관리 할 수있는 방법을 제공하지 않습니다.
 
 - You are a new Solutions Architect in your department and you have created 7 CloudFormation templates. Each template has been defined for a specific purpose.    
 What determines **the cost** of using these new **CloudFormation** templates?
@@ -45,14 +45,14 @@ What determines **the cost** of using these new **CloudFormation** templates?
 - The company you are working for has a set of AWS resources hosted in ap-northeast-1 region. You have been asked by your IT Manager to create an AWS CLI shell script that will call an AWS service which could create duplicate resources in another region in the event that ap-northeast-1 region fails. **The duplicated resources should also contain the VPC Peering configuration and other networking components from the primary stack**.    
 Which of the following AWS services could help fulfill this task?
   - **A) AWS CloudFormation**
-  - With CloudFormation, you can deploy an exact copy of your AWS architecture, along with all of the AWS resources which are hosted in one region to another.
+  - CloudFormation을 사용하면 한 지역에서 다른 지역으로 호스팅되는 모든 AWS 리소스와 함께 정확한 AWS 아키텍처 사본을 배포 할 수 있습니다.
 
 - A technology company is building a new cryptocurrency trading platform that allows buying and selling of Bitcoin, Ethereum, XRP, Ripple and many others. You were hired as a Cloud Engineer to build the required infrastructure needed for this new trading platform. On your first week at work, you started to create **CloudFormation YAML scripts that defines all of the needed AWS resources** for the application. Your manager was shocked that you haven't created the EC2 instances, S3 buckets and other AWS resources straight away. He does not understand the text-based scripts that you have done and was disappointed that you are just slacking off at your job.     
 In this scenario, what are the **benefits of using the Amazon CloudFormation** service that you should tell your manager to clarify his concerns? (Select TWO.)
   - **A1) Allows you to model your entire infrastructure in a text file**
   - **A2) Enables modeling, provisioning, and version-controlling of your entire AWS infrastructure**
-  - CloudFormation allows you to use a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications **across all regions and accounts**. 
-  - you pay only for the AWS resources needed to run your applications.
+  - CloudFormation을 사용하면 간단한 텍스트 파일을 사용하여 **모든 지역 및 계정에서** 애플리케이션에 필요한 모든 리소스를 자동화 된 방식으로 모델링하고 프로비저닝 할 수 있습니다.
+  - 애플리케이션을 실행하는 데 필요한 AWS 리소스에 대해서만 비용을 지불합니다.
 
 - You created a new **CloudFormation template** that creates 4 EC2 instances and are connected to one Elastic Load Balancer (ELB). Which section of the template should you configure **to get the Domain Name Server hostname of the ELB upon the creation of the AWS stack**?
   - **A) Outputs**
