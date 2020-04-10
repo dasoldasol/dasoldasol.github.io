@@ -24,13 +24,13 @@
 - A tech company has a CRM application hosted on an Auto Scaling group of On-Demand EC2 instances. The application is **extensively used during office hours** from 9 in the morning till 5 in the afternoon. Their users are complaining that the performance of the application is **slow during the start of the day but then works normally after a couple of hours**. 
 Which of the following can be done to ensure that the application works properly at the beginning of the day?
   - **A) Configure a Scheduled scaling policy for the Auto Scaling group to launch new instances before the start of the day**
-  - **Scheduled scaling policy** will ensure that the instances are already scaled up and ready before the start of the day since this is when the application is used the most.
-  - **Setting up an Application Load Balancer(ALB)** is incorrect Although the Application load balancer can also balance the traffic, it cannot increase the instances based on demand.
+  - **Scheduled scaling policy** : 스케줄링된 스케일링 정책은 애플리케이션이 가장 많이 사용되는 시간 전에 인스턴스가 이미 스케일 업되고 준비되도록합니다.
+  - **Setting up an Application Load Balancer(ALB)** is incorrect. Application Load Balancer에서도 트래픽의 균형을 맞출 수 있지만 수요에 따라 인스턴스를 늘릴 수는 없습니다.
 
 - You have a web application deployed in AWS which is currently running in the eu-central-1 region. You have an Auto Scaling group of On-Demand EC2 instances which are **using pre-built AMIs**. Your manager instructed you to implement disaster recovery for your system so in the event that **the application goes down in the eu-central-1 region, a new instance can be started in the us-west-2 region.**
 As part of your disaster recovery plan, which of the following should you take into consideration?
   - **A) Copy the AMI from the eu-central-1 region to the us-west-2 region. Afterwards, create a new Auto Scaling group in the us-west-2 region to use this new AMI ID.**
-  - In this scenario, the EC2 instances you are currently using depends on a pre-built AMI. This AMI is not accessible to another region hence, you have to copy it to the us-west-2 region to properly establish your disaster recovery instance.
+  - 이 시나리오에서 현재 사용중인 EC2 인스턴스는 사전 구축 된 AMI에 따라 다릅니다. 이 AMI는 다른 리전에 액세스 할 수 없으므로 재해 복구 인스턴스를 올바르게 설정하려면 us-west-2 리전에 복사해야합니다.
 
 - You are working for a commercial bank as an AWS Infrastructure Engineer handling the forex trading application of the bank. You have an Auto Scaling group of EC2 instances that allow your company to cope up with the current demand of traffic and achieve cost-efficiency. You want the Auto Scaling group to behave in such a way that it will follow a **predefined set of parameters before it scales down** the number of EC2 instances, which **protects your system from unintended slowdown or unavailability**.       
 Which of the following statements are true regarding the **cooldown period**? (Choose 2)
@@ -43,7 +43,7 @@ Which of the following statements are true regarding the **cooldown period**? (C
 What could be the root cause of this issue? (Choose 2)
   - **A1) The maximum size of your Auto Scaling group is set to 20**
   - **A2) You already have 20 on-demand instances running in your entire VPC.**
-  - If the maximum size of your Auto Scaling group has already been reached, then it would not create any new EC2 instance.
+  - Auto Scaling 그룹의 최대 크기에 이미 도달 한 경우 새 EC2 인스턴스가 생성되지 않습니다.
 
 - A tech company is currently using Auto Scaling for their web application. A new AMI now needs to be used for launching a fleet of EC2 instances.    
 Which of the following changes needs to be done?
@@ -51,8 +51,8 @@ Which of the following changes needs to be done?
   
 - You have an Auto Scaling group which is configured to launch new `t2.micro` EC2 instances when there is a significant load increase in the application. To cope with the demand, you now need to replace those instances with a larger `t2.2xlarge` instance type. How would you implement this change?
   - **A) Create a new launch configuration with the new instance type and update the Auto Scaling Group.**
-  - You can only specify one launch configuration for an Auto Scaling group at a time, and you can't modify a launch configuration after you've created it. 
-  -  You have to create a new launch configuration first, with a new instance type, then attach it to your existing Auto Scaling group.
+  - 한 번에 Auto Scaling 그룹에 대해 하나의 시작 구성 만 지정할 수 있으며 시작 구성을 생성 한 후에는 수정할 수 없습니다.
+  - 새로운 인스턴스 유형으로 새로운 시작 구성을 먼저 생성 한 다음 기존 Auto Scaling 그룹에 연결해야합니다.
   
 - A loan processing application is hosted in a single On-Demand EC2 instance in your VPC. To improve the scalability of your application, you have to use Auto Scaling to automatically add new EC2 instances to handle a surge of incoming requests.
 Which of the following items should be done **in order to add an existing EC2 instance to an Auto Scaling group**? (Select TWO.)
