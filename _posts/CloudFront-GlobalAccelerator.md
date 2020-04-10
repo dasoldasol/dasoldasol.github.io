@@ -100,14 +100,14 @@ AWS Global Accelerator는 AWS 글로벌 네트워크를 통해 사용자에서 �
 Which of the following is the most suitable solution that you should implement to satisfy this requirement?
   - **A) Use Signed Cookies to control who can access the private files in your CloudFront distribution by modifying your application to determine whether a user should have access to your content. For members, send the required `Set-Cookie` headers to the viewer which will unlock the content only to them.**
   - **Signed URLs**
-    - You want to use an RTMP distribution. Signed cookies aren't supported for RTMP distributions.
-    - You want to restrict access to individual files, for example, an installation download for your application.
-    - Your users are using a client (for example, a custom HTTP client) that doesn't support cookies.
+    - RTMP 배포를 사용하려고 할때. 서명 된 쿠키는 RTMP 배포에 지원되지 않습니다.
+    - 개별 파일 (예 : 응용 프로그램의 설치 다운로드)에 대한 액세스를 제한하려고합니다.
+    - 사용자가 쿠키를 지원하지 않는 클라이언트 (예 : 사용자 정의 HTTP 클라이언트)를 사용하고 있습니다.
   - **Signed Cookies**
-    - You want to provide access to multiple restricted files, for example, all of the files for a video in HLS format or all of the files in the subscribers' area of a website.
-    - You don't want to change your current URLs.
-  - Match Viewer : is incorrect. It is an Origin Protocol Policy which configures CloudFront to communicate with your origin using HTTP or HTTPS, depending on the protocol of the viewer request. CloudFront caches the object only once even if viewers make requests using both HTTP and HTTPS protocols.
-  - CloudFront distribution to use Field-Level Encryption : is incorrect because Field-Level Encryption only allows you to securely upload user-submitted sensitive information to your web servers. It does not provide access to download multiple private files.
+    - 여러 제한된 파일 (예 : HLS 형식의 비디오에 대한 모든 파일 또는 웹 사이트의 구독자 영역에있는 모든 파일)에 대한 액세스를 제공하려고합니다.
+    - 현재 URL을 변경하고 싶지 않습니다.
+  - Match Viewer : is incorrect. 뷰어 요청의 프로토콜에 따라 HTTP 또는 HTTPS를 사용하여 오리진과 통신하도록 CloudFront를 구성하는 오리진 프로토콜 정책입니다. 뷰어가 HTTP 및 HTTPS 프로토콜을 모두 사용하여 요청하더라도 CloudFront는 객체를 한 번만 캐시합니다.
+  - CloudFront distribution to use Field-Level Encryption : is incorrect. 필드 수준 암호화를 사용하면 사용자가 제출한 중요한 정보만 웹 서버에 안전하게 업로드 할 수 있기 때문에 올바르지 않습니다. 여러 개인 파일을 다운로드 할 수있는 액세스 권한을 제공하지 않습니다.
 
 - A popular social media website uses a CloudFront web distribution to serve their static contents to their millions of users around the globe. They are receiving a number of **complaints** recently that their users **take a lot of time to log into their website**. There are also occasions when their users are getting **HTTP 504 errors**. You are instructed by your manager to significantly reduce the user's login time to further optimize the system.    
 Which of the following options should you use together to set up a **cost-effective** solution that can improve your application's performance? (Choose 2)
