@@ -47,8 +47,7 @@
 - Strongly Consistent Reads : DO update data within 1 second
 
 ## Scenarios 
-- **A company is developing a highly available web application using stateless web servers. Which
-services are suitable for storing session state data? (Select TWO.)**       
+- **A company is developing a highly available web application using stateless web servers. Which services are suitable for storing session state data? (Select TWO.)**       
         
   A. CloudWatch       
   **B. DynamoDB**       
@@ -62,60 +61,60 @@ services are suitable for storing session state data? (Select TWO.)**
 - **You are working as a Solutions Architect for a technology company which is in the process of migrating their applications to AWS. One of their systems requires a database that can scale globally and can handle frequent schema changes. The application should not have any downtime or performance issues whenever there is a schema change in the database. It should also provide low-latency response to high-traffic queries.    
 Which is the most suitable database solution to use to achieve this requirement?**
   - **A) Amazon DynamoDB**
-  - Scema flexibility : Since the scenario requires that the **schema** changes frequently, then you have to puck a database which provides a **non-rigid** and flexible way of adding or removing new types of data.(NoSQL database)
+  - 스키마 유연성 : 시나리오에서 스키마를 자주 변경해야하므로 새 유형의 데이터를 추가하거나 제거 할 수있는 **비정렬**하고 유연한 방법을 제공하는 데이터베이스를 선택해야합니다 (NoSQL 데이터베이스).
   
 - A popular social network is hosted in AWS and is using a **DynamoDB** table as its database. There is a requirement to implement a 'follow' feature where users can subscribe to **certain updates** made by a particular user and be notified via email. Which of the following is the most suitable solution that you should implement to meet the requirement?
   - **A) Enable DynamoDB Stream and create an AWS Lambda trigger, as well as the IAM role which contains all of the permissions that the Lambda function will need at runtime. The data from the stream record will be processed by the Lambda function which will then publish a message to SNS Topic that will notify the subscribers via email.**
-  - **Dynamo Stream** : an ordered flow of information about changes to items in an Amazon DynamoDB table. When you enable a stream on a table, DynamoDB captures information about every modification to data items in the table.    
-  Amazon DynamoDB is integrated with AWS Lambda so that you can create **triggers**-pieces of code that automatically respond to events in DynamoDB Streams. With triggers, you can build applications that react to data modifications in DynamoDB tables.
-  - DynamoDB Accelerator (DAX) feature is primarily used to significantly improve the in-memory read performance of your database, and not to capture the time-ordered sequence of item-level modifications.
+  - **Dynamo Stream** : **Dynamo Stream**은 Amazon DynamoDB 테이블의 항목 변경 사항에 대한 순서화 된 정보 흐름입니다. 테이블에서 스트림을 활성화하면 DynamoDB는 테이블의 데이터 항목에 대한 모든 수정 사항에 대한 정보를 캡처합니다.    
+  Amazon DynamoDB는 AWS Lambda와 통합되어 DynamoDB 스트림의 이벤트에 자동으로 응답하는 **트리거** 코드를 생성 할 수 있습니다. 트리거를 사용하면 DynamoDB 테이블의 데이터 수정에 반응하는 애플리케이션을 구축 할 수 있습니다.
+  - DynamoDB Accelerator (DAX) 기능은 주로 데이터베이스의 메모리 내 읽기 성능을 크게 향상시키고 시간 순서대로 항목 수준 수정 순서를 캡처하지 않는 데 사용됩니다.
 
 - A Docker application, which is running on an Amazon ECS cluster behind a load balancer, is heavily using DynamoDB. You are instructed to improve the database performance by **distributing the workload evenly** and using the provisioned throughput efficiently.   
 Which of the following would you consider to implement for your DynamoDB table?
   - **A) Use partition keys with high-cardinality attributes, which have a large number of distinct values for each item**
-  - The optimal usage of a table's provisioned throughput depends on the partition-key design. The more distinct partition key values that your workload accesses, the more those requests will be spread across the partitioned space.
+  - 테이블의 프로비저닝 된 처리량을 최적으로 사용하는 방법은 파티션 키 디자인에 따라 다릅니다. 워크로드가 액세스하는 고유 한 파티션 키 값이 많을수록 해당 요청이 파티션 된 공간에 더 많이 분산됩니다.
 
 - A popular mobile game uses CloudFront, Lambda, and DynamoDB for its backend services. The player data is persisted on a DynamoDB table and the static assets are distributed by CloudFront. However, there are a lot of **complaints** that saving and retrieving player information is **taking a lot of time**.       
 To improve the game's performance, which AWS service can you use to **reduce DynamoDB response times from milliseconds to microseconds**?
   - **A) Amazon DynamoDB Accelerator(DAX)**
-  - **DynamoDB Accelerator (DAX)** : a fully managed, highly available, **in-memory cache** that can reduce Amazon DynamoDB response times from milliseconds to microseconds    
-  - ElastiCache : is incorrect because it cannot reduce time from milliseconds to microseconds
+  - **DynamoDB Accelerator (DAX)** :**DAX(DynamoDB Accelerator)** 는 완전 관리형 고가용성 **인메모리 캐시**로 Amazon DynamoDB 응답 시간을 밀리 초에서 마이크로 초로 줄일 수 있습니다.    
+  - ElastiCache : is incorrect 밀리 초에서 마이크로 초로 시간을 줄일 수 없기 때문에
   
 - As a Junior Software Engineer, you are developing a hotel reservations application and are given the task of improving the database aspect of the app. You found out that RDS does not satisfy the needs of your application because it does not scale as easily compared with DynamoDB. You need to demonstrate to your Senior Software Engineer **the advantages of using DynamoDB over RDS**.       
 What are the **valid use cases for Amazon DynamoDB**? (Choose 2)
   - **A1) Storing metadata for Amazon S3 objects**
   - **A2) Managing web sessions**
-  - **Storing metadata for Amazon S3 objects** : is correct because the Amazon DynamoDB stores structured data indexed by primary key and allow low latency read and write access to items ranging from 1 byte up to 400KB. Amazon S3 stores unstructured blobs and is suited for storing large objects up to 5 TB. In order to optimize your costs across AWS services, **large objects or infrequently accessed data sets should be stored in Amazon S3, while smaller data elements or file pointers (possibly to Amazon S3 objects) are best saved in Amazon DynamoDB.**    
-To speed up access to relevant data, you can pair Amazon S3 with a search engine such as Amazon CloudSearch or a database such as Amazon DynamoDB or Amazon RDS. In these scenarios, Amazon S3 stores the actual information, and the search engine or database serves as the repository for associated **metadata such as the object name, size, keywords**, and so on. Metadata in the database can easily be indexed and queried, making it very efficient to locate an object’s reference by using a search engine or a database query. This result can be used to **pinpoint and retrieve the object itself from Amazon S3**.
-  - **Managing web sessions** : is correct because the **DynamoDB Time-to-Live (TTL) mechanism** enables you to manage web sessions of your application easily. It lets you set a specific timestamp to delete expired items from your tables. **Once the timestamp expires, the corresponding item is marked as expired and is subsequently deleted** from the table. By using this functionality, you do not have to track expired data and delete it manually. TTL can help you reduce storage usage and reduce the cost of storing data that is no longer relevant.
+  - **Storing metadata for Amazon S3 objects** : is correct because Amazon DynamoDB는 기본 키로 인덱싱 된 구조화 된 데이터를 저장하고 1 바이트에서 최대 400KB 범위의 항목에 대한 낮은 대기 시간 읽기 및 쓰기 액세스를 허용합니다. Amazon S3는 비정형 Blob을 저장하며 최대 5TB의 큰 객체를 저장하는 데 적합합니다. AWS 서비스에서 비용을 최적화하려면 **큰 객체 또는 자주 액세스하지 않는 데이터 세트는 Amazon S3에 저장해야하며, 더 작은 데이터 요소 또는 파일 포인터 (아마도 Amazon S3 객체)는 Amazon DynamoDB에 저장하는 것이 가장 좋습니다.**    
+**관련 데이터에 대한 액세스 속도를 높이기 위해 Amazon S3를 Amazon CloudSearch와 같은 검색 엔진 또는 Amazon DynamoDB 또는 Amazon RDS와 같은 데이터베이스와 페어링 할 수 있습니다**. 이 시나리오에서 Amazon S3는 실제 정보를 저장하고 검색 엔진 또는 데이터베이스는 **객체 이름, 크기, 키워드** 등과 같은  메타 데이터에 대한 리포지토리 역할을합니다. 데이터베이스의 메타 데이터는 쉽게 색인을 생성하고 쿼리 할 수 있으므로 검색 엔진 또는 데이터베이스 쿼리를 사용하여 객체의 참조를 찾는 것이 매우 효율적입니다. 이 결과는 Amazon S3에서 객체 자체를 찾아 내고 검색하는 데 사용할 수 있습니다 .
+  - **Managing web sessions** : is correct **DynamoDB TTL (Time-to-Live) 메커니즘**을 사용하면 애플리케이션의 웹 세션을 쉽게 관리 할 수 있습니다. 테이블에서 만료 된 항목을 삭제하도록 특정 타임 스탬프를 설정할 수 있습니다. **타임 스탬프가 만료되면 해당 항목이 만료 된 것으로 표시되어 테이블에서 삭제됩니다**. 이 기능을 사용하면 만료 된 데이터를 추적하고 수동으로 삭제할 필요가 없습니다. **TTL을 사용하면 스토리지 사용을 줄이고 더 이상 관련이없는 데이터 저장 비용을 줄일 수 있습니다**.
   - **Storing BLOB data** : is incorrect because BLOB(Binary Large Object) data is too large to be put into a NoSQL database 
 
 - As an AWS Cloud Consultant working for a record company, you are building an application that will **store both key-value store and document models like band ID, album ID, song ID and composer ID**.       
 Which AWS service will suit your needs for your application?
   - **A) DynamoDB**
-  - Amazon DynamoDB is a fast and flexible NoSQL database service. It supports both document and key-value store models. used for mobile, web, gaming, ad tech, IoT, and many other applications.
+  - Amazon DynamoDB는 빠르고 유연한 NoSQL 데이터베이스 서비스입니다. 문서 및 키-값 저장소 모델을 모두 지원합니다. 모바일, 웹, 게임, 광고 기술, IoT 및 기타 여러 응용 프로그램에 사용됩니다.
   - ![dynamodb](./image/dynamodb.png)
 
 - You are working as a Solutions Architect for a tech company where you are instructed to build a web architecture using On-Demand EC2 instances and a database in AWS. However, due to **budget constraints**, the company instructed you to choose a database service in which they **no longer need to worry about** database management tasks such as hardware or software provisioning, setup, configuration, **scaling** and backups.   
 Which database service in AWS is best to use in this scenario?
   - **A) DynamoDB**
-  - you simply create a database table, set your target utilization for Auto Scaling, and let the service handle the rest. You no longer need to worry about database management tasks such as hardware or software provisioning, setup and configuration, software patching, operating a reliable, distributed database cluster, or partitioning data over multiple instances as you scale. DynamoDB also lets you backup and restore all your tables for data archival, helping you meet your corporate and governmental regulatory requirements.
-  - **RDS** : In RDS, you still have to manually scale up your resources and create Read Replicas to improve scalability while in DynamoDB, this is automatically done. RDS is incorrect because this is just a "managed" service and not "fully managed". This means that you still have to handle the backups and other administrative tasks such as when the automated OS patching will take place.
-  - **Amazon ElastiCache** : is incorrect because although ElastiCache is fully managed, it is not a database service but an In-Memory Data Store.
-  - **Redshift** : is incorrect because although this is fully managed, it is not a database service but a Data Warehouse.
+  - 데이터베이스 테이블을 생성하고 Auto Scaling에 대한 목표 사용률을 설정 한 후 서비스가 나머지를 처리하게합니다. 더 이상 하드웨어 또는 소프트웨어 프로비저닝, 설정 및 구성, 소프트웨어 패치, 안정적인 분산 데이터베이스 클러스터 운영 또는 확장시 여러 인스턴스에 데이터 분할과 같은 데이터베이스 관리 작업에 대해 걱정할 필요가 없습니다. 또한 DynamoDB를 사용하면 데이터 보관을위한 모든 테이블을 백업 및 복원 할 수 있으므로 회사 및 정부 규제 요구 사항을 충족 할 수 있습니다.
+  - **RDS** : RDS에서는 DynamoDB에있는 동안 확장 성을 향상시키기 위해 리소스를 수동으로 확장하고 읽기 전용 복제본을 생성해야합니다.이 작업은 자동으로 수행됩니다. RDS는 "관리 된"서비스 일뿐 아니라 "완전히 관리 된"서비스가 아니기 때문에 올바르지 않습니다. 즉, 자동화 된 OS 패치 적용시기와 같은 백업 및 기타 관리 작업을 계속 처리해야합니다.
+  - **Amazon ElastiCache** : is incorrect. ElastiCache는 완전히 관리되지만 데이터베이스 서비스가 아니라 인메모리 데이터 저장소입니다.
+  - **Redshift** : is incorrect. 이것은 완전히 관리되지만 데이터베이스 서비스가 아니라 데이터웨어 하우스입니다.
 
 - You currently have an Augment Reality (AR) mobile game which has a serverless backend. It is using a **DynamoDB table** which was launched using the AWS CLI to store all the user data and information gathered from the players and a **Lambda function** to pull the data from DynamoDB. The game is being used by millions of users each day to read and store data.     
 How would you design the application to **improve its overall performanc**e and make it **more scalable** while keeping the **costs low**? (Choose 2)
   - **A1) Enable DynamoDB Accelerator(DAX) and ensure that the Auto Scaling is enabled and increase the maximum provisioned read and write capacity.**
   - **A2) Use API Gateway in conjunction with Lambda and turn on the caching on frequently accessed data and enable DynamoDB global replication**
-  - DAX does all the heavy lifting required to add in-memory acceleration to your DynamoDB tables
-  - Amazon API Gateway lets you create an API that acts as a "front door" for applications to access data, business logic, or functionality from your back-end services, such as code running on AWS Lambda. 
-  - **Configure CloudFront with DynamoDB as the origin; cache frequently accessed data on client device using ElastiCache** : is incorrect because **CloudFront and DynamoDB are imcompatible**
+  - DAX는 DynamoDB 테이블에 인메모리 가속을 추가하는 데 필요한 모든 작업을 수행합니다.
+  - Amazon API Gateway를 사용하면 애플리케이션이 AWS Lambda에서 실행되는 코드와 같은 백엔드 서비스의 데이터, 비즈니스 로직 또는 기능에 액세스 할 수있는 "정문"역할을하는 API를 생성 할 수 있습니다. 
+  - **Configure CloudFront with DynamoDB as the origin; cache frequently accessed data on client device using ElastiCache** : is incorrect. **CloudFront와 DynamoDB는 호환되지 않습니다**
 
 - Your manager has asked you to deploy a mobile application that can collect votes for a popular singing competition. Millions of users from around the world will submit votes using their mobile phones. These votes must be collected and stored in a highly scalable and highly available data store which will be queried for real-time ranking.    
 Which of the following combination of services should you use to meet this requirement?
   - **A) Amazon DynamoDB and AWS AppSync**
-  - **DynamoDB** is durable, scalable, and highly available data store which can be used for **real-time tabulation**. You can also use **AppSync** with DynamoDB to make it easy for you to build collaborative apps that keep **shared data updated in real time**.
+  - DynamoDB는 내구성이 뛰어나고 확장 가능하며 가용성이 높은 데이터 저장소로, 실시간 표로 사용할 수 있습니다. 또한 **AppSync를 DynamoDB와 함께 사용하면 공유 데이터를 실시간으로 업데이트하는 협업 앱을 쉽게 구축** 할 수 있습니다.
 
 - A popular augmented reality (AR) mobile game is heavily using a RESTful API which is hosted in AWS. The API uses Amazon API Gateway and a DynamoDB table with a preconfigured read and write capacity. Based on your systems monitoring, the DynamoDB table begins to throttle requests during high peak loads which causes the slow performance of the game.     
 Which of the following can you do to improve the performance of your app? 
