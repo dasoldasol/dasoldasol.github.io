@@ -12,7 +12,7 @@
 - A telecommunications company is planning to give AWS Console access to developers. Company policy mandates the use of identity federation and role-based access control. Currently, the roles are already assigned using groups in the **corporate Active Directory**.    
 In this scenario, what combination of the following services can provide developers access to the AWS console? (Choose 2)
   - **A) IAM Roles, AWS Directory Service AD Connector**
-  - Considering that the company is using a corporate Active Directory, it is best to use AWS Directory Service AD Connector for easier integration. In addition, since the roles are already assigned using groups in the corporate Active Directory, it would be better to also use IAM Roles. Take note that you can assign an IAM Role to the users or groups from your Active Directory once it is integrated with your VPC via the AWS Directory Service AD Connector.
+  - 회사에서 회사 Active Directory를 사용하고 있다는 점을 고려하면보다 쉬운 통합을 위해 AWS Directory Service AD Connector를 사용하는 것이 가장 좋습니다. 또한 회사 Active Directory의 그룹을 사용하여 역할이 이미 할당되어 있으므로 IAM 역할을 사용하는 것이 좋습니다. AWS Directory Service AD 커넥터를 통해 VPC와 통합되면 Active Directory의 사용자 또는 그룹에 IAM 역할을 할당 할 수 있습니다.
 
 - A company is using the AWS Directory Service to integrate their on-premises Microsoft Active Directory (AD) domain with their Amazon EC2 instances via an AD connector. The below identity-based policy is attached to the IAM Identities that use the AWS Directory service:    
 ````
