@@ -9,24 +9,24 @@
 ## Scenarios
 - You are an AWS Solutions Architect designing an online analytics application that uses Redshift Cluster for its data warehouse. Which service will allow you to **monitor all API calls** to your Redshift instance and can also provide secured data for **auditing and compliance** purposes?
   - **A) CloudTrail for security logs**
-  - CloudTrail enables povernance, compliance, operational auditing, and risk auditing of your AWS account. You can log, continuously monitor, and retain account activity including actions taken through the AWS Management Console, AWS SDKs, command line tools, API calls, and other AWS services.
+  - CloudTrail은 AWS 계정의 거버넌스, 규정 준수, 운영 감사 및 위험 감사를 가능하게합니다. AWS Management Console, AWS SDK, 명령 줄 도구, API 호출 및 기타 AWS 서비스를 통해 수행 된 작업을 포함하여 계정 활동을 기록, 지속적으로 모니터링 및 유지할 수 있습니다.
 
 - A Solutions Architect is working for a company which has multiple VPCs in **various AWS regions**. The Architect is assigned to set up a **logging system** which will track all of the changes made to their AWS resources in all regions, including the configurations made in IAM, CloudFront, AWS WAF, and Route 53. In order to pass the compliance requirements, the solution must ensure the security, integrity, and durability of the log data. **It should also provide an event history of all API calls** made in AWS Management Console and AWS CLI.    
 Which of the following solutions is the best fit for this scenario?
   - **A) Set up a new CloudTrail trail in a new S3 bucket using the AWS CLI and also pass both the `--is-multi-region-trail` and `--include-global-service-events` parameters then encrypt log files using KMS encryption. Apply Multi Factor Authentication(MFA) Delete on the S3 bucket and ensure that only authorized users can access the logs by configuring the bucket policies**
-  - CloudTrail can be used for this case with multi-region trail enabled, however, it will only cover the activities of the regional services (EC2, S3, RDS etc.) and not for global services such as IAM, CloudFront, AWS WAF, and Route 53. In order to satisfy the requirement, you have to add the `--include-global-service-events parameter` in your AWS CLI command.
-
+  - CloudTrail은 다중 리전 트레일이 활성화 된 경우에 사용할 수 있지만 IAM, CloudFront, AWS WAF, Route 53 같은 글로벌 서비스는 다루지 않고, 지역 서비스 (EC2, S3, RDS 등)의 활동만 다룹니다 . 요구 사항을 충족 시키려면 AWS CLI 명령에`--include-global-service-events 파라미터 '를 추가해야합니다.
+  
 - Your cloud architecture is composed of Linux and Windows EC2 instances which process high volumes of financial data 24 hours a day, 7 days a week. To ensure high availability of your systems, you are required to **monitor the memory and disk utilization** of all of your instances.       
 Which of the following is the most suitable monitoring solution to implement?
   - **A) Install the CloudWatch agent to all of your EC2 instances which gathers the memory and disk utilization data. View the custom metrics in the Amazon CloudWatch console**
-  - by default, CloudWatch does not automatically provide memory and disk utilization metrics of your instances. You have to set up custom CloudWatch metrics to monitor the memory, disk swap, disk space and page file utilization of your instances.
-  - **Enhanced Monitoring** : is incorrect because Enhanced Monitoring is a feature of RDS and not of CloudWatch.
-  - **Amazon Inspector** : is incorrect because Amazon Inspector is an automated security assessment service that helps you test the network accessibility of your Amazon EC2 instances and the security state of your applications running on the instances. It does not provide a custom metric to track the memory and disk utilization of each and every EC2 instance in your VPC.
-
+  - 기본적으로 CloudWatch는 인스턴스의 메모리 및 디스크 사용률 지표를 자동으로 제공하지 않습니다. 인스턴스의 메모리, 디스크 스왑, 디스크 공간 및 페이지 파일 활용을 모니터링하려면 사용자 정의 CloudWatch 지표를 설정해야합니다.
+  - **Enhanced Monitoring** : is incorrect. Enhanced Monitoring은 CloudWatch가 아닌 RDS의 기능이기 때문입니다.
+  - **Amazon Inspector** : is incorrect. Amazon Inspector는 Amazon EC2 인스턴스의 네트워크 액세스 가능성과 인스턴스에서 실행되는 애플리케이션의 보안 상태를 테스트하는 데 도움이되는 **자동화 된 보안 평가 서비스**이기 때문입니다. VPC에서 각 EC2 인스턴스의 메모리 및 디스크 사용률을 추적하기위한 사용자 지정 지표를 제공하지 않습니다.
+  
 - The company that you are working for has a highly available architecture consisting of an elastic load balancer and several EC2 instances configured with auto-scaling in three Availability Zones. You want to monitor your EC2 instances based on a particular metric, which is not readily available in CloudWatch.      
 Which of the following is a **custom metric in CloudWatch which you have to manually set up**?
   - **A) Memory Utilization of an EC2 instance**
-  - You need to prepare a custom metric using CloudWatch Monitoring Scripts which is written in Perl. You can also install CloudWatch Agent to collect more system-level metrics from Amazon EC2 instances. Here's the list of custom metrics that you can set up:
+  - Perl로 작성된 CloudWatch Monitoring Scripts를 사용하여 사용자 지정 지표를 준비해야합니다. CloudWatch Agent를 설치하여 Amazon EC2 인스턴스에서 더 많은 시스템 수준 지표를 수집 할 수도 있습니다. 설정할 수있는 **맞춤 측정 항목** 목록은 다음과 같습니다.:
     - **Memory utilization**
     - **Disk swap utilization**
     - **Disk space utilization**
@@ -43,13 +43,13 @@ Which of the following metrics is **not available by default in CloudWatch**?
 - One of your EC2 instances is reporting an unhealthy system status check. The operations team is looking for an easier way to monitor and repair these instances instead of fixing them manually.
 How will you **automate the monitoring and repair of the system status check failure** in an AWS environment?
   - **A) Create CloudWatch alarms that stop and start the instance based on status check alarms**
-  - **Using Amazon CloudWatch alarm actions**, you can create alarms that automatically stop, terminate, reboot, or recover your EC2 instances.
+  - **Amazon CloudWatch 경보 작업**을 사용하면 EC2 인스턴스를 자동으로 중지, 종료, 재부팅 또는 복구하는 경보를 생성 할 수 있습니다.
 
 - You are working for a startup company that has resources deployed on the AWS Cloud. Your company is now going through a set of scheduled audits by an external auditing firm for compliance.       
 Which of the following services available in AWS can be utilized to help ensure the right information are present for **auditing purposes**?
   - **A) AWS CloudTrail**
-  -  CloudTrail provides event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command line tools, and other AWS services. This event history simplifies security analysis, resource change tracking, and troubleshooting.
-  - CloudTrail records important information about each action, including **who** made the request, the services used, the actions performed, parameters for the actions, and the response elements returned by the AWS service. CloudTrail makes it easier to ensure **compliance with internal policies and regulatory standards**.
+  -  CloudTrail은 AWS Management Console, AWS SDK, 명령 줄 도구 및 기타 AWS 서비스를 통해 수행 된 작업을 포함하여 AWS 계정 활동의 이벤트 기록을 제공합니다. 이 이벤트 기록은 보안 분석, 리소스 변경 추적 및 문제 해결을 간소화합니다.
+  - CloudTrail은 요청한 사람, 사용한 서비스, 수행 된 작업, 작업 매개 변수 및 AWS 서비스에서 반환 한 응답 요소를 포함하여 각 작업에 대한 중요한 정보를 기록합니다. CloudTrail을 사용하면 **내부 정책 및 규제 표준 준수**가 더 쉬워집니다.
 
 - You are managing an online platform which allows people to easily buy, sell, spend, and manage their cryptocurrency. To meet the strict IT audit requirements, each of the API calls on all of your AWS resources should be properly captured and recorded. You used CloudTrail in your VPC to help you in the compliance, operational auditing, and risk auditing of your AWS account.       
 In this scenario, **where does CloudTrail store all of the logs that it creates**? 
