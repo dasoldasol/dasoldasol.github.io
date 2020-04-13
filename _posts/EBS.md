@@ -68,32 +68,32 @@
 ## Scenarios 
 - **A Solutions Architect is designing a critical business application with a relational database that runs on an EC2 instance. It requires a single EBS volume that can support up to 16,000 IOPS.    Which Amazon EBS volume type can meet the performance requirements of this application?**    
   - **A) EBS Provisioned IOPS SSD**
-  - EBS Provisioned IOPS SSD : sustained performance for mission-critical low-latency workloads
-  - EBS General Purpose SSD : bursts of performance 3,000 - 10,000 IOPS
-  - HDD : lower cost, high throughput volumes
+  - EBS Provisioned IOPS SSD : 미션 크리티컬 저 지연(low latency) 워크로드에 대한 지속적인 성능
+  - EBS General Purpose SSD : 3,000-10,000 IOPS의 성능 버스트
+  - HDD : 저렴한 비용, 높은 처리량
     
 - **You are building a new data analytics application in AWS which will be deployed in an AutoScaling group of On-Demand EC2 instances and MongoDB database. It is expected that the database will have high-throughput workloads performing small, random I/O operations. As the Solutions Architect, you are required to properly setup and launch the required resources in AWS.    
 Which of the following is the most suitable EBS type to use for your database?**
   - **A) Provisioned IOPS SSD(io1)**
-  - SSD-backed volumes : consistent performance whether an I/O operation is random or sequential.
-    - General Purpose SSD(gp2) : it can handle small, random I/O operations
-    - Provisioned IOPS SSD(io1) : suitable for I/O-intensive database workloads such as MongoDB, Oracle, MySQL.
-  - HHD-backed voluems : optimal performance ONLY when I/O operations are large and sequential.
+  - SSD-backed volumes : I / O 작업이 임의적이든 순차적이든 일관된 성능.
+    - General Purpose SSD(gp2) : 작고 임의적인 I / O 작업을 처리 할 수 있습니다
+    - Provisioned IOPS SSD(io1) : MongoDB, Oracle, MySQL과 같은 I / O 집약적 데이터베이스 워크로드에 적합합니다.
+  - HHD-backed voluems : I / O 작업이 크고 순차적인 경우에만 최적의 성능.
 
 - You have triggered the creation of a snapshot of your EBS volume attached to an Instance Store-backed EC2 Instance and is currently on-going. At this point, what are the things that the EBS volume can or cannot do?
   - **A) The volume can be used as normal while the snapshot is in progress**
-  - EBS snapshots occur **asynchronously**. This means that the point-in-time snapshot is created immediately, but the status of the snapshot is `pending` until the snapshot is complete. In-progress snapshot is **not affected** by ongoing reads and writes to **the volume** hence, you can still use the volume.
+  - EBS 스냅 샷은 **비동기 적으로** 발생합니다. 즉, 특정 시점 스냅 샷이 즉시 생성되지만 스냅 샷이 완료 될 때까지 스냅 샷 상태는 '대기 중(pending)'입니다. 진행중인 스냅 샷은 **볼륨**에 대한 지속적인 읽기 및 쓰기로 인해 **영향을 받지 않습니다** 따라서 여전히 볼륨을 사용할 수 있습니다.
 
 - As part of the Business Continuity Plan of your company, your IT Director instructed you to set up an automated backup of all of the EBS Volumes for your EC2 instances as soon as possible.     
 What is the fastest and most cost-effective **solution to automatically back up all of your EBS Volumes**?
   - **A) Amazon Data Lifecycle Manager(Amazon DLM) to automate the creation of EBS snapshots.**
-  - Automating snapshot management helps you to:
-    - Protect valuable data by enforcing a **regular backup schedule**.
-    - **Retain backups** as required by auditors or internal compliance.
-    - **Reduce storage costs** by deleting outdated backups.
-    - **without** having to write **custom shell scripts** or creating **scheduled jobs**.
-  - Combined with the monitoring features of Amazon CloudWatch Events and AWS CloudTrail, Amazon DLM provides a complete backup solution for EBS volumes **at no additional cost.**
-  - cf) **create a scheduled job that calls the "create-snapshot" command via the AWS CLI to take a snapshot of production EBS volumes periodically** : is incorrect because even though this is a valid solution, you would still need additional time to create a scheduled job that calls the "create-snapshot" command. 
+  - 스냅 샷 관리 자동화를 통해 다음을 수행 할 수 있습니다.
+    - **정기적인 백업** 일정을 시행하여 중요한 데이터를 보호.
+    - 감사 또는 내부 규정 준수에 필요한 **백업을 유지**합니다.
+    - **오래된 백업을 삭제**하여 스토리지 비용을 줄입니다.
+    - 사용자 정의 쉘 스크립트를 작성하거나 예약 된 작업을 작성할 필요가 없습니다.
+  - Amazon DLM은 Amazon CloudWatch Events 및 AWS CloudTrail의 모니터링 기능과 결합하여 추가 비용없이 EBS 볼륨에 대한 완벽한 백업 솔루션을 제공합니다.
+  - **create a scheduled job that calls the "create-snapshot" command via the AWS CLI to take a snapshot of production EBS volumes periodically** : is incorrect. 이것이 유효한 솔루션 임에도 불구하고 "create-snapshot"명령을 호출하는 예약 된 작업을 만들려면 여전히 시간이 더 필요합니다.
 
 - A company is planning to launch an application which requires a data warehouse that will be used for their **infrequently accessed data**. You need to use an EBS Volume that can **handle large, sequential I/O operations**.    
 Which of the following is the most cost-effective storage type that you should use to meet the requirement?
@@ -111,9 +111,8 @@ What steps will you take to minimize the time during which the database cannot b
     **2. Flush all caches to the disk.**    
     **3. Confirm that the associated EC2 instance is no longer writing to the RAID array by taking actions such as freezing the file system, unmounting the RAID array, or even shutting down the EC2 instance.**    
     **4. After taking steps to halt all disk-related activity to the RAID array, take a snapshot of each EBS volume in the array.**    
-  - When you take a snapshot of an attached Amazon EBS volume that is in use, the snapshot excludes data cached by applications or the operating system. For a single EBS volume, this is often not a problem. However, when cached data is excluded from snapshots of multiple EBS volumes in a RAID array, restoring the volumes from the snapshots can degrade the integrity of the array.    
-When creating snapshots of EBS volumes that are configured in a RAID array, it is critical that there is no data I/O to or from the volumes when the snapshots are created.
-
+  - 사용중인 연결된 Amazon EBS 볼륨의 스냅 샷을 생성하면 스냅 샷은 애플리케이션 또는 운영 체제에서 캐시 한 데이터를 제외합니다. 단일 EBS 볼륨의 경우 종종 문제가되지 않습니다. 그러나 캐시 된 데이터가 RAID 어레이의 여러 EBS 볼륨 스냅 샷에서 제외되면 스냅 샷에서 볼륨을 복원하면 어레이의 무결성이 저하 될 수 있습니다.    
+RAID 배열에 구성된 EBS 볼륨의 스냅 샷을 생성 할 때 스냅 샷을 생성 할 때 볼륨에 데이터를 입 / 출력하지 않는 것이 중요합니다.
 
 - You have launched a new enterprise application with a web server and a database. You are using a large EC2 Instance with one 500 GB EBS volume to host a relational database. Upon checking the performance, it shows that **write throughput to the database needs to be improved**.    
 Which of the following is the most suitable configuration to help you achieve this requirement? (Choose 2)
@@ -122,7 +121,7 @@ Which of the following is the most suitable configuration to help you achieve th
   - RAID
     - **Raid 0 : Striping** (하나의 데이터를 여러 드라이브에 **분산 저장**함으로써 **빠른 입출력**이 가능)
     - **Raid 1 : Mirroring** (똑같은 데이터를 **동일한 용량**과 스팩의 다른 디스크에도 저장함으로써 **높은 안정성** 확보)
-  - Setting up the EC2 instance in a placement group : is incorrect because the placement groups feature is primarily used for **inter-instance communication.**
+  - Setting up the EC2 instance in a placement group : is incorrect because the placement groups기능은 주로 인스턴스 간 통신에 사용되기 때문
 
 - A corporate and investment bank has recently decided to adopt a hybrid cloud architecture for their Trade Finance web application which uses an Oracle database with Oracle Real Application Clusters (RAC) configuration. Since Oracle RAC is not supported in RDS, they decided to launch their database in a large On-Demand EC2 instance instead, with multiple EBS Volumes attached. As a Solutions Architect, you are responsible to ensure the security, availability, scalability, and disaster recovery of the whole architecture.    
 In this scenario, which of the following will enable you to take **backups of your EBS volumes that are being used by the Oracle** database?
