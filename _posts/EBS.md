@@ -126,31 +126,31 @@ Which of the following is the most suitable configuration to help you achieve th
 - A corporate and investment bank has recently decided to adopt a hybrid cloud architecture for their Trade Finance web application which uses an Oracle database with Oracle Real Application Clusters (RAC) configuration. Since Oracle RAC is not supported in RDS, they decided to launch their database in a large On-Demand EC2 instance instead, with multiple EBS Volumes attached. As a Solutions Architect, you are responsible to ensure the security, availability, scalability, and disaster recovery of the whole architecture.    
 In this scenario, which of the following will enable you to take **backups of your EBS volumes that are being used by the Oracle** database?
   - **A) Creating snapshots of the EBS Volumes**
-  - You can back up the data on your Amazon EBS volumes to Amazon S3 by taking point-in-time snapshots. **Snapshots are incremental** backups, which means that only the blocks on the device that have changed after your most recent snapshot are saved. This **minimizes the time** required to create the snapshot and **saves on storage costs by not duplicating data**. 
-  - **Disk Mirroring, which is also known as RAID 1, that replicates data to two or more disks/EBS Volumes** : is incorrect. Disk mirroring is NOT an efficient and cost-optimized solution
+  - 특정 시점 스냅 샷을 생성하여 Amazon EBS 볼륨의 데이터를 Amazon S3에 백업 할 수 있습니다. 스냅 샷은 **증분 백업**이므로 가장 최근의 스냅 샷 이후에 변경된 장치의 블록 만 저장됩니다. 이는 스냅 샷 생성에 필요한 **시간을 최소화하고** 데이터를 복제하지 않음으로써 **스토리지 비용을 절약**합니다. 
+  - **RAID 1이라고도하는 디스크 미러링은 두 개 이상의 디스크 / EBS 볼륨에 데이터를 복제합니다.** : is incorrect. 디스크 미러링은 효율적이고 비용 최적화 된 솔루션이 아닙니다.
 
 - You are working as a Solutions Architect for an investment bank and your Chief Technical Officer intends to migrate all of your applications to AWS. You are looking for block storage to store all of your data and have decided to go with EBS volumes. Your boss is worried that EBS volumes are not appropriate for your workloads due to compliance requirements, downtime scenarios, and IOPS performance.    
 Which of the following are valid points in proving that EBS is the best service to use for your migration? (Choose 2)
   - **A1) An EBS Volume is off-instance storage that can persist independently from the life of an instance.**
   - **A2) EBS volumes support live configuration changes while in production which means that you can modify the volume type, volume size, and IOPS capacity without service interruptions.**
-  - When you create an **EBS volume** in an Availability Zone, it is **automatically replicated within that zone** to prevent data loss due to a failure of any single hardware component.
-  - An **EBS volume** can **only be attached to one EC2 instance** at a time.
-  - After you create a volume, you can **attach** it to any EC2 instance **in the same Availability Zone**
-  - Amazon EBS encryption uses 256-bit Advanced Encryption Standard algorithms (AES-256)
-  - EBS Volumes offer 99.999% SLA.
+  - 가용 영역에서 **EBS 볼륨**을 생성하면 단일 하드웨어 구성 요소의 장애로 인한 데이터 손실을 방지하기 위해 해당 영역 내에 **자동 복제**됩니다.
+  - **EBS 볼륨**은 한 번에 하나의 EC2 인스턴스에만 연결할 수 있습니다.
+  - 볼륨을 생성 한 후 동일한 가용 영역의 EC2 인스턴스에 연결할 수 있습니다
+  - Amazon EBS 암호화는 256 비트 고급 암호화 표준 알고리즘 (AES-256)을 사용합니다.
+  - EBS 볼륨은 99.999 % SLA를 제공합니다.
 
 - You work for a brokerage firm as an AWS Infrastructure Engineer who handles the stocks trading application. You host your database in an EC2 server with two EBS volumes for OS and data storage in ap-southeast-1a. Due to the **fault tolerance** requirements, there is a need to **assess if the EBS volumes will be affected** in the event of ap-southeast-1a availability zone outage.    
 Can **EBS tolerate an Availability Zone failure** each and every time?
   - **A) No, all EBS volumes are stored and replicated in a single AZ only**
-  - when you create an EBS volume in an Availability Zone, it is automatically replicated within that zone only to prevent data loss due to a failure of any single hardware component. After you create a volume, you can attach it to any EC2 instance in the same Availability Zone.
-  - it is the **EBS snapshots**, not the EBS volume, that has a copy of the data which is stored redundantly in **multiple Availability Zones.**
-  - **EBS volumes** only exist in a **single availability zone** while **EBS snapshots** are available in **one AWS region**.
+  - 가용 영역에서 EBS 볼륨을 생성하면 단일 하드웨어 구성 요소의 장애로 인한 데이터 손실을 방지하기 위해 해당 영역 내에서만 자동으로 복제됩니다. 볼륨을 생성 한 후에는 동일한 가용 영역의 EC2 인스턴스에 연결할 수 있습니다.
+  - 여러 가용 영역에 중복 저장되는 데이터 사본이있는 것은 EBS 볼륨이 아니라 EBS 스냅 샷입니다.
+  - EBS 볼륨은 단일 가용 영역에만 존재하는 반면 EBS 스냅 샷은 하나의 AWS 리전에서 사용할 수 있습니다.
 
 - You are working for an investment bank as their IT Consultant. You are working with their IT team to handle the launch of their digital wallet system. The applications will run on multiple EBS-backed EC2 instances which will store the logs, transactions, and billing statements of the user in an S3 bucket. Due to tight security and compliance requirements, you are exploring options on **how to safely store sensitive data on the EBS volumes and S3**.    
 Which of the below options should be carried out when storing sensitive data on AWS? (Choose 2)
   - **A1) Enable Amazon S3 Server-Side or use Client-Side Encryption**
   - **A2) Enable EBS Encryption**
-  - **Using AWS Shield and WAF** : is incorrect because these protect you from common security threats for your web applications. However, what you are trying to achieve is securing and encrypting your data inside EBS and S3.
+  - **Using AWS Shield and WAF** : is incorrect. 이들은 웹 응용 프로그램에 대한 일반적인 보안 위협으로부터 보호합니다. 그러나 달성하려는 것은 EBS 및 S3 내부의 데이터를 보호하고 암호화하는 것입니다.
 
 - You are working for a tech company that uses a lot of EBS volumes in their EC2 instances. An incident occurred that requires you to delete the EBS volumes and then re-create them again.       
 What step should you do **before you delete the EBS volumes**?
@@ -159,24 +159,24 @@ What step should you do **before you delete the EBS volumes**?
 - A global online sports betting company has its popular web application hosted in AWS. They are planning to develop a new online portal for their new business venture and they hired you to implement the cloud architecture for a new online portal that will accept bets globally for world sports. You started to design the system with a relational database that runs on a single EC2 instance, which requires a single EBS volume that can support up to **30,000 IOPS**.       
 In this scenario, which Amazon EBS volume type can you use that will meet the performance requirements of this new online portal?
   - **A) EBS Provisioned IOPS SSD(io1)**
-  - Remember that the dominant performance attribute of SSD is **IOPS** while HDD is **Throughput**.
+  - SSD의 주된 성능 특성은 **IOPS**이고 HDD는 **처리량**입니다.
 
 - A company has a High Performance Computing (HPC) cluster that is composed of EC2 Instances with Provisioned IOPS volume to process transaction-intensive, low-latency workloads. The Solutions Architect must maintain high IOPS while keeping the latency down by setting the optimal queue length for the volume. The size of each volume is 10 GiB.    
 Which of the following is the MOST suitable configuration that the Architect should set up?
   - **A) Set the IOPS to 500 then maintain a low queue length**
-  - The maximum ratio **"provisioned IOPS : requested volume size (in GiB)" is "50:1"**
+  - "프로비저닝된 IOPS : 요청 된 볼륨 크기 (GiB)"의 최대 비율은 "50 : 1"입니다.
     - ex. 최대 5,000 IOPS로 100GiB 볼륨을 프로비저닝 할 수 있습니다. 지원되는 인스턴스 유형에서 1,280 GiB 이상의 볼륨은 최대 64,000 IOPS (50 × 1,280 GiB = 64,000)까지 프로비저닝 할 수 있습니다.
     - **xIOPS : 10GiB = 50:1 -> 500IOPS**
-  - **The volume queue length** is **the # of pending I/O requests** for a device.
+  - 볼륨 큐 길이는 장치에 대한 보류중인 I / O 요청 수입니다.
     - **SSD-backed volumes** : 낮은 큐 길이(**low queue length**)와 볼륨에 사용 가능한 많은 IOPS를 유지하여 대기 시간(latency)을 줄이면서 높은 IOPS를 유지할 수 있습니다. 사용 가능한 것보다 많은 양의 IOPS를 지속적으로 구동하면 I / O 대기 시간이 증가 할 수 있습니다.
-    - **HDD-backed volumes** : Throughput-intensive applications are less sensitive to increased I/O latency. You can maintain high throughput to HDD-backed volumes by maintaining a **high queue length** when performing large, sequential I/O.
+    - **HDD-backed volumes** : 처리량이 많은 응용 프로그램은 I / O 대기 시간 증가에 덜 민감합니다. 대량의 순차적 I / O를 수행 할 때 **높은 대기열 길이**를 유지하여 HDD 지원 볼륨에 대한 높은 처리량을 유지할 수 있습니다.
 
 - You are working as a Solutions Architect for a financial firm which is building an internal application that processes loans, accruals, and interest rates for their clients. They require a storage service that is able to handle future increases in **storage capacity of up to 16 TB** and can provide the **lowest-latency** access to their data. Their web application will be hosted in a **single** m5ad.24xlarge Reserved **EC2 instance** which will process and store data to the storage service.    
 Which of the following would be the most suitable storage service that you should use to meet this requirement?
   - **A) EBS**
-  - **EBS** can deliver performance for workloads that require the **lowest-latency** access to data from a **single EC2 instance**. You can also increase EBS storage for **up to 16TB** or add new volumes for additional storage.
-  - **S3** : is incorrect because although this is also highly available and highly scalable, it still **does not provide the lowest-latency** access to the data, unlike EBS. Remember that **S3 does not reside within your VPC by default**, which means **the data will go through the public Internet that may result to higher latency**. You can set up a VPC Endpoint for S3 yet still, its latency is greater than that of EBS.
-  - **EFS** : is incorrect because the scenario does not require concurrently-accessible storage for **multiple instances**. Although EFS can provide low latency data access to the EC2 instance as compared with S3, the storage service that can provide **the lowest latency access is still EBS**.
+  - **EBS**는 단일 EC2 인스턴스의 데이터에 대한 지연 시간이 가장 짧은 워크로드에 대한 성능을 제공 할 수 있습니다. 또한 최대 16TB의 EBS 스토리지를 늘리거나 추가 스토리지를위한 새 볼륨을 추가 할 수 있습니다.
+  - **S3** : is incorrect. S3는 가용성과 확장 성이 뛰어나지 만 EBS와 달리 지연 시간이 가장 짧은 데이터 액세스는 제공하지 않습니다. S3는 기본적으로 VPC에 상주하지 않으므로 데이터가 퍼블릭 인터넷을 통과하여 대기 시간이 길어질 수 있습니다. S3에 대해 VPC 엔드 포인트를 설정할 수는 있지만 대기 시간이 EBS의 대기 시간보다 깁니다.
+  - **EFS** : is incorrect. 
 
 - You have an On-Demand EC2 instance with an **attached non-root EBS volume**. There is a scheduled job that creates a snapshot of this EBS volume every midnight at 12 AM when the instance is not used. On one night, there's been a production incident where you need to perform a change on both the instance and on the EBS volume at the same time, when the snapshot is currently taking place.    
 Which of the following scenario is true when it comes to the usage of an EBS volume while the snapshot is in progress?
