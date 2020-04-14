@@ -218,12 +218,12 @@ In this scenario, which type of Amazon EC2 instance is the most cost-effective t
 
 - In Amazon EC2, you can manage your instances from the moment you launch them up to their termination. You can flexibly control your computing costs by changing the EC2 instance state. Which of the following statements is true regarding EC2 billing? (Choose 2)
   - **A1) You will be billed when your Reserved instance is in `terminated` state.**
-    - Take note that Reserved Instances that applied to terminated instances are still billed until the end of their term according to their payment option.
+    - 종료 된 인스턴스에 적용된 예약 인스턴스는 결제 옵션에 따라 기간이 끝날 때까지 청구됩니다.
   - **A2) You will be billed when your On-Demand instance is preparing to hibernate with a `stopping` state**
-    - when the instance state is `stopping`, you will not billed if it is preparing to stop however, you will still be billed if it is just preparing to hibernate.
-  - **You will not be billed when your On-Demand instance is in `pending` state**
-  - **You will not be billed when your Spot instance is preparing to stop with a `stopping` state**
-  - **You will not be billed for any instance usage while an instance is not in the running state** : is incorrect because You can still be billed if your instance is preparing to hibernate with a `stopping` state.
+    - 인스턴스 상태가 '중지'인 경우 중지를 준비중인 경우 요금이 청구되지 않지만 최대 절전 모드를 준비하는 경우 여전히 요금이 청구됩니다.
+  - **온 디맨드 인스턴스가 `pending` 상태 인 경우 요금이 청구되지 않습니다*
+  - **스팟 인스턴스가 `stopping` 상태로 중지 할 준비가되면 요금이 청구되지 않습니다.**
+  - **You will not be billed for any instance usage while an instance is not in the running state** : is incorrect. 인스턴스가 `stopping` 상태로 최대 절전 모드를 준비중인 경우에도 요금이 청구될 수 있습니다.
 
 - You are automating the creation of EC2 instances in your VPC. Hence, you wrote a python script to trigger the Amazon EC2 API to request 50 EC2 instances in a single Availability Zone. However, you noticed that after 20 successful requests, subsequent requests failed.    
 What could be a reason for this issue and how would you resolve it?
@@ -236,10 +236,10 @@ In the shell script, what does the **`revoke-security-group-ingress` command do*
 - You are a Solutions Architect in your company where you are tasked to set up a cloud infrastructure. In the planning, it was discussed that you will need two EC2 instances which should **continuously run for three years**. The CPU utilization of the EC2 instances is also expected to be stable and predictable.    
 Which is the most cost-efficient Amazon EC2 Pricing type that is most appropriate for this scenario?
   - **A) Reserved Instances**
-  - Reserved Instances are recommended for:
-    - Applications with steady state usage
-    - Applications that may require reserved capacity
-    - Customers that can commit to using EC2 over a 1 or 3 year term to reduce their total computing costs
+  - 예약 인스턴스는 다음에 권장됩니다.
+    - 꾸준한 상태 사용 응용 프로그램
+    - 예약 용량이 필요할 수있는 응용 프로그램
+    - 1 년 또는 3 년 동안 EC2를 사용하여 총 컴퓨팅 비용을 절감할 수 있는 고객
 
 - A company is hosting EC2 instances that are on non-production environment and processing non-priority batch loads, which **can be interrupted at any time.**       
 What is the best instance purchasing option which can be applied to your EC2 instances in this case?
@@ -248,10 +248,10 @@ What is the best instance purchasing option which can be applied to your EC2 ins
 - You are using an On-Demand EC2 instance to host a legacy web application that uses an Amazon **Instance Store-Backed AMI**. The web application should be decommissioned as soon as possible and hence, you need to terminate the EC2 instance.    
 When the instance is terminated, what happens to the data on the root volume?
   - **A) Data is automatically deleted**
-  - AMIs are categorized as either **backed by Amazon EBS** or **backed by instance store**.
-    - **backed by Amazon EBS** : the root device for an instance launched from the AMI is an Amazon EBS volume created from an Amazon EBS snapshot
-    - **backed by instance store** : the root device for an instance launched from the AMI is an instance store volume created from a template stored in Amazon S3.
-  - the data on instance store volumes persist only during the life of the instance which means that if the instance is terminated, the data will be automatically deleted.
+  - AMI는 Amazon EBS 또는 인스턴스 스토어를 기준으로 분류됩니다.
+    - **backed by Amazon EBS** : AMI에서 시작한 인스턴스의 루트 디바이스는 Amazon EBS 스냅 샷에서 생성 된 Amazon EBS 볼륨입니다.
+    - **backed by instance store** : AMI에서 시작한 인스턴스의 루트 디바이스는 Amazon S3에 저장된 템플릿에서 생성 된 인스턴스 스토어 볼륨입니다.
+  - 인스턴스 스토어 볼륨의 데이터는 인스턴스 수명 동안 만 지속되므로 인스턴스가 종료되면 데이터가 자동으로 삭제됩니다.
 
 - You have a web application hosted in an On-Demand EC2 instance in your VPC. You are creating a shell script that needs the instance's public and private IP addresses.    
 What is the best way **to get the instance's associated IP addresses** which your shell script can use?
