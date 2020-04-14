@@ -100,19 +100,19 @@
 - **A web application allows customers to upload orders to an s3 bucket. The resulting Amazon S3 events trigger a Lambda function that insets a message to an SQS queues. A single EC2 instance reads messages from the queue, process them, and stores them in a DynamoDB table partitioned by unique order ID. Next month traffic is expected to increase by a factor of 10 and a Solutions Architect is reviewing the architecture for possible scaling problems.    
 Which component is MOST likely to need re-architecting to be able to scale to accommodate the new traffic?**
   - **EC2 instance**
-  - A single EC2 instance will not scale and is a single point of failure in the architecture.
-  - A much better solution would be to have EC2 instances in an Auto Scaling group across 2 availability zones read messages from the queue. The other responses are all managed services that can be configured to scale or will scale automatically.
+  - 단일 EC2 인스턴스는 확장되지 않으며 아키텍처에서 단일 장애 지점입니다.
+  - 훨씬 더 나은 솔루션은 2 개의 가용 영역에서 Auto Scaling 그룹의 EC2 인스턴스가 대기열에서 메시지를 읽도록하는 것입니다. 다른 응답은 확장 또는 자동 확장으로 구성 할 수있는 모든 관리 서비스입니다.
   
 - You have developed a new web application in the US-West-2 Region that requires six Amazon Elastic Compute Cloud (EC2) instances to be running at all times. US-West-2 comprises three Availability Zones (us-west-2a, us-west-2b, and us-west-2c). You need **100 percent fault tolerance**: should any single Availability Zone in us-west-2 become unavailable, the application must continue to run. How would you **make sure 6 servers are ALWAYS available**? NOTE: each answer has 2 possible deployment configurations. Select the answer that gives TWO satisfactory solutions to this scenario.
   - **Solution 1 : 6 instances / 6 instances / 0 instance**
   - **Solution 2 : 3 instances / 3 instances / 3 intstances**
-  - You need to work through each case to find which will provide you with the required number of running instances **even if one AZ is lost**. Hint: always assume that the AZ you lose is the one with the most instances. Remember that the client has stipulated that they MUST have 100% fault tolerance.
+  - **하나의 AZ를 잃어버린 경우에도** 필요한 수의 실행중인 인스턴스를 제공 할 수있는 각 사례를 조사해야합니다. 힌트 : 항상 잃어버린 AZ가 가장 많은 인스턴스라고 가정하십시오. 클라이언트는 반드시 100 % 내결함성을 갖도록 규정했음을 기억하십시오.
 
 - Your company announced that there would be a surprise IT audit on all of the AWS resources being used in the production environment. During the audit activities, it was noted that you are using a combination of **Standard and Scheduled Reserved EC2 instances** in your applications. They argued that you should have used Spot EC2 instances instead as it is cheaper than the Reserved Instance.    
 Which of the following are the characteristics and **benefits** of using these two types of **Reserved EC2 instances**, which you can use as justification? (Choose 2)
   - **Reserved Instances doesn't get interrupted unlike Spot instances in the event that there are not enough unused EC2 instances to meet the demand.**
-  - **You can have capacity reservations that recur on a daily, weekly, or montly basis, with a specified time and duration, for a one-year term through Scheduled Reserved Instances**
-  - Reserved Instances are not physical instances, but rather a billing discount applied to the use of On-Demand Instances in your account. When your computing needs change, you can modify your Standard or Convertible Reserved Instances and continue to take advantage of the billing benefit. You can modify the Availability Zone, scope, network platform, or instance size (within the same instance type) of your Reserved Instance. You can also sell your unused instance on the Reserved Instance Marketplace.
+  - **You can have capacity reservations that recur on a daily, weekly, or monthly basis, with a specified time and duration, for a one-year term through Scheduled Reserved Instances**
+  - 예약 인스턴스는 실제 인스턴스가 아니라 계정에서 온 디맨드 인스턴스 사용에 적용되는 청구 할인입니다. 컴퓨팅 변경이 필요할 경우 표준 또는 가변 예약 인스턴스를 수정하고 청구 혜택을 계속 활용할 수 있습니다. 예약 인스턴스의 가용 영역, 범위, 네트워크 플랫폼 또는 인스턴스 크기 (같은 인스턴스 유형 내)를 수정할 수 있습니다. 예약 인스턴스 마켓 플레이스에서 사용하지 않는 인스턴스를 판매 할 수도 있습니다.
 
 - You have launched a new enterprise application with a web server and a database. You are using a large EC2 Instance with one 500 GB EBS volume to host a relational database. Upon checking the performance, it shows that **write throughput to the database needs to be improved**.    
 Which of the following is the most suitable configuration to help you achieve this requirement? (Choose 2)
@@ -121,36 +121,36 @@ Which of the following is the most suitable configuration to help you achieve th
   - RAID
     - Raid 0 : Striping (하나의 데이터를 여러 드라이브에 분산 저장함으로써 **빠른 입출력**이 가능)
     - Raid 1 : Mirroring (똑같은 데이터를 동일한 용량과 스팩의 다른 디스크에도 저장함으로써 높은 안정성 확보)
-  - Setting up the EC2 instance in a placement group : is incorrect because the placement groups feature is primarily used for **inter-instance communication.**
+  - Setting up the EC2 instance in a placement group : is incorrect배치 그룹 기능은 주로 인스턴스 간 통신에 사용되므로 올바르지 않습니다.
 
 - You are designing a multi-tier web application architecture that consists of a fleet of EC2 instances and an Oracle relational database server. It is required that the database is **highly available** and that you have **full control over its underlying operating system**.    
 Which AWS service will you use for your database tier?
   - **A) Amazon EC2 instances with data replication between two different Availability Zones.**
-  - The Quick Start deploys the Oracle primary database (using the preconfigured, general-purpose starter database from Oracle) on an Amazon EC2 instance in the first Availability Zone. It then sets up a second EC2 instance in a second Availability Zone, copies the primary database to the second instance by using the `DUPLICATE` command, and configures Oracle Data Guard.
-  - **Amazon RDS and Amazon RDS with Multi-AZ deployments** : are both incorrect because the scenario requires you to have access to the underlying operating system of the database server. Remember that Amazon RDS is a managed database service, which means that **Amazon** is the one that **manages the underlying operating system** of the database instance and not you.
+  - Quick Start는 첫 번째 가용 영역의 Amazon EC2 인스턴스에 Oracle 기본 데이터베이스 (Oracle의 사전 구성된 범용 스타터 데이터베이스를 사용)를 배포합니다. 그런 다음 두 번째 가용 영역에 두 번째 EC2 인스턴스를 설정하고`DUPLICATE` 명령을 사용하여 기본 데이터베이스를 두 번째 인스턴스에 복사 한 다음 Oracle Data Guard를 구성합니다.
+  - **Amazon RDS and Amazon RDS with Multi-AZ deployments** : are both incorrect. 시나리오에서 데이터베이스 서버의 기본 운영 체제에 액세스해야하므로 Amazon RDS 및 다중 AZ 배포가 포함 된 Amazon RDS가 모두 올바르지 않습니다. Amazon RDS는 관리형 데이터베이스 서비스이므로 당신이 아니라 Amazon이 데이터베이스 인스턴스의 기본 운영 체제를 관리합니다.
 
 - You are managing a suite of applications in your on-premises network which are using trusted IP addresses that your partners and customers have whitelisted in their firewalls. There is a requirement to **migrate these applications** to AWS **without** requiring your partners and customers to **change their IP address whitelists.**      
 Which of the following is the most suitable solution to properly migrate your applications?
   - **A) Create a Route Origin Authorization(ROA) then one done, provision and advertise your whitelisted IP address range to your AWS account.**
-  - Setting up a list of Elastic IP addresses to map the whitelisted IP address range in your on-premises network :  is incorrect because you cannot map the IP address of your on-premises network, which you are migrating to AWS, to an EIP address of your VPC. To satisfy the requirement, you must authorize Amazon to advertise the address range that you own.
+  - Setting up a list of Elastic IP addresses to map the whitelisted IP address range in your on-premises network :  is incorrect. AWS로 마이그레이션하는 온 프레미스 네트워크의 IP 주소를 VPC의 EIP 주소에 매핑 할 수 없으므로 올바르지 않습니다. 요구 사항을 충족 시키려면 Amazon이 소유한 주소 범위를 광고(advertise)하도록 승인해야합니다.
 
 - You have a requirement to make sure that an On-Demand EC2 instance can only be accessed from this IP address (110.238.98.71) via an **SSH** connection. Which configuration below will satisfy this requirement?
   - **A) Security Group Inbound Rule : Protocol - TCP. Port Range-22, Source 110.238.98.71/32**
-  - SSH protocol uses TCP and port 22. The requirement is to only allow the individual IP of the client and not the entire network. Therefore, the proper CIDR notation should be used. The /32 denotes one IP address and the /0 refers to the entire network.
+  - SSH 프로토콜은 TCP 및 포트 22를 사용합니다. 전체 네트워크가 아닌 클라이언트의 개별 IP 만 허용해야합니다. 따라서 올바른 CIDR 표기법을 사용해야합니다. / 32는 하나의 IP 주소를 나타내고 / 0은 전체 네트워크를 나타냅니다.
 
 - You are a Solutions Architect for a leading Enterprise Resource Planning (ERP) solutions provider and you are instructed to design and set up the architecture of your ERP application in AWS. Your manager instructed you to **avoid using fully-managed AWS services** and instead, only use specific services which allows you to access the underlying operating system for the resource. This is to allow the company to have a much better control of the underlying resources that their systems are using in the AWS cloud.       
 Which of the following services should you choose to satisfy this requirement? (Choose 2)
   - **A) EMR, EC2**
-  - **Amazon EC2** : provides you access to the operating system of the instance that you created.
-  - **Amazon EMR** : provides you a managed Hadoop framework that makes it easy, fast, and cost-effective to process vast amounts of data across dynamically scalable Amazon EC2 instances. You can access the operating system of these EC2 instances that were created by Amazon EMR.
-  - **Amazon Athena, DynamoDB, Amazon Neptune** : are incorrect as these are managed services, which means that **AWS manages the underlying operating system** and other server configurations that these databases use.
+  - **Amazon EC2** : 생성 한 인스턴스의 운영 체제에 대한 액세스를 제공합니다.
+  - **Amazon EMR** : 동적으로 확장 가능한 Amazon EC2 인스턴스에서 방대한 양의 데이터를 쉽고 빠르고 비용 효율적으로 처리 할 수있는 관리 형 Hadoop 프레임 워크를 제공합니다. Amazon EMR에서 생성 한 EC2 인스턴스의 운영 체제에 액세스 할 수 있습니다.
+  - **Amazon Athena, DynamoDB, Amazon Neptune** : are incorrect. 관리되는 서비스이므로 올바르지 않습니다. 즉, AWS가 이러한 데이터베이스에서 사용하는 기본 운영 체제 및 기타 서버 구성을 관리합니다.
 
 - You are working for a software company that has moved a legacy application from an on-premises data center to the cloud. The legacy application **requires a static IP address hard-coded into the backend**, which blocks you from using an Application Load Balancer.    
 Which steps would you take to apply **high availability and fault tolerance** to this application **without ELB**? (Choose 2)
   - **Solution 1: Assign an Elastic IP address to the instance**
   - **Solution 2: Write a script that checks the health of the EC2 instance. If the instance stops responding, the script will switch the elastic IP address to a standby EC2 instance.**
   - ![EIP_as_VIP](./image/EIP_as_VIP.png)    
-  - **Launching the instance using Auto Scaling which will deploy the instance again if it becomes unhealthy** : is incorrect as even though the Auto Scaling group provides high availability and scalability, it still depends on ELB which is not available in this scenario. Take note that you need to have a static IP address which can be in the form of an Elastic IP. Although an Auto Scaling group can scale out if one of the EC2 instances became unhealthy, you still cannot directly assign an EIP to an Auto Scaling group. In addition, you are only limited to use EC2 instance status checks for your Auto Scaling group if you do not have an ELB which can provide you the actual health check of your application (using its port), and not just the health of the EC2 instance.
+  - **Launching the instance using Auto Scaling which will deploy the instance again if it becomes unhealthy** : is incorrect. Auto Scaling 그룹은 고 가용성 및 확장 성을 제공하지만이 시나리오에서는 사용할 수없는 ELB에 여전히 의존합니다. 탄력적 IP 형태 일 수있는 고정 IP 주소가 있어야합니다. EC2 인스턴스 중 하나가 비정상 상태가되면 Auto Scaling 그룹이 확장 될 수 있지만 여전히 Auto Scaling 그룹에 EIP를 직접 할당 할 수는 없습니다. 또한 EC2 인스턴스의 상태뿐만 아니라 애플리케이션의 실제 상태 확인 (포트 사용)을 제공 할 수있는 ELB가 없는 경우 Auto Scaling 그룹에 대해 EC2 인스턴스 상태 확인만 사용할 수 있습니다.
 
 - You work for a leading university as an AWS Infrastructure Engineer and also as a professor to aspiring AWS architects. As a way to familiarize your students with AWS, you gave them a project to host their applications to an EC2 instance. One of your students created an instance to host their online enrollment system project but is having a hard time **connecting to their newly created EC2 instance**. Your students have explored all of the troubleshooting guides by AWS and narrowed it down to login issues.       
 Which of the following can you use to **log into an EC2 instance**?
@@ -165,13 +165,13 @@ What is the solution for this issue and what is the root cause?
 Which EC2 feature will help you achieve your requirements?
   - **A) Instance metadata**
   - **metadata vs. userdata**
-    - **metadata** : the data about your instance that you can use to **configure or manage the running instance**. You can get the **instance ID, public keys, public IP address**
-    - **userdata** : perform common automated configuration tasks and **run scripts after the instance starts**.
+    - **metadata** : 실행중인 인스턴스를 구성하거나 관리하는 데 사용할 수있는 인스턴스 데이터. **인스턴스 ID, 공개 키, 공개 IP 주소**를 얻을 수 있습니다
+    - **userdata** : 일반적인 자동 구성 작업을 수행하고 **인스턴스가 시작된 후 스크립트를 실행**합니다.
 
 - You are an AWS Network Engineer working for a utilities provider where you are managing a monolithic application with EC2 instance using a Windows AMI. You want to implement a cost-effective and highly available architecture for your application where you have an exact replica of the Windows server that is in a running state. If the primary instance terminates, you can attach the ENI to the standby secondary instance which allows the traffic flow to resume within a few seconds.    
 When it comes to the **ENI attachment to an EC2 instance**, what does **'warm attach'** refer to?
   - **A) attaching an ENI to an instance when it is stopped**
-  - **An elastic network interface (ENI)** : is a logical networking component in a VPC that represents a **virtual network card**. You can attach a network interface to an EC2 instance in the following ways:
+  - **An elastic network interface (ENI)** : ENI는 가상 네트워크 카드를 나타내는 VPC의 논리적 네트워킹 구성 요소입니다. 다음과 같은 방법으로 EC2 인스턴스에 네트워크 인터페이스를 연결할 수 있습니다:
     - When it's **running (hot attach)**
     - When it's **stopped (warm attach)**
     - When the instance is **being launched (cold attach)**.
@@ -179,13 +179,13 @@ When it comes to the **ENI attachment to an EC2 instance**, what does **'warm at
 - You are **unable to connect to your new EC2 instance via SSH from your home computer**, which you have recently deployed. However, you were **able to successfully access other existing instances in your VPC** without any issues.       
 Which of the following should you check and possibly correct to restore **connectivity**?
   - **A) Configure the Security Group of the EC2 instance to permit ingress traffic over port 22 from your IP**
-  - When connecting to your EC2 instance via SSH, you need to ensure that port 22 is allowed on the security group of your EC2 instance.
-  - **NACL** : is incorrect because Network ACL is much suitable to control the traffic that goes in and out of your **entire VPC** and **not just on one EC2 instance**.
+  - SSH를 통해 EC2 인스턴스에 연결하는 경우 EC2 인스턴스의 보안 그룹에서 포트 22가 허용되는지 확인해야합니다.
+  - **NACL** : is incorrect. 네트워크 ACL은 하나의 EC2 인스턴스가 아니라 전체 VPC로 들어오고 나가는 트래픽을 제어하는 데 매우 적합합니다.
   
 - You are working as a Solutions Architect for an aerospace manufacturer which heavily uses AWS. They are running a cluster of multi-tier applications that spans multiple servers for your wind simulation model and how it affects your state-of-the-art wing design. Currently, you are experiencing a slowdown in your applications and upon further investigation, it was discovered that it is due to latency issues.     
 Which of the following EC2 features should you use to optimize performance for a **compute cluster that requires low network latency**?
   - **A) Placement Groups**
-  - **Multiple Availability Zones** : is incorrect because they are mainly used for achieving **high availability** when one of the AWS AZ’s goes down, and are not used for low network latency. Use Spread Placement Groups instead for multiple availability zones.
+  - **Multiple Availability Zones** : is incorrect. 다중 가용 영역은 주로 AWS AZ 중 하나가 다운 될 때 고가용성을 달성하는 데 사용되며 낮은 네트워크 지연시간을 위해 사용하지 않습니다. 여러 가용 영역에 대신 스프레드 배치 그룹을 사용하십시오.
 
 - You are working for a large financial firm and you are instructed to set up a Linux bastion host. It will allow access to the Amazon EC2 instances running in their VPC. For security purposes, **only the clients connecting from the corporate external public IP address 175.45.116.100 should have SSH access to the host**.    
 Which is the best option that can meet the customer's requirement?
@@ -195,26 +195,26 @@ Which is the best option that can meet the customer's requirement?
 What cost-effective steps will you take in this circumstance? (Choose 2)
   - **A1) Terminate the Reserved instances as soon as possible to avoid getting billed at the on-demand price when it expires.**
   - **A2) Go to the AWS Reserved Instance Marketplace and sell the Reserved instances.**
-  - **Stopping the Reserved instances as soon as possible** : is incorrect because a stopped instance can still be restarted. 
-
+  - **Stopping the Reserved instances as soon as possible** : is incorrect. 중지 된 인스턴스는 다시 시작될 수 있음.
+  
 - You are working for a FinTech startup as their AWS Solutions Architect. You deployed an application on different EC2 instances with Elastic IP addresses attached for easy DNS resolution and configuration. These servers are only accessed from 8 AM to 6 PM and can be stopped from 6 PM to 8 AM for cost efficiency using Lambda with the script that automates this based on tags.       
 Which of the following will occur **when an EC2-VPC instance with an associated Elastic IP is stopped and started**? (Choose 2) 
   - **A1) All data on the attached instance-store devices will be lost.**
   - **A2) The underlying host for the instance is possibly changed.**
-  - Since **only EBS-backed instances can be stopped and restarted**, it is implied that the instance is EBS-backed. If you stopped an EBS-backed EC2 instance, the volume is preserved but the data in any attached Instance store volumes will be erased. 
-  - its Elastic IP address is disassociated from the instance if it is an EC2-Classic instance. Otherwise, if it is an EC2-VPC instance, the Elastic IP address remains associated.
-  - Take note that an EBS-backed EC2 instance can have attached Instance Store volumes.
+  - EBS 지원 인스턴스 만 중지했다가 다시 시작할 수 있으므로, 시나리오의 인스턴스가 EBS 지원됨(EBS-backed)을 의미합니다. EBS 지원 EC2 인스턴스를 중지 한 경우 볼륨이 유지되지만 연결된 인스턴스 스토어 볼륨의 데이터는 지워집니다. 
+  - EC2-Classic 인스턴스인 경우 탄력적 IP 주소가 인스턴스와 연결 해제됩니다. 반면, EC2-VPC 인스턴스인 경우 탄력적 IP 주소는 연결된 상태로 유지됩니다.
+  - EBS 지원 EC2 인스턴스에는 인스턴스 스토어 볼륨이 연결되어있을 수 있습니다.
 
 - Your IT Manager instructed you to set up a **bastion host** in the cheapest, most secure way, and that **you should be the only person that can access it via SSH**.      
 Which of the following steps would satisfy your IT Manager's request?
   - **A) Set up a small EC2 instance and a security group which only allows access on port 22 via your IP address**
-  - **bastion host** is a server whose purpose is to provide access to a private network from an external network, such as the Internet. Because of its exposure to potential attack, a bastion host must minimize the chances of penetration.
+  - **bastion host** 는 인터넷과 같은 외부 네트워크에서 개인 네트워크에 대한 액세스를 제공하는 서버입니다. 요새 공격은 잠재적 공격에 노출되어 있으므로 침투 가능성을 최소화해야합니다.
 
 - The media company that you are working for has a video transcoding application running on Amazon EC2. Each EC2 instance polls a queue to find out which video should be transcoded, and then runs a transcoding process. **If this process is interrupted, the video will be transcoded by another instance based on the queuing system**. This application has a large backlog of videos which need to be transcoded. Your manager would like to reduce this backlog by adding more EC2 instances, however, **these instances are only needed until the backlog is reduced.**    
 In this scenario, which type of Amazon EC2 instance is the most cost-effective type to use?
   - **A) Spot instances**
-  - You require an instance that will be used not as a primary server but as a spare compute resource. These instances should also be terminated once the backlog has been significantly reduced. if the current process is interrupted, the video can be transcoded by another instance based on the queuing system. This means that the application can gracefully handle an unexpected termination of an EC2 instance
-  - Amazon EC2 Spot instances are spare compute capacity in the AWS cloud available to you at steep discounts compared to On-Demand prices. Take note that there is no "bid price" anymore for Spot EC2 instances since March 2018. You simply have to set your "maximum price" instead.
+  - 기본 서버가 아니라 예비 컴퓨팅 리소스로 사용될 인스턴스가 필요합니다. 백 로그가 크게 줄어든 후에는 이러한 인스턴스를 종료해야합니다. 현재 프로세스가 중단되면 대기열 시스템을 기반으로 다른 인스턴스에서 비디오를 코드 변환 할 수 있습니다. 이는 애플리케이션이 EC2 인스턴스의 예기치 않은 종료를 정상적으로 처리 할 수 있음을 의미합니다.
+  - Amazon EC2 스팟 인스턴스는 온 디맨드 요금에 비해 대폭 할인 된 가격으로 AWS 클라우드에서 여분의 컴퓨팅 용량을 제공합니다. 2018 년 3 월 이후로 스팟 EC2 인스턴스에는 더 이상 "입찰가"가 없습니다. 대신 "최대 가격"을 설정하기 만하면됩니다.
 
 - In Amazon EC2, you can manage your instances from the moment you launch them up to their termination. You can flexibly control your computing costs by changing the EC2 instance state. Which of the following statements is true regarding EC2 billing? (Choose 2)
   - **A1) You will be billed when your Reserved instance is in `terminated` state.**
