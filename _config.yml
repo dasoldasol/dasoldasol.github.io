@@ -22,7 +22,7 @@ subtitle                 : # site tagline that appears below site title in masth
 name                     : "Dasol Seo"
 description              : "데이터 분석을 지향하는 데이터 엔지니어"
 url                      : "https://dasoldasol.github.io"
-baseurl                  : "/blog"
+baseurl                  :
 repository               : "dasoldasol/dasoldasol.github.io"
 teaser                   : #"/assets/images/KakaoTalk_20200922_160045754.jpg"
 logo                     : #"/assets/images/KakaoTalk_20200922_160045754.jpg"
