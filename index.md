@@ -7,7 +7,7 @@ Python(+Tensorflow, Pytorch), AWS, Spring Boot 를 이용해 Data ETL 및 분석
 - **퍼니웍** 데이터 분석팀 (2017.08 ~ 2018.07) 
 
 ### Strength
-- **IPTV 추천 시스템 개발** 
+- **추천 시스템 개발** 
   - 실시간 로그데이터 (일평균 1.8억건) 분석에 기반한 추천 시스템 개발 (python, R, logpresso)
   - 실시간 로그데이터(일평균 1.8억건)  분석에 기반한 추천 시스템 성과분석 모듈 개발 (python, ELK Stack)
   - 음성 및 자연어 기반 솔루션 개발 (NLU, spring boot)
