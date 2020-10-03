@@ -12,22 +12,22 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 remote_theme             : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
-locale                   : "en-US"
+locale                   : "ko-KR"
 title                    : "Dasol Seo"
-title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+title_separator          : "&#124;"
+subtitle                 : "Version 1.0"
 name                     : "Dasol Seo"
 description              : "데이터 분석을 지향하는 데이터 엔지니어"
 url                      : "https://dasoldasol.github.io"
 baseurl                  :
 repository               : "dasoldasol/dasoldasol.github.io"
-teaser                   : #"/assets/images/KakaoTalk_20200922_160045754.jpg"
-logo                     : #"/assets/images/KakaoTalk_20200922_160045754.jpg"
+teaser                   : "/assets/images/share.png"
+logo                     : "/assets/images/share.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default)
+breadcrumbs            : true # true, false (default)
 words_per_minute         : 200
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
@@ -109,9 +109,8 @@ analytics:
 author:
   name             : "서다솔"
   avatar           : "/assets/images/KakaoTalk_20200922_160045754.jpg"
-  bio              : "데이터 분석을 지향하는 데이터 엔지니어"
+  bio              : "데이터 분석을 지향하는 <br> 데이터 엔지니어"
   location         : "Seoul, South Korea"
-  email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -214,7 +213,7 @@ sass:
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins (previously gems:)
@@ -247,9 +246,9 @@ whitelist:
 category_archive:
   type: liquid
   path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
+#tag_archive:
+#  type: liquid
+#  path: /tags/
 # https://github.com/jekyll/jekyll-archives
 # jekyll-archives:
 #   enabled:
@@ -280,7 +279,20 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
+      read_time: false
       comments: # true
       share: true
       related: true
+      show_date: false
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      read_time: false
+      comments: # true
+      share: true
+      related: true
+      show_date: false
