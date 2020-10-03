@@ -1,5 +1,5 @@
 ---
-title: "Portfolio"
+title: ""
 permalink: /about/
 layout: posts
 ---
