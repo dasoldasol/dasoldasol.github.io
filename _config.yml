@@ -295,4 +295,9 @@ defaults:
       comments: # true
       share: true
       related: true
+<<<<<<< HEAD
       show_date: false
+=======
+
+theme: jekyll-theme-minimal
+>>>>>>> 9e791dc24fa3c98aff7df3be3bde4d04959c438b
