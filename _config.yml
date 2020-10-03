@@ -296,6 +296,5 @@ defaults:
       share: true
       related: true
       show_date: false
-=======
 
 theme: jekyll-theme-minimal
