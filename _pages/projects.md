@@ -4,7 +4,6 @@ excerpt: "보유기술 및 프로젝트 경력 기술"
 toc: true
 toc_sticky: true
 permalink: /project/
-modified_date: 2020-10-06 09:36:28 +0900
 ---
 ## 보유기술
 **Language** : python, R, Java    

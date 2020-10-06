@@ -22,6 +22,7 @@ Python(+Tensorflow, Pytorch), AWS, Spring Boot 를 이용해 Data ETL 및 분석
   - 에너지기술평가원 미세먼지 iot 데이터 전처리 및 분석 솔루션 개발(AWS, python)
   - 차량용 인포 iot 센서데이터 흡연 탐지 시스템 개발(AWS, python, spring boot)
   - 블랙박스 사고 탐지 object detection 시스템 연구 개발(python opencv)
+- [프로젝트 경력 기술 바로가기](https://dasoldasol.github.io/project/)
 
 ### Education
 
