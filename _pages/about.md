@@ -1,7 +1,8 @@
 ---
 title: ""
 permalink: /about/
-layout: posts
+toc: true
+toc_sticky: true
 ---
 
 ### 데이터 분석가를 지향하는 데이터 엔지니어 서다솔

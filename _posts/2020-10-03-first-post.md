@@ -1,8 +1,10 @@
 ---
-title: "보유기술 및 프로젝트 경험"
-date: 2020-10-03 18:13:28 +0900
+title: "프로젝트 경력"
+excerpt: "보유기술 및 프로젝트 경력 기술"
+toc: true
+toc_sticky: true
 permalink: /project/
-layout: posts
+modified_date: 2020-10-06 09:36:28 +0900
 ---
 ## 보유기술
 **Language** : python, R, Java    
