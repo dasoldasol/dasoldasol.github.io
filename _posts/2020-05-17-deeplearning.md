@@ -95,4 +95,3 @@ modified_date: 2020-05-17 09:36:28 +0900
 - Van Hasselt, Hado, Arthur Guez, and David Silver. "Deep reinforcement learning with double q-learning." Thirtieth AAAI conference on artificial intelligence. 2016.    https://www.aaai.org/ocs/index.php/AAAI/AAAI16/paper/viewPaper/12389
 - Wang, Z., Schaul, T., Hessel, M., Van Hasselt, H., Lanctot, M., & De Freitas, N. (2015). Dueling network architectures for deep reinforcement learning. arXiv preprint arXiv:1511.06581.    https://arxiv.org/abs/1511.06581
 - Bellemare, Marc G., Will Dabney, and Rémi Munos. "A distributional perspective on reinforcement learning." Proceedings of the 34th International Conference on Machine Learning-Volume 70. JMLR. org, 2017.    https://arxiv.org/abs/1707.06887
-
