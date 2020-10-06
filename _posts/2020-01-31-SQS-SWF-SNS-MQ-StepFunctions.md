@@ -9,7 +9,7 @@ modified_date: 2020-04-08 09:36:28 +0900
 ---
 ## SQS
 ### Features
-![sqs-concept](assets/images/image/sqs.png)
+![sqs-concept](https://dasoldasol.github.io/assets/images/image/sqs.png)
 - A Web Service that gives you access to a message queue that can be used to store messages while waiting for a computer to process them
 - A Queue is a **temporary repository** for messages that are awaiting processing
 - Using SQS, you can **decouple the components** of an application so they run independently.
