@@ -1,11 +1,11 @@
 ---
 title: "serverless framework로 AWS에 데이터 파이프라인 구축하기"
-excerpt: 'serverless framework로 '
+excerpt: 'serverless framework로 AWS 데이터 파이프라인 구축 및 배포를 한번에 해보자'
 toc: true
 toc_sticky: true
 categories:
   - AWS
-  - serverless framework
+  - serverless
 modified_date: 2020-09-10 09:36:28 +0900
 ---
 ## serverless framework를 쓰게된 이유

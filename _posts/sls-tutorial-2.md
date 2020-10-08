@@ -79,6 +79,7 @@ create ........................ Create new Serverless service
 ```shell script
 sls create -t {원하는 템플릿} -p {원하는 프로젝트 이름}
 ```
+    
 나는 python으로 돌아가는 Lambda 함수를 만드려고 하니까 "aws-python3" 템플릿으로 프로젝트를 생성한다.         
 ```shell script
 sls create -t aws-python3 -p srcr-etl
@@ -132,7 +133,8 @@ functions:
 ```
     
 default로 있는 handler.py는 다음과 같이 되어있다.    
-```Python
+    
+```python
 import json
 
 
@@ -167,13 +169,17 @@ sls invoke local --function hello
 ```shell script
 sls deploy
 ```
-![deploy-image](https://dasoldasol.github.io/assets/images/image/2020-09-10-2.png)    
+![deploy-image](https://dasoldasol.github.io/assets/images/image/2020-09-10-2.png)       
+    
 Service Information에서 endpoints 항목에 GET method에 대한 url이 표시되었다. 이 url을 클릭하면     
+    
 ![page-image](https://dasoldasol.github.io/assets/images/image/2020-09-10-3.png)
+    
 잘 배포된 것을 확인할 수 있다. 
 
 ### 5.3 AWS에서 배포된 Lambda 함수 확인하기 
-AWS 콘솔에서 Lambda 서비스에 들어가보면, serverless 프레임워크에서 배포된 Lambda 함수를 확인할 수 있다.     
+AWS 콘솔에서 Lambda 서비스에 들어가보면, serverless 프레임워크에서 배포된 Lambda 함수를 확인할 수 있다.
+         
 ![lambda-image](https://dasoldasol.github.io/assets/images/image/2020-09-10-4.png)     
      
 이제 serverless 프레임워크 사용을 위한 준비가 끝났다. 
