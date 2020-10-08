@@ -6,9 +6,9 @@ toc_sticky: true
 categories:
   - AWS
   - serverless
-layout: post
 modified_date: 2020-09-10 09:36:28 +0900
 ---
+
 ## serverless framework를 쓰게된 이유
 기존에는 open API를 통해 크롤링하는 python 코드를 작성해서 AWS Lambda 콘솔에서 직접 적용했다. 문제는.. 
 - 파이썬 자체 패키지를 쓰려면 패키징을 해서 zip파일로 만들어 AWS Lambda 콘솔에서 업로드 해야함 
