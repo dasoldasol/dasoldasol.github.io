@@ -9,8 +9,8 @@ modified_date: 2020-08-26 09:36:28 +0900
 ---
 
 ## 목적 
-Tableau의 대시보드를 신뢰할 수 있는 인증을 거친 사용만 볼 수 있도록 SSO 토큰을 발급한다. 여기서는 spring boot로 GET 요청시 SSO 토큰을 발급하는 api를 개발한다.     
-/tableau/v1/dashboards/tableau 로 GET 요청 시 SSO 토큰을 발급한다.
+Tableau의 대시보드를 신뢰할 수 있는 인증을 거친 사용자만 볼 수 있도록 SSO 토큰을 발급한다. 여기서는 spring boot로 GET 요청시 SSO 토큰을 발급하는 api를 개발한다.     
+/tableau/v1/dashboards/tableau 로 GET 요청 시 SSO 토큰을 발급하는 API를 구현한다.
 
 ## 소스 
 ### Config
