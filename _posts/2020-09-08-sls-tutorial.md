@@ -6,6 +6,7 @@ toc_sticky: true
 categories:
   - AWS
   - serverless
+layout: post
 modified_date: 2020-09-10 09:36:28 +0900
 ---
 ## serverless framework를 쓰게된 이유
