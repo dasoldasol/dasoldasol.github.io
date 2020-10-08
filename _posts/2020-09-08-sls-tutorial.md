@@ -17,9 +17,10 @@ modified_date: 2020-09-10 09:36:28 +0900
 
 ## 목표
 - 네이버 밴드 API로 크롤링하는 python 코드를 Lambda 함수로 작성해서 결과 csv를 S3로 저장하고, S3에 저장 즉시 이벤트 트리거링을 통해 MySQL 데이터베이스에 저장되도록 한다.    
+    
   ![etl-architecture](https://dasoldasol.github.io/assets/images/image/2020-09-10-archi.png)    
       
 - 필요 AWS 설정(권한, 정보)을 serverless 프레임워크를 이용하여 하나의 yml파일로 관리하고 배포하도록 한다. 
     
     
-다음 편 : [serverless framework 시작하기](https://dasoldasol.github.io/_posts/2020-09-10-sls-tutorial-2.md)
+다음 편 : [serverless framework 시작하기](https://dasoldasol.github.io/aws/serverless/sls-tutorial-2/)
