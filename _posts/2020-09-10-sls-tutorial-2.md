@@ -5,7 +5,7 @@ toc: true
 toc_sticky: true
 categories:
   - AWS
-  - serverless framework
+  - serverless
 modified_date: 2020-09-10 10:36:28 +0900
 ---
 ## 목표 
@@ -84,18 +84,20 @@ sls create -t aws-python3 -p srcr-etl
 ```
 
 IDE(IntelliJ 사용)에서 확인해보니 프로젝트가 생성되었다.     
-![image]()    
+![image](https://dasoldasol.github.io/assets/images/image/2020-09-10-1.png)    
 serverless.yml과 handler.py로 구성되어있다. serverless.yml은 환경설정, handler.py는 실행함수파일이라고 일단 생각하자. 
 
 ## 4. AWS 연동하기 
 배포를 위해 serverless 프레임워크와 AWS를 연동해보자. 
 
 ### 4.1 AWS 권한 설정 
+```
 - AWS 콘솔에서 IAM 서비스 클릭 
 - 탭에서 Users 탭 클릭 
 - Add User(사용자 추가) 클릭 
 - 액세스 유형 : [ 프로그래밍 방식 액세스 ] 선택 
-- 권한 : AdministratorAccess
+- 권한 : AdministratorAccess  
+```  
 위의 과정을 거치고 나면 액세스키와 비밀액세스키를 확인할 수 있다. 두 키를 잘 복사하자. download credential을 누르면 csv파일도 받을 수 있다. permission을 액세스 유형에 맞게 수정 가능 하지만 지금은 admin으로..   
 
 ### 4.2 AWS 액세스 등록 
@@ -129,7 +131,7 @@ functions:
 ```
     
 default로 있는 handler.py는 다음과 같이 되어있다.    
-```python
+```Python
 import json
 
 
@@ -164,13 +166,13 @@ sls invoke local --function hello
 ```shell script
 sls deploy
 ```
-![deploy-image]()    
+![deploy-image](https://dasoldasol.github.io/assets/images/image/2020-09-10-2.png)    
 Service Information에서 endpoints 항목에 GET method에 대한 url이 표시되었다. 이 url을 클릭하면     
-![page-image]()
+![page-image](https://dasoldasol.github.io/assets/images/image/2020-09-10-3.png)
 잘 배포된 것을 확인할 수 있다. 
 
 ### 5.3 AWS에서 배포된 Lambda 함수 확인하기 
 AWS 콘솔에서 Lambda 서비스에 들어가보면, serverless 프레임워크에서 배포된 Lambda 함수를 확인할 수 있다.     
-![lambda-image]     
+![lambda-image](https://dasoldasol.github.io/assets/images/image/2020-09-10-4.png)     
      
 이제 serverless 프레임워크 사용을 위한 준비가 끝났다. 
