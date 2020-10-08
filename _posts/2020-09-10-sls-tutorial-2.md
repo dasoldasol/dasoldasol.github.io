@@ -1,5 +1,5 @@
 ---
-title: "[serverless] serverless framework 시작하기"
+title: "serverless framework 시작하기"
 excerpt: 'serverless framework를 설치하고, AWS와 연결해보자 '
 toc: true
 toc_sticky: true
@@ -8,7 +8,7 @@ categories:
   - serverless
 modified_date: 2020-09-10 10:36:28 +0900
 ---
-이전편 : [serverless framework로 AWS에 데이터 파이프라인 구축하기](https://dasoldasol.github.io/_posts/2020-09-10-sls-tutorial.md)
+이전편 : [serverless framework로 AWS에 데이터 파이프라인 구축하기](https://github.com/dasoldasol/dasolseo.github.io/blob/master/_posts/2020-09-10-sls-tutorial.md)
 ## 목표 
 serverless framework를 설치하고, AWS와 연동해보자. 
 
@@ -136,7 +136,6 @@ default로 있는 handler.py는 다음과 같이 되어있다.
     
 ```python
 import json
-
 
 def hello(event, context):
     body = {
