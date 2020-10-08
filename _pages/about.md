@@ -29,7 +29,3 @@ Python(+Tensorflow, Pytorch), AWS, Spring Boot 를 이용해 Data ETL 및 분석
 - **성균관대학교** 공학석사 데이터사이언스전공 과정 (2020.03 ~ )
 - [NCS]응용SW엔지니어 및 DB엔지니어 과정 (2017.01 ~ 2018.08)
 - **인하대학교** 경제학부 경제학전공 4년 장학생 (2011.03 ~ 2016.02)
-
-
-### Contact
-contact Dasol Seo email : ssolphanes@naver.com
