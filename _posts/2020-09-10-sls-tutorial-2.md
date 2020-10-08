@@ -6,9 +6,9 @@ toc_sticky: true
 categories:
   - AWS
   - serverless
-layout: post
 modified_date: 2020-09-10 10:36:28 +0900
 ---
+
 이전편 : [serverless framework로 AWS에 데이터 파이프라인 구축하기](https://dasoldasol.github.io/aws/serverless/sls-tutorial/)
 ## 목표 
 serverless framework를 설치하고, AWS와 연동해보자. 
