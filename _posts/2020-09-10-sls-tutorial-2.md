@@ -176,7 +176,7 @@ def hello(event, context):
 ### 5.2 배포
 먼저 배포 없이 함수가 작동하는지 테스트를 해보자. serverless 프레임워크에서는 배포를 하지 않고도 따로 함수를 테스트할 수 있다.      
     
-```shell script
+```
 sls invoke local --function hello 
 ```
     
