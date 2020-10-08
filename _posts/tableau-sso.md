@@ -52,7 +52,7 @@ public class ReportConfiguration {
 package com.dsseo.tableau.api.report.domain.controller;
 
 import com.dsseo.tableau.api.report.configuration.ReportConfiguration;
-import com.dsseo.tableau.api.report.domain.service.ReportService;
+import com.dsseo.tableau.api.report.domain.service.TableauService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -70,7 +70,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class TableauController {
-    private final ReportService reportService;
+    private final TableauService tableauService;
     private final ReportConfiguration reportConfig;
     
     //태블로 리포트 토큰 생성
@@ -80,7 +80,7 @@ public class TableauController {
         String TABLEAU_SSO_HOST = reportConfig.getHost();
         String TABLEAU_SSO_USERNAME = reportConfig.getUsername();
 
-        Map<String, String> token = reportService.getTableauToken(TABLEAU_SSO_HOST, TABLEAU_SSO_USERNAME);
+        Map<String, String> token = tableauService.getTableauToken(TABLEAU_SSO_HOST, TABLEAU_SSO_USERNAME);
         return ResponseEntity.ok().body(token);
     }
 }
@@ -137,3 +137,9 @@ public class TableauServiceImpl implements TableauService{
     }
 }
 ```
+    
+## 결과 확인
+postman에서 /tableau/v1/dashboards/tableau 로 GET 요청을 해서, token이 발급되는지 확인한다.     
+이 token은 frontend에서 신뢰할 수 있는 인증을 받은 사용자만 View 페이지를 보여주도록 설정할 수 있게 한다. 
+    
+![postman-image](https://dasoldasol.github.io/assets/images/image/2020-08-26-09-33-42.png)
