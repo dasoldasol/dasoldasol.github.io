@@ -20,3 +20,6 @@ modified_date: 2020-09-10 09:36:28 +0900
   ![etl-architecture](https://dasoldasol.github.io/assets/images/image/2020-09-10-archi.png)    
       
 - 필요 AWS 설정(권한, 정보)을 serverless 프레임워크를 이용하여 하나의 yml파일로 관리하고 배포하도록 한다. 
+    
+    
+다음 편 : [serverless framework 시작하기](https://dasoldasol.github.io/_posts/2020-09-10-sls-tutorial-2.md)
