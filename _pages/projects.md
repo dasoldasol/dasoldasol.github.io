@@ -13,7 +13,7 @@ permalink: /project/
 **Environment** : AWS, Linux, Windows     
 
 ## 프로젝트
-### 실시간 추천 시스템 개발
+### 실시간 추천 시스템 모델링 및 개발 
 **기간** : 2018.01 ~ 2019.09    
 **목적** : 실시간 로그 분석을 통한 상품 선택 망설 고객 도출 및 추천 캠페인 수행    
 **대상 데이터** : 일평균 12만 고객의 1억 8천만건 행동 로그 데이터    
@@ -26,8 +26,10 @@ permalink: /project/
 <span style="color:navy">**추천 시스템 성과분석 대시보드 개발(2019.01~2019.09)**</span>
 - 성과분석 지표 및 일배치 성과분석 모델 개발 (python, ElasticSearch, Logstash)
 - 성과분석 대시보드 개발(Kibana)
+    
+**주요 성과** : IPTV 구매 성과 20% 향상, 일평균 1.8억건 실시간 로그 시스템 개발
 
-### 실시간 흡연 탐지 시스템 개발 
+### 실시간 흡연 탐지 시스템 모델링 및 개발
 **기간** : 2020.03 ~ 2020.09    
 **목적** : 실시간 차량 공기질 데이터 분석을 통한 흡연 탐지     
 **대상 데이터** : 월평균 10만건 렌트카 차량 공기질 데이터    
@@ -35,7 +37,43 @@ permalink: /project/
 - ETL 인터페이스 및 탐지 룰 일배치 API 개발 (python, NGrinder)
 - 실시간 흡연 탐지 이벤트 쿼리 개발(logpresso based on Splunk)
 - 대시보드 임베딩 API 개발(Tableau, Spring boot, java)
-- 실시간 흡연 탐지 룰 개발 및 백서 작성(sklearn)
+- 실시간 흡연 탐지 룰 개발 및 백서 작성(sklearn)    
+    
+**주요 성과** : 탐지정확도 98%, 분석모델 적용 자동화 API 개발
+
+### 실시간 미세먼지 iot 데이터 분석 시스템 모델링 및 개발
+**기간** : 2019.10 ~ 2020.03    
+**목적** : 실시간 환풍기 iot 데이터 분석을 통한 환풍기 원격 제어 시스템 구축    
+**대상 데이터** : 경희대, 인하대, 서울시 내의 유치원 환풍기 데이터   
+**역할** :
+- ETL 인터페이스 개발 (AWS firehose, Lambda, python)
+- 실시간 파싱 이벤트 쿼리 개발 (logpresso based on Splunk)
+- 홈페이지 백엔드 API 개발 (spring boot)  
+    
+**주요 성과** : 대시보드 서비스 홈페이지 구축
+
+### 시니어 유튜버 해시태그 추천 시스템 ETL 및 API 개발
+**기간** : 2020.09 ~ 2020.11   
+**목적** : 시니어 유튜버들을 위한 저작 도구에서 데이터 분석을 통한 해시태그 추천    
+**대상 데이터** : 네이버 뉴스 API, 다음까페 API, 네이버밴드 API, SKT 통화이력 API    
+**역할** :
+-  데이터 Crawling 모듈 개발 (AWS Lambda, python, serverless framework)
+-  데이터 ETL 및 전처리 (AWS Lambda, python, serverless framework, sh)
+-  홈페이지 백엔드 API 개발 (spring boot, Java, Docker, Tableau Server)   
+    
+**주요 성과** : Docker를 기반으로 한 non-stop 배포 환경 구축
+
+### 주차장 수요 예측 ETL 모듈 개발
+**기간** : 2020.01 ~ 2020.03   
+**목적** : 주차장 가격 변동에 따른 수요 예측을 위한 데이터 전처리 및 통계 프로시저 개발   
+**대상 데이터** : 네이버 뉴스 API, 다음까페 API, 네이버밴드 API, SKT 통화이력 API    
+**역할** :
+-  데이터 ETL 및 전처리 (AWS Lambda, python, serverless framework)
+-  주차장 통계 프로시저 개발 (MySQL 프로시저)  
+    
+**주요 성과** : MySQL 프로시저를 통한 주차장 통합 통계 베이스 구축
+
+
 
 ## 문제 해결 경험 
 ### 실시간 추천 시스템 성능 개선
