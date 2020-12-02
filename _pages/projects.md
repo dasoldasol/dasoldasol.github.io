@@ -34,7 +34,7 @@ permalink: /project/
 **목적** : 실시간 차량 공기질 데이터 분석을 통한 흡연 탐지     
 **대상 데이터** : 월평균 10만건 렌트카 차량 공기질 데이터    
 **역할** :
-- ETL 인터페이스 및 탐지 룰 일배치 API 개발 (python, NGrinder)
+- ETL 인터페이스 및 탐지 룰 API 개발 (python Flask)
 - 실시간 흡연 탐지 이벤트 쿼리 개발(logpresso based on Splunk)
 - 대시보드 임베딩 API 개발(Tableau, Spring boot, java)
 - 실시간 흡연 탐지 룰 개발 및 백서 작성(sklearn)    
