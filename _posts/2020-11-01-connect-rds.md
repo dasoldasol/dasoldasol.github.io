@@ -1,10 +1,12 @@
 ---
 title: "보안된 내부망 rds DB클라이언트 접속"
-excerpt: 'private 망에 위치한 RDS를 putty가 아닌 DB 클라이언트에서 접속 '
+excerpt: "private 망에 위치한 RDS를 putty가 아닌 DB 클라이언트에서 접속"
+toc: true
+toc_sticky: true
 categories:
 - AWS
-- DB
-  modified_date: 2020-11-01 10:36:28 +0900
+- DB 
+modified_date: 2020-11-01 10:36:28 +0900
 ---
 
 ## 과제
