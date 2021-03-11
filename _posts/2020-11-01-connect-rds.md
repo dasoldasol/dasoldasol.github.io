@@ -26,4 +26,6 @@ categories:
 - Host : EC2 Bastion 퍼블릭 IP
 - Autehntication type : Key pair 선택 후 pem 파일 등록    
   ![image.png](https://dasoldasol.github.io/assets/images/image/2020-11-01-image2)
- 
+ ```sql
+
+```
