@@ -22,9 +22,9 @@ modified_date: 2020-11-01 10:36:28 +0900
 2. General
 - Host : RDS 엔드포인트 url
 - Database : RDS 데이터 베이스 이름    
-  ![image.png](https://dasoldasol.github.io/assets/images/image/2020-11-01-image1)    
+  ![image.png](https://dasoldasol.github.io/assets/images/image/2020-11-01-image1.png)    
 3. SSH/SSL 
 - SSH tunnel 사용 : [...] 클릭해서 SSH Configuration 이동
 - Host : EC2 Bastion 퍼블릭 IP
 - Autehntication type : Key pair 선택 후 pem 파일 등록    
-  ![image.png](https://dasoldasol.github.io/assets/images/image/2020-11-01-image2)
+  ![image.png](https://dasoldasol.github.io/assets/images/image/2020-11-01-image2.png)
