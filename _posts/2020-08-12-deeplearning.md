@@ -1,8 +1,6 @@
 ---
 title: "[논문리뷰] Label Efficient Visual Abstractions for Autonomous Driving(2020)"
 excerpt: 'BEHL, Aseem, et al. Label Efficient Visual Abstractions for Autonomous Driving. arXiv preprint arXiv:2005.10091, 2020.'
-toc: true
-toc_sticky: true
 categories:
   - Deep Learning
 modified_date: 2020-08-12 09:36:28 +0900
