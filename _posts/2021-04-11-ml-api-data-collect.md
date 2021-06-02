@@ -6,7 +6,7 @@ toc_sticky: true
 categories:
 - 공공API
 - Data Collect
-modified_date: 2021-05-02 10:36:28 +0900
+modified_date: 2021-04-11 10:36:28 +0900
 ---
 ## 분석 문제 정의
 **수집 데이터 정의**
@@ -72,7 +72,7 @@ def get_num_of_rows(START_DT, END_DT):
 
 # env
 API_URL = 'http://apis.data.go.kr/B552584/ArpltnStatsSvc/getMsrstnAcctoRDyrg'
-SERVICE_KEY = 'zyULWL0Azu5UMsUZMK0lpVx6N6W4iPYJII1vTf4dy9DdNqug5JLTRGszU3O1J86jIWc7Vutv6bNTLGxGAeoBEQ=='
+SERVICE_KEY = '{SERVICE_KEY}'
 START_DT = '20210101'
 END_DT = get_end_dt()
 GU_NAME = [	'강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구']
@@ -138,7 +138,7 @@ for gu_name in GU_NAME:
 # env
 # http://openAPI.seoul.go.kr:8088/(인증키)/xml/DailyAverageAirQuality/1/5/20130228/강변북로
 PAST_API_URL = 'http://openAPI.seoul.go.kr:8088'
-ACCESS_KEY = '636e774f4773736f373079526e4b78' 
+ACCESS_KEY = '{ACCESS_KEY}' 
 import time
 ```
 
