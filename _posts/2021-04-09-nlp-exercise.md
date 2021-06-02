@@ -6,7 +6,7 @@ toc_sticky: true
 categories:
 - NLP
 - Data Analysis
-  modified_date: 2021-04-09 10:36:28 +0900
+modified_date: 2021-04-09 10:36:28 +0900
 ---
 ## 분석 개요 
 - NLP 라이브러리를 사용하지 않고, 정규식과 collections.Counter 모듈을 사용하여 텍스트 분석
@@ -612,9 +612,7 @@ for idx, sentence in enumerate(lines):
     
 
 
-```python
-####  he learned three truths : 
-#  One I learnt when your wife pitied me, and that is why I smiled the first time
-#  The second I learnt when the rich man ordered the boots, and then I smiled again
-#  And now, when I saw those little girls, I learn the third and last truth, and I smiled the third time
-```
+- he learned three truths : 
+  - One I learnt when your wife pitied me, and that is why I smiled the first time
+  - The second I learnt when the rich man ordered the boots, and then I smiled again
+  - And now, when I saw those little girls, I learn the third and last truth, and I smiled the third time
