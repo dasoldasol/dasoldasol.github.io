@@ -339,7 +339,7 @@ plt.show()
 
 
     
-![png](2020710911_hw03_files/2020710911_hw03_34_0.png)
+![png](https://dasoldasol.github.io/assets/images/image/2020710911_hw03_34_0.png)
     
 
 
@@ -354,7 +354,7 @@ plt.show()
 
 
     
-![png](2020710911_hw03_files/2020710911_hw03_35_0.png)
+![png](https://dasoldasol.github.io/assets/images/image/2020710911_hw03_35_0.png)
     
 
 
@@ -509,7 +509,7 @@ plt.show()
 
 
     
-![png](2020710911_hw03_files/2020710911_hw03_41_0.png)
+![png](https://dasoldasol.github.io/assets/images/image/2020710911_hw03_41_0.png)
     
 
 
@@ -524,7 +524,7 @@ plt.show()
 
 
     
-![png](2020710911_hw03_files/2020710911_hw03_42_0.png)
+![png](https://dasoldasol.github.io/assets/images/image/2020710911_hw03_42_0.png)
     
 
 
