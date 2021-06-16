@@ -13,6 +13,11 @@ permalink: /project/
 **Environment** : AWS, Linux, Windows     
 
 ## 프로젝트
+### AWS 기반의 데이터 인프라 구축
+**기간** : 2021.01~
+- 빌딩 에너지 시스템(BEMS) 데이터 파이프라인 구축 (AWS VPC, Lambda, EC2, RDS, S3)
+- 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
+- 사내 수주매출 대시보드 도출을 위한 ERP시스템 데이터 파이프라인 구축 (AWS Athena, MSSQL, Tableau)
 ### 실시간 추천 시스템 모델링 및 개발 
 **기간** : 2018.01 ~ 2019.09    
 **목적** : 실시간 로그 분석을 통한 상품 선택 망설 고객 도출 및 추천 캠페인 수행    
