@@ -16,7 +16,8 @@ Python(Sklearn, Tensorflow, Pytorch), AWS, Spring Boot 를 이용해 Data ETL �
 ### Strength
 - **AWS 기반의 데이터 인프라 구축**
   - 빌딩 에너지 시스템(BEMS) 데이터 파이프라인 구축 (AWS VPC, Lambda, EC2, RDS, S3)
-  - 아파트 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
+  - 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
+  - 사내 수주매출 대시보드 도출을 위한 ERP시스템 데이터 파이프라인 구축 (AWS Athena, MSSQL, Tableau)
 - **추천 시스템 개발** 
   - 실시간 로그데이터 (일평균 1.8억건) 분석에 기반한 추천 시스템 모델링 및 개발 (python, R, logpresso)
   - 실시간 로그데이터(일평균 1.8억건)  분석에 기반한 추천 시스템 성과분석 모듈 모델링 및 개발 (python, ELK Stack)
