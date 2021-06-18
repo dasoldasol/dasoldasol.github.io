@@ -3,8 +3,8 @@ title: "serverless framework에서 python 쓰기"
 excerpt: 'sls-python-requirements 플러그인으로 파이썬 패키징하기'
 categories:
 - AWS
-- serverless
-  modified_date: 2020-10-01 10:36:28 +0900
+- serverless 
+modified_date: 2020-10-01 10:36:28 +0900
 ---
 이전편 : [serverless framework 환경 설정 serverless.yml](https://dasoldasol.github.io/aws/serverless/sls-yml/)
 
