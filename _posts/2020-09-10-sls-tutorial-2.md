@@ -209,3 +209,6 @@ AWS 콘솔에서 Lambda 서비스에 들어가보면, serverless 프레임워크
 ![lambda-image](https://dasoldasol.github.io/assets/images/image/2020-09-10-4.png)     
      
 이제 serverless 프레임워크 사용을 위한 준비가 끝났다. 
+                    
+                    
+다음편 : [serverless framework 환경 설정 serverless.yml](https://dasoldasol.github.io/aws/serverless/sls-yml/)

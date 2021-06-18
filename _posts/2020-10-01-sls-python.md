@@ -1,6 +1,8 @@
 ---
 title: "serverless framework에서 python 쓰기"
 excerpt: 'sls-python-requirements 플러그인으로 파이썬 패키징하기'
+toc: true
+toc_sticky: true
 categories:
 - AWS
 - serverless 
