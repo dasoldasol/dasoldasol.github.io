@@ -44,8 +44,9 @@ $ git commit -a -m "feat:데이터 수집 모듈 개발"
 
 ## .gitignore 작성
 - .gitignore 파일 생성해주는 페이지 : https://www.toptal.com/developers/gitignore
-- example) serverless(node.js), python. venv
-```
+- example) serverless(node.js), python. venv    
+
+```text
 # Created by https://www.toptal.com/developers/gitignore/api/python,serverless,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,serverless,node
 
