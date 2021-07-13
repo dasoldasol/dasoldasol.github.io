@@ -8,16 +8,18 @@ permalink: /project/
 ## 보유기술
 **Language** : python, R, Java    
 **Framework/Library** : sklearn, tensorflow, Spring 4, Spring boot     
-**DB** : MySql, mongoDB, oracle    
+**DB** : MySql, mongoDB, oracle, MSSQL, AWS RDS    
 **Tool** : Tableau, ELK Stack, Docker container, gradle, splunk    
 **Environment** : AWS, Linux, Windows     
 
 ## 프로젝트
-### AWS 기반의 데이터 인프라 구축
+### 빌딩 에너지 시스템(BEMS) 최적 스케줄 예측 시스템 개발
 **기간** : 2021.01~
-- 빌딩 에너지 시스템(BEMS) 데이터 파이프라인 구축 (AWS VPC, Lambda, EC2, RDS, S3)
+**목적** : 에너지 설비 로그 분석을 통한 설비 최적 스케줄 예측  
+**대상 데이터** : HVAC 설비 5분단위 로그 데이터(슬라이딩 윈도우 60분)    
+**역할** :    
+- 빌딩 에너지 시스템(BEMS) 데이터 파이프라인 구축 및 데이터베이스 운영 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker)
 - 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
-- 사내 수주매출 대시보드 도출을 위한 ERP시스템 데이터 파이프라인 구축 (AWS Athena, MSSQL, Tableau)
 
 ### 실시간 추천 시스템 모델링 및 개발 
 **기간** : 2018.01 ~ 2019.09    
