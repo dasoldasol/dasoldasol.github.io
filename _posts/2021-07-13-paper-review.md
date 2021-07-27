@@ -29,7 +29,7 @@ toc_sticky: true
 - 에너지 소비 예측은 "**다변수 시계열 예측 문제(multivariate time series prediction)**"
 - 에너지 소비의 불규칙성  :  "규칙적인 계절적 패턴 + 불규칙한 trend 구성 요소 + 랜덤 요인"으로 이루어져 고전적 예측 방법으로 예측하기 어려움 (아래 그림은 에너지 소비 시계열 분해에서의 "불규칙성"을 보여줌)
 
-![00](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/00.png)
+![00](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/00.png)
 
 - 대상 데이터 셋 : 4년간 주거 전력 소비 데이터 (약 200만 시계열 데이터, 변수 12개)
 - 충격 반응 함수(impulse response function)는 수집된 여러 시계열 데이터 간의 상관관계를 기반으로 각 변수가 다른 변수에 미치는 영향을 결정하는데 사용한다. → 이를 이용해 **변수간의 영향이 매우 큰 것**을 확인할 수 있다. 따라서, **시계열 변수 중에서 특징을 추출하는 것이 매우 어렵다**.
@@ -71,7 +71,7 @@ toc_sticky: true
 
 ## 3. The proposed method
 
-![11](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/01.png)
+![11](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/01.png)
 
 - 학습 대상 데이터 : 슬라이딩 윈도우 알고리즘에 의해 60분마다 사전 처리된 입력 데이터
 - CNN 레이어 : 다변량 시계열 변수의 공간적 특성을 추출하여 노이즈 제거 후 LSTM 레이어로 전달
@@ -87,19 +87,19 @@ toc_sticky: true
     
       n : window당 정규화된 60분 단위 유닛
     
-      ![22](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/02.png)
+      ![22](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/02.png)
     
     - 컨볼루션 레이어 출력
     
       sigma : 활성화함수 ReLU
     
-      ![03.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/03.png)
+      ![03.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/03.png)
     
     - Max Pooling
     
       T : stride , R : pooling size(y보다는 작아야함)
     
-      ![04.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/04.png)
+      ![04.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/04.png)
 
 - **LSTM 레이어**
     - 기능) 추출된 전력 수요의 중요 특성에 대한 시간 정보를 저장. → 장기 시퀀스에서 시간적 관계를 쉽게 이해할 수 있음, 게이트 유닛 사용하여 RNN에서의 기울기 문제 해결
@@ -109,24 +109,24 @@ toc_sticky: true
 
       p : 에너지 소비 중요 특성/ sigma : 활성화함수 tanh
 
-      ![05.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/05.png)
+      ![05.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/05.png)
 
       LSTM을 구성하는 메모리 셀은 0과 1 사이의 연속 값으로 제어되는 각 게이트 유닛의 활성화로 상태를 업데이트함.  매 t 스텝마다 은닉상태 h_t가 업데이트 됨.
 
     - 셀 상태, 은닉 상태
 
-      ![06.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/06.png)
+      ![06.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/06.png)
 
 - **FC 레이어**
 
-  ![07.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/07.png)
+  ![07.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/07.png)
 
 ### Architecture
 
 - 입력 데이터 대상 : 다변수 시계열로, 슬라이딩 윈도우 알고리즘에 의해 60분 윈도우로 전처리됨
 - 입력 크기  60 * 10 (60분 시계열로 구성된 총 10개의 변수)
 
-![08.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/08.png)
+![08.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/08.png)
 
 ## 4. Experiments
 
@@ -141,7 +141,7 @@ toc_sticky: true
 - 성능 측정 : 10-fold cross validaion → MSE
 - 제안 방법이 MSE가 낮고, 관측되는 variance가 작다.
 
-![09.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/09.png)
+![09.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/09.png)
 
 ### Performance comparison with DL
 
@@ -149,21 +149,21 @@ toc_sticky: true
 - 성능 측정 : MSE, RMSE, MAE, MAPE
 - 제안 방법이 가장 성능이 좋음
 
-![10.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/10.png)
+![10.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/10.png)
 
 ### Prediction results for CNN-LSTM network
 
 - 선형회귀와 비교시, local feature에 대한 모델링 성능이 좋음 (위 그래프)
 - 선형회귀와 비교시, 복잡한 시계열 패턴과 전력 소비에서 자주 발생하는 피크 예측이 잘 됨 (아래 그래프)
 
-![11.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/11.png)
+![11.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/11.png)
 
 ### Comparison of prediction performance by time resolution
 
 - 제안 모델은 다양한 시간 해상도(time resolution)에도 강건함
 - 시간해상도 : minutely, hourly, daily, weekly
 
-![12.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/12.png)
+![12.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/12.png)
 
 ### CNN-LSTM model internal analysis
 
@@ -171,7 +171,7 @@ toc_sticky: true
 -
 - CNN레이어에서  노이즈가 감소하는 것을 보여주지만 시간적 경향은 거의 동일함. 즉, CNN-LSTM이 최소한의 정보 손실로 모델링을 수행함을 의미
 
-![13.png](https://github.com/dasoldasol/dasoldasol.github.io/blob/cca27b077c719699d354f455ba5b37bc0aa461c4/assets/images/image/Predicting-residential-energy-consumption/13.png)
+![13.png](https://dasoldasol.github.io/assets/images/image/Predicting-residential-energy-consumption/13.png)
 
 - 커널A, 커널 B에 의해 필터링된 에너지 소비 데이터의 중간 출력은 노이즈를 감소시킬 뿐만 아니라 로컬 및 전역 특성을 보존함
 
