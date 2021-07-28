@@ -2,14 +2,11 @@
 title: "[논문리뷰]Whole building energy model for HVAC optimal control: A practical framework based on deep reinforcement learning(2019)"
 excerpt: "강화학습 기반의 빌딩 에너지 소비 예측 및 제어 프레임워크"
 categories:
-- Deep Learning
-  modified_date: 2021-07-20 10:36:28 +0900
-  toc: true
-  toc_sticky: true
+- Deep Learning 
+modified_date: 2021-07-20 10:36:28 +0900 
+toc: true
+toc_sticky: true
 ---
-# 
-
-
 
 # Why this paper?
 - Energy and Buildings, 2019 / Reference count - 69
