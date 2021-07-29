@@ -50,6 +50,7 @@ ECHO "File Backup have failed"
 ```
 
 - param.bat 
+
 ```shell
  @if (@x)==(@y) @end /***** jscript comment ******
      @echo off
@@ -72,6 +73,7 @@ if (dd<10) {
 }
 WScript.Echo(d.getFullYear()+"-"+mm+"-"+dd);
 ```
+
 
 ## S3 수명주기 
 ![1](https://dasoldasol.github.io/assets/images/image/backup1.png)
