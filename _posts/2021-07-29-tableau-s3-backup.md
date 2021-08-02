@@ -20,13 +20,16 @@ toc_sticky: true
 - S3에 저장된 파일은 수명 주기 정책 걸어서-> 30일 후에 삭제하게 할게요 
 
 ## 배치스크립트 (Windows)
-```tsm maintenence backup -f ts_backup -d```    
-Tableau Server의 데이터, 통합문서 백업. 백업 파일 형태는 *ts_backup-%yyyy%-%mm%-%dd%.tsbak*    
+- ```tsm maintenence backup -f ts_backup -d```    
+  Tableau Server의 데이터, 통합문서 백업. 백업 파일 형태는 *ts_backup-%yyyy%-%mm%-%dd%.tsbak*    
 
-```tsm settings export --output-config-file ts_export-2021-07-28.json```    
+- ```tsm settings export --output-config-file ts_export-2021-07-28.json```    
 Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정해줘야함. 파일 형태는 json    
 
-- daily-backup.bat
+- tsm 명령어 이후에는 배치 스크립트가 자동 종료되므로.. 파일을 쪼개줌. 
+  
+
+- **daily-backup.bat**
 
 ```shell
 @echo off
@@ -34,21 +37,45 @@ for /f %%a in ('param.bat') do set "dt=%%a"
 set year=%dt:~0,4%
 set mm=%dt:~5,2%
 set dd=%dt:~-2%
+
 echo delete old backup files
-del /s /q "*.tsbak" "*.json"
+del /s /q "*.tsbak"
+
 echo backup tableau server repo
 tsm maintenance backup -f ts_backup -d
-if ERRORLEVEL 1 goto ERROR
-echo export tableau server topology
-tsm settings export --output-config-file ts_export-%dt%.json
-if ERRORLEVEL 1 goto ERROR
-aws s3 cp "ts_backup-%dt%.tsbak" s3://BUCKET_NAME/db=backup/year=%year%/month=%mm%/day=%dd%/
-aws s3 cp "ts_export-%dt%.json" s3://BUCKET_NAME/db=backup/year=%year%/month=%mm%/day=%dd%/
-
-:ERROR
-ECHO "File Backup have failed"
 ```
 
+- **daily-export.bat**
+  
+```shell
+@echo off
+for /f %%a in ('param.bat') do set "dt=%%a"
+set year=%dt:~0,4%
+set mm=%dt:~5,2%
+set dd=%dt:~-2%
+
+echo delete old backup files
+del /s /q "*.json"
+
+echo export tableau server topology
+tsm settings export --output-config-file ts_export-%dt%.json
+```
+
+- **daily-transfer.bat**
+  
+```shell
+@echo off
+for /f %%a in ('param.bat') do set "dt=%%a"
+set year=%dt:~0,4%
+set mm=%dt:~5,2%
+set dd=%dt:~-2%
+
+echo s3 cp backup file
+aws s3 cp "ts_backup-%dt%.tsbak" s3://{bucket_name}/db=backup/year=%year%/month=%mm%/day=%dd%/
+
+echo s3 cp export file
+aws s3 cp "ts_export-%dt%.json" s3://{bucket_name}/db=backup/year=%year%/month=%mm%/day=%dd%/
+```
 - param.bat 
 
 ```shell
