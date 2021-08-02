@@ -31,75 +31,75 @@ Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정
 
 - **daily-backup.bat**
 
-```shell
-@echo off
-for /f %%a in ('param.bat') do set "dt=%%a"
-set year=%dt:~0,4%
-set mm=%dt:~5,2%
-set dd=%dt:~-2%
-
-echo delete old backup files
-del /s /q "*.tsbak"
-
-echo backup tableau server repo
-tsm maintenance backup -f ts_backup -d
-```
+    ```shell
+    @echo off
+    for /f %%a in ('param.bat') do set "dt=%%a"
+    set year=%dt:~0,4%
+    set mm=%dt:~5,2%
+    set dd=%dt:~-2%
+    
+    echo delete old backup files
+    del /s /q "*.tsbak"
+    
+    echo backup tableau server repo
+    tsm maintenance backup -f ts_backup -d
+    ```
 
 - **daily-export.bat**
   
-```shell
-@echo off
-for /f %%a in ('param.bat') do set "dt=%%a"
-set year=%dt:~0,4%
-set mm=%dt:~5,2%
-set dd=%dt:~-2%
-
-echo delete old backup files
-del /s /q "*.json"
-
-echo export tableau server topology
-tsm settings export --output-config-file ts_export-%dt%.json
-```
+    ```shell
+    @echo off
+    for /f %%a in ('param.bat') do set "dt=%%a"
+    set year=%dt:~0,4%
+    set mm=%dt:~5,2%
+    set dd=%dt:~-2%
+    
+    echo delete old backup files
+    del /s /q "*.json"
+    
+    echo export tableau server topology
+    tsm settings export --output-config-file ts_export-%dt%.json
+    ```
 
 - **daily-transfer.bat**
   
-```shell
-@echo off
-for /f %%a in ('param.bat') do set "dt=%%a"
-set year=%dt:~0,4%
-set mm=%dt:~5,2%
-set dd=%dt:~-2%
-
-echo s3 cp backup file
-aws s3 cp "ts_backup-%dt%.tsbak" s3://{bucket_name}/db=backup/year=%year%/month=%mm%/day=%dd%/
-
-echo s3 cp export file
-aws s3 cp "ts_export-%dt%.json" s3://{bucket_name}/db=backup/year=%year%/month=%mm%/day=%dd%/
-```
+    ```shell
+    @echo off
+    for /f %%a in ('param.bat') do set "dt=%%a"
+    set year=%dt:~0,4%
+    set mm=%dt:~5,2%
+    set dd=%dt:~-2%
+    
+    echo s3 cp backup file
+    aws s3 cp "ts_backup-%dt%.tsbak" s3://{bucket_name}/db=backup/year=%year%/month=%mm%/day=%dd%/
+    
+    echo s3 cp export file
+    aws s3 cp "ts_export-%dt%.json" s3://{bucket_name}/db=backup/year=%year%/month=%mm%/day=%dd%/
+    ```
 - param.bat 
 
-```shell
- @if (@x)==(@y) @end /***** jscript comment ******
-     @echo off
-
-     cscript //E:JScript //nologo "%~f0"
-     exit /b 0
-
- @if (@x)==(@y) @end ******  end comment *********/
-
-var d = new Date();
-d.setDate(d.getDate());
-
-var mm=(d.getMonth())+1
-if (mm<10){
-  mm="0"+mm;
-}
-var dd=d.getDate();
-if (dd<10) {
- dd="0"+dd;
-}
-WScript.Echo(d.getFullYear()+"-"+mm+"-"+dd);
-```
+    ```shell
+     @if (@x)==(@y) @end /***** jscript comment ******
+         @echo off
+    
+         cscript //E:JScript //nologo "%~f0"
+         exit /b 0
+    
+     @if (@x)==(@y) @end ******  end comment *********/
+    
+    var d = new Date();
+    d.setDate(d.getDate());
+    
+    var mm=(d.getMonth())+1
+    if (mm<10){
+      mm="0"+mm;
+    }
+    var dd=d.getDate();
+    if (dd<10) {
+     dd="0"+dd;
+    }
+    WScript.Echo(d.getFullYear()+"-"+mm+"-"+dd);
+    ```
 
 
 ## S3 수명주기 
