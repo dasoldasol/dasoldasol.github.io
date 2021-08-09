@@ -61,7 +61,7 @@ Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정
   
   rem transfer
   echo s3 cp backup file
-  aws s3 cp "ts_backup-%dt%.tsbak" s3://hdci-dt/db=backup/year=%year%/month=%mm%/day=%dd%/
+  aws s3 cp "ts_backup-%dt%.tsbak" s3://{BUCKET_NAME}/db=backup/year=%year%/month=%mm%/day=%dd%/
   
   set dt=
   set year=
@@ -103,7 +103,7 @@ Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정
   
   rem transfer
   echo s3 cp backup file
-  aws s3 cp "ts_export-%dt%.json" s3://hdci-dt/db=backup/year=%year%/month=%mm%/day=%dd%/
+  aws s3 cp "ts_export-%dt%.json" s3://{BUCKET_NAME}/db=backup/year=%year%/month=%mm%/day=%dd%/
   
   set dt=
   set year=
