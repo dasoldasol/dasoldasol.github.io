@@ -26,85 +26,126 @@ toc_sticky: true
 - ```tsm settings export --output-config-file ts_export-2021-07-28.json```    
 Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정해줘야함. 파일 형태는 json    
 
-- tsm 명령어 이후에는 배치 스크립트가 자동 종료되므로.. 파일을 쪼개줌. 
+- tsm 명령어 이후에는 배치 스크립트가 자동 종료되므로.. call 사용
   
 
 - **daily-backup.bat**
 
-    ```shell
-    @echo off
-    for /f %%a in ('param.bat') do set "dt=%%a"
-    set year=%dt:~0,4%
-    set mm=%dt:~5,2%
-    set dd=%dt:~-2%
-    
-    echo delete old backup files
-    del /s /q "*.tsbak"
-    
-    echo backup tableau server repo
-    tsm maintenance backup -f ts_backup -d
-    ```
+  ```shell
+  @echo off
+  
+  rem get date
+  echo create date
+  for /f %%a in ('param.bat') do set "dt=%%a"
+  set year=%dt:~0,4%
+  set mm=%dt:~5,2%
+  set dd=%dt:~-2%
+  echo dt : %dt%
+  
+  rem log
+  set LOGFILE=%dt%-backup.log
+  call :LOG > %LOGFILE%
+  exit /B
+  
+  :LOG
+  rem Get start time:
+  echo %date% %time%
+  echo dt : %dt%
+  
+  rem delete existing file
+  if exist "ts_backup-%dt%.tsbak" del /s /q "ts_backup-%dt%.tsbak"
+  
+  rem cmd
+  echo backup tableau server repo
+  call tsm maintenance backup -f ts_backup -d
+  
+  rem transfer
+  echo s3 cp backup file
+  aws s3 cp "ts_backup-%dt%.tsbak" s3://hdci-dt/db=backup/year=%year%/month=%mm%/day=%dd%/
+  
+  set dt=
+  set year=
+  set mm=
+  set dd=
+  rem Get end time:
+  echo %date% %time%
+  ```
 
 - **daily-export.bat**
   
-    ```shell
-    @echo off
-    for /f %%a in ('param.bat') do set "dt=%%a"
-    set year=%dt:~0,4%
-    set mm=%dt:~5,2%
-    set dd=%dt:~-2%
-    
-    echo delete old backup files
-    del /s /q "*.json"
-    
-    echo export tableau server topology
-    tsm settings export --output-config-file ts_export-%dt%.json
-    ```
-
-- **daily-transfer.bat**
+  ```shell
+  @echo off
   
-    ```shell
-    @echo off
-    for /f %%a in ('param.bat') do set "dt=%%a"
-    set year=%dt:~0,4%
-    set mm=%dt:~5,2%
-    set dd=%dt:~-2%
-    
-    echo s3 cp backup file
-    aws s3 cp "ts_backup-%dt%.tsbak" s3://{bucket_name}/db=backup/year=%year%/month=%mm%/day=%dd%/
-    
-    echo s3 cp export file
-    aws s3 cp "ts_export-%dt%.json" s3://{bucket_name}/db=backup/year=%year%/month=%mm%/day=%dd%/
-    ```
+  rem get date
+  echo create date
+  for /f %%a in ('param.bat') do set "dt=%%a"
+  set year=%dt:~0,4%
+  set mm=%dt:~5,2%
+  set dd=%dt:~-2%
+  echo dt : %dt%
+  
+  rem log
+  set LOGFILE=%dt%-export.log
+  call :LOG > %LOGFILE%
+  exit /B
+  
+  :LOG
+  rem Get start time:
+  echo %date% %time%
+  echo dt : %dt%
+  
+  rem delete existing file
+  if exist "ts_export-%dt%.json" del /s /q "ts_export-%dt%.json"
+  
+  rem cmd
+  echo export tableau server topology
+  call tsm settings export --output-config-file ts_export-%dt%.json
+  
+  rem transfer
+  echo s3 cp backup file
+  aws s3 cp "ts_export-%dt%.json" s3://hdci-dt/db=backup/year=%year%/month=%mm%/day=%dd%/
+  
+  set dt=
+  set year=
+  set mm=
+  set dd=
+  rem Get end time:
+  echo %date% %time%
+  ```
+
 - param.bat 
 
-    ```shell
-     @if (@x)==(@y) @end /***** jscript comment ******
-         @echo off
-    
-         cscript //E:JScript //nologo "%~f0"
-         exit /b 0
-    
-     @if (@x)==(@y) @end ******  end comment *********/
-    
-    var d = new Date();
-    d.setDate(d.getDate());
-    
-    var mm=(d.getMonth())+1
-    if (mm<10){
-      mm="0"+mm;
-    }
-    var dd=d.getDate();
-    if (dd<10) {
-     dd="0"+dd;
-    }
-    WScript.Echo(d.getFullYear()+"-"+mm+"-"+dd);
-    ```
+  ```shell
+   @if (@x)==(@y) @end /***** jscript comment ******
+       @echo off
+  
+       cscript //E:JScript //nologo "%~f0"
+       exit /b 0
+  
+   @if (@x)==(@y) @end ******  end comment *********/
+  
+  var d = new Date();
+  d.setDate(d.getDate());
+  
+  var mm=(d.getMonth())+1
+  if (mm<10){
+    mm="0"+mm;
+  }
+  var dd=d.getDate();
+  if (dd<10) {
+   dd="0"+dd;
+  }
+  WScript.Echo(d.getFullYear()+"-"+mm+"-"+dd);
+  ```
 
+- **delete.bat** : 7일이상 된 파일 삭제
+  ```shell
+  forfiles /S /M *.tsbak /D -7 /C "CMD /C del @file"
+  forfiles /S /M *.json /D -7 /C "CMD /C del @file"
+  forfiles /S /M *.log /D -7 /C "CMD /C del @file"
+  ```
 
 ## S3 수명주기 
 ![1](https://dasoldasol.github.io/assets/images/image/backup1.png)
 ![2](https://dasoldasol.github.io/assets/images/image/backup2.png)
 
-## TODO 
-- Error Handling 부분 추가해야됨~
