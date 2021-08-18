@@ -33,40 +33,23 @@ Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정
 
   ```shell
   @echo off
-  
-  rem get date
-  echo create date
-  for /f %%a in ('param.bat') do set "dt=%%a"
-  set year=%dt:~0,4%
-  set mm=%dt:~5,2%
-  set dd=%dt:~-2%
-  echo dt : %dt%
-  
+
   rem log
-  set LOGFILE=%dt%-backup.log
+  set LOGFILE=%date%-backup.log
   call :LOG > %LOGFILE%
   exit /B
   
   :LOG
   rem Get start time:
   echo %date% %time%
-  echo dt : %dt%
   
   rem delete existing file
-  if exist "ts_backup-%dt%.tsbak" del /s /q "ts_backup-%dt%.tsbak"
+  if exist "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups\ts_backup-%date%.tsbak" del /s /q "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups\ts_backup-%date%.tsbak"
   
   rem cmd
   echo backup tableau server repo
   call tsm maintenance backup -f ts_backup -d
   
-  rem transfer
-  echo s3 cp backup file
-  aws s3 cp "ts_backup-%dt%.tsbak" s3://{BUCKET_NAME}/db=backup/year=%year%/month=%mm%/day=%dd%/
-  
-  set dt=
-  set year=
-  set mm=
-  set dd=
   rem Get end time:
   echo %date% %time%
   ```
@@ -75,40 +58,23 @@ Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정
   
   ```shell
   @echo off
-  
-  rem get date
-  echo create date
-  for /f %%a in ('param.bat') do set "dt=%%a"
-  set year=%dt:~0,4%
-  set mm=%dt:~5,2%
-  set dd=%dt:~-2%
-  echo dt : %dt%
-  
+
   rem log
-  set LOGFILE=%dt%-export.log
+  set LOGFILE=%date%-export.log
   call :LOG > %LOGFILE%
   exit /B
   
   :LOG
   rem Get start time:
   echo %date% %time%
-  echo dt : %dt%
   
   rem delete existing file
-  if exist "ts_export-%dt%.json" del /s /q "ts_export-%dt%.json"
+  if exist "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups\ts_export-%date%.json" del /s /q "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups\ts_export-%date%.json"
   
   rem cmd
   echo export tableau server topology
-  call tsm settings export --output-config-file ts_export-%dt%.json
+  call tsm settings export --output-config-file "ts_export-%date%.json"
   
-  rem transfer
-  echo s3 cp backup file
-  aws s3 cp "ts_export-%dt%.json" s3://{BUCKET_NAME}/db=backup/year=%year%/month=%mm%/day=%dd%/
-  
-  set dt=
-  set year=
-  set mm=
-  set dd=
   rem Get end time:
   echo %date% %time%
   ```
@@ -145,6 +111,30 @@ Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정
   forfiles /S /M *.log /D -7 /C "CMD /C del @file"
   ```
 
+- **daily-transfer.bat** : S3 전송
+  ```shell
+  @echo off
+
+  rem log
+  set LOGFILE=%date%-transfer.log
+  call :LOG > %LOGFILE%
+  exit /B
+  
+  :LOG
+  rem Get start time:
+  echo %date% %time%
+  
+  rem transfer
+  echo s3 cp export file
+  aws s3 cp "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups\ts_export-%date%.json" s3://hdci-dt/db=backup/
+  
+  rem transfer
+  echo s3 cp backup file
+  aws s3 cp "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups\ts_backup-%date%.tsbak" s3://hdci-dt/db=backup/
+  
+  rem Get end time:
+  echo %date% %time%
+  ```
 ## S3 수명주기 
 ![1](https://dasoldasol.github.io/assets/images/image/backup1.png)
 ![2](https://dasoldasol.github.io/assets/images/image/backup2.png)
