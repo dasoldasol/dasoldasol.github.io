@@ -3,9 +3,9 @@ title: "BEM-DDPG : Towards optimal control of air handling units using deep rein
 excerpt: "강화학습 DDPG 알고리즘 기반의 빌딩 에너지 소비 예측 및 제어 프레임워크"
 categories:
 - Deep Learning
-  modified_date: 2021-08-17 10:36:28 +0900
-  toc: true
-  toc_sticky: true
+modified_date: 2021-08-17 10:36:28 +0900
+toc: true
+toc_sticky: true
 ---
 
 # Why this paper?
