@@ -1,6 +1,6 @@
 ---
 title: "[논문리뷰]Factorization Machines(2010)"
-excerpt: "S. Rendle, "Factorization Machines," 2010 IEEE International Conference on Data Mining, 2010, pp. 995-1000, doi: 10.1109/ICDM.2010.127."
+excerpt: 'S. Rendle, "Factorization Machines," 2010 IEEE International Conference on Data Mining, 2010, pp. 995-1000, doi: 10.1109/ICDM.2010.127.'
 categories:
 - MachineLearning
 - 추천시스템

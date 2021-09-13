@@ -1,5 +1,5 @@
 ---
-title: "BEM-DDPG : Towards optimal control of air handling units using deep reinforcement learning and recurrent neural network(2020)"
+title: "[논문리뷰]BEM-DDPG : Towards optimal control of air handling units using deep reinforcement learning and recurrent neural network(2020)"
 excerpt: "강화학습 DDPG 알고리즘 기반의 빌딩 에너지 소비 예측 및 제어 프레임워크"
 categories:
 - Deep Learning
