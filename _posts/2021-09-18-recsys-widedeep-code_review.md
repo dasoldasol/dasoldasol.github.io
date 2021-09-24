@@ -2,7 +2,7 @@
 title: "[논문구현]Wide & Deep Learning for Recommender System(2016)"
 excerpt: 'Cheng, Heng-Tze, et al. "Wide & deep learning for recommender systems." Proceedings of the 1st workshop on deep learning for recommender systems. 2016.'
 categories:
-- MachineLearning
+- Deep Learning
 - 추천시스템
 modified_date: 2021-09-18 10:36:28 +0900
 toc: true
