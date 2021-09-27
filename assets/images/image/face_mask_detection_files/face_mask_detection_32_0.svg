@@ -1,0 +1,140 @@
+<svg height="499pt" viewBox="0.00 0.00 462.00 553.00" width="417pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="graph0" transform="scale(.9028 .9028) rotate(0) translate(4 549)">
+<title>G</title>
+<polygon fill="#ffffff" points="-4,4 -4,-549 458,-549 458,4 -4,4" stroke="transparent"/>
+<!-- 139677786131728 -->
+<g class="node" id="node1">
+<title>139677786131728</title>
+<polygon fill="none" points="43,-498.5 43,-544.5 411,-544.5 411,-498.5 43,-498.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="127.5" y="-517.8">conv2d_input: InputLayer</text>
+<polyline fill="none" points="212,-498.5 212,-544.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="241" y="-529.3">input:</text>
+<polyline fill="none" points="212,-521.5 270,-521.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="241" y="-506.3">output:</text>
+<polyline fill="none" points="270,-498.5 270,-544.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="340.5" y="-529.3">[(None, 150, 150, 3)]</text>
+<polyline fill="none" points="270,-521.5 411,-521.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="340.5" y="-506.3">[(None, 150, 150, 3)]</text>
+</g>
+<!-- 139677742533584 -->
+<g class="node" id="node2">
+<title>139677742533584</title>
+<polygon fill="none" points="69,-415.5 69,-461.5 385,-461.5 385,-415.5 69,-415.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="128" y="-434.8">conv2d: Conv2D</text>
+<polyline fill="none" points="187,-415.5 187,-461.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="216" y="-446.3">input:</text>
+<polyline fill="none" points="187,-438.5 245,-438.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="216" y="-423.3">output:</text>
+<polyline fill="none" points="245,-415.5 245,-461.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="315" y="-446.3">(None, 150, 150, 3)</text>
+<polyline fill="none" points="245,-438.5 385,-438.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="315" y="-423.3">(None, 148, 148, 32)</text>
+</g>
+<!-- 139677786131728&#45;&gt;139677742533584 -->
+<g class="edge" id="edge1">
+<title>139677786131728-&gt;139677742533584</title>
+<path d="M227,-498.3799C227,-490.1745 227,-480.7679 227,-471.8786" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="230.5001,-471.784 227,-461.784 223.5001,-471.784 230.5001,-471.784" stroke="#000000"/>
+</g>
+<!-- 139677768074320 -->
+<g class="node" id="node3">
+<title>139677768074320</title>
+<polygon fill="none" points="0,-332.5 0,-378.5 454,-378.5 454,-332.5 0,-332.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="128" y="-351.8">batch_normalization: BatchNormalization</text>
+<polyline fill="none" points="256,-332.5 256,-378.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="285" y="-363.3">input:</text>
+<polyline fill="none" points="256,-355.5 314,-355.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="285" y="-340.3">output:</text>
+<polyline fill="none" points="314,-332.5 314,-378.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="384" y="-363.3">(None, 148, 148, 32)</text>
+<polyline fill="none" points="314,-355.5 454,-355.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="384" y="-340.3">(None, 148, 148, 32)</text>
+</g>
+<!-- 139677742533584&#45;&gt;139677768074320 -->
+<g class="edge" id="edge2">
+<title>139677742533584-&gt;139677768074320</title>
+<path d="M227,-415.3799C227,-407.1745 227,-397.7679 227,-388.8786" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="230.5001,-388.784 227,-378.784 223.5001,-388.784 230.5001,-388.784" stroke="#000000"/>
+</g>
+<!-- 139677768076752 -->
+<g class="node" id="node4">
+<title>139677768076752</title>
+<polygon fill="none" points="25,-249.5 25,-295.5 429,-295.5 429,-249.5 25,-249.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="128" y="-268.8">max_pooling2d: MaxPooling2D</text>
+<polyline fill="none" points="231,-249.5 231,-295.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="260" y="-280.3">input:</text>
+<polyline fill="none" points="231,-272.5 289,-272.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="260" y="-257.3">output:</text>
+<polyline fill="none" points="289,-249.5 289,-295.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="359" y="-280.3">(None, 148, 148, 32)</text>
+<polyline fill="none" points="289,-272.5 429,-272.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="359" y="-257.3">(None, 74, 74, 32)</text>
+</g>
+<!-- 139677768074320&#45;&gt;139677768076752 -->
+<g class="edge" id="edge3">
+<title>139677768074320-&gt;139677768076752</title>
+<path d="M227,-332.3799C227,-324.1745 227,-314.7679 227,-305.8786" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="230.5001,-305.784 227,-295.784 223.5001,-305.784 230.5001,-305.784" stroke="#000000"/>
+</g>
+<!-- 139677746221904 -->
+<g class="node" id="node5">
+<title>139677746221904</title>
+<polygon fill="none" points="76,-166.5 76,-212.5 378,-212.5 378,-166.5 76,-166.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="135.5" y="-185.8">dropout: Dropout</text>
+<polyline fill="none" points="195,-166.5 195,-212.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="224" y="-197.3">input:</text>
+<polyline fill="none" points="195,-189.5 253,-189.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="224" y="-174.3">output:</text>
+<polyline fill="none" points="253,-166.5 253,-212.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="315.5" y="-197.3">(None, 74, 74, 32)</text>
+<polyline fill="none" points="253,-189.5 378,-189.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="315.5" y="-174.3">(None, 74, 74, 32)</text>
+</g>
+<!-- 139677768076752&#45;&gt;139677746221904 -->
+<g class="edge" id="edge4">
+<title>139677768076752-&gt;139677746221904</title>
+<path d="M227,-249.3799C227,-241.1745 227,-231.7679 227,-222.8786" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="230.5001,-222.784 227,-212.784 223.5001,-222.784 230.5001,-222.784" stroke="#000000"/>
+</g>
+<!-- 139677746221264 -->
+<g class="node" id="node6">
+<title>139677746221264</title>
+<polygon fill="none" points="86.5,-83.5 86.5,-129.5 367.5,-129.5 367.5,-83.5 86.5,-83.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="135.5" y="-102.8">flatten: Flatten</text>
+<polyline fill="none" points="184.5,-83.5 184.5,-129.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="213.5" y="-114.3">input:</text>
+<polyline fill="none" points="184.5,-106.5 242.5,-106.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="213.5" y="-91.3">output:</text>
+<polyline fill="none" points="242.5,-83.5 242.5,-129.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="305" y="-114.3">(None, 74, 74, 32)</text>
+<polyline fill="none" points="242.5,-106.5 367.5,-106.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="305" y="-91.3">(None, 175232)</text>
+</g>
+<!-- 139677746221904&#45;&gt;139677746221264 -->
+<g class="edge" id="edge5">
+<title>139677746221904-&gt;139677746221264</title>
+<path d="M227,-166.3799C227,-158.1745 227,-148.7679 227,-139.8786" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="230.5001,-139.784 227,-129.784 223.5001,-139.784 230.5001,-139.784" stroke="#000000"/>
+</g>
+<!-- 139677746165520 -->
+<g class="node" id="node7">
+<title>139677746165520</title>
+<polygon fill="none" points="97,-.5 97,-46.5 357,-46.5 357,-.5 97,-.5" stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="143" y="-19.8">dense: Dense</text>
+<polyline fill="none" points="189,-.5 189,-46.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="218" y="-31.3">input:</text>
+<polyline fill="none" points="189,-23.5 247,-23.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="218" y="-8.3">output:</text>
+<polyline fill="none" points="247,-.5 247,-46.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="302" y="-31.3">(None, 175232)</text>
+<polyline fill="none" points="247,-23.5 357,-23.5 " stroke="#000000"/>
+<text fill="#000000" font-family="Times,serif" font-size="14.00" text-anchor="middle" x="302" y="-8.3">(None, 2)</text>
+</g>
+<!-- 139677746221264&#45;&gt;139677746165520 -->
+<g class="edge" id="edge6">
+<title>139677746221264-&gt;139677746165520</title>
+<path d="M227,-83.3799C227,-75.1745 227,-65.7679 227,-56.8786" fill="none" stroke="#000000"/>
+<polygon fill="#000000" points="230.5001,-56.784 227,-46.784 223.5001,-56.784 230.5001,-56.784" stroke="#000000"/>
+</g>
+</g>
+</svg>
