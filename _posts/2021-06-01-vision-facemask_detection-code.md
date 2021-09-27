@@ -12,8 +12,9 @@ toc_sticky: true
 # 목적 
 - 마스크 착용 여부를 가장 정확하게 탐지하는 모델을 찾아보자. 
 - 7개의 모델을 비교하고자 한다. 
-- 설명 슬라이드 및 논문 페이퍼([링크]())
-## Configuration
+- 설명 슬라이드 및 논문 페이퍼([링크](https://dasoldasol.github.io/deep%20learning/vision/object%20detection/vision-facemask_detection-paper/))
+
+# Configuration
 - Load Kaggle Dataset
 - Import Libraries
 
@@ -42,19 +43,7 @@ files.upload()
     Requirement already satisfied: text-unidecode>=1.3 in /usr/local/lib/python3.7/dist-packages (from python-slugify->kaggle) (1.3)
     Requirement already satisfied: idna<3,>=2.5 in /usr/local/lib/python3.7/dist-packages (from requests->kaggle) (2.10)
     Requirement already satisfied: chardet<4,>=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests->kaggle) (3.0.4)
-
-
-
-
-<input type="file" id="files-8eb80d34-1e2f-4ea4-b3a2-cc1ef7921e8e" name="files[]" multiple disabled
-style="border:none" />
-<output id="result-8eb80d34-1e2f-4ea4-b3a2-cc1ef7921e8e">
-Upload widget is only available when the cell has been executed in the
-current browser session. Please rerun this cell to enable.
-</output>
- <script src="/nbextensions/google.colab/files.js"></script> 
-
-
+     ....
     [1;30;43m스트리밍 출력 내용이 길어서 마지막 5000줄이 삭제되었습니다.[0m 
       inflating: Face Mask Dataset/Train/WithoutMask/1861.png  
       inflating: Face Mask Dataset/Train/WithoutMask/1862.png  
@@ -253,7 +242,6 @@ import cv2
 import random
 
 ```
-
 
 ```python
 import glob
