@@ -4,6 +4,8 @@ excerpt: 'Wojtas, Maksymilian, and Ke Chen. "Feature importance ranking for deep
 categories:
 - Deep Learning
 - 추천시스템
+- Feature Importance
+- Feature Selection
 modified_date: 2021-10-26 10:36:28 +0900
 toc: true
 toc_sticky: true

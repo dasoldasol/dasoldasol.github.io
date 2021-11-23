@@ -196,3 +196,7 @@ Reference count 8
 ![Untitled](https://dasoldasol.github.io/assets/images/image/FIR/Untitled19.png)
 
 - 3) m * 의 최적성을 보장하기 위해 단계 II.A에 설명된 검증 절차를 거칩니다.
+  
+## Conclusion 
+- Selector에서 Feature Selection + Operator에서 예측을 수행하는 듀얼넷 구조의 Feature Importance Ranking 
+- [논문 구현]()
