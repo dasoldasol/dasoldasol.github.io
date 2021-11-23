@@ -1,6 +1,6 @@
 ---
 title: "[논문리뷰]DeepFM: A Factorization-Machine based Neural Networks for CTR Prediction(2017)"
-excerpt: "Guo, Huifeng, et al. "DeepFM: a factorization-machine based neural network for CTR prediction." arXiv preprint arXiv:1703.04247 (2017)."
+excerpt: 'Guo, Huifeng, et al. "DeepFM: a factorization-machine based neural network for CTR prediction." arXiv preprint arXiv:1703.04247 (2017).'
 categories:
 - Deep Learning
 - 추천시스템
