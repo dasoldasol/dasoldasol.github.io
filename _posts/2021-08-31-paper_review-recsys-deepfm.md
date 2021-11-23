@@ -18,38 +18,38 @@ toc_sticky: true
 
 # 1. Introduction (1)
 1. CTR : user가 추천된 항목을 click할 확률을 예측하는 문제이다.
-  - CTR(estimated probability)에 의해 user가 선호할 item 랭킹을 부여한다.
+- CTR(estimated probability)에 의해 user가 선호할 item 랭킹을 부여한다.
 2. Learn Implicit Feature Interaction
-  - App Category와 Timestamp 관계 : 음식 배달 어플은 식사시간 근처에 다운로드가 많다
-  - User gender와 Age 관계 : 10대 남자 청소년들은 슈팅과 RPG게임을 선호한다.
-  - 숨겨진 관계: 맥주와 기저귀를 함께 구매하는 사람들이 많다.
+- App Category와 Timestamp 관계 : 음식 배달 어플은 식사시간 근처에 다운로드가 많다
+- User gender와 Age 관계 : 10대 남자 청소년들은 슈팅과 RPG게임을 선호한다.
+- 숨겨진 관계: 맥주와 기저귀를 함께 구매하는 사람들이 많다.
 
-   → low와 high-order feature interaction을 모두 고려해야 한다.
+→ low와 high-order feature interaction을 모두 고려해야 한다.
 
-   → Explicit과 Implicit features를 모두 모델링할 수 있다.
+→ Explicit과 Implicit features를 모두 모델링할 수 있다.
 
 # 1. Introduction (2) 현재까지의 추천알고리즘 연구
 
 1. Generalized Linear Model(ex. FTRL:Follow the Regularized Leader) (2013)
-  - 당시 성능은 좋은 모델이었으나, High-order feature interaction을 반영하기 어렵다.
+- 당시 성능은 좋은 모델이었으나, High-order feature interaction을 반영하기 어렵다.
 2. Factorization Machine (2010)
-  - Latent vector간의 내적을 통해 pairwise feature interaction 모델링한다.
-  - Low와 high-order 모두 모델링이 가능하지만, high-order의 경우 complexity 증가
+- Latent vector간의 내적을 통해 pairwise feature interaction 모델링한다.
+- Low와 high-order 모두 모델링이 가능하지만, high-order의 경우 complexity 증가
 3. CNN and RNN for CTR Prediction(2015)
-  - CNN-based는 주변 feature에 집중하지만, RNN-based는 sequential해서 더 적합하다
+- CNN-based는 주변 feature에 집중하지만, RNN-based는 sequential해서 더 적합하다
 4. Factorization-machine supported Neural Network(FNN), Product-based Neural Network (2016)
-  - Neural Network 기반으로 high-order 가능하지만 low-order는 부족하다
-  - Pre-trained FM 성능에 의존할 수 있다.
+- Neural Network 기반으로 high-order 가능하지만 low-order는 부족하다
+- Pre-trained FM 성능에 의존할 수 있다.
 5. Wide & Deep (2016)
-  - Low와 high-order 모두 가능하지만, wide component에 feature engineering이 필요하다
+- Low와 high-order 모두 가능하지만, wide component에 feature engineering이 필요하다
 
 # 1. Contributions
 
 1. DeepFM이라는 모델 구조를 제안한다
-  - Low-order는 FM, High-order는 DNN
-  - End-to-end 학습 가능
+- Low-order는 FM, High-order는 DNN
+- End-to-end 학습 가능
 2. DeepFM은 다른 비슷한 모델보다 더 효율적으로 학습할 수 있다.
-  - Input과 embedding vector를 share한다.
+- Input과 embedding vector를 share한다.
 3. DeepFM은 benchmark와 commercial 데이터의 CTR prediction에서의 의미있는 성능향상을 이루었다.
 
 # 2. Our Approach
@@ -104,19 +104,19 @@ toc_sticky: true
 # 3. Experiments
 
 1. Criteo Dataset
-  - 45 million users' click records
-  - 13 연속형변수, 26 범주형변수
-  - 90% training, 10% testing
+- 45 million users' click records
+- 13 연속형변수, 26 범주형변수
+- 90% training, 10% testing
 2. Company* Dataset
-  - 7일간의 users' click records Company App Store
-  - 다음 1일을 testing에 씀
-  - 1 billion records
-  - App features (identification, category)
-  - User features (user's downloaded apps)
-  - Context features(operation time)
+- 7일간의 users' click records Company App Store
+- 다음 1일을 testing에 씀
+- 1 billion records
+- App features (identification, category)
+- User features (user's downloaded apps)
+- Context features(operation time)
 3. Evaluation Metrics
-  - AUC
-  - Logloss(Cross Entropy)
+- AUC
+- Logloss(Cross Entropy)
 
 # 3. Efficiency Comparison
 
@@ -129,14 +129,14 @@ toc_sticky: true
 # Conclusions
 
 1. DeepFM
-  - deep component와 FM component를 합쳐서 학습한다
-  - Pre-training이 필요하지 않다
-  - High와 low-order feature interactions 둘 다 모델링한다
-  - Input과 embedding vector를 share한다.
+- deep component와 FM component를 합쳐서 학습한다
+- Pre-training이 필요하지 않다
+- High와 low-order feature interactions 둘 다 모델링한다
+- Input과 embedding vector를 share한다.
 2. From experiments
-  - CTR task에서 더 좋은 성능을 얻을 수 있다
-  - 다른 SOTA 모델보다 AUC와 LogLoss에서 성능이 뛰어나다
-  - DeepFM이 가장 efficient한 모델이다.       
-        
+- CTR task에서 더 좋은 성능을 얻을 수 있다
+- 다른 SOTA 모델보다 AUC와 LogLoss에서 성능이 뛰어나다
+- DeepFM이 가장 efficient한 모델이다.
+
 
 - [DeepFM 논문 구현](https://dasoldasol.github.io/deep%20learning/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/recsys-deepfm-code_review/) 
