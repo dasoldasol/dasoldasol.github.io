@@ -9,7 +9,7 @@ toc: true
 toc_sticky: true
 ---
 # DeepFM
-
+- [[논문리뷰]DeepFM: A Factorization-Machine based Neural Networks for CTR Prediction(2017)]()
 - 논문
     - DeepFM: A Factorization-Machine based Neural Network for CTR Prediction
 - Tensorflow 구현 버전([링크](https://github.com/shenweichen/DeepCTR))

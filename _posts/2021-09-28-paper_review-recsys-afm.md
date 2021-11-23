@@ -80,3 +80,4 @@ w0는 전역 바이어스이고, wi는 i번째 피쳐의 가중치이며, wij는
 # Conclusions
 
 - feature importance를 반영한 FM 달성
+- [AttentionalFM 논문 구현](https://dasoldasol.github.io/deep%20learning/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/recsys-afm-code_review/)

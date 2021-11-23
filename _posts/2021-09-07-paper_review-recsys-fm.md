@@ -155,3 +155,8 @@ toc_sticky: true
     - FM은 입력 데이터를 이진 공간 영역에서 원-핫 인코딩된 특징 벡터로 요구. 컨텍스트의 중요성을 결정하기 위해 이진 공간에서 FM 매개변수의 값을 사용. 이진 공간에서 중요한 기능의 밀도를 고려하여 원본 데이터에서 관련 feature의 순위를 지정하고 선택
 - **A context-aware recommendation approach based on feature selection (2021) 2**
     - 임베디드 feature selection 을 기반으로 하는 상황 인식 추천 접근 방식을 제안. 모든 컨텍스트 정보의 최소 하위 집합을 생성하여 컨텍스트 중복성을 제거하고 각 컨텍스트에 적절하게 가중치를 할당함.
+  
+
+    
+    
+- [FM 논문 구현](https://dasoldasol.github.io/machinelearning/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/recsys-fm-code_review/)

@@ -9,7 +9,7 @@ toc: true
 toc_sticky: true
 ---
 # Factorization Machine
-
+- [[논문 리뷰]Factorization Machines(2010)](https://dasoldasol.github.io/machinelearning/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/paper_review-recsys-fm/)
 1. Paper
 - [논문](https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf)
 - [Higher-Order Factorization Machines](https://papers.nips.cc/paper/2016/file/158fc2ddd52ec2cf54d3c161f2dd6517-Paper.pdf)

@@ -472,9 +472,3 @@ def run_afm(epochs):
 %%time
 run_afm(epochs=100)
 ```
-
-    Data Prepared...
-    X shape: (100000, 2275)
-    # of Feature: 2275
-    # of Field: 21
-    

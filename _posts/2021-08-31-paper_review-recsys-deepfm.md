@@ -136,4 +136,7 @@ toc_sticky: true
 2. From experiments
   - CTR task에서 더 좋은 성능을 얻을 수 있다
   - 다른 SOTA 모델보다 AUC와 LogLoss에서 성능이 뛰어나다
-  - DeepFM이 가장 efficient한 모델이다.
+  - DeepFM이 가장 efficient한 모델이다.       
+        
+
+- [DeepFM 논문 구현](https://dasoldasol.github.io/deep%20learning/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/recsys-deepfm-code_review/) 
