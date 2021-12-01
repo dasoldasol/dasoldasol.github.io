@@ -199,4 +199,4 @@ Reference count 8
   
 ## Conclusion 
 - Selector에서 Feature Selection + Operator에서 예측을 수행하는 듀얼넷 구조의 Feature Importance Ranking 
-- [논문 구현](https://dasoldasol.github.io/deep%20learning/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/recsys-fir-code_review/)
+- [논문 구현](https://dasoldasol.github.io/deep%20learning/%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C/feature%20importance/feature%20selection/recsys-fir-code_review/)
