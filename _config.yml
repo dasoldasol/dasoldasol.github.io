@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "서다솔"
   avatar           : "/assets/images/KakaoTalk_20200922_160045754.jpg"
-  bio              : "데이터 분석을 지향하는 <br> "
+  bio              : "추천 시스템은 맛있어"
   location         : "Seoul, South Korea"
   links:
     - label: "Email"
