@@ -629,11 +629,6 @@ class FeatureSelector():
 
 # Execute
 
-
-```python
-
-```
-
 ## Data Load(adult>=50k)
 
 

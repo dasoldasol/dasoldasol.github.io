@@ -7,12 +7,23 @@ permalink: /project/
 ---
 ## 보유기술
 **Language** : python, R, Java    
-**Framework/Library** : pyspark, keras, sklearn, tensorflow, Spring 4, Spring boot    
+**Framework/Library** : pyspark, keras, sklearn, tensorflow, Spring 4, Spring boot, pytorch    
 **DB&SQL** : MySql, mongoDB, oracle, MSSQL, AWS RDS, HiveQL  
 **Tool** : Tableau, ELK Stack, Docker container, gradle, splunk    
 **Environment** : AWS, Linux, Windows     
 
 ## 프로젝트
+### FiFM : Feature Importance Ranking과 Factorization Machines 결합 이중 네트워크 구조 추천시스템 알고리즘 연구
+**기간** : 2021.08~    
+**목적** : 추천 시스템에서의 추천 항목 중요도 학습 및 도출을 위한 알고리즘 연구     
+**대상 데이터** : Avazu 클릭 로그 벤치마크 데이터, Adult 연봉 정보 벤치마크 데이터    
+**내용**:    
+- 추천 시스템에서 어떤 feature가 주요 작용을 했는지 feature importance를 학습하고 도출하는 알고리즘
+- FM Net(Factorization Machines)과 Selector Net(Feature Importance Ranking)이 교대 학습하는 듀얼넷 구조
+    - FM Net : feature interaction(피쳐 상호작용) 학습
+    - Selector Net : FM Net의 성능을 피드백 받아, Feature Importance Ranking을 통해 FM Net에 최적의 마스크 서브셋 제공
+![image](https://dasoldasol.github.io/assets/images/image/dual-net-architecture.png)
+
 ### 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발
 **기간** : 2021.01~    
 **목적** : 설비 에너지 사용 로그 분석을 통한 에너지 수요 예측, 최적 가동 스케줄 추천    
