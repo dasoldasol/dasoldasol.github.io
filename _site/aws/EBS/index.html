@@ -1,0 +1,1016 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>EBS | Dasol Seo</title>
+<meta name="description" content="AWS EBS(Elastic Block Store)">
+
+
+  <meta name="author" content="서다솔">
+  
+  <meta property="article:author" content="서다솔">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Dasol Seo">
+<meta property="og:title" content="EBS">
+<meta property="og:url" content="http://localhost:4000/aws/EBS/">
+
+
+  <meta property="og:description" content="AWS EBS(Elastic Block Store)">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-02-19T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/aws/EBS/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Dasol Seo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Dasol Seo Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/share.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Dasol Seo
+          <span class="site-subtitle">Version 1.0</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/project/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Blog</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#aws" itemprop="item"><span itemprop="name">Aws</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">EBS</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/KakaoTalk_20200922_160045754.jpg" alt="서다솔" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">서다솔</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>추천 시스템은 맛있어</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ssolphanes@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://dasoldasol.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/dasoldasol/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="EBS">
+    <meta itemprop="description" content="AWS EBS(Elastic Block Store)">
+    <meta itemprop="datePublished" content="2020-02-19T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">EBS
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-02-19T00:00:00+00:00">February 19, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#elastic-block-store-cheatsheet">Elastic Block Store CheatSheet</a>
+    <ul>
+      <li><a href="#point">Point</a></li>
+    </ul>
+  </li>
+  <li><a href="#ebs-types">EBS Types</a></li>
+  <li><a href="#volume--snapshot">Volume &amp; Snapshot</a>
+    <ul>
+      <li><a href="#volume">Volume</a></li>
+      <li><a href="#snapshot">Snapshot</a></li>
+    </ul>
+  </li>
+  <li><a href="#ebs-vs-instance-store">EBS vs. Instance Store</a></li>
+  <li><a href="#encryption">Encryption</a></li>
+  <li><a href="#scenarios">Scenarios</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="elastic-block-store-cheatsheet">Elastic Block Store CheatSheet</h2>
+<h3 id="point">Point</h3>
+<ul>
+  <li>Amazon Elastic Compute Cloud(EC2)에서 사용하도록 설계된 사용하기 쉬운 고성능 블록 스토리지 서비스</li>
+  <li><strong>어떤 워크로드에든 적합한 성능</strong> : EBS 볼륨은 SAP, Oracle 및 Microsoft 제품과 같은 미션 크리티컬 애플리케이션을 포함하여, 가장 까다로운 워크로드에 적합합니다. SSD 지원 옵션으로는, 고성능 애플리케이션을 위해 설계된 볼륨(IOPS) 및 대부분의 워크로드에 적합한 뛰어난 요금/성능 옵션을 제공하는 범용 볼륨(General Purpose)이 포함됩니다. HDD 지원 옵션은 빅 데이터 분석 엔진, 로그 처리 및 데이터 웨어하우징과 같은 대용량 순차 워크로드를 위해 설계되었습니다(Throughput Optimized HDD). FSR(빠른 스냅샷 복원)을 사용하여 스냅샷에서 EBS 볼륨 생성 시 전체 성능을 즉시 수신합니다.</li>
+  <li>
+    <p><strong>사용 편의성</strong> : Amazon EBS 볼륨은 쉽게 생성하고 사용하고 암호화하고 보호할 수 있습니다. 탄력적인 볼륨(<strong>Elastic Volumes</strong>) 기능을 사용하면 <strong>워크로드를 중단하지 않고도</strong> 스토리지를 늘리고, 성능을 높이거나 낮추고, 볼륨 유형을 변경할 수 있습니다. <strong>EBS 스냅샷</strong>을 사용하면 데이터의 지리적 보호를 위해 볼륨의 백업을 쉽게 생성할 수 있습니다. <strong>Data Lifecycle Manager(DLM)</strong> 는 추가 오버헤드나 비용 없이 스냅샷 관리를 자동화하는 사용하기 쉬운 도구입니다.</p>
+  </li>
+  <li>
+    <p><strong>HA &amp; durability</strong> : Amazon EBS 아키텍처는 미션 크리티컬 애플리케이션에 안정성을 제공합니다. 각 볼륨은 <strong>AZ(가용 영역) 내에서 복제</strong>를 통해 장애로부터 사용자 환경을 보호하도록 설계되었으며, 99.999%의 가용성과 0.1% - 0.2% 사이의 AFR(연간 장애 비율)을 제공합니다. 단순하고 강력한 백업을 위해 Amazon Data Lifecycle Manager(DLM) 정책과 함께 EBS 스냅샷을 사용하여 스냅샷 관리를 자동화합니다. 백업 공급자로서 스냅샷용 EBS direct API를 사용하여 EBS 볼륨의 빠른 백업과 보다 세분화된 RPO(복구 시점 목표)를 달성합니다.  이것은 새 EC2 인스턴스 또는 EBS 볼륨을 생성하지 않고도 EBS 스냅샷 데이터를 읽을 수 있는 기능을 통해 가능합니다.</p>
+  </li>
+  <li>is virtual network attached block storage</li>
+  <li>Volumes <strong>CANNOT be shared</strong> with multiple EC2 instances (cf. EFS)</li>
+  <li><strong>muiltiple Volumes can be attached</strong> to a single EC2 instance</li>
+  <li><strong>persist and independent of EC2 lifecycle</strong></li>
+  <li>Snapshots <strong>CANNOT</strong> span <strong>across region</strong></li>
+  <li>for making Volume available to different AZ
+    <ul>
+      <li>create a Snapshot of the Volume and restore it to a new Volume in any AZ within the region</li>
+    </ul>
+  </li>
+  <li>for making Volume available to different Region
+    <ul>
+      <li>the Snapshot of the Volume can be copied to a different region and restored as a Volume</li>
+    </ul>
+  </li>
+  <li>provides <strong>high durability</strong> and are <strong>redundant in an AZ</strong>
+    <ul>
+      <li>as the data is automatically replicated within that AZ to prevent data loss</li>
+    </ul>
+  </li>
+  <li>PIOPS is designed to run transactions applications that require high and consistent IO such as RDB, NoSQL etc</li>
+</ul>
+
+<h2 id="ebs-types">EBS Types</h2>
+<p><img src="https://dasoldasol.github.io/assets/images/image/ebs-2.png" alt="ebs-feat" />
+<img src="https://dasoldasol.github.io/assets/images/image/ebs-types.png" alt="ebs-types" /></p>
+<ul>
+  <li>General Purpose SSD(gp2) : MAX IOPS 16,000, Most Work Loads</li>
+  <li>Provisioned IOPS SSD(io1) : 64,000, Databases</li>
+  <li>Throughput Optimized HDD(st1) : 500, Big Data &amp; Data Warehouse</li>
+  <li>Cold HDD(sc1) : 250</li>
+  <li>EBS Magnetic(standard) : 40-200 (not used)</li>
+</ul>
+
+<h2 id="volume--snapshot">Volume &amp; Snapshot</h2>
+<h3 id="volume">Volume</h3>
+<ul>
+  <li>exist on EBS. always on same AZ</li>
+  <li>CAN NOT attach an EBS Volume to more than 1 EC2 instance at the same time.</li>
+  <li>You can change EBS volume sizes on the fly</li>
+  <li><strong>when EC2 instance terminated..</strong> : <strong>root device volume EBS deleted</strong>, additional volumes NOT deleted by default
+    <ul>
+      <li>However, the DeleteOnTermination attribute may be changed at launch using Console or using CLI while running.
+        <h3 id="snapshot">Snapshot</h3>
+      </li>
+    </ul>
+  </li>
+  <li>exist on S3. <strong>incremental</strong>(only the blocks changed since the last) stop the instance before taking snapshots.</li>
+  <li><strong>CAN NOT delete a snapshot</strong> of an EBS Volume that is used as the <strong>root device</strong> of a registered AMI</li>
+  <li>migrate to another AZ : snapshot -&gt; create AMI from snapshot -&gt; use the AMI to launch instance in new AZ</li>
+  <li>migrate to another region : snapshot -&gt; create AMI from snapshot -&gt; copy AMI to another region -&gt; use the copied AMI to launch instance in new region</li>
+</ul>
+
+<h2 id="ebs-vs-instance-store">EBS vs. Instance Store</h2>
+<ul>
+  <li>Instance Store Volume
+    <ul>
+      <li>Ephemeral Storage : Instance store volumes canNOT be stopped. If the underlying host fails, you will lose data.</li>
+    </ul>
+  </li>
+  <li>EBS
+    <ul>
+      <li>EBS backed instances can be stopped. you will not lose data on this instance if it’s stopped.</li>
+    </ul>
+  </li>
+  <li>you can reboot both, you will not lose data.</li>
+  <li>Both ROOT volumes will be deleted on termination by default. EBS) you can tell AWS to keep ROOT</li>
+</ul>
+
+<h2 id="encryption">Encryption</h2>
+<ul>
+  <li>Snapshots of encrypted volumes are encrypted automatically.</li>
+  <li>Volumes retored from encrypted snapshots are encrypted automatically.</li>
+  <li>you can share snapshots ONLY IF they are UNENCRYPTED</li>
+  <li>These snapshots can be shared with other AWS accounts or made public.</li>
+  <li>you can NOW encrypt ROOT device volumes when you create the EC2 instance.</li>
+  <li><strong>HOW TO CHANGE UNENCRYPTED ROOT TO ENCRYPTED?</strong>
+    <ul>
+      <li>Create a Snapshot of the unencrypted root device volume.</li>
+      <li>Copy the Snapshot and select the encrypt option</li>
+      <li>Create an AMI from the encrypted Snapshot</li>
+      <li>Use the AMI to launch new encrypted instances.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="scenarios">Scenarios</h2>
+<ul>
+  <li><strong>A Solutions Architect is designing a critical business application with a relational database that runs on an EC2 instance. It requires a single EBS volume that can support up to 16,000 IOPS.    Which Amazon EBS volume type can meet the performance requirements of this application?</strong>
+    <ul>
+      <li><strong>A) EBS Provisioned IOPS SSD</strong></li>
+      <li>EBS Provisioned IOPS SSD : 미션 크리티컬 저 지연(low latency) 워크로드에 대한 지속적인 성능</li>
+      <li>EBS General Purpose SSD : 3,000-10,000 IOPS의 성능 버스트</li>
+      <li>HDD : 저렴한 비용, 높은 처리량</li>
+    </ul>
+  </li>
+  <li><strong>You are building a new data analytics application in AWS which will be deployed in an AutoScaling group of On-Demand EC2 instances and MongoDB database. It is expected that the database will have high-throughput workloads performing small, random I/O operations. As the Solutions Architect, you are required to properly setup and launch the required resources in AWS.  <br />
+Which of the following is the most suitable EBS type to use for your database?</strong>
+    <ul>
+      <li><strong>A) Provisioned IOPS SSD(io1)</strong></li>
+      <li>SSD-backed volumes : I / O 작업이 임의적이든 순차적이든 일관된 성능.
+        <ul>
+          <li>General Purpose SSD(gp2) : 작고 임의적인 I / O 작업을 처리 할 수 있습니다</li>
+          <li>Provisioned IOPS SSD(io1) : MongoDB, Oracle, MySQL과 같은 I / O 집약적 데이터베이스 워크로드에 적합합니다.</li>
+        </ul>
+      </li>
+      <li>HHD-backed voluems : I / O 작업이 크고 순차적인 경우에만 최적의 성능.</li>
+    </ul>
+  </li>
+  <li>You have triggered the creation of a snapshot of your EBS volume attached to an Instance Store-backed EC2 Instance and is currently on-going. At this point, what are the things that the EBS volume can or cannot do?
+    <ul>
+      <li><strong>A) The volume can be used as normal while the snapshot is in progress</strong></li>
+      <li>EBS 스냅 샷은 <strong>비동기 적으로</strong> 발생합니다. 즉, 특정 시점 스냅 샷이 즉시 생성되지만 스냅 샷이 완료 될 때까지 스냅 샷 상태는 ‘대기 중(pending)’입니다. 진행중인 스냅 샷은 <strong>볼륨</strong>에 대한 지속적인 읽기 및 쓰기로 인해 <strong>영향을 받지 않습니다</strong> 따라서 여전히 볼륨을 사용할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>As part of the Business Continuity Plan of your company, your IT Director instructed you to set up an automated backup of all of the EBS Volumes for your EC2 instances as soon as possible.   <br />
+What is the fastest and most cost-effective <strong>solution to automatically back up all of your EBS Volumes</strong>?
+    <ul>
+      <li><strong>A) Amazon Data Lifecycle Manager(Amazon DLM) to automate the creation of EBS snapshots.</strong></li>
+      <li>스냅 샷 관리 자동화를 통해 다음을 수행 할 수 있습니다.
+        <ul>
+          <li><strong>정기적인 백업</strong> 일정을 시행하여 중요한 데이터를 보호.</li>
+          <li>감사 또는 내부 규정 준수에 필요한 <strong>백업을 유지</strong>합니다.</li>
+          <li><strong>오래된 백업을 삭제</strong>하여 스토리지 비용을 줄입니다.</li>
+          <li>사용자 정의 쉘 스크립트를 작성하거나 예약 된 작업을 작성할 필요가 없습니다.</li>
+        </ul>
+      </li>
+      <li>Amazon DLM은 Amazon CloudWatch Events 및 AWS CloudTrail의 모니터링 기능과 결합하여 추가 비용없이 EBS 볼륨에 대한 완벽한 백업 솔루션을 제공합니다.</li>
+      <li><strong>create a scheduled job that calls the “create-snapshot” command via the AWS CLI to take a snapshot of production EBS volumes periodically</strong> : is incorrect. 이것이 유효한 솔루션 임에도 불구하고 “create-snapshot”명령을 호출하는 예약 된 작업을 만들려면 여전히 시간이 더 필요합니다.</li>
+    </ul>
+  </li>
+  <li>A company is planning to launch an application which requires a data warehouse that will be used for their <strong>infrequently accessed data</strong>. You need to use an EBS Volume that can <strong>handle large, sequential I/O operations</strong>.  <br />
+Which of the following is the most cost-effective storage type that you should use to meet the requirement?
+    <ul>
+      <li><strong>A) Cold HDD(sc1)</strong></li>
+      <li>
+        <p><strong>Cold HDD vs. Throughput Optimized HDD</strong></p>
+
+        <ul>
+          <li>
+            <table>
+              <thead>
+                <tr>
+                  <th style="text-align: left">Throughput Optimized HDD(st1)</th>
+                  <th style="text-align: left">Cold HDD(sc1)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: left"><strong>frequently</strong> accessed, throughput intensive workload</td>
+                  <td style="text-align: left"><strong>infrequently</strong> accessed workloads</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left">Streaming workload / Data warehouse</td>
+                  <td style="text-align: left">throughput-oriented &amp; <strong>lowest storage cost</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>You need to back up your mySQL database hosted on a Reserved EC2 instance. It is using <strong>EBS volumes that are configured in a RAID array</strong>.  <br />
+What steps will you take to minimize the time during which the database cannot be written to and to ensure a consistent backup?
+    <ul>
+      <li><strong>1. Stop all applications from writing to the RAID array.</strong>  <br />
+<strong>2. Flush all caches to the disk.</strong>  <br />
+<strong>3. Confirm that the associated EC2 instance is no longer writing to the RAID array by taking actions such as freezing the file system, unmounting the RAID array, or even shutting down the EC2 instance.</strong>  <br />
+<strong>4. After taking steps to halt all disk-related activity to the RAID array, take a snapshot of each EBS volume in the array.</strong></li>
+      <li>사용중인 연결된 Amazon EBS 볼륨의 스냅 샷을 생성하면 스냅 샷은 애플리케이션 또는 운영 체제에서 캐시 한 데이터를 제외합니다. 단일 EBS 볼륨의 경우 종종 문제가되지 않습니다. 그러나 캐시 된 데이터가 RAID 어레이의 여러 EBS 볼륨 스냅 샷에서 제외되면 스냅 샷에서 볼륨을 복원하면 어레이의 무결성이 저하 될 수 있습니다.  <br />
+RAID 배열에 구성된 EBS 볼륨의 스냅 샷을 생성 할 때 스냅 샷을 생성 할 때 볼륨에 데이터를 입 / 출력하지 않는 것이 중요합니다.</li>
+    </ul>
+  </li>
+  <li>You have launched a new enterprise application with a web server and a database. You are using a large EC2 Instance with one 500 GB EBS volume to host a relational database. Upon checking the performance, it shows that <strong>write throughput to the database needs to be improved</strong>.  <br />
+Which of the following is the most suitable configuration to help you achieve this requirement? (Choose 2)
+    <ul>
+      <li><strong>Solution 1 : Increase the size of the EC2 Instance</strong></li>
+      <li><strong>Solution 2 : Set up a standard RAID 0 configuration with 2 EBS Volumes</strong></li>
+      <li>RAID
+        <ul>
+          <li><strong>Raid 0 : Striping</strong> (하나의 데이터를 여러 드라이브에 <strong>분산 저장</strong>함으로써 <strong>빠른 입출력</strong>이 가능)</li>
+          <li><strong>Raid 1 : Mirroring</strong> (똑같은 데이터를 <strong>동일한 용량</strong>과 스팩의 다른 디스크에도 저장함으로써 <strong>높은 안정성</strong> 확보)</li>
+        </ul>
+      </li>
+      <li>Setting up the EC2 instance in a placement group : is incorrect because the placement groups기능은 주로 인스턴스 간 통신에 사용되기 때문</li>
+    </ul>
+  </li>
+  <li>A corporate and investment bank has recently decided to adopt a hybrid cloud architecture for their Trade Finance web application which uses an Oracle database with Oracle Real Application Clusters (RAC) configuration. Since Oracle RAC is not supported in RDS, they decided to launch their database in a large On-Demand EC2 instance instead, with multiple EBS Volumes attached. As a Solutions Architect, you are responsible to ensure the security, availability, scalability, and disaster recovery of the whole architecture.  <br />
+In this scenario, which of the following will enable you to take <strong>backups of your EBS volumes that are being used by the Oracle</strong> database?
+    <ul>
+      <li><strong>A) Creating snapshots of the EBS Volumes</strong></li>
+      <li>특정 시점 스냅 샷을 생성하여 Amazon EBS 볼륨의 데이터를 Amazon S3에 백업 할 수 있습니다. 스냅 샷은 <strong>증분 백업</strong>이므로 가장 최근의 스냅 샷 이후에 변경된 장치의 블록 만 저장됩니다. 이는 스냅 샷 생성에 필요한 <strong>시간을 최소화하고</strong> 데이터를 복제하지 않음으로써 <strong>스토리지 비용을 절약</strong>합니다.</li>
+      <li><strong>RAID 1이라고도하는 디스크 미러링은 두 개 이상의 디스크 / EBS 볼륨에 데이터를 복제합니다.</strong> : is incorrect. 디스크 미러링은 효율적이고 비용 최적화 된 솔루션이 아닙니다.</li>
+    </ul>
+  </li>
+  <li>You are working as a Solutions Architect for an investment bank and your Chief Technical Officer intends to migrate all of your applications to AWS. You are looking for block storage to store all of your data and have decided to go with EBS volumes. Your boss is worried that EBS volumes are not appropriate for your workloads due to compliance requirements, downtime scenarios, and IOPS performance.  <br />
+Which of the following are valid points in proving that EBS is the best service to use for your migration? (Choose 2)
+    <ul>
+      <li><strong>A1) An EBS Volume is off-instance storage that can persist independently from the life of an instance.</strong></li>
+      <li><strong>A2) EBS volumes support live configuration changes while in production which means that you can modify the volume type, volume size, and IOPS capacity without service interruptions.</strong></li>
+      <li>가용 영역에서 <strong>EBS 볼륨</strong>을 생성하면 단일 하드웨어 구성 요소의 장애로 인한 데이터 손실을 방지하기 위해 해당 영역 내에 <strong>자동 복제</strong>됩니다.</li>
+      <li><strong>EBS 볼륨</strong>은 한 번에 하나의 EC2 인스턴스에만 연결할 수 있습니다.</li>
+      <li>볼륨을 생성 한 후 동일한 가용 영역의 EC2 인스턴스에 연결할 수 있습니다</li>
+      <li>Amazon EBS 암호화는 256 비트 고급 암호화 표준 알고리즘 (AES-256)을 사용합니다.</li>
+      <li>EBS 볼륨은 99.999 % SLA를 제공합니다.</li>
+    </ul>
+  </li>
+  <li>You work for a brokerage firm as an AWS Infrastructure Engineer who handles the stocks trading application. You host your database in an EC2 server with two EBS volumes for OS and data storage in ap-southeast-1a. Due to the <strong>fault tolerance</strong> requirements, there is a need to <strong>assess if the EBS volumes will be affected</strong> in the event of ap-southeast-1a availability zone outage.  <br />
+Can <strong>EBS tolerate an Availability Zone failure</strong> each and every time?
+    <ul>
+      <li><strong>A) No, all EBS volumes are stored and replicated in a single AZ only</strong></li>
+      <li>가용 영역에서 EBS 볼륨을 생성하면 단일 하드웨어 구성 요소의 장애로 인한 데이터 손실을 방지하기 위해 해당 영역 내에서만 자동으로 복제됩니다. 볼륨을 생성 한 후에는 동일한 가용 영역의 EC2 인스턴스에 연결할 수 있습니다.</li>
+      <li>여러 가용 영역에 중복 저장되는 데이터 사본이있는 것은 EBS 볼륨이 아니라 EBS 스냅 샷입니다.</li>
+      <li>EBS 볼륨은 단일 가용 영역에만 존재하는 반면 EBS 스냅 샷은 하나의 AWS 리전에서 사용할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>You are working for an investment bank as their IT Consultant. You are working with their IT team to handle the launch of their digital wallet system. The applications will run on multiple EBS-backed EC2 instances which will store the logs, transactions, and billing statements of the user in an S3 bucket. Due to tight security and compliance requirements, you are exploring options on <strong>how to safely store sensitive data on the EBS volumes and S3</strong>.  <br />
+Which of the below options should be carried out when storing sensitive data on AWS? (Choose 2)
+    <ul>
+      <li><strong>A1) Enable Amazon S3 Server-Side or use Client-Side Encryption</strong></li>
+      <li><strong>A2) Enable EBS Encryption</strong></li>
+      <li><strong>Using AWS Shield and WAF</strong> : is incorrect. 이들은 웹 응용 프로그램에 대한 일반적인 보안 위협으로부터 보호합니다. 그러나 달성하려는 것은 EBS 및 S3 내부의 데이터를 보호하고 암호화하는 것입니다.</li>
+    </ul>
+  </li>
+  <li>You are working for a tech company that uses a lot of EBS volumes in their EC2 instances. An incident occurred that requires you to delete the EBS volumes and then re-create them again.     <br />
+What step should you do <strong>before you delete the EBS volumes</strong>?
+    <ul>
+      <li><strong>A) Store a snapshot of the volume.</strong></li>
+    </ul>
+  </li>
+  <li>A global online sports betting company has its popular web application hosted in AWS. They are planning to develop a new online portal for their new business venture and they hired you to implement the cloud architecture for a new online portal that will accept bets globally for world sports. You started to design the system with a relational database that runs on a single EC2 instance, which requires a single EBS volume that can support up to <strong>30,000 IOPS</strong>.     <br />
+In this scenario, which Amazon EBS volume type can you use that will meet the performance requirements of this new online portal?
+    <ul>
+      <li><strong>A) EBS Provisioned IOPS SSD(io1)</strong></li>
+      <li>SSD의 주된 성능 특성은 <strong>IOPS</strong>이고 HDD는 <strong>처리량</strong>입니다.</li>
+    </ul>
+  </li>
+  <li>A company has a High Performance Computing (HPC) cluster that is composed of EC2 Instances with Provisioned IOPS volume to process transaction-intensive, low-latency workloads. The Solutions Architect must maintain high IOPS while keeping the latency down by setting the optimal queue length for the volume. The size of each volume is 10 GiB.  <br />
+Which of the following is the MOST suitable configuration that the Architect should set up?
+    <ul>
+      <li><strong>A) Set the IOPS to 500 then maintain a low queue length</strong></li>
+      <li>“프로비저닝된 IOPS : 요청 된 볼륨 크기 (GiB)”의 최대 비율은 “50 : 1”입니다.
+        <ul>
+          <li>ex. 최대 5,000 IOPS로 100GiB 볼륨을 프로비저닝 할 수 있습니다. 지원되는 인스턴스 유형에서 1,280 GiB 이상의 볼륨은 최대 64,000 IOPS (50 × 1,280 GiB = 64,000)까지 프로비저닝 할 수 있습니다.</li>
+          <li><strong>xIOPS : 10GiB = 50:1 -&gt; 500IOPS</strong></li>
+        </ul>
+      </li>
+      <li>볼륨 큐 길이는 장치에 대한 보류중인 I / O 요청 수입니다.
+        <ul>
+          <li><strong>SSD-backed volumes</strong> : 낮은 큐 길이(<strong>low queue length</strong>)와 볼륨에 사용 가능한 많은 IOPS를 유지하여 대기 시간(latency)을 줄이면서 높은 IOPS를 유지할 수 있습니다. 사용 가능한 것보다 많은 양의 IOPS를 지속적으로 구동하면 I / O 대기 시간이 증가 할 수 있습니다.</li>
+          <li><strong>HDD-backed volumes</strong> : 처리량이 많은 응용 프로그램은 I / O 대기 시간 증가에 덜 민감합니다. 대량의 순차적 I / O를 수행 할 때 <strong>높은 대기열 길이</strong>를 유지하여 HDD 지원 볼륨에 대한 높은 처리량을 유지할 수 있습니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>You are working as a Solutions Architect for a financial firm which is building an internal application that processes loans, accruals, and interest rates for their clients. They require a storage service that is able to handle future increases in <strong>storage capacity of up to 16 TB</strong> and can provide the <strong>lowest-latency</strong> access to their data. Their web application will be hosted in a <strong>single</strong> m5ad.24xlarge Reserved <strong>EC2 instance</strong> which will process and store data to the storage service.  <br />
+Which of the following would be the most suitable storage service that you should use to meet this requirement?
+    <ul>
+      <li><strong>A) EBS</strong></li>
+      <li><strong>EBS</strong>는 단일 EC2 인스턴스의 데이터에 대한 지연 시간이 가장 짧은 워크로드에 대한 성능을 제공 할 수 있습니다. 또한 최대 16TB의 EBS 스토리지를 늘리거나 추가 스토리지를위한 새 볼륨을 추가 할 수 있습니다.</li>
+      <li><strong>S3</strong> : is incorrect. S3는 가용성과 확장 성이 뛰어나지 만 EBS와 달리 지연 시간이 가장 짧은 데이터 액세스는 제공하지 않습니다. S3는 기본적으로 VPC에 상주하지 않으므로 데이터가 퍼블릭 인터넷을 통과하여 대기 시간이 길어질 수 있습니다. S3에 대해 VPC 엔드 포인트를 설정할 수는 있지만 대기 시간이 EBS의 대기 시간보다 깁니다.</li>
+      <li><strong>EFS</strong> : is incorrect.</li>
+    </ul>
+  </li>
+  <li>You have an On-Demand EC2 instance with an <strong>attached non-root EBS volume</strong>. There is a scheduled job that creates a snapshot of this EBS volume every midnight at 12 AM when the instance is not used. On one night, there’s been a production incident where you need to perform a change on both the instance and on the EBS volume at the same time, when the snapshot is currently taking place.  <br />
+Which of the following scenario is true when it comes to the usage of an EBS volume while the snapshot is in progress?
+    <ul>
+      <li><strong>A) The EBS volume can be used while the snapshot is in progress</strong></li>
+      <li>스냅샷은 <strong>비동기적</strong>으로 발생합니다. 특정 시점 스냅샷이 즉시 생성되지만 <strong>스냅샷이 완료 될 때까지 (모든 수정된 블록이 Amazon S3로 전송 될 때까지) 스냅샷 상태는 <code class="language-plaintext highlighter-rouge">pending</code>(대기 중)</strong> 이며, 크기가 큰 최초의 스냅샷이나 변경된 블록이 많은 후속 스냅샷의 경우 몇 시간씩 시간이 걸릴 수 있습니다.</li>
+      <li>완료되는 동안 진행중인 스냅샷은 볼륨에 대한 지속적인 읽기 및 쓰기의 영향을 받지 않으므로 EBS 볼륨을 계속 정상적으로 사용할 수 있습니다.</li>
+      <li><strong>스냅 샷을 기반으로 EBS 볼륨을 생성하면</strong> 새 볼륨은 스냅 샷 생성에 사용 된 원래 볼륨의 정확한 복제본으로 시작됩니다. 복제 된 볼륨은 백그라운드에서 데이터를 느리게로드하여 즉시 사용할 수 있습니다. <strong>아직 로드되지 않은 데이터에 액세스하면 볼륨이 Amazon S3에서 요청 된 데이터를 즉시 다운로드</strong> 한 다음 나머지 볼륨 데이터를 백그라운드에서 계속로드합니다.</li>
+      <li><strong>스냅 샷이 진행되는 동안 루트가 아닌 EBS 볼륨을 분리하거나 새 EC2 인스턴스에 연결할 수 있습니다.</strong> 여기서 유일한 예외는 루트 볼륨의 스냅 샷을 만드는 경우입니다.</li>
+    </ul>
+  </li>
+  <li>A leading bank has an application that is hosted on an Auto Scaling group of EBS-backed EC2 instances. As the Solutions Architect, you need to provide the ability to fully <strong>restore the data stored in their EBS volumes by using EBS snapshots.</strong>     <br />
+Which of the following approaches provide <strong>the lowest cost for Amazon Elastic Block Store snapshots</strong>?
+    <ul>
+      <li><strong>A) Just maintain a single snapshot of the EBS volume since the latest snapshot is both incremental and complete</strong></li>
+      <li>특정 시점 스냅 샷을 생성하여 Amazon EBS 볼륨의 데이터를 Amazon S3에 백업 할 수 있습니다. <strong>스냅 샷은 증분 백업이므로 가장 최근의 스냅 샷 이후에 변경된 장치의 블록 만 저장</strong>됩니다. 이를 통해 스냅 샷 생성에 필요한 시간을 최소화하고 데이터를 복제하지 않으므로 스토리지 비용을 절약 할 수 있습니다.</li>
+      <li>스냅 샷을 삭제하면 해당 스냅 샷에 고유 한 데이터만 제거됩니다. 각 스냅 샷에는 스냅 샷이 생성 된 순간부터 새로운 EBS 볼륨으로 데이터를 복원하는 데 필요한 모든 정보가 포함되어 있습니다.</li>
+    </ul>
+  </li>
+  <li>A health organization is using a large Dedicated EC2 instance with multiple EBS volumes to host its health records web application. The EBS volumes must be encrypted due to the <strong>confidentiality of the data that they are handling and also to comply with the HIPAA (Health Insurance Portability and Accountability Act) standard</strong>.     <br />
+In EBS encryption, what service does AWS use to secure the volume’s data at rest? (Select TWO.)
+    <ul>
+      <li><strong>A1) By using Amazon-managed keys in AWS Key Management Service(KMS)</strong></li>
+      <li><strong>A2) By using your own keys in AWS Key Management Service(KMS)</strong></li>
+      <li><strong>Amazon EBS 암호화</strong>는 EBS 데이터 볼륨, 부팅 볼륨 및 스냅 샷을 완벽하게 암호화하므로 안전한 <strong>키 관리 인프라를 구축하고 유지할 필요가 없습니다</strong>. EBS 암호화는 <strong>Amazon 관리 키 또는 AWS Key Management Service (KMS)를 사용</strong>하여 생성 및 관리하는 키를 사용하여 데이터를 암호화함으로써 유휴 데이터를 안전하게 보호합니다. EC2 인스턴스를 호스팅하는 서버에서 암호화가 발생하여 EC2 인스턴스와 EBS 스토리지간에 데이터를 이동할 때 암호화됩니다.</li>
+      <li><strong>S3 Server-Side Encrypton &amp; S3 Client-Side Encryption</strong> : is incorrect. only S3.</li>
+      <li><strong>Cloud HSM</strong> : is incorrect. 비밀번호는 저장하지 않고 키만 저장합니다.</li>
+      <li><strong>SSL certificates provided by the AWS Certificate Manager (ACM)</strong> : is incorrect. ACM은 SSL 인증서만 제공하며 EBS 볼륨의 데이터 암호화는 제공하지 않습니다.</li>
+    </ul>
+  </li>
+  <li>You are setting up a cost-effective architecture for a log processing application which has <strong>frequently accessed, throughput-intensive workloads with large, sequential I/O operations</strong>. The application should be hosted in an already existing On-Demand EC2 instance in your VPC. You have to attach a new EBS volume that will be used by the application.  <br />
+Which of the following is the most suitable EBS volume type that you should use in this scenario?
+    <ul>
+      <li><strong>A) EBS Throughput Optimized HDD (st1)</strong></li>
+      <li><strong>처리량 최적화 HDD (st1) 볼륨</strong>은 IOPS보다는 처리량 측면에서 성능을 정의하는 저비용 마그네틱 스토리지를 제공합니다. 이 볼륨 유형은 Amazon EMR, ETL, 데이터웨어 하우스 및 로그 처리와 같은 <strong>대규모 순차적 워크로드</strong>에 적합합니다. 부팅 가능한 st1 볼륨은 지원되지 않습니다.  <br />
+<strong>처리량 최적화 HDD (st1) 볼륨은 콜드 HDD (sc1) 볼륨과 유사하지만 자주 액세스하는 데이터를 지원</strong>하도록 설계되었습니다.</li>
+      <li><strong>EBS 프로비저닝 IOPS SSD(io1)</strong> : incorrect. 가장 비용 효율적인 EBS 유형이 아니며 주로 IOPS 성능을 유지해야하는 중요한 비즈니스 애플리케이션에 사용</li>
+      <li><strong>Amazon EBS 범용 SSD 볼륨(gp2)</strong> : incorrect. Amazon EBS 범용 SSD 볼륨은 다양한 워크로드에 대한 가격과 성능의 균형을 유지하므로 자주 액세스하는 처리량이 많은 워크로드에는 적합하지 않습니다. 처리량 최적화 HDD는 범용 SSD보다 사용하기에 더 적합한 옵션입니다.</li>
+      <li><strong>EBS Cold HDD (sc1)</strong> : incorrect. 이는 범용 SSD에 비해 저렴한 HDD 볼륨을 제공하지만 <strong>액세스 빈도가 낮은 워크로드에 더 적합</strong>합니다.</li>
+    </ul>
+  </li>
+  <li>You are planning to migrate a <strong>MySQL database</strong> from your on-premises data center to your AWS Cloud. This database will be used by a legacy batch application which has <strong>steady-state workloads in the morning but has its peak load at night for the end-of-day processing</strong>. You need to choose an EBS volume which can handle a maximum of 450 GB of data and can also be <strong>used as the system boot volume</strong> for your EC2 instance.   <br />
+Which of the following is the most cost-effective storage type to use in this scenario?
+    <ul>
+      <li><strong>A) Amazon EBS General Purpose SSD(gp2)</strong></li>
+      <li>이 시나리오에서 정상 상태 워크로드가 있는 레거시 배치 애플리케이션에는 <strong>관계형 MySQL 데이터베이스</strong>가 필요합니다. 사용해야하는 EBS 볼륨은 최대 450GB의 데이터를 처리해야하며 EC2 인스턴스의 시스템 부팅 볼륨으로도 사용할 수 있습니다. <strong>HDD 볼륨은 부팅 가능한 볼륨으로 사용할 수 없으므로 SSD 볼륨을 선택하여 옵션 범위를 좁힐 수 있습니다</strong>. 또한 SSD 볼륨은 트랜잭션 데이터베이스 워크로드에 더 적합합니다.</li>
+      <li>범용 SSD (gp2) 볼륨은 광범위한 워크로드에 이상적인 비용 효율적인 스토리지를 제공합니다. 이 볼륨은 한 자리 밀리 초의 지연 시간을 제공하며 장시간 3,000 IOPS로 버스트 할 수 있습니다. 최소 100 IOPS (33.33 GiB 이하)와 최대 10,000 IOPS (3,334 GiB 이상) 사이에서 기준 성능은 볼륨 크기의 GiB 당 3 IOPS로 선형으로 확장됩니다. AWS는 gp2 볼륨을 설계하여 99 %의 프로비저닝 된 성능을 제공합니다. gp2 볼륨의 크기는 1GiB ~ 16TiB입니다.  <br />
+<img src="https://dasoldasol.github.io/assets/images/image/ebs-type-ko.PNG" alt="ebs-type-ko" /></li>
+    </ul>
+  </li>
+  <li>You have an existing On-demand EC2 instance and you are planning to create a new EBS volume that will be attached to this instance. The data that will be stored are <strong>confidential medical records</strong> so you have to make sure that the data is protected.  <br />
+How can you <strong>secure the data at rest of the new EBS volume</strong> that you will create?
+    <ul>
+      <li><strong>A) Create an encrypted EBS Volume by ticking the encryption tickbox and attach it to the instance.</strong></li>
+      <li>암호화 확인란을 선택(ticking the encryption tickbox)하여 암호화 된 EBS 볼륨을 생성하고 EC2 인스턴스에 연결할 수 있습니다.</li>
+      <li>Amazon EBS 암호화는 자체 키 관리 인프라를 구축, 유지 관리 및 보호 할 필요없이 EBS 볼륨에 간단한 암호화 솔루션을 제공합니다. 암호화 된 EBS 볼륨을 만들어 지원되는 인스턴스 유형에 연결하면 다음 유형의 데이터가 암호화됩니다:
+        <ul>
+          <li>볼륨 내부의 유휴 데이터</li>
+          <li>볼륨과 인스턴스간에 이동하는 모든 데이터</li>
+          <li>볼륨에서 생성 된 모든 스냅 샷</li>
+          <li>해당 스냅 샷에서 생성 된 모든 볼륨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>An application is hosted on an EC2 instance with multiple EBS Volumes attached and uses Amazon Neptune as its database. To improve data security, you encrypted all of the EBS volumes attached to the instance to protect the confidential data stored in the volumes.   <br />
+Which of the following statements are true about <strong>encrypted Amazon Elastic Block Store volumes</strong>? (Select TWO.)
+    <ul>
+      <li><strong>A1) All data moving between the volume and the instances are encrypted.</strong></li>
+      <li><strong>A2) Snapshots are automatically encrypted.</strong></li>
+      <li>Amazon EBS 암호화는 자체 키 관리 인프라를 구축, 유지 관리 및 보호 할 필요없이 EBS 볼륨에 간단한 암호화 솔루션을 제공합니다. 암호화 된 EBS 볼륨을 만들어 지원되는 인스턴스 유형에 연결하면 다음 유형의 데이터가 암호화됩니다:
+        <ul>
+          <li>볼륨 내부의 유휴 데이터</li>
+          <li>볼륨과 인스턴스간에 이동하는 모든 데이터</li>
+          <li>볼륨에서 생성 된 모든 스냅 샷</li>
+          <li>해당 스냅 샷에서 생성 된 모든 볼륨</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#aws" class="page__taxonomy-item" rel="tag">AWS</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-02-19T00:00:00+00:00">February 19, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=EBS%20http%3A%2F%2Flocalhost%3A4000%2Faws%2FEBS%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Faws%2FEBS%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Faws%2FEBS%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/aws/CloudHSM/" class="pagination--pager" title="CloudHSM
+">이전</a>
+    
+    
+      <a href="/aws/Aurora/" class="pagination--pager" title="Aurora
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/mssql-to-s3/" rel="permalink">로컬DB 일배치로 S3에 파일 전송하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-15T00:00:00+00:00">January 15, 2021</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">테이블을 1일 1회 백업해서 파일로 S3에 전송한다
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/connect-rds/" rel="permalink">보안된 내부망 rds DB클라이언트 접속
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-11-01T00:00:00+00:00">November 1, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">private 망에 위치한 RDS를 putty가 아닌 DB 클라이언트에서 접속
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-yml/" rel="permalink">serverless framework 환경 설정 serverless.yml
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-15T00:00:00+00:00">September 15, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless.yml 작성을 통해 배포 환경 설정을 해보자
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-tutorial-2/" rel="permalink">serverless framework 시작하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-10T00:00:00+00:00">September 10, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless framework를 설치하고, AWS와 연결해보자
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Dasol Seo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

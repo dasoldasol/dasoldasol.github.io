@@ -1,0 +1,925 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>CloudFront vs. Global Accelerator | Dasol Seo</title>
+<meta name="description" content="AWS CloudFront, Global Accelerator">
+
+
+  <meta name="author" content="서다솔">
+  
+  <meta property="article:author" content="서다솔">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Dasol Seo">
+<meta property="og:title" content="CloudFront vs. Global Accelerator">
+<meta property="og:url" content="http://localhost:4000/aws/CloudFront-GlobalAccelerator/">
+
+
+  <meta property="og:description" content="AWS CloudFront, Global Accelerator">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-04-07T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/aws/CloudFront-GlobalAccelerator/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Dasol Seo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Dasol Seo Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/share.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Dasol Seo
+          <span class="site-subtitle">Version 1.0</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/project/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Blog</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#aws" itemprop="item"><span itemprop="name">Aws</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">CloudFront vs. Global Accelerator</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/KakaoTalk_20200922_160045754.jpg" alt="서다솔" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">서다솔</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>추천 시스템은 맛있어</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ssolphanes@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://dasoldasol.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/dasoldasol/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="CloudFront vs. Global Accelerator">
+    <meta itemprop="description" content="AWS CloudFront, Global Accelerator">
+    <meta itemprop="datePublished" content="2020-04-07T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">CloudFront vs. Global Accelerator
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-04-07T00:00:00+00:00">April 7, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#cloudfront">CloudFront</a>
+    <ul>
+      <li><a href="#cheatsheet">CheatSheet</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#storage-option">Storage Option</a></li>
+    </ul>
+  </li>
+  <li><a href="#s3-pre-signed-urls-vs-cloudfront-signed-urls-vs-origin-access-identityoai">S3 Pre-signed URLs vs. CloudFront Signed URLs vs. Origin Access Identity(OAI)</a>
+    <ul>
+      <li><a href="#s3-pre-signed-urls">S3 Pre-signed URLs</a></li>
+      <li><a href="#cloudfront-signed-urls">CloudFront Signed URLs</a></li>
+      <li><a href="#origin-access-identityoai">Origin Access Identity(OAI)</a></li>
+    </ul>
+  </li>
+  <li><a href="#aws-global-accelerator">AWS Global Accelerator</a>
+    <ul>
+      <li><a href="#feature">Feature</a></li>
+      <li><a href="#usecase">UseCase</a></li>
+    </ul>
+  </li>
+  <li><a href="#scenarios">Scenarios</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="cloudfront">CloudFront</h2>
+<h3 id="cheatsheet">CheatSheet</h3>
+<ul>
+  <li>provides low latency and high data transfer speeds for <strong>distribution of static, dynamic web or streaming content</strong> to web users.</li>
+  <li>delivers the content through a worldwide network of data centers called <strong>Edge Location</strong>.</li>
+  <li>keeps persistent connections with the origin servers so that the files can be fetched from the origin servers as quickly as possible</li>
+  <li>dramatically <strong>reduces the # of network hops</strong> that user’s requests must pass through.</li>
+  <li>
+    <p>supports <strong>multiple origin server options</strong>, like AWS hosted service(S3, EC2, ELB) or an on premise server, which stores the original, definitive version of the objects.</p>
+  </li>
+  <li>
+    <p><strong>single distribution can have multiple origins</strong> and Path pattern in a cache behavior determines which requests are routed to the origin</p>
+  </li>
+  <li>supports <strong>Web Download</strong> distribution and <strong>RTMP Streaming</strong> distribution
+    <ul>
+      <li>Web distribution supports static, dynamic web content, on demand using progressive download &amp; HLS and live streaming video content</li>
+      <li>RTMP supports streaming of media files using Adobe Media Server and the Adobe Real-Time Messaging Protocol(RTMP) <strong>ONLY</strong></li>
+    </ul>
+  </li>
+  <li>supports HTTPS using either
+    <ul>
+      <li><strong>dedicated IP address</strong>, which is expensive as dedicated IP address is assigned to each CloudFront edge location</li>
+      <li><strong>Server Name Indication(SNI)</strong>, which is free but supported by modern browsers only with the domain name available in the request header</li>
+    </ul>
+  </li>
+  <li>object <strong>removal</strong> from cache
+    <ul>
+      <li>would be removed upon <strong>expiry(TTL)</strong> from the cache, by default 24 hrs</li>
+      <li>can be <strong>invalidated explicitly</strong>, but has a cost associated, however might continue to see the old version until it expires from those caches</li>
+      <li>objects can be <strong>invalidated only for Web distribution</strong></li>
+      <li>change object name, <strong>versioning</strong>, to serve different version</li>
+    </ul>
+  </li>
+  <li>supports adding or modifying custom headers before the request is sent to origin which can be used to
+    <ul>
+      <li><strong>validate</strong> if user is accessing the content from CDN</li>
+      <li><strong>identifying CDN</strong> from which the request was forwarded from, in case of multiple CloudFront distribution</li>
+      <li>for <strong>viewers not supporting CORS</strong> to return the Access-Conrol-Allow-Origin header for every request</li>
+    </ul>
+  </li>
+  <li>supports <strong>Partial GET requests</strong> using range header to download object in smaller units improving the efficiency of partial downloads and recovery from partially failed transfers</li>
+  <li>supports <strong>compression</strong> to compress and serve compressed files when viewer requests include Accept-Encoding: gzip in the request header</li>
+  <li>supports different <strong>price class</strong> to include all regions, to include only least expensive regions and other regions to exclude most expensive regions</li>
+  <li>supports <strong>access logs</strong> which contain detailed information about every user request for both web and RTMP distribution</li>
+</ul>
+
+<h3 id="features">Features</h3>
+<ul>
+  <li>CDN</li>
+  <li>Edge Location : location where the data cached. separate to Region/AZ</li>
+  <li>Origin : the source of all the files that the CDN will distribute</li>
+  <li>Distribution : collection of Edge Locations</li>
+  <li>Web Distribution : used for Websites (cf. RTMP -Real-Time Messaging Protocol- : Media data streaming)</li>
+  <li>create invalidation : when update doesn’t work, you can clear cache but will be charged</li>
+  <li>not just READ ONLY, you can write</li>
+  <li>TTL(Time to Live)
+    <h3 id="storage-option">Storage Option</h3>
+  </li>
+  <li>Origin : S3 bucket or http server(ex:web server)</li>
+  <li>Additional montly charge ($600/month) for using dedicated IP address</li>
+  <li>Invalidate : if objects update frequently, changing Object name is recommended</li>
+  <li>Ideal Usage Pattern : distribution of frequently accessed static content, or dynamic content or for streaming audio or video that benefits from edge delivery</li>
+  <li>Anti Pattern : data is infrequently accessed, cache invalidation(object versioning recommended)</li>
+</ul>
+
+<h2 id="s3-pre-signed-urls-vs-cloudfront-signed-urls-vs-origin-access-identityoai">S3 Pre-signed URLs vs. CloudFront Signed URLs vs. Origin Access Identity(OAI)</h2>
+<h3 id="s3-pre-signed-urls">S3 Pre-signed URLs</h3>
+<ul>
+  <li>모든 객체 및 버킷은 기본적으로 <strong>private</strong>입니다. 개체 소유자만 이러한 개체에 액세스할 수 있는 권한을 갖습니다. Pre-signed URL은 소유자의 security credential을 사용하여 다른 사람들에게 개체를 다운로드하거나 <strong>업로드</strong>할 수 있는 시간 제한 권한을 부여합니다.</li>
+  <li>Pre-signed URL을 생성하는 경우 소유자로서 다음을 제공해야 합니다
+    <ul>
+      <li>security credentials</li>
+      <li>버킷 이름, 객체 키</li>
+      <li>HTTP 메서드(다운로드하려면 GET 업로드하려면 PUT)</li>
+      <li>URL의 만료 날짜/시간
+        <h3 id="cloudfront-signed-urls">CloudFront Signed URLs</h3>
+      </li>
+    </ul>
+  </li>
+  <li>개인콘텐츠에 대한 사용자 액세스 제어 방법 2가지
+    <ul>
+      <li>CloudFront Edge caches에 대한 액세스 제한</li>
+      <li>웹 사이트 엔드포인트로 구성하지 않은 경우, S3 버킷 파일에 대한 액세스 제한</li>
+    </ul>
+  </li>
+  <li>사용자가 <strong>signed URL</strong>이나 <strong>signed cookies</strong>를 사용하여 파일에 액세스하도록 CloudFront 구성. 그런 다음 <strong>signed URL</strong>생성하여 인증된 사용자에게 배포하거나 인증된 사용자를 위해 뷰어에 signed cookies를 설정하는 Set-Cookie 헤더를 보내도록 응용프로그램 개발</li>
+  <li>오리진이 S3버킷인지 아니면 HTTP서버인지에 관계 없이 모든 CloudFront 배포에 사용 가능</li>
+  <li>파일에 대한 액세스를 제어하기 위해 signed URL/signed cookies를 작성할 때 다음 제한 사항을 지정할 수 있습니다.
+    <ul>
+      <li>URL의 만료 날짜(expiration date)/시간</li>
+      <li>(선택사항) URL 유효 날짜(valid date)/시간</li>
+      <li>(선택사항) 콘텐츠에 액세스하는데 사용할 수 있는 컴퓨터의 IP주소
+        <h3 id="origin-access-identityoai">Origin Access Identity(OAI)</h3>
+      </li>
+    </ul>
+  </li>
+  <li>CloudFront 배포의 원본으로도 S3 버킷을 구성할 수 있습니다. <strong>OAI는 사용자가 direct URL을 이용해 S3 파일을 보지 못하게 합니다</strong>. 대신 CloudFront URL을 통해 액세스해야 합니다.</li>
+  <li>사용자가 CloudFront URL을 통해 컨텐츠에 액세스하도록 요구하려면 다음 작업이 필요
+    <ul>
+      <li><strong>origin access identity</strong> 라는 특별한 CloudFront 사용자를 생성</li>
+      <li>버킷의 파일을 읽을 수 있는 Origin Access ID 권한(permission) 부여</li>
+      <li>다른 사람이 S3 URL을 사용하여 파일을 읽을 수 있는 권한 제거(bucket policy or ACL)</li>
+    </ul>
+  </li>
+  <li>S3 버킷이 웹사이트 엔드 포인트로 구성된 경우 OAI를 설정할 수 없습니다.</li>
+</ul>
+
+<h2 id="aws-global-accelerator">AWS Global Accelerator</h2>
+<h3 id="feature">Feature</h3>
+<ul>
+  <li><strong>AWS Global Accelerator</strong>는 로컬 또는 글로벌 사용자를 대상으로 애플리케이션의 가용성과 성능을 개선하는 서비스입니다. Application Load Balancer, Network Load Balancer 또는 Amazon EC2 인스턴스와 같이 단일 또는 여러 AWS 지역에서 애플리케이션 엔드포인트에 대한 고정된 진입점 역할을 하는 정적 IP 주소를 제공합니다.  <br />
+AWS Global Accelerator는 AWS 글로벌 네트워크를 통해 사용자에서 애플리케이션으로 이어진 경로를 최적화하여 <strong>TCP 및 UDP 트래픽의 성능을 개선</strong>합니다. AWS Global Accelerator는 애플리케이션 엔드포인트의 상태를 모니터링하고 비정상적인 엔드포인트의 트래픽을 30초 안에 정상 엔드포인트로 리디렉션합니다.</li>
+  <li><strong>글로벌 애플리케이션 가용성 개선</strong>
+    <ul>
+      <li>AWS Global Accelerator는 애플리케이션 엔드포인트(예: Network Load Balancers, Application Load Balancers, EC2 인스턴스 또는 탄력적 IP)의 상태를 지속적으로 모니터링하여 상태 또는 구성 변화에 즉시 대응합니다. 그런 다음 AWS Global Accelerator는 사용자에게 최고의 성능과 가용성을 제공하는 정상 엔드포인트로 사용자 트래픽을 리디렉션합니다.</li>
+    </ul>
+  </li>
+  <li><strong>글로벌 애플리케이션 가속화</strong>
+    <ul>
+      <li>AWS Global Accelerator는 네트워크 경로를 최적화하며 방대하고 정체가 없는 AWS 글로벌 네트워크의 장점을 활용합니다. AWS Global Accelerator는 사용자의 위치와 관계없이 지능적으로 최고의 애플리케이션 성능을 제공하는 엔드포인트로 트래픽을 라우팅합니다.</li>
+    </ul>
+  </li>
+  <li><strong>손쉽게 엔드포인트 관리</strong>
+    <ul>
+      <li>AWS Global Accelerator의 고정 IP 주소를 통해 DNS 구성을 업데이트하거나 클라이언트 애플리케이션을 변경하지 않고도 가용 영역 또는 AWS 리전 간에 엔드포인트를 손쉽게 이동할 수 있습니다. Amazon IP 주소 풀의 고정 IP 주소를 사용하거나 AWS Global Accelerator에서 기존 보유 IP 주소를 사용(BYOIP)할 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="usecase">UseCase</h3>
+<ul>
+  <li><strong>증가된 애플리케이션을 활용하도록 확장</strong>
+    <ul>
+      <li>AWS Global Accelerator를 사용하면 클라이언트 애플리케이션에서 IP 주소를 업데이트하지 않고도 AWS 리전에서 엔드포인트를 추가 또는 제거하고, 블루/그린 배포 및 A/B 테스트를 실행할 수 있습니다. 이는 클라이언트 애플리케이션을 자주 업데이트 할 수 없는 IoT, 소매, 미디어, 자동차 및 건강 관리 사용 사례에 특히 유용합니다.</li>
+    </ul>
+  </li>
+  <li><strong>지연시간에 민감한 애플리케이션 가속화</strong>
+    <ul>
+      <li>사용자 환경을 개선하기 위해 AWS Global Accelerator는 사용자 트래픽을 가장 가까운 애플리케이션 엔드포인트로 클라이언트로 직접 전달함으로써 인터넷 대기 시간과 지터를 줄입니다. Anycast를 통해 트래픽을 가장 가까운 엣지 로케이션으로 라우팅한 다음 AWS 글로벌 네트워크 전체에서 가장 가까운 리전 엔드포인트로 라우팅합니다.</li>
+    </ul>
+  </li>
+  <li><strong>여러 리전 및 여러 가용 영역의 복원력에 기반한 재해 복구</strong>
+    <ul>
+      <li>AWS Global Accelerator가 기본 AZ 또는 AWS 리전에서 애플리케이션 엔드포인트의 장애를 감지하면, 다른 AZ 또는 AWS 리전에 있는 다음으로 사용 가능하고, 가장 가까운 엔드포인트의 애플리케이션 엔드포인트로 트래픽을 다시 라우팅하도록 즉시 트리거합니다.</li>
+    </ul>
+  </li>
+  <li><strong>애플리케이션 보호</strong>
+    <ul>
+      <li>AWS Global Accelerator를 사용하면 내부 Application Load Balancer나 프라이빗 EC2 인스턴스를 엔드포인트로 추가할 수 있습니다. 단일 인터넷 연결 액세스 포인트로 AWS Global Accelerator를 사용하면 분산 서비스 거부(DDoS) 공격으로부터 AWS에서 실행 중인 애플리케이션을 보호하고 최종 사용자가 애플리케이션에 연결하는 방식을 제어할 수 있습니다. AWS Global Accelerator는 AWS Global Accelerator와 Amazon Virtual Private Cloud(Amazon VPC) 간에 피어링 연결을 생성합니다. 두 VPC 간의 트래픽은 프라이빗 IP 주소를 사용합니다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="scenarios">Scenarios</h2>
+<ul>
+  <li>A web application is using CloudFront to distribute their images, videos, and other static contents stored in their S3 bucket to its users around the world. The company has recently introduced a <strong>new member-only access</strong> to some of its high quality media files. There is a requirement to <strong>provide access to multiple private media files only to their paying subscribers</strong> without having to change their current URLs.    <br />
+Which of the following is the most suitable solution that you should implement to satisfy this requirement?
+    <ul>
+      <li><strong>A) Use Signed Cookies to control who can access the private files in your CloudFront distribution by modifying your application to determine whether a user should have access to your content. For members, send the required <code class="language-plaintext highlighter-rouge">Set-Cookie</code> headers to the viewer which will unlock the content only to them.</strong></li>
+      <li><strong>Signed URLs</strong>
+        <ul>
+          <li>RTMP 배포를 사용하려고 할때. 서명 된 쿠키는 RTMP 배포에 지원되지 않습니다.</li>
+          <li>개별 파일 (예 : 응용 프로그램의 설치 다운로드)에 대한 액세스를 제한하려고합니다.</li>
+          <li>사용자가 쿠키를 지원하지 않는 클라이언트 (예 : 사용자 정의 HTTP 클라이언트)를 사용하고 있습니다.</li>
+        </ul>
+      </li>
+      <li><strong>Signed Cookies</strong>
+        <ul>
+          <li>여러 제한된 파일 (예 : HLS 형식의 비디오에 대한 모든 파일 또는 웹 사이트의 구독자 영역에있는 모든 파일)에 대한 액세스를 제공하려고합니다.</li>
+          <li>현재 URL을 변경하고 싶지 않습니다.</li>
+        </ul>
+      </li>
+      <li>Match Viewer : is incorrect. 뷰어 요청의 프로토콜에 따라 HTTP 또는 HTTPS를 사용하여 오리진과 통신하도록 CloudFront를 구성하는 오리진 프로토콜 정책입니다. 뷰어가 HTTP 및 HTTPS 프로토콜을 모두 사용하여 요청하더라도 CloudFront는 객체를 한 번만 캐시합니다.</li>
+      <li>CloudFront distribution to use Field-Level Encryption : is incorrect. 필드 수준 암호화를 사용하면 사용자가 제출한 중요한 정보만 웹 서버에 안전하게 업로드 할 수 있기 때문에 올바르지 않습니다. 여러 개인 파일을 다운로드 할 수있는 액세스 권한을 제공하지 않습니다.</li>
+    </ul>
+  </li>
+  <li>A popular social media website uses a CloudFront web distribution to serve their static contents to their millions of users around the globe. They are receiving a number of <strong>complaints</strong> recently that their users <strong>take a lot of time to log into their website</strong>. There are also occasions when their users are getting <strong>HTTP 504 errors</strong>. You are instructed by your manager to significantly reduce the user’s login time to further optimize the system.  <br />
+Which of the following options should you use together to set up a <strong>cost-effective</strong> solution that can improve your application’s performance? (Choose 2)
+    <ul>
+      <li><strong>Solution 1 : Set up an origin failover by creating an origin group with two origins. Specify one as the primary origin and the other as the second origin which CloudFront automatically switches to when the primary origin returns specific HTTP status code failure response.</strong></li>
+      <li><strong>Solution 2 : Customize the content that the CloudFront web distribution delivers to your users using Lambda@Edge, which allows your Lambda functions to execute the authentication process in AWS locations closer to the users.</strong></li>
+      <li>Lambda @ Edge는 Lambda 함수가 CloudFront가 제공하는 컨텐츠를 사용자 지정하고 사용자와 가까운 AWS 위치에서 인증 프로세스를 실행할 수 있도록합니다.</li>
+    </ul>
+  </li>
+  <li>A web application, which is used by your clients around the world, is hosted in an Auto Scaling group of EC2 instances behind a <strong>Classic Load Balancer</strong>. You need to secure your application by allowing <strong>multiple domains to serve SSL traffic over the same IP address</strong>.   <br />
+Which of the following should you do to meet the above requirement?
+    <ul>
+      <li><strong>A) Generate an SSL certificate with AWS Certificate Manager and create a CloudFront web distribution. Associate the certificate with your web distribution and enable the support for Server Name Indication(SNI)</strong></li>
+      <li><strong>SNI</strong> : 서버 네임 인디케이션(Server Name Indication, SNI)은 컴퓨터 네트워크 프로토콜인 TLS의 확장으로, 핸드셰이킹 과정 초기에 클라이언트가 어느 호스트명에 접속하려는지 서버에 알리는 역할을 한다. 이를 이용하면 같은 IP 주소와 TCP 포트 번호를 가진 서버로 여러 개의 인증서를 사용할 수 있게 되고, 따라서 모든 사이트가 같은 인증서를 사용하지 않아도 동일한 아이피로 여러 HTTPS 웹사이트(또는 TLS 상에서 돌아가는 다른 서비스)를 운영할 수 있게 된다.</li>
+      <li><strong>Amazon CloudFront</strong> delivers your content from each edge location. It offers the same security as the Dedicated IP Custom SSL feature. SNI Custom SSL works with most modern browsers.</li>
+      <li><strong>SSL/TLS 암호화 및 HTTPS</strong> : Amazon CloudFront를 사용하면 콘텐츠, API 또는 애플리케이션을 SSL/TLS를 통해 전송할 수 있으며, 고급 SSL 기능을 자동으로 활성화할 수 있습니다. AWS Certificate Manager(ACM)를 사용하여 사용자 지정 SSL 인증서를 손쉽게 생성하여 CloudFront 배포에 무료로 배포할 수 있습니다. ACM은 인증서 갱신을 자동으로 처리하므로 수동 갱신 프로세스의 오버헤드와 비용이 절감됩니다. 또한 CloudFront는 풀/하프 브리지 HTTPS 연결, OCSP 스테이플링, 세션 티켓, PFS(Perfect Forward Secrecy), TLS 프로토콜 시행, 필드 레벨 암호화 등과 같은 다양한 SSL 최적화 및 고급 기능을 제공합니다.</li>
+      <li><strong>Dedicated IP Custom SSL</strong> : Some users may not be able to access your content because some <strong>older browsers</strong> do not support SNI and will not be able to establish a connection with CloudFront to load the HTTPS version of your content. If you need to support <strong>non-SNI compliant browsers</strong> for HTTPS content, it is recommended to use the <strong>Dedicated IP Custom SSL feature</strong>.</li>
+      <li><strong>Using Server Name Indication (SNI) on your Classic Load Balancer by adding multiple SSL certificates to allow multiple domains to serve SSL traffic</strong> : is incorrect because a <strong>Classic Load Balancer does not support SNI</strong>. You have to use an Application Load Balancer instead or a CloudFront web distribution to allow the SNI feature.</li>
+      <li><strong>Using an Elastic IP and uploading multiple 3rd party certificates in your Application Load Balancer using the AWS Certificate Manager</strong> : is incorrect because just like in the above, a Classic Load Balancer does not support Server Name Indication (SNI) and the use of an Elastic IP is not a suitable solution to allow multiple domains to serve SSL traffic. You have to use Server Name Indication (SNI).</li>
+    </ul>
+  </li>
+  <li>Your customer has clients all across the globe that access product files stored in several S3 buckets, which are behind each of their own CloudFront web distributions. They currently want to deliver their content to a specific client, and they need to make sure that <strong>only that client can access the data</strong>. Currently, all of their clients can access their S3 buckets directly using an S3 URL or through their CloudFront distribution. The Solutions Architect <strong>must serve the private content securely via CloudFront only to speed up the distribution of files</strong>.  <br />
+Which combination of actions should you implement to meet the above requirements? (Choose 2)
+    <ul>
+      <li><strong>A1) Restrict access to files in your origin by creating an origin access identity(OAI) and give it permission to read the files in the bucket.</strong></li>
+      <li><strong>A2) Require that your users access your private content by using special CloudFront signed URLs or signed cookies.</strong></li>
+      <li>To securely serve this private content by using CloudFront:
+        <ul>
+          <li>Require that your users access your private content by using special <strong>CloudFront signed URLs or signed cookies.</strong></li>
+          <li>Require that your users access your Amazon S3 content by using CloudFront URLs, <strong>not Amazon S3 URLs</strong>. Requiring CloudFront URLs isn’t necessary, but it is recommended to <strong>prevent users from bypassing the restrictions</strong> that you specify in signed URLs or signed cookies. You can do this by setting up an <strong>origin access identity (OAI)</strong> for your Amazon S3 bucket. You can also configure the custom headers for a private HTTP server or an Amazon S3 bucket configured as a website endpoint.</li>
+        </ul>
+      </li>
+      <li>All objects and buckets by default are private. The <strong>presigned URLs</strong> are useful <strong>if you want your user/customer to be able to upload a specific object to your bucket, but you don’t require them to have AWS security credentials or permissions.</strong> Anyone who receives a valid presigned URL can then programmatically upload an object.</li>
+      <li><strong>Use S3 pre-signed URLs to ensure that only their client can access the files. Remove permission to use Amazon S3 URLs to read the files for anyone else</strong> : is incorrect because although this could be a valid solution, it doesn’t satisfy the requirement to serve the private content securely via CloudFront only to speed up the distribution of files. A better solution is to set up an origin access identity (OAI) then use Signed URL or Signed Cookies in your CloudFront web distribution.</li>
+    </ul>
+  </li>
+  <li>You are responsible for running a <strong>global news website</strong> hosted in a fleet of EC2 Instances. Lately, the load on the website has increased which resulted to slower response time for the site visitors. This issue impacts the revenue of the company as some readers tend to leave the site if it does not load after 10 seconds.     <br />
+Which of the below services in AWS can be used to solve this problem? (Select TWO.)
+    <ul>
+      <li><strong>A1) Use Amazon ElastiCache for the website’s in-memory data store or cache.</strong></li>
+      <li><strong>A2) Use Amazon CloudFront with website as the custom origin.</strong></li>
+      <li>this is a news website, most of its data are read-only, which can be cached to improve the read throughput and avoid the repetitive requests from the server.</li>
+      <li>Amazon CloudFront is the global content delivery network (CDN) service that you can use and for web caching</li>
+    </ul>
+  </li>
+  <li>You are working for a large global media company with multiple office locations all around the world. You are instructed to build a system to distribute training videos to all employees. Using <strong>CloudFront</strong>, what method would be used <strong>to serve content that is stored in S3, but not publicly accessible from S3 directly</strong>?
+    <ul>
+      <li><strong>A) Create an Origin Access Identity (OAI) for CloudFront and grant access to the objects in your S3 bucket to that OAI.</strong></li>
+      <li>Amazon S3 버킷에서 제공하는 콘텐츠에 대한 액세스를 제한하려면 CloudFront 서명된 URL 또는 서명된 쿠키를 만들어 Amazon S3 버킷에서 파일에 대한 액세스를 제한하고, <strong>OAI(원본 액세스 ID)</strong>라는 특별한 CloudFront 사용자를 만들어 배포와 연결합니다. 그런 다음 CloudFront가 OAI를 사용하여 사용자에 액세스하고 파일을 제공할 수 있지만, 사용자는 S3 버킷에 대한 직접 URL을 사용하여 파일에 액세스할 수 없도록 권한을 구성합니다.</li>
+      <li>Alternatively, you can choose to manually change the bucket policy or change ACLs, which control permissions on individual objects in your bucket.</li>
+    </ul>
+  </li>
+  <li>A web application is hosted in an Auto Scaling group of EC2 instances deployed across multiple Availability Zones in front of an Application Load Balancer. You need to implement an SSL solution for your system to improve its security which is why you requested an SSL/TLS certificate from a third-party certificate authority (CA).     <br />
+Where can you safely <strong>import the SSL/TLS certificate of your application</strong>? (Select TWO.)
+    <ul>
+      <li><strong>A1) AWS Certificate Manager</strong></li>
+      <li><strong>A2) IAM certificate store</strong></li>
+      <li><strong>AWS Certificate Manager(ACM)</strong>
+        <ul>
+          <li>AWS 인증 관리자 (ACM) 서비스는 SSL/TLS 인증서 발급 및 관리에 대한 많은 작업을 자동화 하고 단순화 하기 위해 시작되었습니다. ACM에서 제공되는 인증서는 Amazon의 인증 기관(CA)인 Amazon Trust Services (ATS)에서 발급됩니다.  <br />
+인증서에 발급되는 추가 비용이 발생하지 않습니다. SSL/TLS 인증서는 AWS Certificate Manager에서 무료로 사용하실 수 있습니다.  <br />
+ACM을 사용하면 몇 분만에 SSL 암호화 기능을 사용할 수 있습니다. 인증서 발급을 요청하면, Elastic Load Balancers 및 Amazon CloudFront에서 몇 번의 클릭으로 설정할 수 있습니다. 그 후 ACM은 자동으로 인증서를 정기적으로 업데이트 해줍니다.</li>
+        </ul>
+      </li>
+      <li><strong>IAM Certificate Store</strong>
+        <ul>
+          <li>ACM에서 지원되지 않는 리전에서 HTTPS 연결을 지원해야 하는 경우에만 IAM을 인증서 관리자로 사용합니다. IAM은 프라이빗 키를 안전하게 암호화하고 암호화된 버전을 IAM SSL 인증서 스토리지에 저장합니다.</li>
+        </ul>
+      </li>
+      <li><strong>CloudFront</strong> : is incorrect. CloudFront에 인증서를 업로드 할 수 있지만 SSL 인증서를 가져올 수있는 것은 아닙니다. CloudFront에 로드한 인증서를 내보내거나 단일 CloudFront 배포에 연결된 EC2 또는 ELB 인스턴스에 할당 할 수 없습니다.</li>
+    </ul>
+  </li>
+  <li>You recently launched a news website which is expected to be visited by millions of people around the world. You chose to deploy the website in AWS to take advantage of its extensive range of cloud services and global infrastructure. Aside from AWS Region and Availability Zones, which of the following is part of the AWS <strong>Global Infrastructure</strong> that is used for <strong>content distribution</strong>?
+    <ul>
+      <li><strong>A) Edge Location</strong></li>
+    </ul>
+  </li>
+  <li>An online trading platform with thousands of clients across the globe is hosted in AWS. To reduce latency, you have to <strong>direct user traffic to the nearest application endpoint</strong> to the client. The <strong>traffic should be routed to the closest edge location via an Anycast static IP address</strong>. AWS Shield should also be integrated into the solution for DDoS protection.
+Which of the following is the MOST suitable service that the Solutions Architect should use to satisfy the above requirements?
+    <ul>
+      <li><strong>A) AWS Global Accelerator</strong></li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#aws" class="page__taxonomy-item" rel="tag">AWS</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-04-07T00:00:00+00:00">April 7, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=CloudFront+vs.+Global+Accelerator%20http%3A%2F%2Flocalhost%3A4000%2Faws%2FCloudFront-GlobalAccelerator%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Faws%2FCloudFront-GlobalAccelerator%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Faws%2FCloudFront-GlobalAccelerator%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/aws/Athena-Glue/" class="pagination--pager" title="Athena vs. Glue
+">이전</a>
+    
+    
+      <a href="/algorithm/algorithm/" class="pagination--pager" title="[알고리즘] Stack을 이용한 회문(palindrome) 작성
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/mssql-to-s3/" rel="permalink">로컬DB 일배치로 S3에 파일 전송하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-15T00:00:00+00:00">January 15, 2021</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">테이블을 1일 1회 백업해서 파일로 S3에 전송한다
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/connect-rds/" rel="permalink">보안된 내부망 rds DB클라이언트 접속
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-11-01T00:00:00+00:00">November 1, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">private 망에 위치한 RDS를 putty가 아닌 DB 클라이언트에서 접속
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-yml/" rel="permalink">serverless framework 환경 설정 serverless.yml
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-15T00:00:00+00:00">September 15, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless.yml 작성을 통해 배포 환경 설정을 해보자
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-tutorial-2/" rel="permalink">serverless framework 시작하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-10T00:00:00+00:00">September 10, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless framework를 설치하고, AWS와 연결해보자
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Dasol Seo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

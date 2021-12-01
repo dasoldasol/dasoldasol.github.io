@@ -1,0 +1,1351 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>S3 | Dasol Seo</title>
+<meta name="description" content="AWS S3">
+
+
+  <meta name="author" content="서다솔">
+  
+  <meta property="article:author" content="서다솔">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Dasol Seo">
+<meta property="og:title" content="S3">
+<meta property="og:url" content="http://localhost:4000/aws/S3/">
+
+
+  <meta property="og:description" content="AWS S3">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-02-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/aws/S3/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Dasol Seo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Dasol Seo Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/share.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Dasol Seo
+          <span class="site-subtitle">Version 1.0</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/project/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Blog</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#aws" itemprop="item"><span itemprop="name">Aws</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">S3</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/KakaoTalk_20200922_160045754.jpg" alt="서다솔" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">서다솔</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>추천 시스템은 맛있어</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ssolphanes@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://dasoldasol.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/dasoldasol/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="S3">
+    <meta itemprop="description" content="AWS S3">
+    <meta itemprop="datePublished" content="2020-02-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">S3
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-02-21T00:00:00+00:00">February 21, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#s3-cheatsheet">S3 CheatSheet</a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#s3-resources">S3 resources</a></li>
+      <li><a href="#bucket--object-operations">Bucket &amp; Object Operations</a></li>
+      <li><a href="#multipart-uploads">Multipart Uploads</a></li>
+      <li><a href="#versioning">Versioning</a></li>
+      <li><a href="#storage-tiers">Storage tiers</a></li>
+      <li><a href="#lifecycle-management-policies">Lifecycle Management Policies</a></li>
+      <li><a href="#data-consistency-model">Data Consistency Model</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#best-practices">Best Practices</a></li>
+    </ul>
+  </li>
+  <li><a href="#features-1">Features</a>
+    <ul>
+      <li><a href="#concept">Concept</a></li>
+      <li><a href="#creating-bucket">Creating Bucket</a></li>
+      <li><a href="#security-and-encryption">Security and Encryption</a></li>
+      <li><a href="#version-control">Version Control</a></li>
+      <li><a href="#lifecycle-management">LifeCycle Management</a></li>
+      <li><a href="#cross-region-replicationcrr">Cross Region Replication(CRR)</a></li>
+      <li><a href="#transfer-accerlation---edge-location">Transfer Accerlation - Edge Location</a></li>
+      <li><a href="#query">Query</a></li>
+    </ul>
+  </li>
+  <li><a href="#scenarios">Scenarios</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="s3-cheatsheet">S3 CheatSheet</h2>
+<h3 id="features">Features</h3>
+<ul>
+  <li>Key-value based object storage with unlimited storage, unlimited objects up to 5TB for the internet</li>
+  <li><strong>Object Level Storage</strong>(not a Block Level Storage) and cannot be used to host OS or dynamic websites</li>
+  <li>Durability by <strong>redundanctly storing objects on multiple facilities within a region</strong></li>
+  <li>SSL encryption of data in transit and data encryption at rest</li>
+  <li>verifies the integrity of data using checksums and provides auto healing capability</li>
+  <li>integrates with CloudTrail, CloudWatch and SNS for event notifications</li>
+</ul>
+
+<h3 id="s3-resources">S3 resources</h3>
+<ul>
+  <li>consists of <strong>bucket and objects</strong> stored in the bucket which can be retrieved via a unique, developer-assigned key</li>
+  <li>bucket names are <strong>globally unique</strong></li>
+  <li><strong>data model is a flat structure</strong> with no hierarchies or folders</li>
+  <li><strong>Logical hierarchy</strong> can be inferred using the keyname prefix</li>
+</ul>
+
+<h3 id="bucket--object-operations">Bucket &amp; Object Operations</h3>
+<ul>
+  <li>allows <strong>retrieval of 1000 objects</strong> and provides <strong>pagination</strong> support and is <strong>NOT</strong> suited for list or prefix queries with large number of objects</li>
+  <li>with a single put operations, 5GB size object can be uploaded</li>
+  <li>use <strong>Multipart upload</strong> to upload large objects up to 5TB and is recommended for object size over 100MB for fault tolerant uploads</li>
+  <li>support <strong>Range HTTP Header</strong> to retrieve partial objects for fault tolerant downloads where the network connectivity is poor</li>
+  <li><strong>Pre-Signed URLs</strong> can also be used shared for uploading/downloading objects for <strong>limited time without requiring AWS security credentials</strong></li>
+  <li>allows deletion of a single object or multiple objects(max 1000) in a single call</li>
+</ul>
+
+<h3 id="multipart-uploads">Multipart Uploads</h3>
+<ul>
+  <li><strong>parallel uploads</strong> with improved throughput and bandwidth utilization</li>
+  <li><strong>fault tolerance and quick recovery</strong> from network issues</li>
+  <li>ability to <strong>pause and resume</strong> uploads</li>
+  <li>begin an upload before the final object size is known</li>
+</ul>
+
+<h3 id="versioning">Versioning</h3>
+<ul>
+  <li>allows preserve, retrieve, and restore every version of every object</li>
+  <li><strong>protects individual files</strong> but does <strong>NOT protect from Bucket deletion</strong></li>
+</ul>
+
+<h3 id="storage-tiers">Storage tiers</h3>
+<ul>
+  <li><strong>Standard</strong>
+    <ul>
+      <li>default storage class</li>
+      <li><strong>99.999999999% durability &amp; 99.99% availability</strong></li>
+      <li>Low latency and high throughput performance</li>
+      <li>designed to <strong>sustain the loss of data in two</strong> facilities</li>
+    </ul>
+  </li>
+  <li><strong>Standard IA</strong>
+    <ul>
+      <li>optimized for <strong>long-lived and less frequently</strong> accessed data</li>
+      <li>designed to <strong>sustain the loss of data in two</strong> facilities</li>
+      <li><strong>99.999999999% durability &amp; 99.9% availability</strong></li>
+      <li>suitable for objects <strong>greater than 128KB</strong> kept for at <strong>least 30 days</strong></li>
+    </ul>
+  </li>
+  <li><strong>Reduced Redundancy Storage</strong>
+    <ul>
+      <li>designed for <strong>noncritival, reproducible data</strong> stored at lower levels of redundancy than the STANDARD storage class</li>
+      <li>reduces storage costs</li>
+      <li><strong>99.99% durability &amp; 99.99% availability</strong></li>
+      <li>designed to <strong>sustain the loss of data in a single</strong> facility</li>
+    </ul>
+  </li>
+  <li><strong>Glacier</strong>
+    <ul>
+      <li>suitable for <strong>archiving data</strong> where <strong>data access is infrequent and retrieval time of several(3-5) hours</strong> is acceptable</li>
+      <li><strong>99.999999999% durability</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="lifecycle-management-policies">Lifecycle Management Policies</h3>
+<ul>
+  <li><strong>Transition</strong> to move objects to different storage classes and Glacier</li>
+  <li><strong>Expiration</strong> to remove objects</li>
+</ul>
+
+<h3 id="data-consistency-model">Data Consistency Model</h3>
+<ul>
+  <li><strong>Read-After-Write Consistency</strong> : PUTS of new objects</li>
+  <li><strong>Eventual Consistency</strong> : overwrite PUTS and DELETES</li>
+  <li>for new objects, <strong>synchronously stores data across multiple facilities</strong> before returning success</li>
+  <li><strong>updates</strong> to a single key are <strong>atomic</strong></li>
+</ul>
+
+<h3 id="security">Security</h3>
+<ul>
+  <li><strong>IAM policies</strong> : grant users within your own AWS account permission to access S3 resources</li>
+  <li><strong>Bucket and Object ACL</strong> : grant other AWS accounts(not specific users) access to S3 resources</li>
+  <li><strong>Bucket policies</strong> : allows to add or deny permissions across some or all of the objects within a single bucket</li>
+</ul>
+
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+  <li><strong>Use random hash prefix for keys and ensure a random access pattern</strong>, as S3 stores object lexicographically randomness helps distribute the contents across multiple partitions for better performance</li>
+  <li>Use parallel threads and <strong>Multipart upload for faster writes</strong></li>
+  <li>Use parallel threads and <strong>Range Header GET for faster reads</strong></li>
+  <li>for list operations with large number of objects, its better to build a secondary index in Dynamo DB</li>
+  <li>Use <strong>Versioning to protect from unintented overwrites and deletions</strong>, but this does not protect against bucket deletion</li>
+  <li>Use <strong>VPC S3 Endpoints</strong> with VPC to transfer data using Amazon internet network</li>
+</ul>
+
+<h2 id="features-1">Features</h2>
+<h3 id="concept">Concept</h3>
+<ul>
+  <li>object based : object - file / key - file  name /value - data =&gt; not suitable to install an operating system(os) or dynamic website</li>
+  <li>MFA Delete : not every body can delete when you turn on</li>
+  <li>universal namespace : unique name</li>
+  <li>data consitency : write and read(PUTS), eventual(UPDATE, DELETE)</li>
+  <li>gurantee : 11x9 durability</li>
+  <li>S3 storage classes
+    <ul>
+      <li>s3 Standard</li>
+      <li>s3 IA (Infrequent Access)</li>
+      <li>s3 One Zone IA</li>
+      <li>s3 Intelligent Tiering : maximize cost saving</li>
+      <li>s3 Glacier : retrieval time</li>
+      <li>s3 Glacier Deep Archive</li>
+    </ul>
+  </li>
+  <li>READ <a href="https://aws.amazon.com/ko/s3/faqs/">S3 FAQ</a>!!!!!!!!!!</li>
+</ul>
+
+<h3 id="creating-bucket">Creating Bucket</h3>
+<ul>
+  <li>tags ex. key-team value-marketing team</li>
+  <li>block all public access by default</li>
+  <li>file upload success http 200</li>
+  <li>object access denied , make public
+    <ul>
+      <li>edit public setting (uncheck) -&gt; object actions make public</li>
+    </ul>
+  </li>
+  <li>storage class (change classes)</li>
+  <li>Control access to buckets using Bucket ACL or Bucket Policies</li>
+</ul>
+
+<h3 id="security-and-encryption">Security and Encryption</h3>
+<ul>
+  <li>in transit : SSL/TLS ex. https</li>
+  <li>server side(AWS manage)
+    <ul>
+      <li>S3 Managed Keys : SSE-S3</li>
+      <li>AWS Key Management Service(custom + aws) : SSE-KMS</li>
+      <li>customized : SSE-C</li>
+    </ul>
+  </li>
+  <li>client side encryption : you do it</li>
+</ul>
+
+<h3 id="version-control">Version Control</h3>
+<ul>
+  <li>cannot be disabled , lifecycle</li>
+  <li>properties : versioning</li>
+  <li>uploading new file : have to change the permission (actions - make public)</li>
+  <li>delete new version file : delete marker</li>
+  <li>stores all versions (even if you delete)</li>
+  <li>MFA Delete capability</li>
+</ul>
+
+<h3 id="lifecycle-management">LifeCycle Management</h3>
+<ul>
+  <li>automates moving to storage tiers</li>
+  <li>can be used with versioning</li>
+  <li>can be applied to current &amp; previous versions</li>
+</ul>
+
+<h3 id="cross-region-replicationcrr">Cross Region Replication(CRR)</h3>
+<ul>
+  <li>Management - replication</li>
+  <li>enable versioning</li>
+  <li>regions must be unique</li>
+  <li>existing files NOT replicated</li>
+  <li>updated files replicated</li>
+  <li>delete marker/delete NOT replicated : have to delete manually</li>
+</ul>
+
+<h3 id="transfer-accerlation---edge-location">Transfer Accerlation - Edge Location</h3>
+<ul>
+  <li>s3 Transfer Accerlation Tool (Speed Comparision)</li>
+  <li><a href="https://github.com/dasoldasol/dasolseo.github.io/blob/master/_posts/CloudFront.md">CloudFront</a></li>
+  <li>Amazon S3 Transfer Acceleration은 더 큰 객체의 장거리 전송을 위해 Amazon S3 로의 콘텐츠 전송 속도를 50-500 %까지 높일 수 있습니다. 광범위한 사용자가있는 웹 또는 모바일 응용 프로그램이나 S3 버킷에서 멀리 떨어진 응용 프로그램을 사용하는 고객은 인터넷을 통해 길고 가변적 인 업로드 및 다운로드 속도를 경험할 수 있습니다. S3TA (S3 Transfer Acceleration)는 전송에 영향을 줄 수있는 인터넷 라우팅, 혼잡 및 속도의 변동성을 줄이고 원격 애플리케이션의 경우 S3까지의 거리를 논리적으로 단축시킵니다. S3TA는 Amazon CloudFront의 전 세계에 분산 된 엣지 로케이션과 AWS 백본 네트워크를 통해 트래픽을 라우팅하고 네트워크 프로토콜 최적화를 통해 전송 성능을 향상시킵니다.</li>
+  <li>장거리 데이터를 더 빠르게 이동 : S3TA는 Amazon S3 버킷과의 장거리 전송을 가속화 할 수 있습니다. 클라이언트 응용 프로그램 (모바일, 웹 응용 프로그램 또는 업로드 도구)과 대상 S3 버킷 사이의 거리가 멀수록 S3TA가 더 도움이 될 수 있습니다.</li>
+  <li>네트워크 변동성 감소 : 버킷 영역 외부에서 S3 API를 통해 S3 버킷과 상호 작용하는 응용 프로그램의 경우 S3TA는 인터넷 라우팅 및 정체의 변동을 피할 수 있습니다. AWS 글로벌 네트워크 인프라를 통해 업로드 및 다운로드를 라우팅하여 네트워크 최적화의 이점을 누릴 수 있습니다.</li>
+  <li>S3까지의 거리를 단축 : S3TA는 수백 개의 CloudFront Edge 위치로 구성된 글로벌 네트워크를 사용하여 PUTS 및 GETS를 Amazon S3에 승인하는 클라이언트 애플리케이션과 AWS 서버 간의 거리를 단축합니다. 가장 가까운 Edge 위치를 통해 업로드 및 다운로드를 응용 프로그램으로 자동 라우팅합니다.</li>
+</ul>
+
+<h3 id="query">Query</h3>
+<ul>
+  <li>Amazon S3는 별도의 분석 플랫폼 또는 데이터 웨어하우스에 복사하여 로드할 필요 없이 데이터를 쿼리하는 기능이 내장되어 있으며, 무료 서비스를 제공합니다. 즉, Amazon S3에 저장된 데이터에 대해 직접 빅 데이터 분석을 실행할 수 있습니다.</li>
+  <li><strong>S3 Select</strong>는 쿼리 성능을 최대 400% 높이고 쿼리 비용을 80%까지 절감할 수 있는 S3 기능입니다. 이 기능은 최대 5테라바이트까지 허용하는 <strong>전체 객체 대신 (단순 SQL 표현식을 사용하여) 객체 데이터의 하위 집합을 검색</strong>하는 방식으로 작동합니다.</li>
+  <li>Amazon S3는 AWS 분석 서비스인 Amazon Athena 및 Amazon Redshift Spectrum과도 호환됩니다.</li>
+  <li><strong>Amazon Athena</strong>는 데이터를 추출하여 별도의 서비스나 플랫폼에 로드할 필요 없이 Amazon S3의 데이터를 쿼리할 수 있습니다. 표준 SQL 표현식을 사용하여 데이터를 분석하고, 수초 내에 결과를 제공하며, <strong>애드혹 데이터 검색</strong>에 많이 사용됩니다.</li>
+  <li><strong>Amazon Redshift Spectrum</strong> 역시 Amazon S3에 저장된 데이터에 대해 SQL 쿼리를 직접 실행하며, <strong>복잡한 쿼리나 큰 데이터 집합(최대 엑사바이트)</strong> 에 더 적합합니다. Amazon Athena 및 Amazon Redshift는 공통 데이터 카탈로그와 데이터 형식을 공유하기 때문에 Amazon S3의 동일한 데이터 집합에 대해 모두 사용할 수 있습니다.</li>
+</ul>
+
+<h2 id="scenarios">Scenarios</h2>
+<ul>
+  <li>
+    <p><strong>Company salespeople upload their sales figures daily. A Solutions Architect needs a durable storage solution for these documents that also protects against users accidentally deleting important documents. <br />
+Which action will protect against unintended user actions?</strong></p>
+
+    <p>A. Store data in an EBS volume and create snapshots once a week.  <br />
+  <strong>B. Store data in an S3 bucket and enable versioning.</strong> <br />
+  C. Store data in two S3 buckets in different AWS regions. <br />
+  D. Store data on EC2 instance storage.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - If a versioned object is deleted, then it can still be recored by retrieving the final version
+ - Taking snapshots would lose any changed committed since the previous snapshot
+ - Storing data in 2 buckets : user could still delete the object from both buckets
+ - EC2 instance storage is ephemeral and should never be used for data requiring durability.
+</code></pre></div>    </div>
+  </li>
+  <li><strong>An application saves the logs to an S3 bucket. A user wants to keep the logs for one month for troubleshooting purposes, and then purge the logs.  <br />
+What feature will enable this?</strong>
+    <ul>
+      <li><strong>Configuring lifecycle configuration rules on the S3 bucket.</strong></li>
+      <li>Lifecycle configuration : allows lifecycle management of objects in a bucket. The configuration is a set of one or more rules, where each rule defines an action for Amazon S3 to apply to a group of objects.</li>
+      <li>Bucket policies &amp; IAM : define access to objects in an S3 bucket</li>
+      <li>CORS : enables client in one domain to interact with resources in a different domain.</li>
+    </ul>
+  </li>
+  <li>You have been asked to advise on a scaling concern. The client has an elegant solution that works well. As the information base grows they use CloudFormation to spin up another stack made up of an S3 bucket and supporting compute instances. The trigger for creating a new stack is when the PUT rate approaches 100 PUTs per second. The problem is that as the business grows that number of buckets is growing into the hundreds and will soon be in the thousands. You have been asked what can be done to reduce the number of buckets without changing the basic architecture.
+    <ul>
+      <li><strong>Change the trigger level to around 3000 as s3 can now accommodate much higher PUT and GET levels</strong></li>
+      <li>Until 2018 there was a hard limit on S3 puts of 100 PUTs per second. To achieve this care needed to be taken with the structure of the name Key to ensure parallel processing. As of July 2018 the limit was raised to 3500 and the need for the Key design was basically eliminated.</li>
+    </ul>
+  </li>
+  <li>You run a meme creation website where users can create memes and then download them for use on their own sites. The original images are stored in S3 and each meme’s metadata in DynamoDB. You need to decide upon a low-cost storage option for the memes, themselves. If a meme object is unavailable or lost, a Lambda function will automatically recreate it using the original file from S3 and the metadata from DynamoDB. Which storage solution should you use to store the non-critical, easily reproducible memes in the most cost-effective way?
+    <ul>
+      <li><strong>S3-OneZone-IA</strong></li>
+      <li>S3 – OneZone-IA is the recommended storage for when you want cheaper storage for infrequently accessed objects. It has the same durability but less availability. There can be cost implications if you use it frequently or use it for short lived storage. Glacier is cheaper, but has a long retrieval time. RRS has effectively been deprecated. It still exists but is not a service that AWS want to sell anymore.</li>
+    </ul>
+  </li>
+  <li>You work for a health insurance company that amasses a large number of patients’ health records. Each record will be used once when assessing a customer, and will then need to be securely stored for a period of 7 years. In some rare cases, you may need to retrieve this data within 24 hours of a claim being lodged. Given these requirements, which type of AWS storage would deliver the least expensive solution?
+    <ul>
+      <li><strong>Glacier</strong></li>
+      <li>The recovery rate is a key decider. The record shortage must be; safe, durable, low cost, and the recovery can be slow. All features of Glacier.</li>
+    </ul>
+  </li>
+  <li>You run a popular photo-sharing website that depends on S3 to store content. Paid advertising is your primary source of revenue. However, you have discovered that other websites are linking directly to the images in your buckets, not to the HTML pages that serve the content. This means that people are not seeing the paid advertising, and you are paying AWS unnecessarily to serve content directly from S3. How might you resolve this issue?
+    <ul>
+      <li><strong>Remove the ability for images to be served public to the site and then use Signed URLs with expiry dates</strong></li>
+    </ul>
+  </li>
+  <li>You work for a major news network in Europe. They have just released a new mobile app that allows users to post their photos of newsworthy events in real-time, which are then reviewed by your editors before being copied to your website and made public. Your organization expects this app to grow very quickly, essentially doubling its user base each month. The app uses S3 to store the images, and you are expecting sudden and sizable increases in traffic to S3 when a major news event takes place (as users will be uploading large amounts of content.) You need to keep your storage costs to a minimum, and it does not matter if some objects are lost. With these factors in mind, which storage media should you use to keep costs as low as possible?
+    <ul>
+      <li><strong>S3-OneZone-IA</strong></li>
+      <li>The key driver here is cost, so an awareness of cost is necessary to answer this.
+        <ul>
+          <li>S3-RRS($0.024/GB)&gt;S3($0.023)&gt;S3 standard IA($0.0125)&gt;S3 One-Zone-IA($0.01)&gt;Glacier($0.004)</li>
+        </ul>
+      </li>
+      <li>Glacier cannot be considered as it is not intended for direct access. Of course you spotted that RRS is being deprecated, and there is no such thing as S3 – Provisioned IOPS. In this case OneZone</li>
+    </ul>
+  </li>
+  <li>You work for a busy digital marketing company who currently store their data on-premise. They are looking to migrate to AWS S3 and to store their data in buckets. Each bucket will be named after their individual customers, followed by a random series of letters and numbers. Once written to S3 the data is rarely changed, as it has already been sent to the end customer for them to use as they see fit. However, on some occasions, customers may need certain files updated quickly, and this may be for work that has been done months or even years ago. You would need to be able to access this data immediately to make changes in that case, but you must also keep your storage costs extremely low. The data is not easily reproducible if lost. Which S3 storage class should you choose to minimize costs and to maximize retrieval times?
+    <ul>
+      <li><strong>S3-IA</strong></li>
+      <li>The need to immediate access is an important requirement along with cost. Glacier has a long recovery time at a low cost or a shorter recovery time at a high cost, and 1Zone-IA has a lower Availability level which means that it may not be available when needed.</li>
+    </ul>
+  </li>
+  <li>You work for a major news network in Europe. They have just released a new mobile app that allows users to post their photos of newsworthy events in real-time. Your organization expects this app to grow very quickly, essentially doubling its user base each month. The app uses S3 to store the images, and you are expecting sudden and sizable increases in traffic to S3 when a major news event takes place (as users will be uploading large amounts of content.) You need to keep your storage costs to a minimum, and <strong>you are happy to temporally lose access to up to 0.1% of uploads per year</strong>. With these factors in mind, which storage media should you use to keep costs as low as possible?
+    <ul>
+      <li><strong>S3-IA</strong></li>
+      <li>S3-RRS($0.024/GB)&gt;S3($0.023)&gt;S3 standard IA($0.0125)&gt;S3 One-Zone-IA($0.01)&gt;Glacier($0.004)</li>
+      <li>Glacier cannot be considered as it is not intended for direct access. 3 has an availability of 99.99%, S3-IA has an availability of 99.9% while S3-1Zone-IA only has 99.5%.</li>
+    </ul>
+  </li>
+  <li>You work for a manufacturing company that operate a hybrid infrastructure with systems located both in a local data center and in AWS, connected via AWS Direct Connect. Currently, all <strong>on-premise</strong> servers are backed up to a local NAS, but your CTO wants you to decide on the best way to <strong>store copies of these backups</strong> in AWS. He has asked you to propose a solution which will provide <strong>access to the files within milliseconds</strong> should they be needed, but at the same time minimizes cost. As these files will be copies of backups stored on-premise, <strong>availability is not as critical as durability.</strong> Choose the best option from the following which meets the brief.
+    <ul>
+      <li><strong>S3-IA</strong></li>
+      <li>Cost : S3-RRS($0.024/GB)&gt;S3($0.023)&gt;S3 standard IA($0.0125)&gt;S3 One-Zone-IA($0.01)&gt;Glacier($0.004)</li>
+      <li>Duralility : ALL SAME 11 9’s</li>
+      <li>Availability : S3(99.99%)=S3-IA(99.9%)&gt;S3 OneZone-IA(99.5%)</li>
+    </ul>
+  </li>
+  <li>You need to use an object-based storage solution to store your critical, <strong>non-replaceable</strong> data in a cost-effective way. This data will be <strong>frequently updated</strong> and will need some form of version control enabled on it. Which S3 storage solution should you use?
+    <ul>
+      <li><strong>S3</strong></li>
+      <li>The 1st excludes anything the has reduced durability, the second excluded anything with long recall, reduced availability, or billing based on infrequent access.</li>
+    </ul>
+  </li>
+  <li>You have launched a travel photo sharing website using Amazon S3 to serve high-quality photos to visitors of your website. After a few days, you found out that there are <strong>other travel websites linking and using your photos</strong>. This resulted in financial losses for your business.  <br />
+What is an effective method to mitigate this issue?
+    <ul>
+      <li><strong>A) Configure your S3 bucket to remove public read access and use pre-signed URLs with expiry dates.</strong></li>
+    </ul>
+  </li>
+  <li>A Solutions Architect is designing an online medical system in AWS which will store sensitive Personally Identifiable Information (PII) of the users in an Amazon S3 bucket. <strong>Both the master keys and the unencrypted data should never be sent to AWS</strong> to comply with the strict compliance and regulatory requirements of the company.  <br />
+Which <strong>S3 encryption technique</strong> should the Architect use?
+    <ul>
+      <li><strong>A) Use S3 client-side encryption with a client-side master key.</strong></li>
+      <li>Client-side encryption is the act of encrypting data <strong>before</strong> sending it to Amazon S3.</li>
+      <li>Using S3 client-side encryption with a KMS-managed customer master key : is incorrect because in client-side encryption with a KMS-managed customer master key, you provide an AWS KMS customer master key ID (CMK ID) to AWS.</li>
+      <li>Using S3 server-side encryption with customer provided key <strong>(SSE-C)</strong> : is incorrect. you have to use client-side encryption in order to encrypt the data first before sending to AWS. For the S3 server-side encryption with customer-provided key (SSE-C), you actually provide the encryption key as part of your request to upload the object to S3. Using this key, Amazon S3 manages both the encryption (as it writes to disks) and decryption (when you access your objects).</li>
+    </ul>
+  </li>
+  <li>A Solutions Architect is hosting a website in an Amazon S3 bucket named <code class="language-plaintext highlighter-rouge">tutorialsdojo</code>. The users load the website using the following URL: <code class="language-plaintext highlighter-rouge">http://tutorialsdojo.s3-website-us-east-1.amazonaws.com</code> and there is a new requirement to add a JavaScript on the webpages in order to make authenticated HTTP GET requests against the same bucket by using the Amazon S3 API endpoint (<code class="language-plaintext highlighter-rouge">tutorialsdojo.s3.amazonaws.com</code>). Upon testing, you noticed that the <strong>web browser blocks JavaScript from allowing those requests</strong>.  <br />
+Which of the following options is the MOST suitable solution that you should implement for this scenario?
+    <ul>
+      <li><strong>A) Enable Cross-origin resource sharing(CORS) configuration in the bucket</strong></li>
+    </ul>
+  </li>
+  <li>In a government agency that you are working for, you have been assigned to put confidential tax documents on AWS cloud. However, there is a concern from a security perspective on what can be put on AWS.   <br />
+What are the features in AWS that can ensure <strong>data security for your confidential documents?</strong> (Choose 2)
+    <ul>
+      <li><strong>S3 client-side and server-side encryption</strong></li>
+    </ul>
+  </li>
+  <li>You are working for an advertising company as their Senior Solutions Architect handling the S3 storage data. Your company has terabytes of data sitting on AWS S3 standard storage class, which accumulates significant operational costs. The management wants to cut down on the cost of their cloud infrastructure so you were instructed to switch to Glacier to lessen the cost per GB storage.  <br />
+The Amazon <strong>Glacier storage service is primarily used for</strong> which use case? (Choose 2)
+    <ul>
+      <li><strong>A1) Storing Data archives</strong></li>
+      <li><strong>A2) Storing infrequently accessed data</strong></li>
+      <li><strong>Storing cached session data</strong> : is incorrect because this is the main use case for <strong>ElastiCache</strong></li>
+      <li><strong>Used as a data warehouse</strong> : is incorrect because data warehousing is the main use case of <strong>Amazon Redshift</strong>.</li>
+    </ul>
+  </li>
+  <li>You are building a transcription service for a company in which a fleet of EC2 worker instances processes an uploaded audio file and generates a text file as an output. You must store both of these frequently accessed files in the same durable storage until the text file is retrieved by the uploader. Due to an expected <strong>surge in demand</strong>, you have to ensure that <strong>the storage is scalable and can be retrieved within minutes</strong>.
+Which storage option in AWS can you use in this situation, which is both <strong>cost-efficient and scalable</strong>?
+    <ul>
+      <li><strong>A) A single Amazon S3 bucket</strong> :</li>
+      <li><strong>Multiple Amazon EBS volume with snapshots</strong> and <strong>Multiple instance stores</strong> : are incorrect because these services do not provide durable storage.</li>
+    </ul>
+  </li>
+  <li>You are working for a litigation firm as the Data Engineer for their case history application. You need to keep track of all the cases your firm has handled. The static assets like .jpg, .png, and .pdf files are stored in S3 for cost efficiency and high durability. As these files are critical to your business, you want to keep track of what’s happening in your S3 bucket. You found out that S3 has an event notification whenever a delete or write operation happens within the S3 bucket. <br />
+What are the possible <strong>Event Notification destinations available for S3 buckets</strong>? (Choose 2)
+    <ul>
+      <li><strong>A1) SQS</strong></li>
+      <li><strong>A2) Lambda function</strong></li>
+      <li>Amazon S3 supports the following destinations where it can publish events:
+        <ul>
+          <li><strong>Amazon Simple Notification Service (Amazon SNS) topic</strong> - A web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients.</li>
+          <li><strong>Amazon Simple Queue Service (Amazon SQS) queue</strong> - Offers reliable and scalable hosted queues for storing messages as they travel between computer.</li>
+          <li><strong>AWS Lambda</strong> - AWS Lambda is a compute service where you can upload your code and the service can run the code on your behalf using the AWS infrastructure. You package up and upload your custom code to AWS Lambda when you create a Lambda function</li>
+        </ul>
+      </li>
+      <li>Steps to trigger event notifications from S3
+        <ul>
+          <li>Step1 : Create the queue, topic, or Lambda function (which I’ll call the target for brevity) if necessary.</li>
+          <li>Step2 : Grant S3 permission to publish to the target or invoke the Lambda function.</li>
+          <li>Step3 : Arrange for your application to be invoked in response to activity on the target. As you will see in a moment, you have several options here.</li>
+          <li>Step4 : Set the bucket’s Notification Configuration to point to the target.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>A start-up company that offers an intuitive financial data analytics service has consulted you about their AWS architecture. They have a fleet of Amazon EC2 worker instances that process financial data and then outputs reports which are used by their clients. You must store the generated report files in a <strong>durable storage</strong>. The number of files to be stored can grow over time as the start-up company is expanding rapidly overseas and hence, they also need a way to d<strong>istribute the reports faster to clients located across the globe</strong>.   <br />
+Which of the following is a <strong>cost-efficient and scalable storage option</strong> that you should use for this scenario?
+    <ul>
+      <li><strong>A) Use Amazon S3 as the data storage and CloudFront as the CDN.</strong></li>
+    </ul>
+  </li>
+  <li>For data privacy, a healthcare company has been asked to comply with the Health Insurance Portability and Accountability Act (HIPAA). They have been told that all of the data being backed up or stored on <strong>Amazon S3 must be encrypted</strong>.  <br />
+What is the best option to do this? (Choose 2)
+    <ul>
+      <li><strong>A1) Enable Server-Side Encryption on an S3 bucket to make use of AES-256 encryption.</strong></li>
+      <li><strong>A2) Before sending the data to Amazon S3 over HTTPS, encrypt the data locally first using your own encryption keys.</strong></li>
+      <li>A1. Server-Side Encryption keys
+        <ul>
+          <li>Use Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)</li>
+          <li>Use Server-Side Encryption with AWS KMS-Managed Keys (SSE-KMS)</li>
+          <li>Use Server-Side Encryption with Customer-Provided Keys (SSE-C)</li>
+        </ul>
+      </li>
+      <li>A2. Client-side encryption is the act of encrypting data before sending it to Amazon S3</li>
+    </ul>
+  </li>
+  <li>Your fellow AWS Engineer has created a new Standard-class S3 bucket to store financial reports that are not frequently accessed but should be immediately available when an auditor requests for it. To save costs, you changed the storage class of the S3 bucket from Standard to Infrequent Access storage class.     <br />
+In Amazon <strong>S3 Standard - Infrequent Access</strong> storage class, which of the following statements are true? (Choose 2)
+    <ul>
+      <li><strong>A1) It is designed for data that requires rapid access when needed.</strong></li>
+      <li><strong>A2) It is designed for data that is accessed less frequently.</strong></li>
+      <li>S3 Standard-IA UseCase : long-term storage, backups, and as a data store for disaster recovery</li>
+      <li>S3 Standard-IA Features :
+        <ul>
+          <li>Same low latency and high throughput performance of Standard</li>
+          <li>Designed for durability of 99.999999999% of objects</li>
+          <li>Designed for 99.9% availability over a given year</li>
+          <li>Backed with the Amazon S3 Service Level Agreement for availability</li>
+          <li>Supports SSL encryption of data in transit and at rest</li>
+          <li>Lifecycle management for automatic migration of objects</li>
+        </ul>
+      </li>
+      <li><strong>It is the best storage option to store noncritical and reproducible data</strong> : is incorrect as it actually refers to Amazon S3 - Reduced Redundancy Storage (<strong>RRS</strong>).</li>
+    </ul>
+  </li>
+  <li>An online stocks trading application that stores financial data in an S3 bucket has a lifecycle policy that moves older data to <strong>Glacier</strong> every month. There is a strict compliance requirement where a surprise audit can happen at anytime and you should be able to <strong>retrieve</strong> the required data <strong>in under 15 minutes</strong> under all circumstances. Your manager instructed you to ensure that retrieval capacity is available when you need it and should <strong>handle up to 150 MB/s of retrieval throughput</strong>.  <br />
+Which of the following should you do to meet the above requirement? (Choose 2)
+    <ul>
+      <li><strong>A1) Use Expedited Retrieval to access the financial data</strong></li>
+      <li><strong>A2) Purchase provisioned retrieval capacity</strong></li>
+      <li><strong>Expedited retrievals(긴급검색)</strong>
+        <ul>
+          <li>긴급 검색은 가끔 발생하는 소량의 아카이브에 대한 급한 요청에 최적화되어 있습니다. 긴급 검색을 사용하면 가장 큰 아카이브(250MB 이상)를 제외하고 모든 아카이브에 대해 보통 <strong>1~5분 이내</strong>에 데이터에 액세스할 수 있습니다. 애플리케이션이나 워크로드에서 필요할 때 긴급 검색을 사용할 수 있게 보장해야 하는 경우에는 <strong>프로비저닝 용량</strong>을 사용하는 것을 고려해야 합니다.</li>
+        </ul>
+      </li>
+      <li><strong>Provisioned capacity(프로비저닝 용량)</strong>
+        <ul>
+          <li>ensures that your retrieval capacity for expedited retrievals is available when you need it. Each unit of capacity provides that at least three expedited retrievals can be performed <strong>every five minutes and provides up to 150 MB/s of retrieval throughput</strong>. You should purchase provisioned retrieval capacity if your workload requires highly reliable and predictable access to a subset of your data <strong>in minutes</strong>. Without provisioned capacity Expedited retrievals are accepted, except for rare situations of unusually high demand. However, <strong>if you require access to Expedited retrievals under all circumstances, you must purchase provisioned retrieval capacity.</strong></li>
+        </ul>
+      </li>
+      <li><strong>Bulk Retrieval(대량검색)</strong>
+        <ul>
+          <li>대량 검색은 S3 Glacier에서 가장 저렴한 검색 옵션으로 이를 통해 페타바이트 규모의 데이터도 하루 만에 저렴하게 검색할 수 있습니다. 대량 검색은 보통 <strong>5~12시간 이내</strong>에 완료됩니다.</li>
+        </ul>
+      </li>
+      <li><strong>Range Retrieval(범위검색)</strong>
+        <ul>
+          <li>범위 검색으로 아카이브의 특정 범위를 검색할 수 있습니다. 범위 검색은 Amazon S3 Glacier에서의 일반 검색과 유사합니다. 둘 다 검색 작업이 시작되어야 합니다. 범위 검색을 사용하여 검색 요금을 줄이거나 없앨 수 있습니다(무료로 검색할 수 있는 데이터 양은 어느 정도입니까? 참조). 범위 검색을 수행하도록 선택하는 몇 가지 이유가 있습니다. 예를 들어 여러 개의 파일을 모아 단일 아카이브로 업로드했었을 수 있습니다. 그때 해당 파일의 일부를 검색해야 할 수 있고 그 경우 필요한 파일을 포함하는 아카이브 범위만 검색할 수 있습니다. 범위 검색을 수행하도록 선택하는 다른 이유는 일정 기간 동안 Amazon S3 Glacier에서 다운로드한 데이터 양을 관리하기 위한 것입니다. S3 Glacier에서 데이터를 검색하도록 요청하면 아카이브에 대한 검색 작업이 시작됩니다. 검색 작업이 완료되면 24시간 동안 데이터를 다운로드하거나 Amazon Elastic Compute Cloud(Amazon EC2)를 사용해 액세스할 수 있습니다. 검색된 데이터는 24시간 동안 다운로드 가능합니다. 따라서 다운로드 스케줄을 관리하기 위해 부분적으로 아카이브를 검색할 수 있습니다.</li>
+        </ul>
+      </li>
+      <li><strong>Amazon Glacier Select</strong> : is incorrect because this is not an archive retrieval option and is primarily used to perform filtering operations using simple SQL directly on your data archive in Glacier.</li>
+    </ul>
+  </li>
+  <li>You are working as a Solutions Architect for a multinational financial firm. They have a global online trading platform in which the users from all over the world regularly upload terabytes of transactional data to a centralized S3 bucket.  What AWS feature should you use in your present system to improve throughput and ensure <strong>consistently fast data transfer to the Amazon S3 bucket, regardless of your user’s location</strong>?
+    <ul>
+      <li><strong>A) Amazon S3 Transfer Acceleration</strong></li>
+      <li>Amazon S3 Transfer Acceleration은 거리가 먼 클라이언트와 S3 버킷 간에 파일을 빠르고, 쉽고, 안전하게 전송할 수 있게 해줍니다. Transfer Acceleration은 전 세계적으로 분산되어 있는 Amazon CloudFront의 엣지 로케이션을 활용합니다. 엣지 로케이션에 도착한 데이터는 최적화된 네트워크 경로를 통해 Amazon S3로 라우팅됩니다.</li>
+      <li><strong>CloudFront Origin Access Identity</strong> : Amazon S3 버킷에서 제공하는 콘텐츠에 대한 액세스를 제한하려면 CloudFront 서명된 URL 또는 서명된 쿠키를 만들어 Amazon S3 버킷에서 파일에 대한 액세스를 제한하고, OAI(원본 액세스 ID)라는 특별한 CloudFront 사용자를 만들어 배포와 연결합니다. 그런 다음 CloudFront가 OAI를 사용하여 사용자에 액세스하고 파일을 제공할 수 있지만, 사용자는 S3 버킷에 대한 직접 URL을 사용하여 파일에 액세스할 수 없도록 권한을 구성합니다. 이 단계를 수행하면 CloudFront를 통해 제공하는 파일에 대한 액세스를 안전하게 유지할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>An Architect is managing a data analytics application which exclusively uses Amazon S3 as its data storage. For the past few weeks, the application works as expected until a new change was implemented to increase the rate at which the application <strong>updates</strong> its data. There have been reports that <strong>outdated data intermittently appears when the application accesses objects from S3 bucket</strong>. The development team investigated the application logic and didn’t find any issues.  <br />
+Which of the following is the MOST likely cause of this issue?
+    <ul>
+      <li><strong>A) The data analytics application is designed to fetch objects from the S3 bucket using parallel requests.</strong></li>
+      <li>Amazon S3 provides <strong>read-after-write consistency for PUTS</strong> of new objects in your S3 bucket in all regions with one caveat: if you make a HEAD or GET request to the key name (to find if the object exists) before creating the object, Amazon S3 provides eventual consistency for read-after-write. Amazon S3 offers <strong>eventual consistency for overwrite PUTS and DELETES</strong> in all regions.</li>
+      <li>Amazon S3’s support for parallel requests means you can scale your S3 performance by the factor of your compute cluster, without making any customizations to your application. Amazon S3 does not currently support Object Locking. If two PUT requests are simultaneously made to the same key, the request with the latest timestamp wins. If this is an issue, you will need to build an object-locking mechanism into your application.</li>
+    </ul>
+  </li>
+  <li>You are working for a large IT consultancy company as a Solutions Architect. One of your clients is launching a file sharing web application in AWS which requires a <strong>durable storage service for hosting their static contents</strong> such as PDFs, Word Documents, high resolution images and many others.  <br />
+Which type of storage service should you use to meet this requirement?
+    <ul>
+      <li><strong>A) Amazon S3</strong></li>
+      <li><strong>Temporary storage</strong> for needs such as scratch disks, buffers, queues, caches : <strong>Amazon Local Instance Store</strong></li>
+      <li><strong>Multi-instance storage</strong> : <strong>EFS</strong> (EBS can only attach to one instance)</li>
+      <li><strong>Static data or web content</strong> : <strong>S3, EFS</strong></li>
+    </ul>
+  </li>
+  <li>One of your clients is leveraging on Amazon S3 in the ap-southeast-1 region to store their training videos for their employee onboarding process. The client is storing the videos using the Standard Storage class.  <br />
+Where are your client’s training videos replicated?
+    <ul>
+      <li><strong>A) Multiple facilities in ap-southeast-1</strong></li>
+      <li>Amazon S3 replicates the data to multiple facilities in the same region where it is located.</li>
+    </ul>
+  </li>
+  <li>Your company has an e-commerce application that saves the transaction logs to an S3 bucket. You are instructed by the CTO to configure the application to <strong>keep the transaction logs for one month for troubleshooting purposes, and then afterwards, purge the logs</strong>. What should you do to accomplish this requirement?
+    <ul>
+      <li><strong>A) Configure the lifecycle configuration rules on the Amazon S3 bucket to purge the transaction logs after a month</strong></li>
+    </ul>
+  </li>
+  <li>You are a new Solutions Architect in a large insurance firm. To maintain compliance with HIPAA laws, all data being backed up or stored on <strong>Amazon S3 needs to be encrypted at rest</strong>. In this scenario, what is the best method of encryption for your data, assuming S3 is being used for storing financial-related data? (Choose 2)
+    <ul>
+      <li><strong>A1) Encrypt the data using your own encryption keys then copy the data to Amazon S3 over HTTPS endpoints.</strong></li>
+      <li><strong>A2) Enable SSE on an S3 bucket to make use of AES-256 encryption</strong></li>
+      <li>Data protection refers to protecting data while in-transit (as it travels to and from Amazon S3) and at rest (while it is stored on disks in Amazon S3 data centers). You can protect data in transit by using SSL or by using client-side encryption. You have the following options for protecting data at rest in Amazon S3.</li>
+      <li>Use Server-Side Encryption – You request Amazon S3 to encrypt your object before saving it on disks in its data centers and decrypt it when you download the objects.</li>
+      <li>Use Client-Side Encryption – You can encrypt data client-side and upload the encrypted data to Amazon S3. In this case, you manage the encryption process, the encryption keys, and related tools.</li>
+    </ul>
+  </li>
+  <li>A document sharing website is using AWS as its cloud infrastructure. Free users can upload a total of 5 GB data while premium users can upload as much as 5 TB. Their application uploads the user files, which can have a max file size of 1 TB, to an S3 Bucket.  <br />
+In this scenario, what is the best way for the application to <strong>upload the large files in S3</strong>?
+    <ul>
+      <li><strong>A) Use Multipart Upload</strong></li>
+      <li><strong>Using AWS Import/Export</strong> : is incorrect because Import/Export is similar to AWS Snowball in such a way that it is meant to be used as a migration tool</li>
+    </ul>
+  </li>
+  <li>You are a new Solutions Architect working for a financial company. Your manager wants to have the ability to automatically transfer <strong>obsolete data from their S3 bucket to a low cost storage system in AWS</strong>.
+What is the best solution you can provide to them?
+    <ul>
+      <li><strong>A) Use Lifecycle Policies in S3 to move obsolete data to Glacier</strong></li>
+      <li><strong>Transition actions</strong> – In which you define when objects transition to another storage class. For example, you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation, or archive objects to the GLACIER storage class one year after creation.</li>
+      <li><strong>Expiration actions</strong> – In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.</li>
+    </ul>
+  </li>
+  <li>A music company is storing data on Amazon Simple Storage Service (S3). The company’s security policy requires that <strong>data are encrypted at rest</strong>. Which of the following methods can achieve this? (Choose 2)
+    <ul>
+      <li><strong>A1) Use Amazon S3 server-side encryption with customer-provided keys.</strong></li>
+      <li><strong>A2) Encrypt the data on the client-side before ingesting to Amazon S3 using their own master key.</strong></li>
+    </ul>
+  </li>
+  <li>You are working as a Cloud Engineer for a top aerospace engineering firm. One of your tasks is to set up a document storage system using S3 for all of the engineering files. In Amazon S3, which of the following statements are true? (Choose 2)
+    <ul>
+      <li><strong>A1) The total volume of data and numver of objects you can store are unlimited.</strong></li>
+      <li><strong>A2) The largest object that can be uploaded in a single PUT is 5 GB</strong></li>
+      <li><strong>S3 is an object storage service that provides file system access semantics (such as strong consistency and file locking), and concurrently-accessible storage</strong> : is incorrect because although S3 is indeed an object storage service, it does not provide file system access semantics. EFS provides this feature.</li>
+    </ul>
+  </li>
+  <li>A Solutions Architect is designing a monitoring application which generates <strong>audit logs</strong> of all operational activities of the company’s cloud infrastructure. Their IT Security and Compliance team mandates that the application retain the logs for 5 years before the data can be deleted.  <br />
+How can the Architect meet the above requirement?
+    <ul>
+      <li><strong>A) Store the audit logs in a Glacier vault and use the Vault Lock feature.</strong></li>
+      <li><strong>Vault Lock</strong> : S3 Glacier 볼트 잠금은 각 S3 Glacier 볼트마다 볼트 잠금 정책을 사용해 규정 준수 제어 항목을 쉽게 배포하고 적용할 수 있는 기능입니다. 볼트 잠금 정책에서는 “write once, read many”(WORM) 같은 제어 항목을 지정하여 앞으로 편집하지 못하도록 정책을 잠글 수 있습니다. 일단 잠긴 정책은 더 이상 변경할 수 없습니다(<strong>immutable</strong>).</li>
+      <li>Amazon S3 Glacier supports the following archive operations: Upload, Download, and Delete. <strong>Archives are immutable and cannot be modified.</strong></li>
+    </ul>
+  </li>
+  <li>You are planning to reduce the amount of data that Amazon S3 transfers to your servers in order to lower your operating costs as well as to lower the latency of retrieving the data. To accomplish this, <strong>you need to use simple structured query language (SQL) statements</strong> to filter the contents of Amazon S3 objects and <strong>retrieve just the subset of data that you need</strong>.     <br />
+Which of the following services will help you accomplish this requirement?
+    <ul>
+      <li><strong>A) S3 Select</strong></li>
+      <li>By using Amazon S3 Select to filter this data, you can reduce the amount of data that Amazon S3 transfers, which reduces the cost and latency to retrieve this data.</li>
+      <li><strong>AWS Step Functions</strong> : is incorrect because this only lets you coordinate multiple AWS services into serverless workflows so you can build and update apps quickly.</li>
+    </ul>
+  </li>
+  <li>A company is looking to store their <strong>confidential financial files</strong> in AWS which are accessed every week. The Architect was instructed to set up the storage system which uses <strong>envelope encryption</strong> and <strong>automates key rotation</strong>. It should also provide an audit trail which shows who used the encryption key and by whom for security purposes.  <br />
+Which of the following should the Architect implement to satisfy the requirement in the most cost-effective way? (Select TWO.)
+    <ul>
+      <li><strong>A1) Use Amazon S3 to store the data</strong></li>
+      <li><strong>A2) Configure Server-Side Encryption with AWS KMS-Managed Keys(SSE-KMS)</strong></li>
+      <li><strong>클라이언트 측 암호화(Client-Side Encryption:CSE)</strong>
+        <ul>
+          <li>데이터를 <strong>전송하기 전</strong>에 암호화</li>
+          <li>고객이 직접 암호화 키를 마련하고 직접 관리하거나, AWS KMS/CloudHSM 내에 보관 관리</li>
+          <li><strong>2계층 키구조와 봉투 암호화(envelope encryption)</strong> : 데이터키-&gt; 마스터키(CMK) -&gt; KMS 관리형 도메인 키</li>
+        </ul>
+      </li>
+      <li><strong>서버 측 암호화(Server-Side Encryption:SSE)</strong>
+        <ul>
+          <li><strong>AWS</strong>가 전송된 데이터에 대해 고객 대신 서버 측에서 암호화 작업 수행</li>
+          <li>고객 관리 통제 하에 AWS KMS에 암호화 키 보관</li>
+        </ul>
+      </li>
+      <li><strong>봉투 암호화</strong>
+        <ul>
+          <li>데이터를 암호화하면 데이터가 보호되지만 암호화 키를 보호해야 합니다. 암호화하는 것도 하나의 전략입니다. 봉투 암호화는 데이터 키로 일반 텍스트 데이터를 암호화한 후, 다른 키 아래에서 데이터 키를 암호화하는 방법입니다.</li>
+          <li>궁극적으로는 키와 데이터를 복호화할 수 있도록 하나의 키는 일반 텍스트로 남겨둬야 합니다. 이러한 최상위 일반 텍스트 키 암호화 키를 <strong>마스터 키</strong>라고 합니다.</li>
+          <li><strong>AWS KMS</strong>는 마스터 키를 안전하게 저장 및 관리하여 보호할 수 있도록 도와줍니다. AWS KMS에 저장된 마스터 키, 즉 <strong>고객 마스터 키(CMK)</strong> 는 AWS KMS FIPS 검증 하드웨어 보안 모듈을 암호화되지 않은 상태로 절대 남겨두지 않습니다. AWS KMS CMK를 사용하려면 AWS KMS를 호출해야 합니다.</li>
+          <li><img src="assets/images/image/key-hierarchy-cmk.png" alt="key-hierarchy-cmk" /></li>
+        </ul>
+      </li>
+      <li><strong>서버측 암호화1 : Use Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)</strong>
+        <ul>
+          <li>Amazon S3 관리형 키를 사용한 서버 측 암호화(SSE-S3)를 사용하면 각 객체는 고유한 키로 암호화됩니다. 또한 추가 보안 조치로 주기적으로 바뀌는 마스터 키를 사용하여 키 자체를 암호화합니다. Amazon S3 서버 측 암호화는 가장 강력한 블록 암호 중 하나인 256비트 고급 암호화 표준(AES-256)을 사용하여 데이터를 암호화합니다.</li>
+        </ul>
+      </li>
+      <li><strong>서버측 암호화2 : Use Server-Side Encryption with Customer Master Keys (CMKs) Stored in AWS Key Management Service (SSE-KMS)</strong>
+        <ul>
+          <li>SSE-S3와 유사하지만 이 서비스 사용 시 몇 가지 추가적인 이점이 있고 비용이 발생합니다. Amazon S3의 객체에 대한 무단 액세스에 대응하여 추가적인 보호를 제공하는 CMK를 사용하려면 별도의 권한이 필요합니다. SSE-KMS도 CMK가 사용된 때와 사용 주체를 표시하는 <strong>감사 추적(audit trail) 기능</strong>을 제공합니다. 또한 고객 관리형 CMK를 생성하고 관리하거나 사용자, 서비스 및 리전에 고유한 AWS 관리형 CMK를 사용할 수 있습니다.</li>
+        </ul>
+      </li>
+      <li><strong>서버측 암호화3 : Use Server-Side Encryption with Customer-Provided Keys (SSE-C)</strong>
+        <ul>
+          <li>사용자는 암호화 키를 관리하고 Amazon S3는 암호화(디스크에 쓸 때) 및 해독(객체에 액세스할 때)을 관리합니다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>You are working for a media company and you need to configure an Amazon S3 bucket to serve static assets for your public-facing web application. Which methods ensure that <strong>all of the objects uploaded to the S3 bucket can be read publicly all over the Internet</strong>? (Select TWO.)
+    <ul>
+      <li><strong>A1) In S3, set the permissions of the object to public read during upload.</strong></li>
+      <li><strong>A2) Configure the S3 bucket policy to set all objects to public read.</strong></li>
+      <li><strong>Creating an IAM role to set the objects inside the S3 bucket to public read</strong> : is incorrect. Although with IAM, you can create a user, group, or role that has certain permissions to the S3 bucket, it <strong>does not control the individual objects</strong> that are hosted in the bucket.</li>
+    </ul>
+  </li>
+  <li>You are employed by a large electronics company that uses Amazon Simple Storage Service. For reporting purposes, they <strong>want to track and log every request access to their S3 buckets</strong> including the requester, bucket name, request time, request action, referrer, turnaround time, and error code information. The solution should also provide more visibility into the <strong>object-level operations</strong> of the bucket.  <br />
+Which is the best solution among the following options that can satisfy the requirement?
+    <ul>
+      <li><strong>A) Enable server access logging for all required Amazon S3 buckets.</strong></li>
+      <li><img src="assets/images/image/bucket-logging-box.png" alt="bucket-logging-box" /></li>
+      <li>버킷 액세스 요청을 추적하기 위해 서버 액세스 로깅을 활성화할 수 있습니다. 각 액세스 로그 레코드는 한 액세스 요청에 대한 세부 정보(요청자, 버킷 이름, 요청 시간, 요청 작업, 응답 상태, 오류 코드(해당되는 경우) 등)를 제공합니다.</li>
+    </ul>
+  </li>
+  <li>A Fortune 500 company which has numerous offices and customers around the globe has hired you as their Principal Architect. You have staff and customers that <strong>upload gigabytes to terabytes of data</strong> to a centralized S3 bucket from the regional data centers, across continents, <strong>all over the world</strong> on a regular basis. At the end of the financial year, there are thousands of data being uploaded to the central S3 bucket which is in ap-southeast-2 (Sydney) region and a lot of employees are starting to complain about the <strong>slow upload times</strong>. You were instructed by the CTO to resolve this issue as soon as possible to avoid any delays in processing their global end of financial year (EOFY) reports.  <br />
+Which <strong>feature in Amazon S3</strong> enables <strong>fast, easy, and secure transfer</strong> of your files over long distances between your client and your Amazon S3 bucket?
+    <ul>
+      <li><strong>A) Transfer Acceleration</strong></li>
+      <li><img src="assets/images/image/transfer-acceleration.png" alt="transfer-acceleration" /></li>
+      <li><strong>Amazon S3 Transfer Acceleration</strong>은 거리가 먼 클라이언트와 S3 버킷 간에 파일을 빠르고, 쉽고, 안전하게 전송할 수 있게 해줍니다. Transfer Acceleration은 전 세계적으로 분산되어 있는 Amazon CloudFront의 엣지 로케이션을 활용합니다. 엣지 로케이션에 도착한 데이터는 최적화된 네트워크 경로를 통해 Amazon S3로 라우팅됩니다.</li>
+      <li><strong>Amazon S3 Transfer Acceleration Use Case</strong>
+        <ul>
+          <li>전 세계 각지에서 중앙의 버킷으로 업로드하는 고객이 있을 경우</li>
+          <li>전 세계에 정기적으로 수 기가바이트에서 수 테라바이트의 데이터를 전송할 경우</li>
+        </ul>
+      </li>
+      <li><strong>AWS Global Accelerator</strong> : is incorrect because this service is primarily used to optimize the path from your users to your applications which improves the performance of your TCP and UDP traffic.</li>
+    </ul>
+  </li>
+  <li>There are a few, <strong>easily reproducible but confidential files</strong> that your client wants to store in AWS without worrying about storage capacity. For the first month, all of these files will be accessed frequently but after that, they will rarely be accessed at all. The old files will only be accessed by developers so there is <strong>no set retrieval time</strong> requirement. <strong>However, the files under a specific <code class="language-plaintext highlighter-rouge">tutorialsdojo-finance</code> prefix in the S3 bucket will be used for post-processing that requires millisecond retrieval time</strong>.  <br />
+Given these conditions, which of the following options would be the most cost-effective solution for your client’s storage needs?
+    <ul>
+      <li><strong>A) Store the files in S3 then after a month, change the storage class of the <code class="language-plaintext highlighter-rouge">tutorialsdojo-finance</code> prefix to One Zone-IA while the remaining go to Glacier using lifecycle policy.</strong></li>
+      <li><strong>S3 Standard</strong> : 모든 데이터 유형에 적합한 범용 스토리지로, 대개 자주 액세스하는 데이터에 사용됨</li>
+      <li><strong>S3 Intelligent - Tiering</strong> : 액세스 패턴을 알 수 없거나 액세스 패턴이 변경되는 데이터에 대해 자동 비용 절감 효과 제공</li>
+      <li><strong>S3 Standard - Infrequent Access</strong> : 라이브 상태가 된 지 오래되었지만 밀리초 단위 액세스 성능이 요구되는 자주 액세스하지 않는 데이터용</li>
+      <li><strong>S3 One Zone - Infrequent Access</strong> : 밀리초 단위 액세스 성능이 요구되는 다시 생성 가능한 자주 액세스하지 않는 데이터</li>
+      <li><strong>S3 Glacier</strong> : 검색 옵션이 1분부터 12시간까지인 장기적인 백업 및 아카이브용</li>
+      <li><strong>S3 Glacier Deep Archive</strong> : 일년에 한두 번 액세스하고 12시간 이내에 복원할 수 있는 장기적인 데이터 아카이빙용</li>
+    </ul>
+  </li>
+  <li>You are a Cloud Migration Engineer in a media company which uses EC2, ELB, and S3 for its video-sharing portal for filmmakers. They are using a standard S3 storage class to store all high-quality videos that are <strong>frequently accessed only during the first three months of posting</strong>. What should you do if the company needs to <strong>automatically transfer or archive media data from an S3 bucket to Glacier</strong>?
+    <ul>
+      <li><strong>A) Use Lifecycle Policies</strong></li>
+    </ul>
+  </li>
+  <li>You are working for a major financial firm in Wall Street where you are tasked to design an application architecture for their online trading platform which should have high availability and fault tolerance. The application is using an Amazon S3 bucket located in the us-east-1 region to store large amounts of intraday financial data.  <br />
+To avoid any costly service disruptions, what will you do to ensure that the stored financial data in the <strong>S3 bucket would not be affected even if there is an outage</strong> in one of the Availability Zones or a regional service failure in us-east-1?
+    <ul>
+      <li><strong>A) Enable Cross-Region Replication</strong></li>
+    </ul>
+  </li>
+  <li>You are working for a large bank that is developing a web application that receives large amounts of object data. They are using the data to generate a report for their stockbrokers to use on a daily basis. Unfortunately, a recent financial crisis has left the bank short on cash and cannot afford to purchase expensive storage hardware. They had resorted to use AWS instead.  <br />
+Which is the best service to use in order to <strong>store a virtually unlimited amount of object data without any effort to scale when demand unexpectedly increases</strong>?
+    <ul>
+      <li><strong>A) Amazon S3</strong></li>
+    </ul>
+  </li>
+  <li>A company has 10 TB of infrequently accessed financial data files that would need to be stored in AWS. These data would be accessed infrequently during specific weeks when they are retrieved for auditing purposes. <strong>The retrieval time is not strict as long as it does not exceed 24 hours</strong>.      <br />
+Which of the following would be a secure, durable, and cost-effective solution for this scenario?
+    <ul>
+      <li><strong>A) Upload the data to S3 and set a lifecycle policy to transition data to Glacier after <code class="language-plaintext highlighter-rouge">0</code> days.</strong></li>
+      <li>대량 검색(Bulk Retrieval)은 S3 Glacier의 최저 비용 검색 옵션으로 하루에 저렴한 비용으로 페타 바이트 단위의 대량의 데이터를 검색 할 수 있습니다. 대량 검색은 일반적으로 5 – 12 시간 내에 완료됩니다. 지정된 Amazon S3 객체를 Amazon Glacier로 전환해야하는 절대 또는 상대 기간 (<strong>0 일 포함</strong>)을 지정할 수 있습니다.</li>
+      <li>Glacier에는 볼트를 생성하고 삭제하는 데 사용할 수있는 관리 콘솔이 있습니다. 그러나 관리 콘솔을 사용하여 아카이브를 Glacier에 직접 업로드 할 수는 없습니다. 데이터를 업로드하려면 REST API를 직접 사용하거나 AWS SDK를 사용하여 AWS CLI를 사용하거나 코드를 작성하여 요청해야합니다.</li>
+    </ul>
+  </li>
+  <li>You are working as a Solutions Architect for a multinational IT consultancy company where you are managing an application hosted in an Auto Scaling group of EC2 instances which stores data in an S3 bucket. You must ensure that <strong>the data are encrypted at rest</strong> using an <strong>encryption key that is both provided and managed by the company</strong>. This change should also provide <strong>AES-256 encryption</strong> to their data to comply with the strict security policy of the company.  <br />
+Which of the following actions should you implement to achieve this? (Select TWO.)
+    <ul>
+      <li><strong>A1) Implement Amazon S3 server-side encryption with customer-provided keys(SSE-C)</strong></li>
+      <li><strong>A2) Encrypt the data on the client-side before sending to Amazon S3 using their own master key.</strong></li>
+      <li><strong>데이터 보호</strong>란 전송 중<em>in-transit</em>(Amazon S3 안팎으로 데이터가 이동 중) 및 유휴<em>at rest</em>(Amazon S3 데이터 센터의 디스크에 데이터가 저장된 동안) 데이터를 보호하는 것을 말합니다.</li>
+      <li><strong>전송 중 데이터 보호(in-transit)</strong> : Secure Sockets Layer(SSL) 또는 클라이언트 측 암호화를 사용하여 전송 중인 데이터를 보호할 수 있습니다.</li>
+      <li>Amazon S3에서 <strong>유휴 데이터를 보호</strong>하는 다음과 같은 옵션이 있습니다.</li>
+      <li><strong>서버 측 암호화</strong> : 데이터 센터의 디스크에 저장하기 전에 객체를 암호화하고 객체를 다운로드할 때 이를 해독하도록 <strong>Amazon S3에 요청</strong>합니다.
+        <ul>
+          <li>Amazon S3 관리 키 (SSE-S3)와 함께 서버 측 암호화 사용</li>
+          <li>AWS KMS 관리 키 (SSE-KMS)와 함께 서버 측 암호화 사용</li>
+          <li>고객 제공 키 (SSE-C)와 함께 서버 측 암호화 사용</li>
+        </ul>
+      </li>
+      <li><strong>클라이언트 측 암호화</strong> : 클라이언트 측 데이터를 암호화하여 암호화된 데이터를 Amazon S3에 업로드합니다. 이 경우 <strong>사용자가</strong> 암호화 프로세스, 암호화 키 및 관련 도구를 <strong>관리</strong>합니다.
+        <ul>
+          <li>AWS KMS – 관리 형 고객 마스터 키 (CMK)와 함께 클라이언트 측 암호화 사용</li>
+          <li>클라이언트 쪽 마스터 키를 사용하여 클라이언트 쪽 암호화 사용</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>You are working as a Principal Solutions Architect for a leading digital news company which has both an on-premises data center as well as an AWS cloud infrastructure. They store their graphics, audios, videos, and other multimedia assets primarily in their on-premises storage server and use an S3 Standard storage class bucket as a backup. Their <strong>data are heavily used for only a week (7 days)</strong> but after that period, <strong>it will be infrequently used</strong> by their customers. You are instructed to save storage costs in AWS yet <strong>maintain the ability to fetch their media assets in a matter of minutes</strong> for a surprise annual data audit, which will be conducted both on-premises and on their cloud storage.  <br />
+Which of the following options should you implement to meet the above requirement? (Select TWO.)
+    <ul>
+      <li><strong>A1) Set a lifecycle policy in the bucket to transition the data to Glacier after one week(7days)</strong></li>
+      <li><strong>A2) Set a lifecycle policy in the bucket to transition to S3 - Standard IA after 30 days</strong></li>
+      <li>라이프 사이클 스토리지 클래스 전환에는 <strong>STANDARD 스토리지 클래스에서 STANDARD_IA 또는 ONEZONE_IA로 전환하려는 경우 제한 사항</strong>이 있습니다. 다음과 같은 제약 조건이 적용됩니다.
+        <ul>
+          <li><strong>128KB보다 작은 객체</strong> : 더 큰 객체의 경우 STANDARD_IA 또는 ONEZONE_IA로 전환하면 비용 이점이 있습니다. 128KB보다 작은 객체는 비용 효율적이지 않기 때문에 STANDARD_IA 또는 ONEZONE_IA 스토리지 클래스로 전환하지 않습니다.</li>
+          <li><strong>보관일수가 30일 미만일 때</strong> : 객체를 또는 S3 Standard-IA 스토리지 클래스에서 -IA 또는 스토리지 클래스로 전환하기 전에 객체를 스토리지 클래스에 <strong>30일 이상</strong> 보관해야 합니다. 예를 들어, 생성 후 1일이 지난 객체를 -IA 스토리지 클래스로 전환하는 수명 주기 규칙을 생성할 수 없습니다. Amazon S3는 최초 30일 동안에는 객체를 전환하지 않습니다.</li>
+          <li>마찬가지로, 최신이 아닌 객체를 전환할 경우(버전이 지정된 버킷에서) <strong>30일 이상의 최신이 아닌 객체만</strong> -IA 또는 스토리지로 전환할 수 있습니다.</li>
+          <li><strong>이 제한은 INTELLIGENT_TIERING, GLACIER 및 DEEP_ARCHIVE 스토리지 클래스에는 적용되지 않습니다.</strong></li>
+        </ul>
+      </li>
+      <li>또한 요구 사항에 따르면 기습 <strong>연간</strong> 데이터 감사를 위해 미디어 자산을 몇 분 안에 가져와야합니다. 이는 검색이 1 년에 한 번만 수행됨을 의미합니다. <strong>Glacier에서 신속 검색(expedited retrievals)</strong> 을 사용하면 아카이브 하위 집합에 대한 긴급한 요청이 필요할 때 데이터를 <strong>1-5 분 이내</strong>에 빠르게 액세스 할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>You are working as an IT Consultant for a large financial firm. They have a requirement to store <strong>irreproducible</strong> financial documents using Amazon S3. For their quarterly reporting, the files are <strong>required to be retrieved after a period of 3 months</strong>. There will be some occasions when a surprise audit will be held, which requires <strong>access to the archived data</strong> that they need to present <strong>immediately</strong>.  <br />
+What will you do to satisfy this requirement in a cost-effective way?
+    <ul>
+      <li><strong>A) Use Amazon S3 Standard - Infrequent Access</strong></li>
+      <li>이 시나리오에서는 비용 효율적이고 아카이브 된 데이터에 즉시 액세스하거나 검색 할 수있는 스토리지 옵션이 있어야합니다. 비용 효율적인 옵션은 Amazon Glacier Deep Archive 및 Amazon S3 Standard-Infrequent Access (Standard-IA)입니다. 그러나 전자의 옵션은 깜짝 감사에 필요한 빠른 데이터 검색을 위해 설계되지 않았습니다.</li>
+      <li>Amazon S3 Standard-Infrequent Access는 덜 자주 액세스하지만 필요한 경우 빠른 액세스가 필요한 데이터를위한 Amazon S3 스토리지 클래스입니다. 표준-IA는 GB 당 낮은 스토리지 가격과 GB 당 검색 비용으로 Amazon S3 Standard의 높은 내구성, 처리량 및 낮은 대기 시간을 제공합니다.  <br />
+  이 저렴한 비용과 고성능의 결합으로 Standard-IA는 장기 저장소, 백업 및 재해 복구를위한 데이터 저장소로 이상적입니다. Standard-IA 스토리지 클래스는 객체 수준에서 설정되며 Standard와 동일한 버킷에 존재할 수 있으므로 수명주기 정책을 사용하여 애플리케이션 변경없이 스토리지 클래스간에 객체를 자동 전환 할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>You are working as an IT Consultant for a large media company where you are tasked to design a web application that stores static assets in an Amazon Simple Storage Service (S3) bucket. You expect this <strong>S3 bucket to immediately receive over 2000 PUT requests and 3500 GET requests per second</strong> at peak hour.  <br />
+What should you do to ensure optimal performance?
+    <ul>
+      <li><strong>A) Do nothing. Amazon S3 will automatically manage performance at this scale</strong></li>
+      <li>Amazon S3는 이제 데이터를 추가하기 위해 초당 3,500 개의 요청을, 데이터를 검색하기 위해 초당 5,500 개의 요청을 지원하는 향상된 성능을 제공하므로 추가 비용없이 상당한 처리 시간을 절약 할 수 있습니다. 각 <strong>S3 접두사는 이러한 요청 속도를 지원할 수 있으므로 성능을 크게 향상시킬 수 있습니다.</strong>  <br />
+  현재 Amazon S3에서 실행되는 애플리케이션은 변경없이 이 성능 향상을 누릴 수 있으며 S3에서 새 애플리케이션을 구축하는 고객은 이 성능을 달성하기 위해 애플리케이션을 사용자 정의 할 필요가 없습니다. 병렬 요청에 대한 Amazon S3의 지원은 애플리케이션을 사용자 정의하지 않고도 컴퓨팅 클러스터의 요소에 따라 S3 성능을 확장 할 수 있음을 의미합니다. <strong>접두사 당 성능이 확장되므로 필요한 처리량을 달성하기 위해 필요한만큼의 접두사를 동시에 사용할 수 있습니다. 접두사 수에는 제한이 없습니다.</strong></li>
+      <li><strong>Using a predictable naming scheme in the key names such as sequential numbers or date time sequences</strong> : is incorrect. Amazon S3는 이미 각 AWS 리전에서 객체 키 이름 인덱스를 유지 관리합니다. S3는 키 이름을 알파벳 순서로 저장합니다. 키 이름은 키가 저장된 파티션을 나타냅니다. 순차 접두사를 사용하여 Amazon S3가 다수의 키에 대해 특정 파티션을 대상으로하여 파티션의 I / O 용량을 압도 할 가능성이 높아집니다.</li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#aws" class="page__taxonomy-item" rel="tag">AWS</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-02-21T00:00:00+00:00">February 21, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=S3%20http%3A%2F%2Flocalhost%3A4000%2Faws%2FS3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Faws%2FS3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Faws%2FS3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/aws/RDS/" class="pagination--pager" title="RDS
+">이전</a>
+    
+    
+      <a href="/aws/AutoScaling/" class="pagination--pager" title="AutoScaling
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/mssql-to-s3/" rel="permalink">로컬DB 일배치로 S3에 파일 전송하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-15T00:00:00+00:00">January 15, 2021</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">테이블을 1일 1회 백업해서 파일로 S3에 전송한다
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/connect-rds/" rel="permalink">보안된 내부망 rds DB클라이언트 접속
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-11-01T00:00:00+00:00">November 1, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">private 망에 위치한 RDS를 putty가 아닌 DB 클라이언트에서 접속
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-yml/" rel="permalink">serverless framework 환경 설정 serverless.yml
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-15T00:00:00+00:00">September 15, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless.yml 작성을 통해 배포 환경 설정을 해보자
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-tutorial-2/" rel="permalink">serverless framework 시작하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-10T00:00:00+00:00">September 10, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless framework를 설치하고, AWS와 연결해보자
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Dasol Seo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

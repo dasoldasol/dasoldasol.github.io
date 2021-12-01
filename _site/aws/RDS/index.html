@@ -1,0 +1,872 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>RDS | Dasol Seo</title>
+<meta name="description" content="AWS RDS">
+
+
+  <meta name="author" content="서다솔">
+  
+  <meta property="article:author" content="서다솔">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Dasol Seo">
+<meta property="og:title" content="RDS">
+<meta property="og:url" content="http://localhost:4000/aws/RDS/">
+
+
+  <meta property="og:description" content="AWS RDS">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-02-20T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/aws/RDS/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Dasol Seo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Dasol Seo Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/share.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Dasol Seo
+          <span class="site-subtitle">Version 1.0</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/project/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Blog</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#aws" itemprop="item"><span itemprop="name">Aws</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">RDS</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/KakaoTalk_20200922_160045754.jpg" alt="서다솔" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">서다솔</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>추천 시스템은 맛있어</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ssolphanes@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://dasoldasol.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/dasoldasol/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="RDS">
+    <meta itemprop="description" content="AWS RDS">
+    <meta itemprop="datePublished" content="2020-02-20T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">RDS
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-02-20T00:00:00+00:00">February 20, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#rds">RDS</a>
+    <ul>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#multi-az-deployment">Multi-AZ deployment</a></li>
+      <li><a href="#read-replicas">Read Replicas</a></li>
+    </ul>
+  </li>
+  <li><a href="#features-1">Features</a></li>
+  <li><a href="#rds-db-instance-storage">RDS DB Instance Storage</a></li>
+  <li><a href="#backups-multi-az-read-replicas">Backups, Multi-AZ, Read Replicas</a></li>
+  <li><a href="#scenario">Scenario</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="rds">RDS</h2>
+<h3 id="features">Features</h3>
+<ul>
+  <li>provides <strong>Relational Database</strong> service</li>
+  <li>supports MySQL, MariaDB, PostgreSQL, Oracle, MSSQL Server, MySQL-compatible Amazon Aurora DB engine</li>
+  <li>it is a managed service, shell(root SSH) access is NOT provided</li>
+  <li>manages backups, software patching, automatic failure detection, recovery</li>
+  <li>supports user initiated manual backups and snapshots</li>
+  <li><strong>daily automated backups with database transaction logs</strong> enables <strong>Point in Time recovery</strong> up to the last 5 minutes of database usage</li>
+  <li><strong>Snapshots</strong> : user-initiated storage volume snapshot of DB instance, backing up the <strong>entire DB instance and not just individual databases</strong> that can be restored as a independent RDS instance
+    <ul>
+      <li>max backup retention period : 35 days</li>
+    </ul>
+  </li>
+  <li><strong>Encryption</strong> : support encryption at rest using KMS as well as encryption in transit using SSL endpoints
+    <ul>
+      <li>For encrypted database : logs, snapshots, backups, read replicas are all encrypted as well</li>
+    </ul>
+  </li>
+  <li>RDS does not support all features of underlying databases, and if required the database instance can be launched on an EC2 instance</li>
+  <li>RMAN(Recovery Manaber) can be used for Oracles backup and recovery when running on an EC2 instance</li>
+</ul>
+
+<h3 id="multi-az-deployment">Multi-AZ deployment</h3>
+<ul>
+  <li>provides <strong>high availability and automatic failover support and is NOT a scaling solution</strong></li>
+  <li>maintains a <strong>synchronous standby replica in a different AZ</strong></li>
+  <li><strong>transaction success</strong> is returned only if <strong>the commit is successful BOTH on the primary and the standby DB</strong></li>
+  <li>Oracle, PostgreSQL, MySQL, MariaDB DB instances use <strong>Amazon technology</strong>, while SQL Server DB instance use <strong>SQL Server Mirroring</strong></li>
+  <li><strong>Snapshots and Backups are taken from standby &amp; eliminate I/O freezes</strong>
+    <ul>
+      <li>single AZ RDS : I/O may be briefly suspended while the backup process initializes (typically under a few seconds), and you may experience a brief period of elevated latency.</li>
+    </ul>
+  </li>
+  <li>During automatic failover, its seamless and RDS switches to the standby instance and <strong>updates the DNS record to point to standby</strong></li>
+  <li>failover can be <strong>forced</strong> with the <strong>Reboot</strong> with failover option</li>
+</ul>
+
+<h3 id="read-replicas">Read Replicas</h3>
+<ul>
+  <li>uses the PostgreSQL, MySQL, MariaDB DB engines’ built-in replication functionally to create a separate Read Only instance</li>
+  <li>updates are <strong>asynchrously</strong> copied to the Read Replica</li>
+  <li>can help <strong>scale applications</strong> and <strong>reduce read only load</strong></li>
+  <li>requires automative <strong>backups enabled</strong></li>
+  <li><strong>replicates ALL databases</strong> in the source DB instance</li>
+  <li>for Disaster Recovery, can be <strong>promoted to a full fledged database</strong></li>
+  <li>can be <strong>created in a different region</strong> for MySQL, Postgres, MariaDB for Disaster Recovery, Migration, Low Latency across regions.</li>
+</ul>
+
+<h2 id="features-1">Features</h2>
+<ul>
+  <li><strong>OLTP</strong> (cf. DynamoDB:NoSQL, Redshift:OLAP, Elasticache:Memcached/Redis)</li>
+  <li>RDS runs on VM</li>
+  <li>You cannot SSH log in to these operation systmes however.(Amazon’s responsibility)</li>
+  <li>RDS is NOT Serverless</li>
+  <li>Aurora is Serverless</li>
+  <li>Error node : the response from <strong>RDS API</strong> to check RDS for an error</li>
+</ul>
+
+<h2 id="rds-db-instance-storage">RDS DB Instance Storage</h2>
+<ul>
+  <li>DB instances use Amazon Elastic Block Store (Amazon EBS) volumes for database and log storage.
+    <ul>
+      <li><a href="https://github.com/dasoldasol/dasolseo.github.io/blob/master/_posts/EBS.md#ebs-types">EBS Storage Types</a></li>
+    </ul>
+  </li>
+  <li><strong>Provisioned IOPS (SSD) storage</strong> : if you use <strong>online transaction processing</strong> in your production environment. for I/O-intensive, transactional (OLTP) database workloads
+    <ul>
+      <li>RDS Provisioned IOPS storage with MSSQL Server ) RDS volume 16TB</li>
+    </ul>
+  </li>
+  <li><strong>General Purpose (SSD) storage</strong></li>
+</ul>
+
+<h2 id="backups-multi-az-read-replicas">Backups, Multi-AZ, Read Replicas</h2>
+<ul>
+  <li><strong>Backup</strong>
+    <ul>
+      <li>Automated Backups (by default)</li>
+      <li>Database Snapshot</li>
+      <li>single AZ RDS : I/O may be briefly suspended while the backup process initializes (typically under a few seconds), and you may experience a brief period of elevated latency.</li>
+    </ul>
+  </li>
+  <li><strong>Read Replicas</strong>
+<img src="https://dasoldasol.github.io/assets/images/image/rds-replica.png" alt="rds-replica" />
+    <ul>
+      <li>Can be Multi-AZ, different regions</li>
+      <li>Used to increase performance (ex.for heavy traffics)</li>
+      <li>Must have backups turned on</li>
+      <li>Can be promoted to master, this will break the Read Replica</li>
+      <li><strong>data transfer charge</strong> when replicating data from primary RDS to secondary RDS <strong>is free</strong></li>
+    </ul>
+  </li>
+  <li><strong>Multi-AZ</strong>
+<img src="https://dasoldasol.github.io/assets//images/image/rds-multi-az.png" alt="rds-multi-az" />
+    <ul>
+      <li>Used For Disaster Recovery(failover by rebooting RDS instance)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="scenario">Scenario</h2>
+<ul>
+  <li><strong>You are deploying an Interactive Voice Response (IVR) telephony system in your cloud architecture that interacts with callers, gathers information, and routes calls to the appropriate recipients in your company. The system will be composed of an Auto Scaling group of EC2 instances, an Application Load Balancer, and a MySQL RDS instance in a Multi-AZ Deployments configuration. To protect the confidential data of your customers, you have to ensure that your RDS database can only be accessed using the profile credentials specific to your EC2 instances via an authentication token.  <br />
+As the Solutions Architect of the company, which of the following should you do to meet the above requirement?</strong>
+    <ul>
+      <li><strong>A) Enable the IAM DB Authentication</strong></li>
+      <li>IAM database authentication works with MySQL and PostgreSQL. With this authentication method, you don’t need to use a password when you connect to a DB instance. Instead, you use an authentication token.  <br />
+An <strong>authentication token</strong> is a unique string of characters that Amazon RDS generates on request. You don’t need to store user credentials in the database, because authentication is managed externally using IAM.
+<img src="https://dasoldasol.github.io/assets//images/image/iam-db-auth.png" alt="iam-db-auth" /></li>
+      <li>Configuring SSL in your application to encrypt the database connection to RDS : is incorrect because an SSL connection is not using an authentication token from IAM.</li>
+      <li>assigning IAM Role to your EC2 instances which will grant exclusive access to your RDS instance : is incorrect because although you can create and assign an IAM Role to your EC2 instances, you still need to configure your RDS to use IAM DB Authentication.</li>
+      <li>a combination of IAM and STS : is incorrect. Although STS is used to send temporary tokens for authentication, this is not a compatible use case for RDS.</li>
+    </ul>
+  </li>
+  <li>An online cryptocurrency exchange platform is hosted in AWS which uses ECS Cluster and RDS in Multi-AZ Deployments configuration. The application is heavily using the RDS instance to process complex read and write database operations.  <br />
+To maintain the reliability, availability, and performance of your systems, you have to closely monitor how the different processes or threads on a DB instance use the CPU, including the percentage of the <strong>CPU bandwidth and total memory consumed by each process</strong>.  <br />
+Which of the following is the most suitable solution to properly <strong>monitor your database</strong>?
+    <ul>
+      <li><strong>A) Enable Enhanced Monitoring in RDS</strong></li>
+      <li>Enhanced Monitoring metrics are useful when you want to see how different processes or threads on a DB instance use the CPU.</li>
+      <li>CloudWatch : although you can use this to monitor the CPU Utilization of your database instance, it does not provide the percentage of the CPU bandwidth and total memory consumed by each database process in your RDS instance.</li>
+      <li><strong>CloudWatch Metrics vs. Enhanced Monitoring Metrics</strong>
+        <ul>
+          <li>CloudWatch gathers metrics about CPU utilization from the <strong>hypervisor</strong> for a DB instance. hypervisor layer performs a small amount of work.  The data provided by CloudWatch is not as detailed as compared with the Enhanced Monitoring feature in RDS. Take note as well that you do not have direct access to the instances/servers of your RDS database instance, unlike with your EC2 instances where you can install a CloudWatch agent or a custom script to get CPU and memory utilization of your instance.</li>
+          <li>Enhanced Monitoring gathers its metrics from an <strong>agent</strong> on the instance</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>There are a lot of <strong>outages in the Availability Zone</strong> of your RDS database instance to the point that you have <strong>lost access to the database.</strong> What could you do to prevent losing access to your database in case that this event happens again?
+    <ul>
+      <li><strong>A) Enabled Multi-AZ failover</strong></li>
+      <li>RDS Multi-AZ deployments : When you provision a Multi-AZ DB Instance, Amazon RDS automatically creates a primary DB Instance and synchronously replicates the data to a standby instance in a different Availability Zone (AZ). Each AZ runs on its own physically distinct, independent infrastructure, and is engineered to be highly reliable.  <br />
+In case of an infrastructure failure, Amazon RDS performs an automatic failover to the standby (or to a read replica in the case of Amazon Aurora), so that you can resume database operations as soon as the failover is complete.</li>
+      <li>Snapshot : is incorrect. it does not provide immediate availability in case of AZ failure.</li>
+      <li>Read replica : is incorrect because this simply provides <strong>enhanced performance for read-heavy database workloads</strong>. Although you can promote a read replica, its <strong>asynchronous</strong> replication might not provide you the latest version of your database.</li>
+    </ul>
+  </li>
+  <li>An application that records weather data every minute is deployed in a fleet of Spot EC2 instances and uses a MySQL RDS database instance. Currently, there is only one RDS instance running in one Availability Zone. You plan to improve the database to ensure <strong>high availability</strong> by synchronous data replication to another RDS instance.  <br />
+Which of the following performs <strong>synchronous data replication</strong> in RDS?
+    <ul>
+      <li><strong>A) RDS DB instance running as a Multi-AZ deployment</strong></li>
+      <li><strong>Multi-AZ Deployment vs. Read Replicas</strong>  <br />
+<img src="https://dasoldasol.github.io/assets//images/image/rds-vs.png" alt="rds-vs" /></li>
+    </ul>
+  </li>
+  <li>A Forex trading platform, which frequently processes and stores global financial data every minute, is hosted in your on-premises data center and uses an Oracle database. Due to a recent cooling problem in their data center, the company urgently needs to migrate their infrastructure to AWS to improve the performance of their applications. As the Solutions Architect, you are responsible in ensuring that the database is properly migrated and should remain available in case of database server failure in the future.   <br />
+Which of the following is the most suitable solution to meet the requirement?
+    <ul>
+      <li><strong>A) creating an Oracle database in RDS with Multi-AZ deployments</strong></li>
+      <li>Amazon RDS Multi-AZ deployments provide enhanced availability and durability for Database (DB) Instances, making them a natural fit for production database workloads. When you provision a Multi-AZ DB Instance, Amazon RDS automatically creates a primary DB Instance and synchronously replicates the data to a standby instance in a different Availability Zone (AZ). Each AZ runs on its own physically distinct, independent infrastructure, and is engineered to be highly reliable.</li>
+      <li><strong>Launching an Oracle database instance in RDS with Recovery Manager (RMAN) enabled and launching an Oracle Real Application Clusters (RAC) in RDS</strong> : are incorrect because Oracle RMAN and RAC are not supported in RDS.</li>
+      <li><strong>Migrating your Oracle data to Amazon Aurora by converting the database schema using AWS Schema Conversion Tool and AWS Database Migration Service</strong> : is incorrect because although this solution is feasible, it takes time to migrate your Oracle database to Aurora which is not acceptable. Based on this option, the Aurora database does not have a Read Replica and is not configured as an Amazon Aurora DB cluster, which could have improved the availability of the database.</li>
+    </ul>
+  </li>
+  <li>An accounting application uses an RDS database configured with <strong>Multi-AZ deployments</strong> to improve availability. What would happen to RDS if the primary database instance fails?
+    <ul>
+      <li><strong>A) The canonical name record(CNAME) is switched from the primary to standby instance.</strong></li>
+      <li>When failing over, Amazon RDS simply flips the canonical name record (CNAME) for your DB instance to point at the standby, which is in turn promoted to become the new primary.</li>
+      <li><strong>The IP address of the primary DB instance is switched to the standby DB instance</strong> : is incorrect since <strong>IP addresses are per subnet, and subnets cannot span multiple AZs</strong>.</li>
+    </ul>
+  </li>
+  <li>An online events registration system is hosted in AWS and uses ECS to host its front-end tier and a <strong>Multi-AZ</strong> RDS for its database tier, which also has a standby replica. What are the events that will make Amazon RDS automatically perform a <strong>failover to the standby replica</strong>? (Choose 2)
+    <ul>
+      <li><strong>A1) Storage failure on primary</strong></li>
+      <li><strong>A2) Loss of availability in primary Availability Zone</strong></li>
+      <li><strong>Loss of network connectivity to primary</strong></li>
+      <li><strong>Compute unit failure on primary</strong></li>
+    </ul>
+  </li>
+  <li>You are working for an insurance firm as their Senior Solutions Architect. The firm has an application which processes thousands of customer data stored in an Amazon MySQL database with Multi-AZ deployments configuration for high availability in case of downtime. For the past few days, you noticed an increasing trend of read and write operations, which is increasing the latency of the queries to your database. You are planning to use the standby database instance to balance the read and write operations from the primary instance.   <br />
+When running your primary Amazon RDS Instance as a <strong>Multi-AZ</strong> deployment, can you <strong>use the standby instance for read and write operations</strong>?
+    <ul>
+      <li><strong>A) No</strong></li>
+      <li>The standby instance will not perform any read and write operations while the primary instance is running.</li>
+    </ul>
+  </li>
+  <li>Due to the large volume of query requests, the database performance of an online reporting application significantly slowed down. The Solutions Architect is trying to convince her client to use Amazon RDS Read Replica for their application instead of setting up a Multi-AZ Deployments configuration.  <br />
+What are two <strong>benefits of using Read Replicas over Multi-AZ</strong> that the Architect should point out? (Choose 2)
+    <ul>
+      <li><strong>A1) It elastically scales out beyond the capacity constraints of a single DB instance for read-heavy database workloads.</strong></li>
+      <li><strong>A2) Provides asynchronous replication and improves the performance of the primary database by taking read-heacy database workloads from it.</strong></li>
+      <li><strong>Provides synchronous replication and automatic failover in the case of Availability Zone service failures</strong> : is incorrect as this is a benefit of <strong>Multi-AZ</strong> and not of a Read Replica.</li>
+      <li><strong>It enhances the read performance of your primary database by increasing its IOPS and accelerates its query processing via AWS Global Accelerator</strong> : is incorrect. <strong>AWS Global Accelerator</strong> is a networking service, not related to RDS, that direct user traffic to the nearest application endpoint to the client, thus reducing internet latency and jitter. It simply routes the traffic to the closest edge location via Anycast.</li>
+    </ul>
+  </li>
+  <li>A company has an <strong>OLTP (Online Transactional Processing)</strong> application that is hosted in an Amazon ECS cluster using the Fargate launch type. It has an Amazon <strong>RDS</strong> database that stores data of its production website. The Data Analytics team needs to run queries against the database to track and audit all user transactions. These query operations against the production database must not impact application performance in any way.  <br />
+Which of the following is the MOST suitable and cost-effective solution that you should implement?
+    <ul>
+      <li><strong>A) Set up a new Amazon RDS Read Replica of the production database. Direct the Data Analyitcs team to query the production data from the replica.</strong></li>
+    </ul>
+  </li>
+  <li>You are managing a global news website which is deployed to AWS and is using <strong>MySQL RDS</strong>. The website has millions of viewers from all over the world which means that the website has <strong>read-heavy</strong> database workloads. <strong>All database transactions must be ACID compliant to ensure data integrity</strong>.  <br />
+In this scenario, which of the following is the best option to use to increase the read throughput on the MySQL database?
+    <ul>
+      <li><strong>A) Enable Amazon RDS replicas</strong></li>
+      <li>읽기 중심의 데이터베이스 워크로드를 위해 단일 DB 인스턴스의 컴퓨팅 파워 또는 I/O 용량을 확장합니다. 이 과도한 읽기 트래픽을 하나 이상의 읽기 전용 복제본으로 이동할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>You are working as a Junior Solutions Architect where you are responsible in enhancing the availability and durability of the database instances in your VPC.  Your company has a Multi-AZ RDS instance in the ap-northeast-1 region. If a storage volume on the primary instance fails in a Multi-AZ deployment, Amazon RDS automatically initiates a failover to the up-to-date standby instance.     <br />
+In case of a failover, which record in Route 53 is changed?
+    <ul>
+      <li><strong>A) CNAME</strong></li>
+      <li>장애 조치 시, Amazon RDS는 DB 인스턴스의 정식 이름 레코드(CNAME)가 예비 복제본을 가리키도록 변경합니다. 그러면 이 예비 복제본이 승격되어 새 기본 복제본이 됩니다.</li>
+    </ul>
+  </li>
+  <li>You are working for a large financial company. In their enterprise application, they want to apply a group of database-specific settings to their Relational Database Instances.     <br />
+Which of the following options can be used to easily <strong>apply the settings in one go for all of the Relational database instances</strong>?
+    <ul>
+      <li><strong>A) Parameter Groups</strong></li>
+      <li>데이터베이스 파라미터 그룹(DB 파라미터그룹)은 하나 이상의 DB 인스턴스에 적용 가능한 엔진 설정값의 “컨테이너” 역할을 합니다. DB 파라미터 그룹을 지정하지 않고 DB 인스턴스를 만드는 경우 기본 DB 파라미터 그룹이 사용됩니다. 이 기본값 그룹에는 실행하는 DB 인스턴스에 최적화된 엔진 기본값과 Amazon RDS 시스템 기본 값이 포함됩니다. 그러나 사용자 지정 엔진 설정값을 사용해 DB 인스턴스를 실행하려면 새 DB 파라미터 그룹을 만들고, 필요한 파라미터를 수정하고, 새 DB 파라미터 그룹을 사용하기 위해 DB 인스턴스를 수정하기만 하면 됩니다. 연결이 이루어지면 특정 DB 파라미터 그룹을 사용하는 모든 DB 인스턴스가 해당 DB 파라미터 그룹에 대한 모든 파라미터 업데이트를 가져옵니다.</li>
+    </ul>
+  </li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#aws" class="page__taxonomy-item" rel="tag">AWS</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-02-20T00:00:00+00:00">February 20, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=RDS%20http%3A%2F%2Flocalhost%3A4000%2Faws%2FRDS%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Faws%2FRDS%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Faws%2FRDS%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/aws/Aurora/" class="pagination--pager" title="Aurora
+">이전</a>
+    
+    
+      <a href="/aws/S3/" class="pagination--pager" title="S3
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/mssql-to-s3/" rel="permalink">로컬DB 일배치로 S3에 파일 전송하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-15T00:00:00+00:00">January 15, 2021</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">테이블을 1일 1회 백업해서 파일로 S3에 전송한다
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/connect-rds/" rel="permalink">보안된 내부망 rds DB클라이언트 접속
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-11-01T00:00:00+00:00">November 1, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">private 망에 위치한 RDS를 putty가 아닌 DB 클라이언트에서 접속
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-yml/" rel="permalink">serverless framework 환경 설정 serverless.yml
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-15T00:00:00+00:00">September 15, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless.yml 작성을 통해 배포 환경 설정을 해보자
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-tutorial-2/" rel="permalink">serverless framework 시작하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-10T00:00:00+00:00">September 10, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless framework를 설치하고, AWS와 연결해보자
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Dasol Seo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,748 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>CloudFormation vs. ElasticBeanstalk vs. OpsWorks | Dasol Seo</title>
+<meta name="description" content="AWS CloudFormation, ElasticBeanstalk, OpsWorks">
+
+
+  <meta name="author" content="서다솔">
+  
+  <meta property="article:author" content="서다솔">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Dasol Seo">
+<meta property="og:title" content="CloudFormation vs. ElasticBeanstalk vs. OpsWorks">
+<meta property="og:url" content="http://localhost:4000/aws/CloudFormation-ElasticBeanstalk-OpsWorks/">
+
+
+  <meta property="og:description" content="AWS CloudFormation, ElasticBeanstalk, OpsWorks">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-03-08T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/aws/CloudFormation-ElasticBeanstalk-OpsWorks/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Dasol Seo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Dasol Seo Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/share.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Dasol Seo
+          <span class="site-subtitle">Version 1.0</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/project/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Blog</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#aws" itemprop="item"><span itemprop="name">Aws</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">CloudFormation vs. ElasticBeanstalk vs. OpsWorks</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/KakaoTalk_20200922_160045754.jpg" alt="서다솔" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">서다솔</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>추천 시스템은 맛있어</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ssolphanes@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://dasoldasol.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/dasoldasol/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="CloudFormation vs. ElasticBeanstalk vs. OpsWorks">
+    <meta itemprop="description" content="AWS CloudFormation, ElasticBeanstalk, OpsWorks">
+    <meta itemprop="datePublished" content="2020-03-08T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">CloudFormation vs. ElasticBeanstalk vs. OpsWorks
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-03-08T00:00:00+00:00">March 8, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#cloudformation">CloudFormation</a></li>
+  <li><a href="#elastic-beanstalk">Elastic Beanstalk</a></li>
+  <li><a href="#aws-opsworks">AWS OpsWorks</a></li>
+  <li><a href="#aws-codedeploy">AWS CodeDeploy</a></li>
+  <li><a href="#scenario">Scenario</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="cloudformation">CloudFormation</h2>
+<ul>
+  <li>Is a way of completely scripting your cloud environment</li>
+  <li>Quick Start is a bunch of CloudFormation <strong>templates</strong> already built by AWS Solutions Architects allowing you to create complex environments very quickly.</li>
+  <li><strong>collection of related AWS resources</strong></li>
+  <li><strong>“infrastructure as code”</strong></li>
+  <li>Point : 개발자와 기업이 손쉽게 관련 AWS 및 타사 리소스의 모음을 쉽게 생성하고 순서에 따라 예측 가능한 방식으로 프로비저닝할 수 있는 방법을 제공하는 서비스  <br />
+<img src="https://dasoldasol.github.io/assets/images/image/create-stack-diagram.png" alt="create-stack-diagram" />
+<img src="https://dasoldasol.github.io/assets/images/image/designer-jsoneditor.png" alt="designer-jsoneditor" /></li>
+</ul>
+
+<h2 id="elastic-beanstalk">Elastic Beanstalk</h2>
+<ul>
+  <li>quickly <strong>deploy</strong> and manage applications</li>
+  <li>automatically handles deployment details</li>
+  <li>PAAS(platform-as-a-service)</li>
+  <li>Point : AWS 클라우드에서 애플리케이션을 몇 분 내에 배포하고 관리하기를 원하는 사람. 이전에 클라우드 컴퓨팅을 사용해 본 경험이 없어도 괜찮습니다. AWS Elastic Beanstalk는 Java, .NET, PHP, Node.js, Python, Ruby, Go 및 Docker 웹 애플리케이션을 지원합니다.</li>
+</ul>
+
+<h2 id="aws-opsworks">AWS OpsWorks</h2>
+<ul>
+  <li>configuration management service that provides managed instances of Chef and Puppet.</li>
+  <li>lets you use <strong>Chef and Puppet</strong> to automate how servers are configured, deployed, and managed across your EC2 instances or on-premise</li>
+  <li>Layers depend on <strong>Chef recipes</strong> to handle tasks such as installing packages on instances, deploying apps, and running scripts.</li>
+  <li>Point : 모든 커뮤니티 스크립트 및 도구를 비롯하여 Chef/Puppet과 완벽하게 호환되는 구성 관리 환경을 원하지만 운영 오버헤드는 피하고자하는 고객</li>
+</ul>
+
+<h2 id="aws-codedeploy">AWS CodeDeploy</h2>
+<ul>
+  <li>You create a <strong>deployment configuration file</strong> to specify how deployments proceed.</li>
+  <li>Q: AWS CodeDeploy는 AWS Elastic Beanstalk 및 AWS OpsWorks 등의 다른 AWS 배포 및 관리 서비스와 어떻게 다릅니까?  <br />
+AWS CodeDeploy는 개발자가 Amazon EC2 인스턴스 및 온프레미스에서 실행 중인 인스턴스를 비롯한 모든 인스턴스에서 소프트웨어를 배포하고 업데이트하도록 지원하는 데 초점을 맞춘 빌딩 블록 서비스입니다. AWS Elastic Beanstalk 및 AWS OpsWorks는 엔드 투 엔드 애플리케이션 관리 솔루션입니다.</li>
+</ul>
+
+<h2 id="scenario">Scenario</h2>
+<ul>
+  <li>You are a Solutions Architect working with a company that uses Chef Configuration management in their datacenter.    <br />
+Which service is designed to let the customer <strong>leverage existing Chef recipes</strong> in AWS?
+    <ul>
+      <li><strong>A) AWS OpsWorks</strong></li>
+      <li><strong>AWS OpsWorks</strong>는 <strong>Chef 및 Puppet</strong>의 관리형 인스턴스를 제공하는 구성 관리 서비스입니다. Chef와 Puppet은 코드를 사용하여 서버 구성을 자동화 할 수 있는 자동화 플랫폼입니다. OpsWorks를 사용하면 Chef 및 Puppet을 사용하여 Amazon EC2 인스턴스 또는 온 프레미스 컴퓨팅 환경에서 서버를 구성, 배포 및 관리하는 방법을 자동화 할 수 있습니다.</li>
+      <li><strong>AWS Elastic Beanstalk</strong> : is incorrect. 용량 프로비저닝,로드 밸런싱, 자동 확장 및 애플리케이션 상태 모니터링에 대한 애플리케이션의 <strong>배포 세부 사항</strong>을 처리합니다. Chef 레시피를 활용할 수 없습니다.</li>
+      <li><strong>AWS CloudFormation</strong> : is incorrect. 이 서비스는 관련 AWS 리소스 모음을 생성하고 인프라를 코드로 사용하여 예측 가능한 방식으로 프로비저닝 할 수있는 서비스입니다. Chef 레시피를 활용할 수 없습니다.</li>
+    </ul>
+  </li>
+  <li>Your company is in a hurry of deploying their new web application written in NodeJS to AWS. As the Solutions Architect of the company, you were assigned to do the deployment without worrying about the underlying infrastructure that runs the application. Which service will you use to <strong>easily deploy and manage your new web application</strong> in AWS?
+    <ul>
+      <li><strong>A) AWS Elastic Beanstalk</strong></li>
+      <li><strong>AWS CloudFormation</strong> : is incorrect. 이 서비스는 배포 기능을 제공하지만 애플리케이션 요구 사항에 필요한 AWS 리소스가 포함 된 <strong>사용자 지정 템플릿</strong>을 디자인해야합니다. 따라서 Elastic Beanstalk를 직접 사용하는것보다 완료하는 데 더 많은 시간이 필요합니다.</li>
+      <li><strong>AWS CodeCommit</strong> : is incorrect because AWS CloudCommit에서 NodeJS 코드를 업로드 할 수 있지만이 서비스는 <strong>안전한 Git 기반 리포지토리를 호스팅</strong>하는 완전 관리형 소스 제어 서비스이므로 AWS에서 애플리케이션을 배포하거나 관리 할 수있는 방법을 제공하지 않습니다.</li>
+    </ul>
+  </li>
+  <li>You are a new Solutions Architect in your department and you have created 7 CloudFormation templates. Each template has been defined for a specific purpose.  <br />
+What determines <strong>the cost</strong> of using these new <strong>CloudFormation</strong> templates?
+    <ul>
+      <li><strong>A) CloudFormation templates are free but you are charged for the underlying resources it builds.</strong></li>
+    </ul>
+  </li>
+  <li>The company you are working for has a set of AWS resources hosted in ap-northeast-1 region. You have been asked by your IT Manager to create an AWS CLI shell script that will call an AWS service which could create duplicate resources in another region in the event that ap-northeast-1 region fails. <strong>The duplicated resources should also contain the VPC Peering configuration and other networking components from the primary stack</strong>.  <br />
+Which of the following AWS services could help fulfill this task?
+    <ul>
+      <li><strong>A) AWS CloudFormation</strong></li>
+      <li>CloudFormation을 사용하면 한 지역에서 다른 지역으로 호스팅되는 모든 AWS 리소스와 함께 정확한 AWS 아키텍처 사본을 배포 할 수 있습니다.</li>
+    </ul>
+  </li>
+  <li>A technology company is building a new cryptocurrency trading platform that allows buying and selling of Bitcoin, Ethereum, XRP, Ripple and many others. You were hired as a Cloud Engineer to build the required infrastructure needed for this new trading platform. On your first week at work, you started to create <strong>CloudFormation YAML scripts that defines all of the needed AWS resources</strong> for the application. Your manager was shocked that you haven’t created the EC2 instances, S3 buckets and other AWS resources straight away. He does not understand the text-based scripts that you have done and was disappointed that you are just slacking off at your job.   <br />
+In this scenario, what are the <strong>benefits of using the Amazon CloudFormation</strong> service that you should tell your manager to clarify his concerns? (Select TWO.)
+    <ul>
+      <li><strong>A1) Allows you to model your entire infrastructure in a text file</strong></li>
+      <li><strong>A2) Enables modeling, provisioning, and version-controlling of your entire AWS infrastructure</strong></li>
+      <li>CloudFormation을 사용하면 간단한 텍스트 파일을 사용하여 <strong>모든 지역 및 계정에서</strong> 애플리케이션에 필요한 모든 리소스를 자동화 된 방식으로 모델링하고 프로비저닝 할 수 있습니다.</li>
+      <li>애플리케이션을 실행하는 데 필요한 AWS 리소스에 대해서만 비용을 지불합니다.</li>
+    </ul>
+  </li>
+  <li>You created a new <strong>CloudFormation template</strong> that creates 4 EC2 instances and are connected to one Elastic Load Balancer (ELB). Which section of the template should you configure <strong>to get the Domain Name Server hostname of the ELB upon the creation of the AWS stack</strong>?
+    <ul>
+      <li><strong>A) Outputs</strong></li>
+      <li>템플릿은 AWS 인프라를 설명하는 JSON 또는 YAML 형식의 텍스트 파일입니다.</li>
+      <li><strong>output</strong> :  다른 스택으로 가져오거나(교차 스택 참조를 생성하기 위해), 응답으로 반환하거나(스택 호출을 설명하기 위해), 또는 AWS CloudFormation 콘솔에서 볼 수 있는 출력 값을 선언
+        <div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Outputs</span><span class="pi">:</span>
+<span class="na">BackupLoadBalancerDNSName</span><span class="pi">:</span>
+<span class="na">Description</span><span class="pi">:</span> <span class="s">The DNSName of the backup load balancer</span>
+<span class="na">Value</span><span class="pi">:</span> <span class="kt">!GetAtt</span> <span class="s">BackupLoadBalancer.DNSName</span>
+<span class="na">Condition</span><span class="pi">:</span> <span class="s">CreateProdResources</span>
+<span class="na">InstanceID</span><span class="pi">:</span>
+<span class="na">Description</span><span class="pi">:</span> <span class="s">The Instance ID</span>
+<span class="na">Value</span><span class="pi">:</span> <span class="kt">!Ref</span> <span class="s">EC2Instance</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>You are setting up a configuration management in your existing cloud architecture where you have to deploy and manage your EC2 instances including the other AWS resources using <strong>Chef and Puppet</strong>. Which of the following is the most suitable service to use in this scenario?
+    <ul>
+      <li><strong>A) AWS OpsWorks</strong></li>
+      <li>AWS OpsWorks는 Chef 및 Puppet의 관리 형 인스턴스를 제공하는 구성 관리 서비스입니다. Chef와 Puppet은 코드를 사용하여 서버 구성을 자동화 할 수있는 자동화 플랫폼입니다. OpsWorks를 사용하면 Chef 및 Puppet을 사용하여 Amazon EC2 인스턴스 또는 온 프레미스 컴퓨팅 환경에서 서버를 구성, 배포 및 관리하는 방법을 자동화 할 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#aws" class="page__taxonomy-item" rel="tag">AWS</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-03-08T00:00:00+00:00">March 8, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=CloudFormation+vs.+ElasticBeanstalk+vs.+OpsWorks%20http%3A%2F%2Flocalhost%3A4000%2Faws%2FCloudFormation-ElasticBeanstalk-OpsWorks%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Faws%2FCloudFormation-ElasticBeanstalk-OpsWorks%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Faws%2FCloudFormation-ElasticBeanstalk-OpsWorks%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/aws/Snowball/" class="pagination--pager" title="Snowball
+">이전</a>
+    
+    
+      <a href="/aws/ELB/" class="pagination--pager" title="ELB
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/mssql-to-s3/" rel="permalink">로컬DB 일배치로 S3에 파일 전송하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-15T00:00:00+00:00">January 15, 2021</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">테이블을 1일 1회 백업해서 파일로 S3에 전송한다
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/connect-rds/" rel="permalink">보안된 내부망 rds DB클라이언트 접속
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-11-01T00:00:00+00:00">November 1, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">private 망에 위치한 RDS를 putty가 아닌 DB 클라이언트에서 접속
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-yml/" rel="permalink">serverless framework 환경 설정 serverless.yml
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-15T00:00:00+00:00">September 15, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless.yml 작성을 통해 배포 환경 설정을 해보자
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-tutorial-2/" rel="permalink">serverless framework 시작하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-10T00:00:00+00:00">September 10, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless framework를 설치하고, AWS와 연결해보자
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Dasol Seo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

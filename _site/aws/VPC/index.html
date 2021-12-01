@@ -1,0 +1,1384 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Trusted Advisor | Dasol Seo</title>
+<meta name="description" content="AWS Trusted Advisor">
+
+
+  <meta name="author" content="서다솔">
+  
+  <meta property="article:author" content="서다솔">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Dasol Seo">
+<meta property="og:title" content="Trusted Advisor">
+<meta property="og:url" content="http://localhost:4000/aws/VPC/">
+
+
+  <meta property="og:description" content="AWS Trusted Advisor">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-02-28T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/aws/VPC/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Dasol Seo",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Dasol Seo Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/share.png" alt=""></a>
+        
+        <a class="site-title" href="/">
+          Dasol Seo
+          <span class="site-subtitle">Version 1.0</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/project/">Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Blog</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#aws" itemprop="item"><span itemprop="name">Aws</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Trusted Advisor</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/KakaoTalk_20200922_160045754.jpg" alt="서다솔" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">서다솔</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>추천 시스템은 맛있어</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Seoul, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:ssolphanes@naver.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://dasoldasol.github.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/dasoldasol/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Trusted Advisor">
+    <meta itemprop="description" content="AWS Trusted Advisor">
+    <meta itemprop="datePublished" content="2020-02-28T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Trusted Advisor
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-02-28T00:00:00+00:00">February 28, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#vpc-cheatsheet">VPC CheatSheet</a>
+    <ul>
+      <li><a href="#feature">Feature</a></li>
+      <li><a href="#components">Components</a></li>
+      <li><a href="#tenancy-option-for-instances">Tenancy option for instances</a></li>
+      <li><a href="#route-tables">Route Tables</a></li>
+      <li><a href="#subnets">Subnets</a></li>
+      <li><a href="#elastic-network-interfaceeni">Elastic Network Interface(ENI)</a></li>
+      <li><a href="#security-groups-vs-network-access-control-lists">Security Groups vs. Network Access Control Lists</a></li>
+      <li><a href="#elasitc-ip">Elasitc IP</a></li>
+      <li><a href="#nat">NAT</a></li>
+      <li><a href="#egress-only-internet-gateways">Egress-Only Internet Gateways</a></li>
+      <li><a href="#shared-vpcs">Shared VPCs</a></li>
+      <li><a href="#vpc-peering">VPC Peering</a></li>
+      <li><a href="#vpc-endpoints">VPC Endpoints</a></li>
+      <li><a href="#vpn">VPN</a></li>
+      <li><a href="#direct-connect">Direct Connect</a></li>
+      <li><a href="#direct-connect-vs-vpn-ipsec">Direct Connect vs. VPN IPSec</a></li>
+    </ul>
+  </li>
+  <li><a href="#vpcvirtual-private-network-overview">VPC(Virtual Private Network) Overview</a></li>
+  <li><a href="#features">Features</a>
+    <ul>
+      <li><a href="#vpc-with-public--private-subnets">VPC with Public &amp; Private Subnets</a></li>
+    </ul>
+  </li>
+  <li><a href="#build-a-vpc">Build a VPC</a>
+    <ul>
+      <li><a href="#vpc-default">VPC default</a></li>
+      <li><a href="#add-subnets">Add Subnets</a></li>
+      <li><a href="#attach-internet-gateway--make-instances-in-subnets--security-groups">Attach Internet Gateway &amp; Make Instances in Subnets &amp; Security Groups</a></li>
+    </ul>
+  </li>
+  <li><a href="#nat-instances--nat-gateways">NAT Instances &amp; NAT Gateways</a>
+    <ul>
+      <li><a href="#nat-instances">NAT Instances</a></li>
+      <li><a href="#nat-gateways">NAT Gateways</a></li>
+    </ul>
+  </li>
+  <li><a href="#naclnetwork-access-control-lists-vs-security-groups">NACL(Network Access Control Lists) vs. Security Groups</a></li>
+  <li><a href="#bastion-vs-nat">Bastion vs. NAT</a></li>
+  <li><a href="#direct-connect-1">Direct Connect</a></li>
+  <li><a href="#vpc-endpoint">VPC EndPoint</a></li>
+  <li><a href="#scenarios">Scenarios</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="vpc-cheatsheet">VPC CheatSheet</h2>
+<h3 id="feature">Feature</h3>
+<ul>
+  <li>helps define a logically isoloated dedicated virtual network within the AWS</li>
+  <li>provides control of IP addressing using CIDR block from a minimum of /28 to maximum of /16 block size</li>
+  <li>supports IPv4 and IPv6 addressing</li>
+  <li>can be extended by associating secondary IPv4 CIDR blocks to VPC</li>
+</ul>
+
+<h3 id="components">Components</h3>
+<ul>
+  <li><strong>Internet Gateway</strong> : access to the Internet</li>
+  <li><strong>Virtual Gateway</strong> : access to on-premises data center through <strong>VPN</strong> and <strong>Direct Connect</strong> connections</li>
+  <li>VPC can have only 1 IGW and VGW</li>
+  <li><strong>Route Tables</strong> : determine where network traffic from subnet is directed</li>
+  <li>Ability to create <strong>subnet</strong> with VPC CIDR blocks</li>
+  <li><strong>NAT</strong>(Network Address Translation) Server : provides outbound Internet access for EC2 instances in private subnets</li>
+  <li><strong>EIP(Elastic IP)</strong> : static, persistent public IP addresses</li>
+  <li>Instances launched in the VPC will have a <strong>Public IP</strong> and can have a <strong>Public or a Elastic UP</strong> associated with it</li>
+  <li><strong>Security Groups / NACLs</strong> : define security</li>
+  <li><strong>Flow logs</strong> : capture information about the IP traffic going to and from network interfaces in VPC</li>
+</ul>
+
+<h3 id="tenancy-option-for-instances">Tenancy option for instances</h3>
+<ul>
+  <li><strong>shared</strong> : by default. allows instances to be launched on shared tenancy</li>
+  <li><strong>dedicated</strong> : allows instances to be launched on a dedicated hardware</li>
+</ul>
+
+<h3 id="route-tables">Route Tables</h3>
+<ul>
+  <li>define rules, termed as routes, which determine <strong>where network traffic</strong> from subnet would be <strong>routed</strong></li>
+  <li>Each VPC has a Main ROute table, and can habe multiple custom route tables created</li>
+  <li>Every route table contains a local route that enables communication within a VPC which cannot be modified or deleted</li>
+  <li>Route priority is decided by matching the most specific route in the route table that matched the traffic</li>
+</ul>
+
+<h3 id="subnets">Subnets</h3>
+<ul>
+  <li><strong>map to AZs</strong> and do not span across AZs</li>
+  <li>have CIDR range that is a portion of the whole VPC</li>
+  <li><strong>CIDR ranged cannot overlap</strong> between subnets within the VPC</li>
+  <li>AWS <strong>reserves 5 IP addresses in each subnet - first 4 and last one</strong></li>
+  <li>Each subnet is <strong>associated with a route table</strong> which define its dehavior
+    <ul>
+      <li><strong>Public Subnets</strong> : inboud/outbound Internet connectivity via IGW</li>
+      <li><strong>Pricate Subnets</strong> : outbound Internet connectivity via NAT or VGW</li>
+      <li><strong>Protected Subnets</strong> : no outboud connectivity and used for regulated workloads</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="elastic-network-interfaceeni">Elastic Network Interface(ENI)</h3>
+<ul>
+  <li>a default ENI, eth0, is attached to an instance which cannot be detached with one or more secondary detachable ENIs(eth1-ethn)</li>
+  <li>has primary private, one or more secondary private, public, Elastic IP address, security groups, MAC address and source/destination check flag attributes associated</li>
+  <li>AN ENI in one subnet can be attached to an instance in the same or another subnet, in the <strong>same VPC</strong> and the <strong>same AZ</strong></li>
+  <li>Security group membership of an ENI can be changed</li>
+  <li>with pre-allocated MAC address can be used for applications with special licensing requirements</li>
+</ul>
+
+<h3 id="security-groups-vs-network-access-control-lists">Security Groups vs. Network Access Control Lists</h3>
+<p>|Security Group|NACL|
+|:——–:|:——–:|
+|Stateful|Stateless|
+|at Instance level|at Subnet level|
+|ONLY allows Allow rule|allows BOTH Allow and Deny rules|
+|Evaluated as a Whole|Evaluated in defined Order|</p>
+<ul>
+  <li>Security Groups at Instance level : Security groups act at the instance level, not the subnet level. each instance in a subnet in your VPC could be assigned to a different set of security groups</li>
+</ul>
+
+<h3 id="elasitc-ip">Elasitc IP</h3>
+<ul>
+  <li>is a <strong>static IP address</strong> designed for dynamic cloud computing</li>
+  <li>is <strong>associated with AWS account</strong>, and not a particular instance</li>
+  <li>can be <strong>remapped</strong> from one instance to another instance</li>
+  <li>is <strong>charged for non usage</strong>, if not linked for any instance or instance associated is in stopped state</li>
+</ul>
+
+<h3 id="nat">NAT</h3>
+<ul>
+  <li>allows <strong>internet access</strong> to instance in <strong>private</strong> subnet</li>
+  <li>performs the function of both address translation and port address translation(PAT)</li>
+  <li>needs <strong>source/destination</strong> check flag to be <strong>disabled</strong> as it is not actual destination of the traffic</li>
+  <li>not supported for IPv6 traffic</li>
+</ul>
+
+<h3 id="egress-only-internet-gateways">Egress-Only Internet Gateways</h3>
+<ul>
+  <li>outbound communication over IPv6 from instances in the VPC to the Internet, and prevents the Internet from initiating an IPv6 connection with your instances</li>
+  <li>supports ONLY IPv6 traffic</li>
+</ul>
+
+<h3 id="shared-vpcs">Shared VPCs</h3>
+<ul>
+  <li>allows multiple AWS accounts to create their application resources, such as EC2 instances, RDS databases, Redshift clusters, and AWS Lambda functions, into shared, centrally-managed VPCs</li>
+</ul>
+
+<h3 id="vpc-peering">VPC Peering</h3>
+<ul>
+  <li>allows routing of traffic between the peer VPCs <strong>using private IP addresses</strong> and no IGW or VGW required</li>
+  <li>No single point of failure and bandwidth bottlenecks</li>
+  <li>supports inter-region VPC peering</li>
+  <li>IP space or <strong>CIDR blocks cannot overlap</strong></li>
+  <li><strong>cannot be TRANSITIVE</strong>, one-to-one relationship between 2 VPC</li>
+  <li>Only 1 between any 2 VPCs and have to be explicitly peered</li>
+  <li><strong>Private DNS values cannot be resolved</strong></li>
+  <li>Security groups from peered VPC can now be refered, however the VPC should be in the same region</li>
+</ul>
+
+<h3 id="vpc-endpoints">VPC Endpoints</h3>
+<ul>
+  <li>enables you to privately connect VPC to supported AWS services and VPC endpoint services powered by PrivateLink</li>
+  <li><strong>does NOT require a public IP address, access over the Internet, NAT device, a VPN connection or Direct Connect</strong></li>
+  <li>traffic between VPC &amp; AWS service does not leave the Amazon network</li>
+  <li>are virtual devices</li>
+  <li>are horizontally scaled, redundant, and highly available VPC components that allow communication between instances in your VPC and services without imposing availability risks or bandwidth constraints on your network traffic</li>
+  <li><strong>Gateway Endpoints</strong>
+    <ul>
+      <li>is a gateway that is a target for a specified route in the route table, used for traffic destined to a supported AWS service</li>
+      <li>only <strong>S3 and DynamoDB</strong> are supported</li>
+    </ul>
+  </li>
+  <li><strong>Interface Endpoints</strong>
+    <ul>
+      <li>is an elastic network interface with a private IP address that serves as an entry point for traffic destined to a supported service</li>
+      <li>services supported API Gateway, CloudFormation, CloudWatch, CloudWatch Events, CloudWatch Logs, CodeBuild, CodeCommit, Config, EC2 API, Elastic Load Balancing API, Elastic Container Registry, Elastic Container Service, Key Management Service, Kinesis Data Streams, SageMager, Secrets Manager, Security Token Service(STS), Service Catalog, SNS, SQS</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="vpn">VPN</h3>
+<ul>
+  <li>provides secure IPSec connections from on-premise computers or services to AWS over the internet</li>
+  <li>is quick to setup, is cheap however it depends on the Internet speed</li>
+</ul>
+
+<h3 id="direct-connect">Direct Connect</h3>
+<ul>
+  <li>is a network service that provides an alternative to using Internet to utilize AWS services by using <strong>private dedicated network connection</strong></li>
+  <li>provides Virtual Interfaces
+    <ul>
+      <li><strong>Private VIF</strong> : access instances within an VPC via VGW</li>
+      <li><strong>Public VIF</strong> : access non VPC services</li>
+    </ul>
+  </li>
+  <li><strong>requires time to setup</strong> probably months, and should not be considered as an option if turnaround time is less</li>
+  <li><strong>does NOT provide redundancy</strong>, use either second direct connection or IPSec VPN connection</li>
+  <li>Virtual Private Gateway is on the AWS side and Customer Gateway is on the Customer side</li>
+  <li><strong>route propagation is enabled on VGW</strong> and not on CGW</li>
+</ul>
+
+<h3 id="direct-connect-vs-vpn-ipsec">Direct Connect vs. VPN IPSec</h3>
+<p>|Direct Connect|VPN IPSec|
+|:——–:|:——–:|
+|Expensive to setup &amp; Takes time|Immediate|
+|Dedicated private connections|Internet|
+|Reduced data transfer rate|Internet data transfer cost|
+|Consistent performance|Internet inherent variability|
+|Do NOT provide Redundancy|Provide Redundancy|</p>
+
+<h2 id="vpcvirtual-private-network-overview">VPC(Virtual Private Network) Overview</h2>
+<ul>
+  <li><em>** build your own VPC from memory!!!! **</em></li>
+  <li>What VPC can do
+    <ul>
+      <li>Launch instances into a subnet of your choosing</li>
+      <li>Assign custom IP in each subnet</li>
+      <li>Configure route tables between subnets</li>
+      <li>Create internet gateway and attach it to VPC</li>
+      <li>Instance security groups</li>
+      <li>Subnet network access control lists(NACLs)</li>
+    </ul>
+  </li>
+  <li>Default VPC vs. Custom VPC</li>
+  <li>VPC Peering
+    <ul>
+      <li>transitive peering X</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="features">Features</h2>
+<ul>
+  <li>Think of a VPC as a logical datacenter in AWS</li>
+  <li>Consists of Internet Gateways, Route Tables, Network Access Control Lists(NACL), Subnets, Security Groups</li>
+  <li>1 Subnet = 1 Availability Zone</li>
+  <li>Security Groups are Stateful; Network Access Control Lists are Stateless</li>
+  <li>NO TRANSITIVE PEERING</li>
+</ul>
+
+<h3 id="vpc-with-public--private-subnets">VPC with Public &amp; Private Subnets</h3>
+<p><img src="https://dasoldasol.github.io/assets/images/image/vpc-1.png" alt="complete-vpc" /></p>
+
+<h2 id="build-a-vpc">Build a VPC</h2>
+<h3 id="vpc-default">VPC default</h3>
+<p><img src="https://dasoldasol.github.io/assets/images/image/vpc-2.png" alt="first-vpc-default" /></p>
+<ul>
+  <li>Process : <strong>Create VPC</strong> (10.0.0.0/16)</li>
+  <li>When you create VPC by default.. : Route Table, Network Access Control List(NACL), Security Group</li>
+  <li>NOT by default.. : subnets, internet gateway</li>
+</ul>
+
+<h3 id="add-subnets">Add Subnets</h3>
+<p><img src="https://dasoldasol.github.io/assets/images/image/vpc-3.png" alt="vpc-with-subnets" /></p>
+<ul>
+  <li>Process
+    <ul>
+      <li><strong>Create Subnet1</strong>(10.0.1.0/24 - us-east-1a) -&gt; <strong>Create Subnet2</strong>(10.0.2.0/24 - us-east-1b) -&gt; <strong>Make Subnet1 public</strong>(enable auto-assign public IP)</li>
+    </ul>
+  </li>
+  <li>US-EAST-1A in your account can be a completely different availability zone to US-EAST-1A in another account. The AZ’s are randomized between AWS accounts.</li>
+  <li>Amazon always reserves 5 IP addresses within you subnets.(the reason why you have 251 not 256)</li>
+</ul>
+
+<h3 id="attach-internet-gateway--make-instances-in-subnets--security-groups">Attach Internet Gateway &amp; Make Instances in Subnets &amp; Security Groups</h3>
+<p><img src="https://dasoldasol.github.io/assets/images/image/vpc-4.png" alt="vpc-with-subnets" /></p>
+<ul>
+  <li>Process
+    <ul>
+      <li><strong>Attach Internet Gateway</strong>
+        <ul>
+          <li><strong>Create Internet gateway &amp; Attach to VPC</strong> -&gt; Check there’s no subnet assocation to default-made Router Table -&gt; <strong>Create Public Route Table</strong> -&gt; <strong>Edit Routes</strong>(Internet gateway as target) -&gt; <strong>Edit Subnet Associations</strong>(add Public Subnet)</li>
+        </ul>
+      </li>
+      <li><strong>Make Instances in Subnets</strong>
+        <ul>
+          <li><strong>Create WebServer Instance</strong>(using Public Subnet, create security group SSH,HTTP) -&gt;<strong>Create DBServer Instance</strong>(using Private Subnet, select default security group)</li>
+        </ul>
+      </li>
+      <li><strong>Connect Public &amp; Private Subnets</strong>
+        <ul>
+          <li><strong>Create DB Security Group</strong>(to enable the connection <strong>from public to private</strong> ICMP 0-65535 MySQL SSH HTTP) -&gt; <strong>Change Security Group on DBServer Instance</strong></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>1 Internet Gateway = 1 VPC</li>
+  <li>Security Groups can’t span VPCs. Security groups act at the instance level, not the subnet level.</li>
+</ul>
+
+<h2 id="nat-instances--nat-gateways">NAT Instances &amp; NAT Gateways</h2>
+<ul>
+  <li>NAT : Network Address Translation</li>
+  <li>idea : on private sn, i want to update &amp; install software. public connection to internet.</li>
+</ul>
+
+<h3 id="nat-instances">NAT Instances</h3>
+<p><img src="https://dasoldasol.github.io/assets/images/image/vpc-5.png" alt="vpc-nat-instance" /></p>
+<ul>
+  <li>Process
+    <ul>
+      <li><strong>Create NAT instance</strong>(using Public subnet, Public security group) -&gt; Change Source/Dest. Check disabled -&gt; <strong>Edit Private Route Table</strong>(select NAT instance as target)</li>
+    </ul>
+  </li>
+  <li>when creating, Disable Source/Dest. Check on the Instance
+    <ul>
+      <li>Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself. Therefore, you must disable source/destination checks on the NAT instance.</li>
+    </ul>
+  </li>
+  <li>must be in a PUBLIC subnet</li>
+  <li>must be a route out of the private subnet to the NAT instance</li>
+  <li>bottleneck? increase instance size.</li>
+  <li>high availability using Autoscaling Groups, multiple subnets in different AZs, script to automate failover</li>
+  <li>Behind a Security Group</li>
+</ul>
+
+<h3 id="nat-gateways">NAT Gateways</h3>
+<p><img src="https://dasoldasol.github.io/assets/images/image/vpc-6.png" alt="vpc-nat-gateway" /></p>
+<ul>
+  <li>Process
+    <ul>
+      <li><strong>Create NAT Gateway</strong>(using Public subnet, ElasticIP) -&gt; <strong>Edit Private Route Table</strong>(select NAT gateway as target)</li>
+    </ul>
+  </li>
+  <li>Redundant inside the AZ -&gt; 1 NAT Gateway = 1 AZ</li>
+  <li>scale automatically</li>
+  <li>no need to patch</li>
+  <li>not associated with security groups</li>
+  <li>Automatically assigned a public ip</li>
+  <li>Remember to update route tables</li>
+  <li>No need to disable Source/Dest. Check</li>
+</ul>
+
+<h2 id="naclnetwork-access-control-lists-vs-security-groups">NACL(Network Access Control Lists) vs. Security Groups</h2>
+<ul>
+  <li>VPC automatically comes with a default NACL, by default, it allows all outbound &amp; inbound</li>
+  <li>Custom NACL : by default, it denies all outbound &amp; inbound until you add rules.</li>
+  <li>Each Subnet must be associated with NACL. Subnet is automatically associated with the default NACL.</li>
+  <li>Block IP : using NACL not Security Groups</li>
+  <li>you CAN associate a NACL with multiple subnets;
+    <ul>
+      <li>However, 1 subnet = 1 NACL</li>
+    </ul>
+  </li>
+  <li>numbered list of rules : starts with the lowest numbered rule</li>
+  <li>separate inbound &amp; outbound rules can ALLOW or DENY traffic</li>
+  <li>NACLs are STATELESS; responses to allowed inbound traffic are following the rules for outbound traffic.</li>
+</ul>
+
+<h2 id="bastion-vs-nat">Bastion vs. NAT</h2>
+<p><img src="https://dasoldasol.github.io/assets/images/image/vpc-7.png" alt="vpc-bastion" /></p>
+<ul>
+  <li>NAT is used to provide internet traffic to EC2 instances in a private subnets.(not used to SSH)</li>
+  <li>Bastion is used to securely administer EC2 instances using SSH.</li>
+  <li>you canNOT use a NAT Gateway as a Bastion host</li>
+</ul>
+
+<h2 id="direct-connect-1">Direct Connect</h2>
+<ul>
+  <li>direct connects your data center to AWS</li>
+  <li>Use Case
+    <ul>
+      <li>high throughput workloads(ie lots of network traffic)</li>
+      <li>if you need a stable and reliable secure connection</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="vpc-endpoint">VPC EndPoint</h2>
+<ul>
+  <li>privately connect VPC to supported AWS services(the private subnet can connect to outside world)</li>
+  <li>PrivateLink without requiring Internet Gateway, NAT, VPC connection, Direct Connect connection.</li>
+  <li>Instances in your VPC do NOT require public IP to communicate with resources in the service.</li>
+  <li>2 types of EndPoint
+    <ul>
+      <li>Interface Endpoints</li>
+      <li>Gateway Endpoints : s3, dynamoDB</li>
+    </ul>
+  </li>
+  <li>traffic between your VPC and the other service does not leave the Amazon network when using VPC endpoints</li>
+</ul>
+
+<h2 id="scenarios">Scenarios</h2>
+<ul>
+  <li><strong>An application running on EC2 instances processes sensitive information stored on Amazon S3. The information is accessed over the Internet. The security team is concerned that the Internet connectivity to Amazon S3 is a security risk.  <br />
+Which solution will resolve the security concern?</strong>
+    <ul>
+      <li><strong>A) Access the data through a VPC endpoint for Amazon S3.</strong></li>
+      <li>VPC endpoints for Amazon S3 : provide secure connection to S3 bucket that do not require a gateway or NAT instances.</li>
+      <li>NAT Gateways &amp; Internet Gateways : still route traffic over the Internet to the public endpoint for Amazon S3</li>
+      <li>VPN : There is NO WAY to connect to Amazon S3 via VPN</li>
+    </ul>
+  </li>
+  <li><strong>An organization is building an Amazon Redshift cluster in their shared services VPC. The cluster will host sensitive data.  <br />
+How can the organization control which networks can access the cluster?</strong>
+    <ul>
+      <li><strong>A) Define a cluster security group for the cluster that allows access from the allowed networks</strong></li>
+      <li>A security group can grant access to traffic from the allowed networks via the <strong>CIDR range</strong> for each network.</li>
+      <li>VPC peering &amp; VPN : are connectivity services and cannot control traffic for security.</li>
+      <li>Amazon Redshift user accounts address authentication and authorization at the user level : have NO control over network traffic.</li>
+    </ul>
+  </li>
+  <li><strong>A Solutions Architect is designing an online shopping application running in a VPC on EC2 instances behind an ELB Application Load Balancer. The instances run in an Auto Scaling group across multiple Availability Zones. The application tier must read and write data to a customer managed database cluster. There should be no access to the database from the Internet, but the cluster must be able to obtain software patches from the Internet.   <br />
+Which VPC design meets these requirements?</strong>
+    <ul>
+      <li><strong>A) Public subnets for the application tier and NAT Gateway, and private subnets for the database cluster</strong></li>
+      <li>NAT Gateways must be deployed in public subnets.</li>
+    </ul>
+  </li>
+  <li><strong>You are tasked to host a web application in a new VPC with private and public subnets. In order to do this, you will need to deploy a new MySQL database server and a fleet of EC2 instances to host the application. In which subnet should you launch the new database server into?</strong>
+    <ul>
+      <li><strong>A) The private subnet</strong></li>
+    </ul>
+  </li>
+  <li><strong>You have 1 security group associated with 10 On-Demand EC2 instances.  You then modified the security group to allow all inbound SSH traffic and then right after that, you created two new EC2 instances in the same security group.  <br />
+When will the changes be applied to the EC2 instances?</strong>
+    <ul>
+      <li><strong>A) Immediately to all 12 instances in the security group.</strong></li>
+      <li>When you add or remove rules, those changes are automatically applied to all instances to which you’ve assigned the security group. Since the first 10 instances are already assigned to the security group, you can SSH into them immediately after the change. After adding the two new instances to the security group, you should be able to SSH into them as well.</li>
+    </ul>
+  </li>
+  <li>You are working as a Solutions Architect in a top software development company in Silicon Valley. The company has multiple applications hosted in their VPC. While you are monitoring the system, you noticed that multiple <strong>port scans are coming in from a specific IP</strong> address block which are <strong>trying to connect to several AWS resources</strong> inside your VPC. The internal security team has requested that all offending IP addresses be denied for the next 24 hours for security purposes.  <br />
+Which of the following is the best method to <strong>quickly and temporarily deny access</strong> from the specified IP addresses?
+    <ul>
+      <li><strong>A) Modify the Network Access Control List associated with all public subnets in the VPC to deny access from the IP Address block.</strong></li>
+      <li>network access control list (ACL) : To control the traffic coming in and out of your VPC network. It is an optional layer of security for your VPC that acts as a firewall for <strong>controlling traffic in and out of one or more subnets.</strong></li>
+      <li>Security Group : although a Security Group acts as a firewall, it will only control both inbound and outbound traffic <strong>at the instance level</strong> and not on the whole VPC.</li>
+    </ul>
+  </li>
+  <li>In your AWS VPC, you need to add a new subnet that will allow you to host a total of 20 EC2 instances.  <br />
+Which of the following IPv4 CIDR block can you use for this scenario?
+    <ul>
+      <li><strong>A) 172.0.0.0/27</strong></li>
+      <li><strong>CIDR Block으로 총 IP 주소 갯수 구하는 법</strong>
+        <ul>
+          <li>
+            <ol>
+              <li><strong>32 - CIDR Block mask number</strong> : ex) 32 - 27 = <strong>5</strong></li>
+            </ol>
+          </li>
+          <li>
+            <ol>
+              <li><strong>2^(1번답)</strong> : ex) 2^<strong>5</strong> = <strong>32</strong></li>
+            </ol>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>You are instructed by your manager to set up a <strong>bastion host</strong> in your Amazon VPC and it should only be accessed from the corporate data center via SSH. What is the best way for you to achieve this?
+    <ul>
+      <li><strong>A) Create a small EC2 instance with a security group which only allows access on port 22 via the IP address of the corporate data center. Use a private key(.pem) file to connect to the bastion host.</strong></li>
+      <li>The best way to implement a bastion host is to create a small EC2 instance which should only have a security group from a particular IP address for maximum security. This will block any SSH Brute Force attacks on your bastion host.</li>
+      <li>It is also recommended to use a small instance rather than a large one because this host will only act as a jump server to connect to other instances in your VPC and nothing else.</li>
+    </ul>
+  </li>
+  <li>One member of your DevOps team consulted you about a connectivity problem in one of your Amazon EC2 instances. The application architecture is initially set up with <strong>four EC2 instances, each with an EIP address that all belong to a public non-default subnet</strong>. You launched another instance to handle the increasing workload of your application. The EC2 instances also belong to the same security group. Everything works well as expected except for one of the EC2 instances which is not able to send nor receive traffic over the Internet.  <br />
+Which of the following is the MOST likely reason for this issue?
+    <ul>
+      <li><strong>A) The EC2 instance does not have a public IP address associated with it.</strong></li>
+      <li>By default, nondefault subnets have the IPv4 public addressing attribute set to <code class="language-plaintext highlighter-rouge">false</code>, and default subnets have this attribute set to <code class="language-plaintext highlighter-rouge">true</code>.</li>
+      <li>Take note as well that the four EC2 instances all belong to a public <strong>non-default subnet</strong>. Which means that a new EC2 instance will not have a public IP address by default since the since IPv4 public addressing attribute is initially set to <code class="language-plaintext highlighter-rouge">false</code>.</li>
+      <li><strong>The route table is not properly configured to allow traffic to and from the Internet through the Internet gateway</strong> : is incorrect because the other three instances, which are associated with the same route table and security group, do not have any issues.</li>
+    </ul>
+  </li>
+  <li>You have set up a VPC with public subnet and an Internet gateway. You set up an EC2 instance with a public IP as well. However, you are still <strong>not able to connect to the instance via the Internet</strong>. You checked its associated security group and it seems okay.  <br />
+What should you do to ensure you can connect to the EC2 instance from the Internet?
+    <ul>
+      <li><strong>A) Check the main route table and ensure that the right route entry to the Internet Gateway(IGW) is configured.</strong></li>
+    </ul>
+  </li>
+  <li>You have two On-Demand EC2 instances inside your Virtual Private Cloud in the same Availability Zone but are deployed to different subnets. One EC2 instance is running a database and the other EC2 instance a web application that connects with the database. You want to ensure that these two instances can communicate with each other for your system to work properly.  <br />
+What are the things you have to check <strong>so that these EC2 instances can communicate inside the VPC</strong>? (Choose 2)
+    <ul>
+      <li><strong>A1) Check the Network ACL if it allows communication between the two subnets.</strong></li>
+      <li><strong>A2) Check if all security groups are set to allow the application host to communicate to the database on the right port and protocol.</strong></li>
+      <li><strong>Check if the default route is set to a NAT instance or Internet Gateway (IGW) for them to communicate</strong> : is incorrect because an Internet gateway is primarily used to communicate to the Internet.</li>
+    </ul>
+  </li>
+  <li>You are a Solutions Architect working for a large insurance company that deployed their production environment on a custom Virtual Private Cloud in AWS with a default configuration. The VPC consists of two private subnets and one public subnet. Inside the public subnet is a group of EC2 instances which are created by an Auto Scaling group and all of the instances are in the same Security Group. Your development team has created a new application which will be accessed by mobile devices via a custom port. This application has been deployed to the production environment and you need to open this port globally to the Internet.  <br />
+Which of the following is the correct procedure to meet this requirement?
+    <ul>
+      <li><strong>A) Open the custom port on the Security Group. Your EC2 instances will be able to use this port immediately.</strong></li>
+      <li>To allow the custom port, you have to change the Inbound Rules in your Security Group to allow traffic coming from the mobile devices. <strong>Security Groups</strong> usually <strong>control the list of ports</strong> that are allowed to be used by your <strong>EC2 instances</strong> and the <strong>NACLs</strong> <strong>control</strong> which network or <strong>list of IP addresses</strong> can connect to your <strong>whole VPC</strong>.</li>
+      <li>By default, <strong>Network ACL allows all</strong> inbound and outbound IPv4 traffic, then there is no point of explicitly allowing the port in the Network ACL. <strong>Security Groups does not allow incoming traffic by default</strong>, unlike Network ACL.</li>
+    </ul>
+  </li>
+  <li>A media company has two VPCs: VPC-1 and VPC-2 with <strong>peering</strong> connection between each other. <strong>VPC-1 only contains private subnets</strong> while VPC-2 only contains public subnets. The company uses a single AWS <strong>Direct Connect</strong> connection and a virtual interface to connect their on-premises network with VPC-1.  <br />
+Which of the following options <strong>increase the fault tolerance of the connection to VPC-1</strong>? (Choose 2)
+    <ul>
+      <li><strong>A1) Establish a hardware VPN over the Internet between VPC-1(private) and the on-premises network.</strong></li>
+      <li><strong>A2) Establish another AWS Direct Connect connection and private virtual interface in the same AWS region as VPC-1(private).</strong></li>
+      <li>Note that a <strong>VPC peering</strong> connection does not support edge to edge routing (<strong>NOT TRANSITIVE</strong>) for :
+        <ul>
+          <li>A VPN connection or an AWS Direct Connect connection to a corporate network</li>
+          <li>An Internet connection through an Internet gateway</li>
+          <li>An Internet connection in a private subnet through a NAT device</li>
+          <li>A VPC endpoint to an AWS service; for example, an endpoint to Amazon S3.</li>
+          <li>(IPv6) A ClassicLink connection. You can enable IPv4 communication between a linked EC2-Classic instance and instances in a VPC on the other side of a VPC peering connection. However, IPv6 is not supported in EC2-Classic, so you cannot extend this connection for IPv6 communication.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Your client is an insurance company that utilizes SAP HANA for their day-to-day ERP operations. Since you can’t migrate this database due to customer preferences, you need to integrate it with your current AWS workload in your VPC in which you are required to establish a <strong>site-to-site VPN connection</strong>.     <br />
+What needs to be configured outside of the VPC for you to have a successful site-to-site VPN connection?
+    <ul>
+      <li><strong>A) An Internet-routable IP address (static) of the customer gateway’s external interface for the on-premises network</strong></li>
+      <li>하드웨어 VPN 연결 또는 Direct Connect 연결이 지원되는 VPC의 경우, 인스턴스는 가상 프라이빗 게이트웨이의 인터넷 트래픽을 사용자의 기존 데이터 센터로 라우팅할 수 있습니다. 여기서 기존 송신 지점 및 네트워크 보안/모니터링 디바이스를 통해 인터넷에 액세스할 수 있습니다.</li>
+      <li>AWS Site-to-Site VPN 연결은 사용자의 VPC를 데이터센터에 연결합니다. Amazon은 인터넷 프로토콜 보안(IPsec) VPN 연결을 지원합니다. VPC와 데이터센터 간에 전송되는 데이터는 암호화된 VPN 연결을 통해 라우팅되어 전송 데이터의 기밀성과 무결성이 유지됩니다. Site-to-Site VPN 연결을 형성하는데 인터넷 게이트웨이는 필요하지 않습니다.</li>
+      <li>A customer gateway is a physical device or software application on your side of the VPN connection.  <br />
+To create a VPN connection, you must create a <strong>customer gateway resource</strong> in AWS, which provides information to AWS about your customer gateway device. Next, you have to set up an <strong>Internet-routable IP address (static) of the customer gateway’s external interface</strong>.</li>
+    </ul>
+
+    <p><img src="https://dasoldasol.github.io/assets/images/image/vpn-connection.png" alt="vpn-connection" /></p>
+  </li>
+  <li>Your company is running a multi-tier web application farm in a virtual private cloud (VPC) that is not connected to their corporate network. They are connecting to the VPC over the Internet to manage the fleet of Amazon EC2 instances running in both the public and private subnets. You have added <strong>a bastion host with Microsoft Remote Desktop Protocol (RDP) access</strong> to the application instance security groups, but the company wants to further limit <strong>administrative access</strong> to all of the instances in the VPC.  <br />
+Which of the following bastion host deployment options will meet this requirement?
+    <ul>
+      <li><strong>A) Deploy a Windows Bastion host with an Elastic IP address in the “public” subnet and allow RDP access to bastion only from the corporate IP addresses.</strong></li>
+      <li><img src="https://dasoldasol.github.io/assets/images/image/vpc-bastion.png" alt="vpc-bastion" /></li>
+    </ul>
+  </li>
+  <li>A VPC has a <strong>non-default public subnet</strong> which has four On-Demand EC2 instances that can be accessed over the Internet. Using the AWS CLI, you launched a fifth instance that uses the same subnet, Amazon Machine Image (AMI), and security group which are being used by the other instances. Upon testing, you are <strong>not able to access the new instance</strong>.     <br />
+Which of the following is the most suitable solution to solve this problem?
+    <ul>
+      <li><strong>A) Associate an Elastic IP address to the fifth EC2 instance.</strong></li>
+      <li>By default, non-default subnets have the IPv4 public addressing attribute set to <code class="language-plaintext highlighter-rouge">false</code>, and default subnets have this attribute set to <code class="language-plaintext highlighter-rouge">true</code>.</li>
+      <li>fifth instance does not have a public IP address since it was deployed on a nondefault subnet. The other 4 instances are accessible over the Internet because they each have an Elastic IP address attached, unlike the last instance which only has a private IP address. An Elastic IP address is a public IPv4 address, which is reachable from the Internet. If your instance does not have a public IPv4 address, you can associate an Elastic IP address with your instance to enable communication with the Internet.</li>
+    </ul>
+  </li>
+  <li>You have an On-Demand EC2 instance located in a subnet in AWS which hosts a web application. The security group attached to this EC2 instance has the following Inbound Rules:  <br />
+<img src="https://dasoldasol.github.io/assets/images/image/test-1.PNG" alt="test-1" />  <br />
+The Route table attached to the VPC is shown below. <strong>You can establish an SSH connection into the EC2 instance from the internet</strong>. However, you are <strong>not able to connect to the web server using your Chrome browser</strong>.  <br />
+<img src="https://dasoldasol.github.io/assets/images/image/test-2.PNG" alt="test-2" />  <br />
+Which of the below steps would resolve the issue?
+    <ul>
+      <li><strong>A) In the Security Group, add an Inbound HTTP rule.</strong></li>
+      <li>The scenario is that you can already connect to the EC2 instance via SSH. This means that there is no problem in the Route Table of your VPC. To fix this issue, you simply need to update your Security Group and add an Inbound rule to allow HTTP traffic.</li>
+    </ul>
+  </li>
+  <li>You are a Solutions Architect for a global news company. You are configuring a fleet of EC2 instances in a subnet which currently is in a VPC with an Internet gateway attached. <strong>All of these EC2 instances can be accessed from the Internet</strong>. You then <strong>launch another subnet and launch an EC2 instance</strong> in it, however you are <strong>not able to access the EC2 instance from the Internet</strong>.     <br />
+What could be the possible reasons for this issue? (Choose 2)
+    <ul>
+      <li><strong>A1) The route table is not configured properly to send traffic from the EC2 instance to the Internet through the Internet gateway.</strong></li>
+      <li><strong>A2) The Amazon EC2 instance does not have a public IP address associated with it.</strong></li>
+      <li>In cases where your EC2 instance cannot be accessed from the Internet (or vice versa), you usually have to check two things:
+        <ul>
+          <li><strong>Does it have an EIP or public IP address?</strong></li>
+          <li><strong>Is the route table properly configured?</strong></li>
+        </ul>
+      </li>
+      <li><strong>The Amazon EC2 instance doesn’t have an attached Elastic Fabric Adapter (EFA)</strong> : is incorrect because the Elastic Fabric Adapter is just a network device that you can attach to your Amazon EC2 instance to accelerate High Performance Computing (HPC) and machine learning applications. EFA enables you to achieve the application performance of an on-premises HPC cluster, with the scalability, flexibility, and elasticity provided by AWS. However, this component is not required in order for your EC2 instance to access the public Internet.</li>
+      <li><strong>The route table is not configured properly to send traffic from the EC2 instance to the Internet through the customer gateway (CGW)</strong> : is incorrect since CGW is used when you are setting up a VPN.</li>
+    </ul>
+  </li>
+  <li>You are a Solutions Architect working for an aerospace engineering company which recently adopted a hybrid cloud infrastructure with AWS. One of your tasks is to launch a VPC with both public and private subnets for their EC2 instances as well as their database instances respectively.     <br />
+Which of the following statements are true regarding Amazon VPC subnets? (Choose 2)
+    <ul>
+      <li><strong>A1) Every subnet that you create is automatically associated with the main route table for the VPC</strong></li>
+      <li><strong>A2) Each subnet maps to a single Availability Zone</strong></li>
+      <li><strong>If a subnet’s traffic is routed to an Internet gateway, the subnet is known as a public subnet.</strong></li>
+      <li>EC2 instances in a private subnet can communicate with the Internet not just by having an Elastic IP, but also with a public IP address.</li>
+      <li><strong>allowed block size in VPC</strong> is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses) ]</li>
+    </ul>
+  </li>
+  <li>An online job site is using NGINX for its application servers hosted in EC2 instances and MongoDB Atlas for its database-tier. MongoDB Atlas is a fully automated third-party cloud service which is not provided by AWS, but supports VPC peering to connect to your VPC.   <br />
+Which of the following items are <strong>invalid VPC peering configurations</strong>? (Choose 2)
+    <ul>
+      <li><strong>A) Transitive Peering</strong></li>
+      <li><strong>A) Edge to Edge routing via a gateway</strong></li>
+      <li>The following VPC peering connection configurations are not supported.
+        <ul>
+          <li><strong>Overlapping CIDR Blocks</strong>
+<img src="https://dasoldasol.github.io/assets/images/image/overlapping-cidrs-diagram.png" alt="overlapping-cidrs-diagram" /></li>
+          <li><strong>Transitive Peering</strong></li>
+          <li><strong>Edge to Edge Routing Through a Gateway or Private Connection</strong>
+<img src="https://dasoldasol.github.io/assets/images/image/edge-to-edge-vpn-diagram.png" alt="edge-to-edge-vpn-diagram" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>You were recently promoted to a technical lead role in your DevOps team. Your company has an existing VPC which is quite unutilized for the past few months. The business manager instructed you to integrate your on-premises data center and your VPC. You explained the list of tasks that you’ll be doing and mentioned about a Virtual Private Network (VPN) connection. The business manager is not tech-savvy but he is interested to know what a VPN is and its benefits.  <br />
+What is one of the major <strong>advantages of having a VPN in AWS</strong>?</li>
+  <li><strong>A) It allows you to connect your AWS cloud resources to your on-premises data center using secure and private sessions with IP Security(IPSec) or Transport Layer Security(TLS) tunnels.</strong></li>
+  <li>
+    <p><strong>VPC Peering</strong> : It provides a networking connection between two VPCs which enables you to route traffic between them using private IPv4 addresses or IPv6 addresses is incorrect because this actually describes VPC Peering and not a VPN connection.</p>
+  </li>
+  <li>You are a new Solutions Architect in your company. Upon checking the existing Inbound Rules of your Network ACL, you saw this configuration:  <br />
+<img src="https://dasoldasol.github.io/assets/images/image/test-3.PNG" alt="test-3" />  <br />
+If a computer with an IP address of 110.238.109.37 sends a request to your VPC, what will happen?
+    <ul>
+      <li><strong>A) It will be allowed</strong></li>
+      <li>Rules are evaluated starting with the lowest numbered rule. As soon as a rule matches traffic, it’s applied immediately regardless of any higher-numbered rule that may contradict it.</li>
+    </ul>
+  </li>
+  <li>A large insurance company has an AWS account that contains three VPCs (DEV, UAT and PROD) in the same region. UAT is peered to both PROD and DEV using a VPC peering connection. All VPCs have non-overlapping CIDR blocks. The company wants to push minor code releases from Dev to Prod to speed up time to market.  <br />
+Which of the following options helps the company accomplish this?
+    <ul>
+      <li><strong>A) Create a new VPC Peering connection between PROD and DEV with the appropriate routes.</strong></li>
+      <li>A VPC peering connection is a networking connection between two VPCs that enables you to route traffic between them privately.</li>
+    </ul>
+  </li>
+  <li>You recently launched a new <strong>FTP</strong> server using an On-Demand EC2 instance in a newly created VPC with default settings. The server should not be <strong>accessible</strong> publicly but <strong>only through your IP</strong> address <code class="language-plaintext highlighter-rouge">175.45.116.100</code> and nowhere else.  <br />
+Which of the following is the most suitable way to implement this requirement?
+    <ul>
+      <li><strong>A) Create a new inbound rule in the security group of the EC2 instance with the following details:</strong>  <br />
+      <strong>Protocol : TCP</strong>  <br />
+      <strong>Port Range : 20-21</strong>  <br />
+      <strong>Source : <code class="language-plaintext highlighter-rouge">175.45.116.100/32</code></strong></li>
+      <li>The FTP protocol uses TCP via ports 20 and 21. This should be configured in your security groups or in your Network ACL inbound rules. As required by the scenario, you should only allow the individual IP of the client and not the entire network. Therefore, in the Source, the proper CIDR notation should be used. The /32 denotes one IP address and the /0 refers to the entire network.  <br />
+이 시나리오에서는 기본 설정으로 새로 생성 된 VPC에서 EC2 인스턴스를 시작했습니다. VPC에는 자동으로 수정 가능한 기본 네트워크 ACL이 제공됩니다. 기본적으로 모든 인바운드 및 아웃 바운드 IPv4 트래픽과 해당되는 경우 IPv6 트래픽을 허용합니다. 따라서 VPC에 기본 설정이있는 경우 실제로 인바운드 트래픽을 허용하기 위해 네트워크 ACL에 인바운드 규칙을 명시 적으로 추가 할 필요가 없습니다.</li>
+    </ul>
+  </li>
+  <li>You launched an EC2 instance in your newly created VPC. You have noticed that the generated <strong>instance does not have an associated DNS hostname</strong>.      <br />
+Which of the following options could be a valid reason for this issue?
+    <ul>
+      <li><strong>A) The DNS resolution and DNS hostname of the VPC configuration should be enabled.</strong></li>
+      <li>EC2 인스턴스를 default VPC로 시작하면 AWS는 인스턴스의 public IPv4 및 private  IPv4 주소에 해당하는 public 및 private  DNS hostname을 제공합니다.   <br />
+그러나 non-default VPC로 인스턴스를 시작하면 AWS는 인스턴스에 private DNS hostname 만 제공합니다. 새 인스턴스에는이 두 가지 DNS 속성, 즉 DNS 확인 및 DNS 호스트 이름(DNS resolution and DNS hostname), VPC에 지정한 DNS 인스턴스 및 public IPv4 주소가있는 경우에만 public DNS hostname이 제공됩니다.  <br />
+이 경우 새로 생성 된 VPC에서 DNS 확인 및 DNS 호스트 이름(DNS resolution and DNS hostname) 속성이 비활성화되므로 새 EC2 인스턴스는 자동으로 DNS hostname을 가져오지 않습니다.</li>
+      <li><strong>Route 53</strong> : is incorrect since Route 53 is the DNS service of AWS, but the VPC is the one that enables assigning of instance hostnames.</li>
+    </ul>
+  </li>
+  <li>Your company has a two-tier environment in its on-premises data center which is composed of an application tier and database tier. You are instructed to migrate their environment to the AWS cloud, and to design the subnets in their VPC with the following requirements:  <br />
+a) There is an <strong>application load balancer</strong> that would distribute the incoming traffic among the servers in the application tier.  <br />
+b) The application tier and the database tier must <strong>not be accessible from the public Internet</strong>. The application tier should only accept traffic coming from the load balancer.  <br />
+c) The database tier contains very sensitive data. It must <strong>not share the same subnet</strong> with other AWS resources and its custom route table with other instances in the environment.  <br />
+d) The environment must be <strong>highly available</strong> and scalable to handle a surge of incoming traffic over the Internet.  <br />
+How many subnets should you create to meet the above requirements?
+    <ul>
+      <li><strong>A) 6 subnets</strong></li>
+      <li><strong>a) you have to use an application load balancer (ALB) to distribute the incoming traffic to your application servers.</strong></li>
+      <li><strong>b) you could create a single private subnet for both of your application and database tier.</strong></li>
+      <li><strong>c) you should provision one private subnet for your application tier and another private subnet for your database tier.</strong></li>
+      <li><strong>d) using at least 2 Availability Zones to achieve high availability. (2 app server/2 data server)</strong></li>
+      <li>요약하자면, 애플리케이션 티어 용 하나의 프라이빗 서브넷과 데이터베이스 티어 용 하나의 프라이빗 서브넷이 필요합니다. 그런 다음 퍼블릭 인터넷 연결로드 밸런서를 인스턴스에 올바르게 연결하려면 프라이빗 EC2 인스턴스가 호스팅되는 동일한 가용 영역에 다른 퍼블릭 서브넷을 만들어야합니다. 이는 2 개의 프라이빗 서브넷과 1 개의 퍼블릭 서브넷으로 구성된 총 3 개의 서브넷을 사용해야 함을 의미합니다.</li>
+      <li><img src="https://dasoldasol.github.io/assets/images/image/2tiers.png" alt="2tiers" /></li>
+    </ul>
+  </li>
+  <li>A Solutions Architect is designing the cloud architecture for the enterprise application suite of the company. <strong>Both the web and application tiers need to access the Internet to fetch data from public APIs. However, these servers should be inaccessible from the Internet.</strong>  <br />
+Which of the following steps should the Architect implement to meet the above requirements?
+    <ul>
+      <li><strong>A) Deploy a NAT gateway in the public subnet and add a route to it from the private subnet where the web and application tiers are hosted.</strong></li>
+      <li><strong>Elastic IP</strong> : is incorrect because an Elastic IP address is just a static, public IPv4 address. Moreover, <strong>you should deploy the web and application tier in the private subnet</strong> instead of a public subnet to make it inaccessible from the Internet and then just add a NAT Gateway to allow outbound Internet connection.</li>
+    </ul>
+  </li>
+  <li>A newly hired Solutions Architect is checking all of the security groups and network access control list rules of the company’s AWS resources. For security purposes, the MS SQL connection via port 1433 of the database tier should be secured. Below is the security group configuration of their Microsoft SQL Server database:  <br />
+<img src="https://dasoldasol.github.io/assets/images/image/test-vpc.PNG" alt="test-vpc" />  <br />
+The application tier hosted in an Auto Scaling group of EC2 instances is the only identified resource that needs to connect to the database. The Architect should ensure that the architecture complies with the best practice of granting least privilege.  <br />
+Which of the following changes should be made to the security group configuration?
+    <ul>
+      <li><strong>A) For the MS SQL rule, change the <code class="language-plaintext highlighter-rouge">Source</code> to the security group ID attached to the application tier.</strong></li>
+      <li>시나리오에서 보안 그룹 구성을 사용하면 모든 서버 (0.0.0.0/0)가 1433 포트를 통해 데이터베이스에 MS SQL 연결을 설정할 수 있습니다. 여기서 가장 적합한 솔루션은 소스 필드를 애플리케이션 티어에 연결된 보안 그룹 ID로 변경하는 것입니다.</li>
+      <li><strong>For the MS SQL rule, change the Source to the static AnyCast IP address attached to the application tier</strong> : is incorrect because a static AnyCast IP address is primarily used for AWS Global Accelerator and not for security group configurations.</li>
+      <li><strong>For the MS SQL rule, change the Source to the Network ACL ID attached to the application tier</strong> : is incorrect because you have to use the security group ID instead of the Network ACL ID of the application tier. Take note that the <strong>Network ACL covers the entire subnet</strong> which means that other applications that use the same subnet will also be affected.</li>
+    </ul>
+  </li>
+  <li>An On-Demand EC2 instance is launched into a VPC subnet with the Network ACL configured to allow all inbound traffic and deny all outbound traffic. The instance’s security group has an inbound rule to allow SSH from any IP address and does not have any outbound rules.   <br />
+In this scenario, what are the changes needed <strong>to allow SSH connection</strong> to the instance?
+    <ul>
+      <li><strong>A) The outbound network ACL needs to be modified to allow outbound traffic.</strong></li>
+      <li>가정용 컴퓨터에서 EC2 인스턴스로 SSH 연결을 설정하려면 다음을 수행해야합니다.
+-<strong>보안 그룹에서 인바운드 규칙을 추가</strong>하여 EC2 인스턴스에 대한 SSH 트래픽을 허용하십시오.
+-<strong>NACL에서 인바운드 및 아웃 바운드 규칙을 모두 추가</strong>하여 EC2 인스턴스에 대한 SSH 트래픽을 허용하십시오.</li>
+      <li><strong>NACL</strong>은 stateless(상태저장하지않음) :  인바운드 규칙 만 사용하도록 설정 한 경우 아웃 바운드 규칙이 없으므로 트래픽은 들어갈 수만 있지만 SSH 응답은 나가지 않습니다.</li>
+      <li><strong>보안그룹</strong>은 stateful(상태저장) : 들어오는 요청이 승인되면 아웃 바운드 규칙에 관계없이 나가는 트래픽도 자동으로 부여됩니다.</li>
+    </ul>
+  </li>
+  <li>You are working for a top IT Consultancy that has a VPC with two On-Demand EC2 instances with Elastic IP addresses. You were notified that your EC2 instances are currently under <strong>SSH brute force attacks over the Internet</strong>. Their <strong>IT Security team has identified the IP addresses</strong> where these attacks originated. You have to immediately implement a temporary fix to stop these attacks while the team is setting up AWS WAF, GuardDuty, and AWS Shield Advanced to permanently fix the security vulnerability.  <br />
+Which of the following provides <strong>the quickest way to stop the attacks to your instances</strong>?
+    <ul>
+      <li><strong>A) Block the IP addresses in the Network Access Control List</strong></li>
+      <li><strong>네트워크 액세스 제어 목록 (NACL)</strong> 은 VPC의 선택적 보안 계층으로, 하나 이상의 서브넷의 트래픽을 제어하기위한 방화벽 역할을합니다. VPC에 보안 계층을 추가하기 위해 보안 그룹과 유사한 규칙으로 네트워크 ACL을 설정할 수 있습니다.
+        <ul>
+          <li>VPC는 수정 가능한 <strong>기본 네트워크 ACL</strong>과 함께 자동으로 제공됩니다. <strong>기본적으로 모든 인바운드 및 아웃바운드 IPv4 트래픽을 허용</strong>하며, 해당되는 경우 IPv6 트래픽도 허용합니다.</li>
+          <li>사용자 지정 네트워크 ACL을 생성하여 서브넷과 연결할 수 있습니다. <strong>기본적으로 각 사용자 지정 네트워크 ACL은 규칙을 추가하기 전에는 모든 인바운드 및 아웃바운드 트래픽을 거부</strong>합니다.</li>
+          <li>VPC에 있는 <strong>각 서브넷을 네트워크 ACL과 연결</strong>해야 합니다. 서브넷을 네트워크 ACL에 명시적으로 연결하지 않을 경우, 서브넷은 기본 네트워크 ACL에 자동적으로 연결됩니다.</li>
+          <li><strong>네트워크 ACL을 여러 서브넷과 연결할 수 있습니다</strong>. 그러나 서브넷은 한 번에 하나의 네트워크 ACL에만 연결할 수 있습니다. 네트워크 ACL을 서브넷과 연결하면 이전 연결은 제거됩니다.</li>
+          <li>네트워크 ACL에는 <strong>번호가 매겨진 규칙 목록</strong>이 포함되어 있습니다. 가장 낮은 번호가 지정된 규칙부터 시작해서 트래픽이 네트워크 ACL과 연결된 서브넷의 내부 또는 외부로 전달되도록 허용되는지 결정합니다. 규칙에 사용할 수 있는 가장 높은 번호는 32766입니다. 나중에 필요한 곳에 새 규칙을 삽입할 수 있도록, 처음 시작할 때는 증분 방식으로(예: 10 또는 100 단위씩 증분) 규칙을 생성하는 것이 좋습니다.</li>
+          <li>네트워크 ACL에는 별개의 인바운드 및 아웃바운드 규칙이 있으며, 각 규칙은 트래픽을 허용하거나 거부할 수 있습니다.</li>
+          <li>네트워크 ACL은 <strong>상태 비저장</strong>입니다.</li>
+        </ul>
+      </li>
+      <li>이 시나리오에는 보안 취약점을 해결하는 가장 빠른 방법이 필요하다고 명시되어 있습니다. 이 상황에서는 IT 보안 팀이 이미 위반 IP 주소 목록을 식별 했으므로 네트워크 ACL을 사용하여 위반 IP 주소를 수동으로 차단할 수 있습니다. 또는 요새 호스트(Bastion Host)를 설정할 수 있지만이 옵션을 사용하면 요새 호스트(Bastion Host)의 보안 구성을 구성해야하므로 제대로 설정하는 데 추가 시간이 필요합니다.</li>
+      <li><strong>Placing the EC2 instances into private subnets</strong> : is incorrect. 퍼블릭 또는 EIP 주소없이 프라이빗 서브넷에 EC2 인스턴스를 배포하면 당신또한 인터넷을 통해서 액세스 할 수 없습니다.</li>
+      <li><strong>Assigning a static Anycast IP address to each EC2 instance</strong> : is incorrect. 정적 Anycast IP 주소는 조직이 여러 지역으로 원활하게 트래픽을 라우팅하고 최종 사용자의 가용성과 성능을 향상시킬 수 있도록 AWS Global Accelerator에서 주로 사용합니다.</li>
+    </ul>
+  </li>
+  <li>A web application is deployed in an On-Demand EC2 instance in your VPC. There is an issue with the application which requires you to connect to it via an SSH connection. Which of the following is needed in order <strong>to access an EC2 instance from the Internet</strong>? (Select THREE.)
+    <ul>
+      <li><strong>A1) A public IP address attached to the EC2 instnace.</strong></li>
+      <li><strong>A2) An Internet Gateway(IGW) attached to the VPC.</strong></li>
+      <li><strong>A3) A route entry to the Internet gateway in the Route table of the VPC.</strong></li>
+    </ul>
+  </li>
+  <li>You have a web application running on EC2 instances which processes sensitive financial information. All of the data are stored on an Amazon S3 bucket. <strong>The financial information is accessed by users over the Internet</strong>. The security team of the company is concerned that the Internet connectivity to Amazon S3 is a security risk. In this scenario, what will you do <strong>to resolve this security concern</strong>?
+    <ul>
+      <li><strong>A)Change the web architecture to access the financial data through a Gateway VPC Endpoint</strong></li>
+      <li>VPC는 더 큰 AWS 네트워크 내에 있으며 S3, DynamoDB, RDS 및 기타 여러 서비스와 같은 서비스는 VPC 외부에 있지만 여전히 AWS 네트워크 내에 있습니다. <strong>기본적으로 VPC가 S3 버킷 또는 다른 서비스에 연결하는 데 사용하는 연결은 인터넷 게이트웨이를 통해 퍼블릭 인터넷을 통과</strong>합니다.</li>
+      <li><strong>VPC 엔드 포인트</strong>를 사용하면 인터넷 게이트웨이, NAT 디바이스, VPN 연결 또는 AWS Direct Connect 연결없이 PrivateLink를 통해 지원되는 <strong>AWS 서비스 및 VPC 엔드 포인트 서비스에 VPC를 비공개로 연결</strong>할 수 있습니다. VPC의 인스턴스는 서비스의 리소스와 통신하기 위해 퍼블릭 IP 주소가 필요하지 않습니다. <strong>VPC와 다른 서비스 간의 트래픽은 Amazon 네트워크를 떠나지 않습니다</strong>.</li>
+      <li>VPC 엔드 포인트에는 인터페이스 엔드 포인트(interface endpoints) 와 게이트웨이 엔드 포인트(gateway endpoints)의 두 가지 유형이 있습니다.
+        <ul>
+          <li><strong>인터페이스 엔드 포인트</strong> 는 지원되는 서비스로 향하는 트래픽의 진입점 역할을하는 개인 IP 주소를 가진 탄력적 네트워크 인터페이스입니다.</li>
+          <li><strong>게이트웨이 엔드 포인트</strong>는 지원되는 AWS 서비스로 향하는 트래픽에 사용되는 라우팅 테이블에서 지정된 경로의 대상인 게이트웨이입니다. <strong>Amazon S3 및 DynamoDB 서비스</strong>의 경우 게이트웨이 엔드 포인트를 생성 한 다음 다른 서비스에 인터페이스 엔드 포인트를 사용해야합니다.</li>
+        </ul>
+      </li>
+      <li><strong>storage gateway vs. vpn connection vs. direct connect vs. VPC Endpoint</strong>
+        <ul>
+          <li><strong>storage gateway</strong> : <strong>온프레미스 &lt;-&gt; S3</strong> (온프레미스 스토리지 공간 줄이기 위해)</li>
+          <li><strong>VPN</strong> : 내 컴퓨터가 마치 다른 네트워크상에 있는 호스트인것처럼. VPN을 통해 <strong>AWS 외부 &lt;-&gt; VPC Private 서브넷</strong> 같은 내부망에 연결할 수 있도록. 내 컴퓨터가 VPC 네트워크에 있는 호스트인것처럼.</li>
+          <li><strong>VPN Endpoint, VPN Connection, VPN Tunnel</strong> : <strong>VPC &lt;-&gt; 로컬네트워크, 온프레미스</strong> (보호할 리소스를 private subnet에 그대로 두고 VPN을 통해 접근)
+            <ul>
+              <li>그러나 <strong>프라이빗 서브넷의 EC2 인스턴스에 SSH</strong>로 접근하려는 의도라면 <strong>SSM</strong>을 쓴다</li>
+            </ul>
+          </li>
+          <li><strong>direct connect</strong> : <strong>온프레미스 &lt;-&gt; AWS</strong> (인터넷 대신쓰는 지정/프라이빗 네트워크 서비스)</li>
+          <li><strong>VPC Endpoint</strong> : <strong>VPC &lt;-&gt; AWS service</strong> (비공개로 연결, Amazon네트워크를 벗어나지 않음)</li>
+        </ul>
+      </li>
+      <li><strong>Changing the web architecture to access the financial data hosted in your S3 bucket by creating a custom VPC endpoint service</strong> : is incorrect. “VPC 엔드 포인트 서비스”는 “VPC 엔드 포인트”와는 상당히 다릅니다. VPC 엔드 포인트 서비스를 사용하면 VPC에서 자체 애플리케이션을 생성하고이를 AWS PrivateLink 기반 서비스 (엔드 포인트 서비스라고 함)로 구성 할 수있는 서비스 제공 업체입니다. 다른 AWS 보안 주체는 인터페이스 VPC 엔드 포인트를 사용하여 VPC에서 엔드 포인트 서비스로 연결을 생성 할 수 있습니다.</li>
+      <li><strong>Changing the web architecture to access the financial data in S3 through an <em>interface</em> VPC endpoint, which is powered by AWS PrivateLink</strong> : is incorrect. 잘못된 유형의 VPC 엔드 포인트를 선택했습니다. S3 및 DynamoDB 서비스의 경우 인터페이스 VPC 엔드 포인트가 아닌 게이트웨이 VPC 엔드 포인트를 사용해야합니다.</li>
+    </ul>
+  </li>
+  <li>A local bank has an in-house application which handles sensitive financial data in a private subnet. After the data is processed by the EC2 worker instances, they will be delivered to S3 for ingestion by other services.
+How should you design this solution so that <strong>the data does not pass through the public Internet</strong>?
+    <ul>
+      <li><strong>A) Configure a VPC Gateway Endpoint along with a corresponding route entry that directs the data to S3.</strong></li>
+      <li>VPC에서 S3 버킷으로 들어오는 트래픽은 기본적으로 퍼블릭 인터넷을 통과합니다. 전송중인 데이터를보다 효과적으로 보호하기 위해 VPC 엔드 포인트를 설정하여 <strong>VPC에서 들어오는 트래픽이 퍼블릭 인터넷을 통하지 않고 프라이빗 AWS 네트워크를 통해 전달</strong>되도록 할 수 있습니다.</li>
+    </ul>
+
+    <p><a href="https://dasoldasol.github.io/assets/images/image/vpc-endpoint-s3-diagram.png">vpc-endpoint-s3-diagram</a></p>
+
+    <ul>
+      <li>VPC 엔드 포인트에는 인터페이스 엔드 포인트와 게이트웨이 엔드 포인트의 두 가지 유형이 있습니다. 지원되는 서비스에 필요한 VPC 엔드 포인트 유형을 생성해야합니다. 일반적으로 대부분의 AWS 서비스는 <strong>VPC 게이트웨이 엔드 포인트를 사용하는 S3 및 DynamoDB</strong>를 제외하고 <strong>VPC 인터페이스 엔드 포인트</strong>를 사용합니다.</li>
+    </ul>
+  </li>
+  <li>You are implementing a hybrid architecture for your company where you are connecting their Amazon Virtual Private Cloud (VPC) to their on-premises network. Which of the following can be used <strong>to create a private connection between the VPC and your company’s on-premises network</strong>?
+    <ul>
+      <li><strong>A) Direct Connect</strong></li>
+      <li>Direct Connect는 <strong>온 프레미스 데이터 센터에서 AWS로 직접 프라이빗 연결을 생성</strong>하므로 이더넷 광섬유 케이블을 사용하여 1 기가비트 또는 10 기가비트 전용 네트워크 연결을 설정할 수 있습니다.</li>
+    </ul>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#aws" class="page__taxonomy-item" rel="tag">AWS</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2020-02-28T00:00:00+00:00">February 28, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Trusted+Advisor%20http%3A%2F%2Flocalhost%3A4000%2Faws%2FVPC%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Faws%2FVPC%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Faws%2FVPC%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/aws/webinar-saa/" class="pagination--pager" title="AWS SAA Workshop
+">이전</a>
+    
+    
+      <a href="/aws/KMS/" class="pagination--pager" title="KMS
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/mssql-to-s3/" rel="permalink">로컬DB 일배치로 S3에 파일 전송하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-15T00:00:00+00:00">January 15, 2021</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">테이블을 1일 1회 백업해서 파일로 S3에 전송한다
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/db/connect-rds/" rel="permalink">보안된 내부망 rds DB클라이언트 접속
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-11-01T00:00:00+00:00">November 1, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">private 망에 위치한 RDS를 putty가 아닌 DB 클라이언트에서 접속
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-yml/" rel="permalink">serverless framework 환경 설정 serverless.yml
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-15T00:00:00+00:00">September 15, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless.yml 작성을 통해 배포 환경 설정을 해보자
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/assets/images/share.png" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/aws/serverless/sls-tutorial-2/" rel="permalink">serverless framework 시작하기
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2020-09-10T00:00:00+00:00">September 10, 2020</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">serverless framework를 설치하고, AWS와 연결해보자
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 Dasol Seo. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
