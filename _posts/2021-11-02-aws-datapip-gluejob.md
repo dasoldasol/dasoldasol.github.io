@@ -17,13 +17,16 @@ modified_date: 2021-11-02 09:36:28 +0900
 
 # Workflow
 완성된 워크플로우를 먼저 보면 다음과 같다.    
-![image](https://dasoldasol.github.io/assets/images/image/assets/images/image/workflow.png)
+<br></br>
+![image](https://dasoldasol.github.io/assets/images/image/workflow.png)
 * 새벽 3시 Trigger 발생
 * 일일 수집 JOB 실행(약 10분 소요)
   * 성공시
     * 검증 JOB 실행(약 40분 소요)
   * 실패시
     * 롤백 JOB 실행(last modified 시간을 기준으로 parquet 파일 삭제)
+  
+
 # 방안
 
 spark과 python을 비교하여 더 효율적인 방법으로 수집하고자 함
