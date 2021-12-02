@@ -1,5 +1,5 @@
 ---
-title: "AWS 데이터 배치 수집 python / spark 비교"
+title: "[Workflow] AWS 데이터 배치 수집 python / spark 비교"
 excerpt: "AWS glue job으로 데이터 배치 수집"
 toc: true
 toc_sticky: true
@@ -14,6 +14,10 @@ modified_date: 2021-11-02 09:36:28 +0900
 * 매일 수행
 * 최초에 전 데이터 수집 후 1일분의 증분 데이터만 수집
 * 테이블에 시간 정보가 존재하면 시간 정보 필드를 이용하여 쿼리, 시간 정보가 없으면 매일 overwrite함
+
+# Workflow
+완성된 워크플로우는 다음과 같다.    
+![image](https://dasoldasol.github.io/assets/images/image/assets/images/image/workflow.png)
 
 # 방안
 
