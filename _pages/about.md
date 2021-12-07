@@ -18,7 +18,7 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data 
   - "FiFM : Feature Importance Ranking과 Factorization Machines 결합 이중 네트워크 구조 추천시스템 알고리즘 연구"
 - **iot 에너지 절감 시스템 개발**
   - 서울대 산학협력 에너지 절감 알고리즘 및 최적 스케줄 추천 시스템 개발 (tensorflow-keras, sklearn, python)
-  - 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker)
+  - 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker, python)
   - 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
   - 사내 건설사업 수주매출 대시보드 도출을 위한 ERP시스템 데이터 파이프라인 구축 (AWS Athena, MSSQL, Tableau)
 - **추천 시스템 개발** 
@@ -33,6 +33,6 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data 
 
 ### Education
 
-- **성균관대학교** 공학석사 데이터사이언스전공 장학생 (2020.03 ~ 2022.02)
+- **성균관대학교** 공학석사 데이터사이언스전공 장학생 (2020 ~ 2022)
 - [NCS]응용SW엔지니어 및 DB엔지니어 과정 (2017.01 ~ 2018.08)
 - **인하대학교** 경제학부 경제학전공 4년 장학생 (2011.03 ~ 2016.02)
