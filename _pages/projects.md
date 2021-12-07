@@ -31,6 +31,7 @@ permalink: /project/
 **역할** :    
 - 빌딩 에너지 시스템(BEMS) 데이터 파이프라인 구축 및 데이터베이스 운영 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker, Glue)
 - 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
+**주요 성과**: 에너지 절감 알고리즘 특허 출원 
 
 ### 실시간 추천 시스템 모델링 및 개발 
 **기간** : 2018.01 ~ 2019.09    
@@ -67,7 +68,7 @@ permalink: /project/
 **역할** :
 - ETL 인터페이스 개발 (AWS firehose, Lambda, python)
 - 실시간 파싱 이벤트 쿼리 개발 (logpresso based on Splunk)
-- 홈페이지 백엔드 API 개발 (spring boot)  
+- 홈페이지 백엔드 API 개발 (spring boot, lombok)  
     
 **주요 성과** : 대시보드 서비스 홈페이지 구축
 
