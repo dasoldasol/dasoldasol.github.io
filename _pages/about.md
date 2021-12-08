@@ -11,7 +11,7 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data 
 ### Careear
 - **HDC 랩스** 기술연구소 (2021.01 ~)
 - **Alticast** Data Engineering 팀 (2018.08 ~ 2020.12)
-- **퍼니웍** 데이터 분석팀 (2017.08 ~ 2018.07) 
+- **퍼니웍** 데이터 분석팀 (2017.08 ~ 2018.07) : Alticast 인수합병 
 
 ### Strength
 - **추천 시스템 알고리즘 개발 및 논문 작성**
@@ -35,4 +35,4 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data 
 
 - **성균관대학교** 공학석사 데이터사이언스전공 장학생 (2020 ~ 2022)
 - [NCS]응용SW엔지니어 및 DB엔지니어 과정 (2017.01 ~ 2018.08)
-- **인하대학교** 경제학부 경제학전공 4년 장학생 (2011.03 ~ 2016.02)
+- **인하대학교** 경제학부 경제학전공 4년 전액 장학생 (2011.03 ~ 2016.02)
