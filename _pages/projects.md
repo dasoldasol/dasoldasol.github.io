@@ -29,8 +29,9 @@ permalink: /project/
 **목적** : 설비 에너지 사용 로그 분석을 통한 에너지 수요 예측, 최적 가동 스케줄 추천    
 **대상 데이터** : HVAC 설비 5분단위 로그 데이터(슬라이딩 윈도우 60분)    
 **역할** :    
-- 빌딩 에너지 시스템(BEMS) 데이터 파이프라인 구축 및 데이터베이스 운영 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker, Glue)
+- 빌딩 에너지 시스템(BEMS) 데이터 파이프라인 구축 및 데이터베이스 운영 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker, Glue)        
 - 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
+
 **주요 성과**: 에너지 절감 알고리즘 특허 출원 
 
 ### 실시간 추천 시스템 모델링 및 개발 
