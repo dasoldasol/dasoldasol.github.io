@@ -22,6 +22,7 @@ permalink: /project/
 - FM Net(Factorization Machines)과 Selector Net(Feature Importance Ranking)이 교대 학습하는 듀얼넷 구조
     - FM Net : feature interaction(피쳐 상호작용) 학습
     - Selector Net : FM Net의 성능을 피드백 받아, Feature Importance Ranking을 통해 FM Net에 최적의 마스크 서브셋 제공
+**주요성과**: 성균관대학교 데이터사이언스융합학과 우수작 수상, 성균관대학교 대학원 논문경진대회 "리서치 매터스" 우수작 수상 
 ![image](https://dasoldasol.github.io/assets/images/image/dual-net-architecture.png)
 
 ### 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발
