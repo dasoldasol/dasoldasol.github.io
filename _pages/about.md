@@ -16,6 +16,7 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data 
 ### Strength
 - **추천 시스템 알고리즘 개발 및 논문 작성**
   - "FiFM : Feature Importance Ranking과 Factorization Machines 결합 이중 네트워크 구조 추천시스템 알고리즘 연구"
+  - 성균관대학교 데이터사이언스융합학과 우수작 선정, 성균관대학교 논문경진대회 "리서치 매터스 2회" 우수작 수상
 - **iot 에너지 절감 시스템 개발**
   - 서울대 산학협력 에너지 절감 알고리즘 및 최적 스케줄 추천 시스템 개발 (tensorflow-keras, sklearn, python)
   - 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker, python)
