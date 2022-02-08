@@ -24,10 +24,12 @@ permalink: /project/
     - Selector Net : FM Net의 성능을 피드백 받아, Feature Importance Ranking을 통해 FM Net에 최적의 마스크 서브셋 제공
 ![image](https://dasoldasol.github.io/assets/images/image/dual-net-architecture.png)     
 
-**주요성과**: 성균관대학교 데이터사이언스융합학과 우수작 수상, 성균관대학교 대학원 논문경진대회 "리서치 매터스" 우수작 수상
+**주요성과**: 성균관대학교 데이터사이언스융합학과 우수작 선정, 성균관대학원 논문경진대회 "제 2회 리서치 매터스" 우수작 수상
 
 ### 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발
 **기간** : 2021.01~    
+
+
 **목적** : 설비 에너지 사용 로그 분석을 통한 에너지 수요 예측, 최적 가동 스케줄 추천    
 **대상 데이터** : HVAC 설비 5분단위 로그 데이터(슬라이딩 윈도우 60분)    
 **역할** :    
