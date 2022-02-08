@@ -22,36 +22,38 @@ toc_sticky: true
 ## 배치스크립트 (Windows)
 - ```tsm maintenence backup -f ts_backup -d```    
   Tableau Server의 데이터, 통합문서 백업. 백업 파일 형태는 *ts_backup-%yyyy%-%mm%-%dd%.tsbak*    
-
+    
 - ```tsm settings export --output-config-file ts_export-2021-07-28.json```    
 Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정해줘야함. 파일 형태는 json    
-
-- tsm 명령어 이후에는 배치 스크립트가 자동 종료되므로.. call 사용
+    
+- 당연하지만 tsm 명령어 이후에는 배치 스크립트가 자동 종료되므로.. call 사용
+    
+- ```call tsm maintenance cleanup -l --log-files-retention 1```    
+로그파일이 포함되어있으면 파일 사이즈 커지므로 주기적으로 지워준다 
+   
+- ```forfiles /P "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups" /M *.tsbak /D -4 /C "cmd /c del @file```     
+서버 상에서 백업파일 4일치만 남기도록 백업파일을 지워준다.
   
 
 - **daily-backup.bat**
-
+  
   ```shell
   @echo off
-
-  rem log
-  set LOGFILE=%date%-backup.log
-  call :LOG > %LOGFILE%
-  exit /B
-  
-  :LOG
-  rem Get start time:
-  echo %date% %time%
   
   rem delete existing file
   if exist "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups\ts_backup-%date%.tsbak" del /s /q "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups\ts_backup-%date%.tsbak"
   
+  rem cleanup log files
+  call tsm maintenance cleanup -l --log-files-retention 1
+  if %errorlevel% neq 0 exit /b %errorlevel%
+  
   rem cmd
   echo backup tableau server repo
   call tsm maintenance backup -f ts_backup -d
+  if %errorlevel% neq 0 exit /b %errorlevel%
   
-  rem Get end time:
-  echo %date% %time%
+  rem del files
+  call forfiles /P "C:\ProgramData\Tableau\Tableau Server\data\tabsvc\files\backups" /M *.tsbak /D -4 /C "cmd /c del @file"
   ```
 
 - **daily-export.bat**
@@ -102,13 +104,6 @@ Tableau Server의 토폴로지 설정 export. 백업하고 달리, 날짜 지정
    dd="0"+dd;
   }
   WScript.Echo(d.getFullYear()+"-"+mm+"-"+dd);
-  ```
-
-- **delete.bat** : 7일이상 된 파일 삭제
-  ```shell
-  forfiles /S /M *.tsbak /D -7 /C "CMD /C del @file"
-  forfiles /S /M *.json /D -7 /C "CMD /C del @file"
-  forfiles /S /M *.log /D -7 /C "CMD /C del @file"
   ```
 
 - **daily-transfer.bat** : S3 전송
