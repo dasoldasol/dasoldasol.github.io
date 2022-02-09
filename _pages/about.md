@@ -9,7 +9,7 @@ toc_sticky: true
 Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data ETL 및 분석 업무
 
 ### Careear
-- **HDC 랩스** 기술연구소 (2021.01 ~)
+- **HDC 랩스** 기술연구소 데이터플랫폼팀(2021.01 ~)
 - **Alticast** Data Engineering 팀 (2018.08 ~ 2020.12)
 - **퍼니웍** 데이터 분석팀 (2017.08 ~ 2018.07) : Alticast 인수합병 
 
@@ -22,7 +22,7 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data 
   - 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker, python)
   - 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
   - 사내 건설사업 수주매출 대시보드 도출을 위한 ERP시스템 데이터 파이프라인 구축 (AWS Athena, MSSQL, Tableau)
-- **추천 시스템 개발** 
+- **IPTV 콘텐츠 추천 시스템 개발** 
   - 실시간 로그데이터 (일평균 1.8억건) 분석에 기반한 추천 시스템 모델링 및 개발 (python, R, logpresso)
   - 실시간 로그데이터(일평균 1.8억건)  분석에 기반한 추천 시스템 성과분석 모듈 모델링 및 개발 (python, ELK Stack)
   - 음성 및 자연어 기반 솔루션 개발 (NLU, spring boot)

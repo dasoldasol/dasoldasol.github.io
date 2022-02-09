@@ -94,5 +94,5 @@ permalink: /project/
 **대상 데이터** : 네이버 뉴스 API, 다음까페 API, 네이버밴드 API, SKT 통화이력 API    
 **역할** :
 -  데이터 ETL 및 전처리 (AWS Lambda, python, serverless framework)
--  주차장 통계 프로시저 개발 (MySQL 프로시저)
+-  주차장 통계 프로시저 개발 (MySQL 프로시저)    
 **주요 성과** : MySQL 프로시저를 통한 주차장 통합 통계 베이스 구축
