@@ -13,9 +13,8 @@ modified_date: 2022-03-28 09:36:28 +0900
 ```nums = [2, 7, 11, 15], target = 9```
 - 출력     
 ```[0, 1]```
-- 풀이 
+- 풀이 : 첫번째 수를 뺀 결과 키 조회
 ```python3
-# 첫번째 수를 뺀 결과 키 조회
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         nums_map = {}
@@ -27,6 +26,8 @@ class Solution:
             # 1) 키와 값을 바꿔서 딕셔너리로 저장
             nums_map[num] = i
 ```
+
+
 # 빗물 트래핑(Trapping Rain Water)
 - 높이를 입력 받아 비 온 후 얼마나 많은 물이 쌓일 수 있는지 계산하라. 
  ![image](https://user-images.githubusercontent.com/29423260/160335188-17df60c7-16ae-47e5-9166-f6c8a59a3cff.png)
@@ -82,6 +83,8 @@ class Solution:
             stack.append(i)
         return volume
 ```
+
+
 # 세 수의 합 (3Sum)
 - 배열을 입력받아 합으로 0을 만들 수 있는 3개의 엘리먼트를 출력하라 
 - 입력    
@@ -124,6 +127,8 @@ class Solution:
         
         return results
 ```
+
+
 # 배열 파티션 I (Array Partition I)
 - n개의 페어를 이용한 min(a, b)의 합으로 만들 수 있는 가장 큰 수를 출력하라 
 - 입력    
@@ -138,6 +143,8 @@ class Solution:
     def arrayPairSum(self, nums: List[int]) -> int:
         return sum(sorted(nums)[::2]) # 두칸씩 건너뛰어 짝수 보기 
 ```
+
+
 # 자신을 제외한 배열의 곱 (Product of Array Except Self)
 - 배열을 입력받아 output[i]가 자신을 제외한 나머지 모든 요소의 곱셈 결과가 되도록 출력하라 
 - 입력     
@@ -162,6 +169,8 @@ class Solution:
             p = p * nums[i]
         return out
 ```
+
+
 # 주식을 사고팔기 가장 좋은 시점 (Best Time to Buy and Sell Stock)
 - 한 번의 거래로 낼 수 있는 최대 이익을 산출하라 
 - 입력    
