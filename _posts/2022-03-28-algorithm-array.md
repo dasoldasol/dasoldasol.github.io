@@ -14,7 +14,7 @@ modified_date: 2022-03-28 09:36:28 +0900
 - 출력     
 ```[0, 1]```
 - 풀이 : 첫번째 수를 뺀 결과 키 조회
-```python3
+```python
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         nums_map = {}
