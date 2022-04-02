@@ -5,6 +5,7 @@ toc: true
 toc_sticky: true
 categories:
 - Data Engineering
+modified_date: 2022-03-08 17:03:28 +0900
 ---
 # 1. 빅데이터의 기초 지식 
 ## [배경] 빅데이터의 정착
