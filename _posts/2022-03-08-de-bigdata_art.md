@@ -1,6 +1,6 @@
 ---
 title: "[책] 빅데이터를 지탱하는 기술"
-excerpt: '데이터 엔지니어 필수도서 '빅데이터를 지탱하는 기술' 정리본'
+excerpt: "데이터 엔지니어 필수도서 '빅데이터를 지탱하는 기술' 정리본"
 toc: true
 toc_sticky: true
 categories:
