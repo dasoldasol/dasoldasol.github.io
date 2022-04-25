@@ -10,8 +10,8 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Airflow 를 이용해 Data ETL 
 
 ### Careear
 - **HDC 랩스** 기술연구소 데이터플랫폼팀(2021.01 ~)
-- **Alticast** Data Engineering 팀 (2018.08 ~ 2020.12)
-- **퍼니웍** 데이터 분석팀 (2017.08 ~ 2018.07) : Alticast 인수합병 
+- **Alticast** 데이터사업본부 데이터엔지니어링팀 (2018.08 ~ 2020.12)
+- **퍼니웍** 데이터분석팀 (2017.08 ~ 2018.07) : Alticast 인수합병 
 
 ### Strength
 - **추천 시스템 알고리즘 개발 및 논문 작성**
