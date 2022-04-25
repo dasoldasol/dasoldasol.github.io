@@ -6,7 +6,7 @@ toc_sticky: true
 ---
 
 ### 추천 시스템 모델링에 강한 Data Scientist 
-Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data ETL 및 분석 업무
+Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Airflow 를 이용해 Data ETL 및 분석 업무
 
 ### Careear
 - **HDC 랩스** 기술연구소 데이터플랫폼팀(2021.01 ~)
@@ -17,11 +17,10 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Spring Boot 를 이용해 Data 
 - **추천 시스템 알고리즘 개발 및 논문 작성**
   - "FiFM : Feature Importance Ranking과 Factorization Machines 결합 이중 네트워크 구조 추천시스템 알고리즘 연구"
   - 성균관대학교 데이터사이언스융합학과 우수작 선정, 성균관대학원 논문경진대회 "제 2회 리서치 매터스" 우수작 수상
-- **iot 에너지 절감 시스템 개발**
-  - 서울대 산학협력 에너지 절감 알고리즘 및 최적 스케줄 추천 시스템 개발 (tensorflow-keras, sklearn, python)
-  - 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker, python)
-  - 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
-  - 사내 건설사업 수주매출 대시보드 도출을 위한 ERP시스템 데이터 파이프라인 구축 (AWS Athena, MSSQL, Tableau)
+- **클라우드 기반의 iot 에너지 절감 데이터 파이프라인 구축**
+  - 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발 (AWS, python-keras)
+  - 빌딩 설비 이상 탐지 시스템 클라우드 데이터 파이프라인 구축(AWS, Airflow, python, Tableau)
+  - 아파트 단지 서버 통합 클라우드 데이터 파이프라인 구축 (serverless, AWS, python, Airflow, Tableau)
 - **IPTV 콘텐츠 추천 시스템 개발** 
   - 실시간 로그데이터 (일평균 1.8억건) 분석에 기반한 추천 시스템 모델링 및 개발 (python, R, logpresso)
   - 실시간 로그데이터(일평균 1.8억건)  분석에 기반한 추천 시스템 성과분석 모듈 모델링 및 개발 (python, ELK Stack)
