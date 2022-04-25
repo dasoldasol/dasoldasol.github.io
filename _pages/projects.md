@@ -35,6 +35,7 @@ permalink: /project/
 **역할** :    
 - 빌딩 에너지 시스템(BEMS) 데이터 파이프라인 구축 및 데이터베이스 운영 (AWS VPC, Lambda, EC2, RDS, S3, SageMaker, Glue)        
 - 아파트 단지 센서 데이터 ETL 기능 개발 (serverless, AWS Lambda, Kinesis, S3, RDS)
+
 **주요 성과**: 에너지 절감 알고리즘 특허 출원 
 
 ### 아파트 단지 서버 통합 클라우드 파이프라인 구축 
