@@ -14,7 +14,7 @@ modified_date: 2020-04-26 09:36:28 +0900
   - is_api_available (HTTPSensor)
   - extracting_user (HTTPOperator)
   - processing_user (PythonOperator)
-  - storing_user(bashOperator)'
+  - storing_user(bashOperator)
 
 ## DAG 첫 구성 
 - mkdir dags
@@ -47,14 +47,8 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 ### DAG 만들기 : SQliteOperator로 구성한 python 파일 작성 
 - 수정 user_processing.py    
   ```
-  from airflow.models import DAG
   from airflow.providers.sqlite.operators.sqlite import SqliteOperator
-  from datetime import datetime
-
-  default_args = {
-      'start_date': datetime(2020, 1, 1)
-  }
-
+  ...
   with DAG('user_processing', schedule_interval='@daily',
       default_args=default_args,
            catchup=False) as dag:
@@ -100,14 +94,8 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 ### DAG 만들기 : HttpSensor로 구성한 python 파일 작성 
 - user_processing.py
 ```
-  from airflow.models import DAG
   from airflow.providers.http.sensors.http import HttpSensor
-  from datetime import datetime
-
-  default_args = {
-      'start_date': datetime(2020, 1, 1)
-  }
-
+  ...
   with DAG('user_processing', schedule_interval='@daily',
       default_args=default_args,
            catchup=False) as dag:
@@ -133,16 +121,9 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 ### DAG 만들기 : SimpleHttpOperator 로 구성한 python 파일 작성 
 - user_processing.py
 ```
-  from airflow.models import DAG
   from airflow.providers.http.operators.http import SimpleHttpOperator
-
-  from datetime import datetime
   import json
-
-  default_args = {
-      'start_date': datetime(2020, 1, 1)
-  }
-
+  ...
   with DAG('user_processing', schedule_interval='@daily',
       default_args=default_args,
            catchup=False) as dag:
@@ -161,6 +142,70 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 - airflow tasks test user_processing extracting_user 2020-01-01
 
 ## processing user (PythonOperator)
+### Xcom ? 
+- DAG 내의 task 사이에서 데이터를 전달하기 위해 사용 
+- 1) pythonOperator return 값을 이용한 xcom 사용 (def 생성 -> def name을 task_id로 해서 xcom에 자동 push) 
+- 2) push-pull 이용한 xcom 사용 
+  - context['task_instance'] or context['ti']로 return과 push를 동시 사용하고 (key-value 형식) 
+  - xcom_pull(task_ids=~) or xcom_pull(key=~)로 데이터를 pull해서 전달받을 수 있다 
+### DAG 작성 : PythonOperator 사용 
 ```
+    from airflow.operators.python import PythonOperator
+    from pandas import json_normalize
+    ...
+    def _processing_user(ti):
+        users = ti.xcom_pull(task_ids=['extracting_user'])
+        if not len(users) or 'results' not in users[0]:
+            raise ValueError('User is empty')
+        user = users[0]['results'][0]
+        processed_user = json_normalize({
+            'firstname': user['name']['first'],
+            'lastname': user['name']['last'],
+            'country': user['location']['country'],
+            'username': user['login']['username'],
+            'password': user['login']['password'],
+            'email': user['email']
+        }) # json to df
+        processed_user.to_csv('/tmp/processed_user.csv', index=None, header=False)
+
+
+    with DAG('user_processing', schedule_interval='@daily',
+        default_args=default_args,
+             catchup=False) as dag:
+        # Define tasks/operators
+        
+        processing_user = PythonOperator(
+          task_id='processing_user',
+          python_callable=_processing_user
+    )
   
 ```
+
+### test 
+- airflow tasks test user_processing processing_user 2020-01-01
+- processed_user 결과 확인하기 
+- ls /tmp/
+- cat /tmp/processed_user.csv 
+## Storing_user (bashOperator)
+- tmp폴더에 있는 csv를 읽어서 SQLite DB에 넣기 
+### DAG 작성 : BashOperator
+```
+  from airflow.operators.bash import BashOperator
+  
+  with DAG('user_processing', schedule_interval='@daily',
+    default_args=default_args,
+         catchup=False) as dag:
+    # Define tasks/operators
+    
+    storing_user = BashOperator(
+        task_id='storing_user',
+        bash_command='echo -e ".separator ","\n.import /tmp/processed_user.csv users" | sqlite3 /home/airflow/airflow.db'
+    )
+```
+### test 
+- airflow tasks test user_processing storing_user 2020-01-01
+- 테이블 확인 
+- sqlite3 airflow.db
+- SELECT * FROM users;
+
+## 
