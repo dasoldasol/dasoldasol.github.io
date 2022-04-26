@@ -44,7 +44,7 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 - 1 operator 1 task! : 실패시 retry하면 중복되잖아 
 - operator 종류 : Action(Execute), Transfer, Sensor
 
-### SQliteOperator로 구성한 python 파일 작성 
+### DAG 만들기 : SQliteOperator로 구성한 python 파일 작성 
 - 수정 user_processing.py    
   ```
   from airflow.models import DAG
@@ -89,10 +89,15 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 -airflow UI [Admin]-[Connection]     
   ![image](https://user-images.githubusercontent.com/29423260/165206138-475dc079-0302-44ea-9281-81b18e0604ea.png)    
 ### test task 
+- airflow tasks test [dag_id] [task_id] [execution_date]
 - airflow tasks test user_processing creating_table 2020-01-01
 - 확인 sqlite3 airflow.db
 
 ## is_api_available (HTTP Sensor)
+### Sensor란
+- Sensor는 시간, 파일, 외부 이벤트를 기다리며 해당 조건을 충족해야만 이후의 작업을 진행할 수 있게 해주는 Airflow의 기능으로 Operator와 같이 하나의 task가 될 수 있으며 filesystem, hdfs, hive 등 다양한 형식을 제공한다.
+
+### DAG 만들기 : HttpSensor로 구성한 python 파일 작성 
 - user_processing.py
 ```
   from airflow.models import DAG
@@ -114,10 +119,48 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
           endpoint='api/'
       )
 ```
-### HttpSensor로 구성한 python 파일 작성 
 ### provider 다운로드 
 - https://airflow.apache.org/docs/apache-airflow-providers/packages-ref.html
 ### connection
 -airflow UI [Admin]-[Connection]   
   ![image](https://user-images.githubusercontent.com/29423260/165209584-d2fa4907-48c7-4b89-a175-7b7ee2993953.png)
+### test task 
+- airflow tasks test [dag_id] [task_id] [execution_date]
+- airflow tasks test user_processing is_api_available 2020-01-01
 
+## extracting_user (HTTPOperator) 
+- API로 (API가 available하면) user를 fetch해오는 작업 
+### DAG 만들기 : SimpleHttpOperator 로 구성한 python 파일 작성 
+- user_processing.py
+```
+  from airflow.models import DAG
+  from airflow.providers.http.operators.http import SimpleHttpOperator
+
+  from datetime import datetime
+  import json
+
+  default_args = {
+      'start_date': datetime(2020, 1, 1)
+  }
+
+  with DAG('user_processing', schedule_interval='@daily',
+      default_args=default_args,
+           catchup=False) as dag:
+      # Define tasks/operators
+
+      extracting_user = SimpleHttpOperator(
+          task_id='extracting_user',
+          http_conn_id='user_api',
+          endpoint='api/',
+          method='GET',
+          response_filter= lambda response: json.loads(response.text),
+          log_response=True
+      )
+```
+### test 
+- airflow tasks test user_processing extracting_user 2020-01-01
+
+## processing user (PythonOperator)
+```
+  
+```
