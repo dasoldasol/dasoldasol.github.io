@@ -1,6 +1,6 @@
 ---
-title: "Airflow cli 시작하기"
-excerpt: "Airflow 설치부터 환경설정까지"
+title: "Airflow DAG 구성하기"
+excerpt: "Operator/Provider를 활용하여 DAG 구성, 파이프라인 구성"
 toc: true
 toc_sticky: true
 categories:
@@ -55,19 +55,19 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
       # Define tasks/operators
 
       creating_table = SqliteOperator(
-          task_id = 'creating_table',
-          sqlite_conn_id = 'db_sqlite',
-          sql='''
-              CREATE TABLE users (
-                  firstname TEXT NOT NULL,
-                  lastname  TEXT NOT NULL,
-                  country  TEXT NOT NULL,
-                  username TEXT NOT NULL,
-                  password  TEXT NOT NULL, 
-                  email  TEXT NOT NULL PRIMARY KEY
-                  );
-          '''
-      )
+        task_id = 'creating_table',
+        sqlite_conn_id = 'db_sqlite',
+        sql='''
+            CREATE TABLE IF NOT EXISTS users (
+                firstname TEXT NOT NULL,
+                lastname  TEXT NOT NULL,
+                country  TEXT NOT NULL,
+                username TEXT NOT NULL,
+                password  TEXT NOT NULL, 
+                email  TEXT NOT NULL PRIMARY KEY
+                );
+        '''
+    )
   ```
 - task_id는 데이터 파이프라인 안에서 unique해야함 
 - airflow webserver 
@@ -77,8 +77,6 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 - pip install 'apache-airflow-providers-sqlite'
 - pip install apache-airflow-providers-http==2.0.0
 - providers list 조회 : airflow providers list
-### **providers?
-
 ### connection
 -airflow UI [Admin]-[Connection]     
   ![image](https://user-images.githubusercontent.com/29423260/165206138-475dc079-0302-44ea-9281-81b18e0604ea.png)    
@@ -147,8 +145,9 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 - 1) pythonOperator return 값을 이용한 xcom 사용 (def 생성 -> def name을 task_id로 해서 xcom에 자동 push) 
 - 2) push-pull 이용한 xcom 사용 
   - context['task_instance'] or context['ti']로 return과 push를 동시 사용하고 (key-value 형식) 
-  - xcom_pull(task_ids=~) or xcom_pull(key=~)로 데이터를 pull해서 전달받을 수 있다 
+  - xcom_pull(task_ids=xx) or xcom_pull(key=yy)로 데이터를 pull해서 전달받을 수 있다 
 ### DAG 작성 : PythonOperator 사용 
+- user_processing.py
 ```
     from airflow.operators.python import PythonOperator
     from pandas import json_normalize
@@ -189,6 +188,7 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
 ## Storing_user (bashOperator)
 - tmp폴더에 있는 csv를 읽어서 SQLite DB에 넣기 
 ### DAG 작성 : BashOperator
+- user_processing.py
 ```
   from airflow.operators.bash import BashOperator
   
@@ -199,13 +199,28 @@ start_date가 2021-03-07이면 DAG는 2021-03-07 00:00 기준으로 시작되는
     
     storing_user = BashOperator(
         task_id='storing_user',
-        bash_command='echo -e ".separator ","\n.import /tmp/processed_user.csv users" | sqlite3 /home/airflow/airflow.db'
+        bash_command='echo -e ".separator ","\n.import /tmp/processed_user.csv users" | sqlite3 /home/airflow/airflow/airflow.db'
     )
 ```
 ### test 
 - airflow tasks test user_processing storing_user 2020-01-01
 - 테이블 확인 
 - sqlite3 airflow.db
-- SELECT * FROM users;
+- SELECT * FROM users;    
+  ![image](https://user-images.githubusercontent.com/29423260/165647599-ae95bd5f-1373-4ed1-be13-59373877de22.png)
 
-## 
+
+## task 순서 정하기 
+- user_processing.py
+```
+  ...
+  creating_table >> is_api_available >> extracting_user >> processing_user >> storing_user
+```
+- airflow UI 확인
+  - 업데이트가 안된다면 scheduler가 죽어있는 것이니, scheduler 가동 여부 체크     
+  ![image](https://user-images.githubusercontent.com/29423260/165649170-430a3c92-132d-4254-a146-2637ac0354b1.png)
+
+## Trigger
+- UI trigger     
+  ![image](https://user-images.githubusercontent.com/29423260/165649983-68a40747-619e-49e3-aab5-d4f4c8e10361.png)
+- 에러시 task 클릭 후 logs 확인, clear 클릭 
