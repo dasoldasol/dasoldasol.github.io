@@ -8,6 +8,9 @@ categories:
   - DataPipeline
 modified_date: 2022-05-02 14:26:28 +0900
 ---
+- [Airflow 관련 포스팅 전체 보기](https://dasoldasol.github.io/airflow/datapipeline/airflow-linklist/)
+
+
 ## Xcoms 
 - [이전 게시글 - Airflow DAG구성하기 : Xcom?](https://dasoldasol.github.io/airflow/datapipeline/airflow-2/#xcom-)
 - DAG 내의 task 사이에서 데이터를 전달하기 위해 사용 
