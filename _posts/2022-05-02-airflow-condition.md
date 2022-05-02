@@ -1,5 +1,5 @@
 ---
-title: "Airflow task를 조건에 따라 분기 실행하기"
+title: "Airflow BranchOperator로 task를 조건에 따라 실행하기"
 excerpt: "BranchPythonOperator로 Airflow task를 조건에 따라 분기 실행하기"
 toc: true
 toc_sticky: true
@@ -8,6 +8,9 @@ categories:
   - DataPipeline
 modified_date: 2022-05-02 16:26:28 +0900
 ---
+- [Airflow 관련 포스팅 전체 보기](https://dasoldasol.github.io/airflow/datapipeline/airflow-linklist/)
+
+
 ## Executing a Task with Condition : BranchPythonOperator
 - 선행 작업의 결과에 따라 이어나갈 작업이 달라야 할 때(conditional)는 Branch로 분기를 나누어 줄 수 있다. 
 ### 예상 상황
