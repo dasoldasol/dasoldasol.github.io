@@ -17,17 +17,17 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Airflow 를 이용해 Data ETL 
 - **추천 시스템 알고리즘 개발 및 논문 작성**
   - "FiFM : Feature Importance Ranking과 Factorization Machines 결합 이중 네트워크 구조 추천시스템 알고리즘 연구"
   - 성균관대학교 데이터사이언스융합학과 우수작 선정, 성균관대학원 논문경진대회 "제 2회 리서치 매터스" 우수작 수상
-- **클라우드 기반의 iot 에너지 절감 데이터 파이프라인 구축**
+- **IoT 에너지 절감 데이터 파이프라인 구축**
   - 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발 (AWS, python-keras)
-  - 빌딩 설비 이상 탐지 시스템 클라우드 데이터 파이프라인 구축(AWS, Airflow, python, Tableau)
-  - 아파트 단지 서버 통합 클라우드 데이터 파이프라인 구축 (serverless, AWS, python, Airflow, Tableau)
-- **IPTV 콘텐츠 추천 시스템 개발** 
+  - 빌딩 설비 이상 탐지 시스템 데이터 파이프라인 구축(AWS, Airflow, python, Tableau)
+  - 아파트 단지 서버 통합 데이터 파이프라인 구축 (serverless, AWS, python, Airflow, Tableau)
+- **콘텐츠 추천 시스템 개발** 
   - 실시간 로그데이터 (일평균 1.8억건) 분석에 기반한 추천 시스템 모델링 및 개발 (python, R, logpresso)
   - 실시간 로그데이터(일평균 1.8억건)  분석에 기반한 추천 시스템 성과분석 모듈 모델링 및 개발 (python, ELK Stack)
   - 음성 및 자연어 기반 솔루션 개발 (NLU, spring boot)
 - **IoT 데이터 분석 솔루션 개발**
   - 에너지기술평가원 미세먼지 iot 데이터 전처리 및 분석 솔루션 모델링 및 개발(AWS, python)
-  - 차량용 인포 iot 센서데이터 흡연 탐지 시스템 모델링 및 개발(AWS, python, spring boot)
+  - 차량 흡연 탐지 시스템 모델링 및 개발(AWS, python, spring boot)
   - 블랙박스 사고 탐지 object detection 시스템 연구 개발(python opencv)
 - [프로젝트 경력 기술 바로가기](https://dasoldasol.github.io/project/)
 
