@@ -14,6 +14,9 @@ Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Airflow 를 이용해 Data ETL 
 - **퍼니웍** 데이터분석팀 (2017.08 ~ 2018.07) : Alticast 인수합병 
 
 ### Strength
+- **IoT 데이터 표준화 인프라 구축 및 분석**
+  - 건물별 설비 데이터 통합 표준화 및 인프라 구축(AWS, Jenkins, springboot, postgresQL)
+  - "건축기기 예지보전시스템 개발을 위한 진동 데이터 수집 및 분석" 논문 작성
 - **추천 시스템 알고리즘 개발 및 논문 작성**
   - "FiFM : Feature Importance Ranking과 Factorization Machines 결합 이중 네트워크 구조 추천시스템 알고리즘 연구"
   - 성균관대학교 데이터사이언스융합학과 우수작 선정, 성균관대학원 논문경진대회 "제 2회 리서치 매터스" 우수작 수상
