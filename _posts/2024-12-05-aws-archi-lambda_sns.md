@@ -8,38 +8,48 @@ categories:
 - Architecture
 modified_date: 2024-12-05 08:36:28 +0900
 ---
-# 개요 
+## 개요 
 - 매월 1일 오전 1시에 각 빌딩별 분석 배치 실행
 
-# 흐름도
+## 흐름도
+
 ![image](https://github.com/user-attachments/assets/6434b2dd-b819-403b-8c8d-1ed1fea98d2d)
+
 - EventBridge : cron job으로 매월 1일에 오전 1시에 배치작업을 트리거함 
+
 - stat-prep : 마스터 테이블 동기화. 
     - 빌딩 목록 최신화하여 저장(stat_dimension) : 새로 추가된 빌딩이 있는 경우 빌딩 마스터 정보 저장 
     - 통계 주기 최신화하여 저장(stat_period)
     - 해당 작업 완료 시, 분석 코드 병렬 invoke 
+
 - stat-analysis: NLP 분석하여 건물별 분석 결과 DB 저장 
     - java 환경 설정 
     - 전달의 1일~말일로 필터링 날짜 설정 
     - 분석대상 데이터 가져오기 
     - NLP 분석 및 분석 결과 적재 
+
 - 이 외 자원 
     - psycopg2-layer, konlpy-layer : 파이썬 라이브러리 계층 
     - java_package : java JVM 환경 설정
-- **분석 코드는 다음에 다뤄보기로 하고 데이터 파이프라인 설정을 정리하고자 한다.**
 
-# 배치 스케줄 작업 (EventTrigger)
+- **분석 코드랑 분석 환경은 다음에 다뤄보기로 하고 자주 쓰는 데이터 파이프라인 설정을 정리하고자 한다.**
+
+## 배치 스케줄 작업 (EventTrigger)
+
 - EventTrigger를 생성하여 Lambda Event에 추가해주면 된다.
 - EventTrigger Cron식    
+
   ```
   0 16 L * ? *
   ```
+
   - 매월 마지막 날, UTC 기준 오후 4시 0분에 실행 = KST 기준 다음 날(매월 1일) 새벽 1시 0분에 실행
   - AWS EventTrigger 서버 시간은 항상 UTC이므로 KST에 맞춰 표시하는 것이 중요하다. 이는 Lambda 내에서 시간 관련 작업을 할 때도 마찬가지.
  
-# Lambda 함수에서 다른 Lambda 함수 실행하기 
+## Lambda 함수에서 다른 Lambda 함수 실행하기 
+
 - stat-prep함수의 작업이 끝난 후 분석 모듈인 stat-analysis를 실행하도록 한다.
-- stat-prep Lambda 함수 코드
+- stat-prep Lambda 함수 코드    
 
   ```python
   from datetime import datetime, timedelta
@@ -97,7 +107,8 @@ modified_date: 2024-12-05 08:36:28 +0900
             print(f"Error invoking {function_name}: {e}")
   ```
 
-# 분석 후 이메일 알람 보내기(SNS)
+## 분석 후 이메일 알람 보내기(SNS)
+
 - Lambda에서 에러가 발생 하거나 혹은 알람을 보내고 싶을 때 SNS(Simple Notification System)를 연동하면 된다.
 - 선제조건 : SNS 구독 등록 
 - Lambda 함수 코드
