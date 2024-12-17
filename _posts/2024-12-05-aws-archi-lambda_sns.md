@@ -109,7 +109,7 @@ modified_date: 2024-12-05 08:36:28 +0900
 
 ## 분석 후 이메일 알람 보내기(SNS)
 
-- Lambda에서 에러가 발생 하거나 혹은 알람을 보내고 싶을 때 SNS(Simple Notification System)를 연동하면 된다.
+- Lambda에서 에러가 발생 하거나 혹은 알람을 보내고 싶을 때 SNS(Simple Notification Service)를 연동하면 된다.
 - 선제조건 : SNS 구독 등록 
 - Lambda 함수 코드
 
