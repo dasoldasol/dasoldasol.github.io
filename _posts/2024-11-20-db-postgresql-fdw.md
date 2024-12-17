@@ -13,7 +13,7 @@ modified_date: 2024-11-20 08:36:28 +0900
 - 문서 목적 : 코드 수정 없이 FDW를 통해 멀티 데이터베이스 구현 
 - **FDW(Foreign Data Wrapper)** : 서로 다른 PostgreSQL 데이터베이스 간에 데이터를 연결하여, 별도의 코드 변경 없이 다른 데이터베이스의 테이블을 마치 로컬 테이블처럼 쿼리할 수 있게 해주는 기능. 
 
-## 1.새 데이터베이스 생성
+## 1. 새 데이터베이스 생성
 
 bems라는 이름의 데이터베이스를 생성
 
@@ -22,6 +22,7 @@ bems라는 이름의 데이터베이스를 생성
 테이블 이름에 bems가 포함된 테이블만 pg_dump를 사용해 추출한 후 새로운 데이터베이스 bems로 이동
 
 ### a. 특정 테이블만 덤프
+
 - 로컬 개발 서버 
 ```
 pg_dump --host={DB-HOST} --port=5432 --username={DB-USER} \
@@ -33,17 +34,21 @@ pg_dump --host={DB-HOST} --port=5432 --username={DB-USER} \
 pg_dump --host={RDS-엔드포인트} --port=5432 --username={DB-USER} \
 --dbname={CURRENT-DB-NAME} --no-owner --table='bems%' --file=curr_bems_with_procs.sql --section=pre-data --section=post-data
 ```
+
 ### b. 새로운 데이터베이스로 데이터 적재
+
 - 개발 서버 
 ```
 pg_dump --host={DB-HOST} --port=5432 --username={DB-USER} \
 --dbname=bems -f curr_bems_with_procs.sql 
 ```
+
 - AWS 서버 
 ```
 pg_dump --host={RDS-엔드포인트} --port=5432 --username={DB-USER} \
 --dbname=bems -f curr_bems_with_procs.sql
 ```
+
 ## 3. FDW 설정
 
 새 데이터베이스 bems에서 FDW를 사용하여 curr_db 데이터베이스를 외부 데이터소스로 설정
@@ -52,37 +57,42 @@ pg_dump --host={RDS-엔드포인트} --port=5432 --username={DB-USER} \
 ```
 CREATE EXTENSION postgres_fdw;
 ```
+
 ### b. 외부 서버 생성
 ```
 CREATE SERVER curr_server
 FOREIGN DATA WRAPPER postgres_fdw
 OPTIONS (host '111.111.11.11', dbname 'curr_db', port '5432');
 ```
+
 ### c. 사용자 매핑
 ```
 CREATE USER MAPPING FOR CURRENT_USER
 SERVER curr_server
 OPTIONS (user 'DB-USER', password 'DB-PASSWORD');
 ```
+
 ### d. 외부 테이블 가져오기
 
 csp 데이터베이스의 테이블을 외부 테이블로 bems에 가져오기
+
 ```
 IMPORT FOREIGN SCHEMA public
 LIMIT TO (account, building, facility)
 FROM SERVER curr_server
 INTO public
 ```
+
 ## 4. 검증 및 테스트
 
 •	FDW 테이블 검증: bems 데이터베이스에서 curr_db의 외부 테이블이 잘 조회되는지 확인
 •	설정 확인: 권한, 파라미터 등이 curr_db와 동일하게 설정되었는지 검증
-### 1. curr_db 데이터베이스 테이블 신규 추가 
+
+### a. curr_db 데이터베이스 테이블 신규 추가 
 ![image](https://github.com/user-attachments/assets/2f4a7c53-d34f-49f7-95fb-c5b062f210c7)
 
-### 2. 새로만든 bems 데이터베이스 외부테이블 연동 확인 
+### b. 새로만든 bems 데이터베이스 외부테이블 연동 확인 
 ![image](https://github.com/user-attachments/assets/a62b45cc-5f8e-4fb7-8b05-87f3fa315479)
-
 
 
 ## Appendix A. 프라이빗 RDS 포워딩 
