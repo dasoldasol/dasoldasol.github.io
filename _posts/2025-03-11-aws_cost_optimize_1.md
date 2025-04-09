@@ -1,6 +1,6 @@
 ---
-title: "[AWS]비용 최적화 프로젝트_(1)현황 파악 및 해결안 모색"
-excerpt: "graviton타입으로 바꾸면 얼마나 줄어들까? 스테이징 서버를 안쓰는 시간에 끄면 얼마나 줄어들까?"
+title: "[AWS] 비용 최적화 프로젝트_(1)현황 파악 및 해결안 모색"
+excerpt: "graviton타입으로 바꾸면 얼마나 아낄까? 스테이징 서버를 안쓰는 시간에 끄면 얼마나 아낄까?"
 toc: true
 toc_sticky: true
 categories:
