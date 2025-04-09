@@ -83,7 +83,8 @@ modified_date: 2025-03-18 09:36:28 +0900
       logger.info("Lambda function execution completed.")
   ```
 
-  - Lambda 트리거 EventBridge 설정 사항 : Lambda 기본 시간은 UTC이므로 +09:00 하여 cron job 작성한다.
+
+- Lambda 트리거 EventBridge 설정 사항 : Lambda 기본 시간은 UTC이므로 +09:00 하여 cron job 작성한다.
 
     ```sh
     cron(0 12 ? * 2-6 *)
