@@ -18,7 +18,8 @@ modified_date: 2025-03-18 09:36:28 +0900
 - 인스턴스 태그에 Key가 AutoStopStart이고 Value가 True인 태그 생성
 - 태그를 이용하여 Lambda에서 스케줄링 작업이 진행되게한다.
 
-  ![image](https://github.com/user-attachments/assets/b2c112ef-5369-45db-817a-f43b924ac60f)
+  ![image](https://github.com/user-attachments/assets/9c1777aa-ff34-4d4e-96c5-d326bb6ae0a1)
+
 
 ## 2. EventBridge, Lambda로 스케줄링 함수 작성
 ### 스케줄링 상세 내용
