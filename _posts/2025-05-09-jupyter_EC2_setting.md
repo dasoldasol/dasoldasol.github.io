@@ -142,7 +142,7 @@ echo "로그인 비밀번호:{PASSWORD}"
 #!/bin/bash
 
 if [ $# -ne 1 ]; then
-  echo "❗ 사용법: $0 [stg|prd]"
+  echo "사용법: $0 [stg|prd]"
   exit 1
 fi
 
@@ -150,23 +150,23 @@ ENV="$1"
 
 case "$ENV" in
   stg)
-    INSTANCE_ID="i-0c13a4b4e338507e3"
+    INSTANCE_ID="i-스테이징인스턴스ID"
     LOCAL_PORT=8888
     ;;
   prd)
-    INSTANCE_ID="i-0952038fead2eb9be"
+    INSTANCE_ID="i-운영인스턴스ID"
     LOCAL_PORT=9999
     ;;
   *)
-    echo "❌ 잘못된 인자입니다. 사용법: $0 [stg|prd]"
+    echo "잘못된 인자입니다. 사용법: $0 [stg|prd]"
     exit 1
     ;;
 esac
 
 REMOTE_PORT=8888
 
-echo "🔌 [$ENV] 환경 ($INSTANCE_ID)에 포트포워딩 연결 중..."
-echo "🌐 로컬 접속 주소 → http://localhost:$LOCAL_PORT"
+echo "[$ENV] 환경 ($INSTANCE_ID)에 포트포워딩 연결 중..."
+echo "로컬 접속 주소 → http://localhost:$LOCAL_PORT"
 aws ssm start-session \
   --target "$INSTANCE_ID" \
   --document-name "AWS-StartPortForwardingSession" \
