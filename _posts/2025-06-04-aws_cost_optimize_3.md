@@ -1,4 +1,3 @@
-
 ---
 title: "[AWS] 비용 최적화 프로젝트_(3) 예약 인스턴스로 EC2 비용 절감하기"
 excerpt: "EC2를 예약 인스턴스로 바꾸면 얼마나 절감할 수 있을까?"
@@ -7,7 +6,7 @@ toc_sticky: true
 categories:
   - AWS
   - Cloud Cost Optimization
-modified_date: 2025-06-04 09:00:00 +0900
+modified_date: 2025-06-04 09:36:28 +0900
 ---
 
 ## 이 글의 목적
