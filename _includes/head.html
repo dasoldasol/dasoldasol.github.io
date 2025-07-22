@@ -40,6 +40,22 @@
   </style>
 <![endif]-->
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var btn = document.getElementById("test-cta-btn");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        if (typeof gtag === "function") {
+          gtag("event", "test_button_click", {
+            event_category: "engagement",
+            event_label: window.location.pathname
+          });
+        }
+      });
+    }
+  });
+</script>
+
 {% if site.head_scripts %}
   {% for script in site.head_scripts %}
     <script src="{{ script | relative_url }}"></script>
