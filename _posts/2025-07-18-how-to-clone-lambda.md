@@ -101,6 +101,8 @@ aws lambda add-permission ...
 - AWS Console → Lambda → `insite-account-autosave-multibuilding`  
 - 수동 테스트 or 기존 이벤트 샘플로 실행
 - 이제 `insite-account-autosave` 함수와 동일한 설정을 가진  `insite-account-autosave-multibuilding` 함수가 생성되었다.
+
+
 ---
 
 ## 자동화 스크립트 (Shell Script)
