@@ -113,8 +113,8 @@ aws lambda add-permission ...
 
 ```bash
 #!/bin/bash
+set -euo pipefail
 
-# 사용법 안내
 if [ $# -ne 2 ]; then
   echo "사용법: $0 <기존함수이름> <새함수이름>"
   echo "예: $0 insite-account-autosave insite-account-autosave-multibuilding"
@@ -133,14 +133,21 @@ HANDLER=$(echo "$CONFIG" | jq -r '.Handler')
 RUNTIME=$(echo "$CONFIG" | jq -r '.Runtime')
 TIMEOUT=$(echo "$CONFIG" | jq -r '.Timeout')
 MEMORY=$(echo "$CONFIG" | jq -r '.MemorySize')
-ENV=$(echo "$CONFIG" | jq -c '.Environment')
-LAYERS=$(echo "$CONFIG" | jq -c '[.Layers[].Arn]')
-VPC_CONFIG=$(echo "$CONFIG" | jq -c '{SubnetIds: .VpcConfig.SubnetIds, SecurityGroupIds: .VpcConfig.SecurityGroupIds}')
-DESCRIPTION=$(echo "$CONFIG" | jq -r '.Description')
+ENV=$(echo "$CONFIG" | jq -c '.Environment // {}')
+LAYERS=$(echo "$CONFIG" | jq -c '[.Layers[].Arn] // []')
+VPC_CONFIG=$(echo "$CONFIG" | jq -c '{SubnetIds: (.VpcConfig.SubnetIds // []), SecurityGroupIds: (.VpcConfig.SecurityGroupIds // [])}')
+DESCRIPTION=$(echo "$CONFIG" | jq -r '.Description // ""')
 
 echo "[2] 함수 코드 다운로드 중..."
 CODE_URL=$(aws lambda get-function --function-name "$SOURCE_FUNCTION" --query 'Code.Location' --output text)
-wget "$CODE_URL" -O "$ZIP_FILE"
+if command -v wget >/dev/null 2>&1; then
+  wget "$CODE_URL" -O "$ZIP_FILE"
+elif command -v curl >/dev/null 2>&1; then
+  curl -L "$CODE_URL" -o "$ZIP_FILE"
+else
+  echo "wget 또는 curl이 필요합니다."
+  exit 1
+fi
 
 echo "[3] 새 Lambda 함수 생성 중..."
 aws lambda create-function \
@@ -156,7 +163,7 @@ aws lambda create-function \
   --vpc-config "$VPC_CONFIG" \
   --description "$DESCRIPTION"
 
-echo "[완료] 새 Lambda 함수 '$TARGET_FUNCTION' 생성됨!"
+echo "[완료] 새 Lambda 함수 '$TARGET_FUNCTION' 생성
 ```
 
 > ⚠`jq` CLI가 필요. CloudShell에서는 기본 설치되어 있음
