@@ -6,7 +6,7 @@ toc_sticky: true
 categories:
   - AWS
   - 보안
-modified_date: 2025-11-20 09:36:28 +0900
+modified_date: 2025-10-19 09:36:28 +0900
 ---
 # 목적 
 - AWS Lambda에서 '환경변수' 전송 중 암호화 기능을 활성화한다.
