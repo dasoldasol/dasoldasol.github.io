@@ -32,7 +32,7 @@ modified_date: 2025-10-19 09:36:28 +0900
   				"kms:Decrypt",
   				"kms:DescribeKey"
   			],
-  			"Resource": "arn:aws:kms:ap-northeast-2:021701867122:key/1ee876fb-91c9-431f-8985-58ef3338c0ff"
+  			"Resource": "arn:aws:kms:ap-northeast-2:{AWS_ACCOUNT_ID}:key/{KMS-KEY-UUID}"
   		}
   	]
   }
