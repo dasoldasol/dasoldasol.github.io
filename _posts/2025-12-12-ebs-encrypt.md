@@ -25,7 +25,8 @@ modified_date: 2025-12-10 12:00:00 +0900
 4. 인스턴스 중지  
 5. 기존 루트 볼륨 Detach  
 6. 새 암호화 볼륨 Attach  
-7. 인스턴스 Start 및 정상 여부 점검  
+7. 인스턴스 Start 및 정상 여부 점검
+- 모든 작업 이전에 애플리케이션 자동재기동 설정되어있는지 필히 확인 (daemon, docker)
 
 ---
 
@@ -34,8 +35,8 @@ modified_date: 2025-12-10 12:00:00 +0900
 | 단계 | 규칙 | 예시 |
 |------|------|------|
 | Step1 스냅샷 | `<INSTANCE_NAME>-YYMMDD` | hdcl-csp-stg-ec2-mq-a-251210 |
-| Step2 암호화 스냅샷 | `<INSTANCE_NAME>-encrypted` | hdcl-csp-stg-ec2-mq-a-encrypted |
-| Step3 새 볼륨 | `<INSTANCE_NAME>`에서 `-ec2-` -> `-ebs-` + `-encrypted` | hdcl-csp-stg-ebs-mq-a-encrypted |
+| Step2 암호화 스냅샷 | `<BASE_VOLUME_NAME>-encrypted` | hdcl-csp-stg-ec2-mq-a-encrypted |
+| Step3 새 볼륨 | `<BASE_VOLUME_NAME>-encrypted` | hdcl-csp-stg-ec2-mq-a-encrypted |
 
 ---
 
@@ -59,9 +60,9 @@ REGION="ap-northeast-2"
 aws sts get-caller-identity >/dev/null 2>&1 || true
 
 DATE_SHORT=$(date +"%y%m%d")
-STEP1_SNAPSHOT_NAME="${INSTANCE_NAME}-${DATE_SHORT}"
-STEP2_SNAPSHOT_NAME="${INSTANCE_NAME}-encrypted"
 BASE_VOLUME_NAME=$(echo "${INSTANCE_NAME}" | sed 's/-ec2-/-ebs-/')
+STEP1_SNAPSHOT_NAME="${INSTANCE_NAME}-${DATE_SHORT}"
+STEP2_SNAPSHOT_NAME="${BASE_VOLUME_NAME}-encrypted"
 STEP3_VOLUME_NAME="${BASE_VOLUME_NAME}-encrypted"
 
 wait_snapshot_completed() {
