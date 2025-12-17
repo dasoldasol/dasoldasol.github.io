@@ -35,8 +35,8 @@ modified_date: 2025-12-10 12:00:00 +0900
 | 단계 | 규칙 | 예시 |
 |------|------|------|
 | Step1 스냅샷 | `<INSTANCE_NAME>-YYMMDD` | hdcl-csp-stg-ec2-mq-a-251210 |
-| Step2 암호화 스냅샷 | `<BASE_VOLUME_NAME>-encrypted` | hdcl-csp-stg-ec2-mq-a-encrypted |
-| Step3 새 볼륨 | `<BASE_VOLUME_NAME>-encrypted` | hdcl-csp-stg-ec2-mq-a-encrypted |
+| Step2 암호화 스냅샷 | `<BASE_VOLUME_NAME>-encrypted` | hdcl-csp-stg-ebs-mq-a-encrypted |
+| Step3 새 볼륨 | `<BASE_VOLUME_NAME>-encrypted` | hdcl-csp-stg-ebs-mq-a-encrypted |
 
 ---
 
