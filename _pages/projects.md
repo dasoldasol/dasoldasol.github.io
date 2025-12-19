@@ -5,13 +5,6 @@ toc: true
 toc_sticky: true
 permalink: /project/
 ---
----
-title: "프로젝트 경력"
-excerpt: "보유기술 및 프로젝트 경력 기술"
-toc: true
-toc_sticky: true
-permalink: /project/
----
 
 ## 보유기술
 **Language** : Python, R, Java  
