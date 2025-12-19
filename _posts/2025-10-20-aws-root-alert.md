@@ -48,7 +48,7 @@ AWS Root 계정이 사용되면 다음과 같은 보안 위협이 발생한다.
 
 AWS에서는 CloudTrail의 관리 이벤트를 기반으로 CloudWatch 메트릭을 생성할 수 있다.  
 Root 계정 사용 감지를 위해 대표적으로 사용하는 메트릭은 다음과 같다.
-
+- 패턴 필터링 : `{ $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" }`
 - 메트릭 네임스페이스: CloudTrailMetrics
 - 메트릭 이름: RootAccountUsageCount
 
