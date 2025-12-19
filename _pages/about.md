@@ -5,33 +5,35 @@ toc: true
 toc_sticky: true
 ---
 
-### 추천 시스템 모델링에 강한 Data Scientist 
-Python(Sklearn, Tensorflow-keras, Pytorch), AWS, Airflow 를 이용해 Data ETL 및 분석 업무
+### 데이터 분석과 클라우드 플랫폼을 함께 설계하는 Data Scientist
+Python 기반 데이터 분석 · AWS 데이터플랫폼 · 분석 자동화 · 보안·비용 최적화
 
-### Careear
-- **HDC 랩스** 기술연구소 데이터플랫폼팀(2021.01 ~)
+### Career
+- **HDC Labs** 기술연구소 데이터플랫폼팀 (2021.01 ~ )
 - **Alticast** 데이터사업본부 데이터엔지니어링팀 (2018.08 ~ 2020.12)
-- **퍼니웍** 데이터분석팀 (2017.08 ~ 2018.07) : Alticast 인수합병 
+- **퍼니웍** 데이터분석팀 (2017.08 ~ 2018.07)
 
 ### Strength
-- **IoT 데이터 표준화 인프라 구축 및 분석**
-  - 건물별 설비 데이터 통합 표준화 및 인프라 구축(AWS, Jenkins, springboot, postgresQL)
-  - "건축기기 예지보전시스템 개발을 위한 진동 데이터 수집 및 분석" 논문 작성
-- **추천 시스템 알고리즘 개발 및 논문 작성**
-  - "FiFM : Feature Importance Ranking과 Factorization Machines 결합 이중 네트워크 구조 추천시스템 알고리즘 연구"
-  - 성균관대학교 데이터사이언스융합학과 우수작 선정, 성균관대학원 논문경진대회 "제 2회 리서치 매터스" 우수작 수상
-- **IoT 에너지 절감 데이터 파이프라인 구축**
-  - 빌딩 에너지 시스템(BEMS) 최적 스케줄 추천 시스템 개발 (AWS, python-keras)
-  - 빌딩 설비 이상 탐지 시스템 데이터 파이프라인 구축(AWS, Airflow, python, Tableau)
-  - 아파트 단지 서버 통합 데이터 파이프라인 구축 (serverless, AWS, python, Airflow, Tableau)
-- **콘텐츠 추천 시스템 개발** 
-  - 실시간 로그데이터 (일평균 1.8억건) 분석에 기반한 추천 시스템 모델링 및 개발 (python, R, logpresso)
-  - 실시간 로그데이터(일평균 1.8억건)  분석에 기반한 추천 시스템 성과분석 모듈 모델링 및 개발 (python, ELK Stack)
-  - 음성 및 자연어 기반 솔루션 개발 (NLU, spring boot)
-- **IoT 데이터 분석 솔루션 개발**
-  - 에너지기술평가원 미세먼지 iot 데이터 전처리 및 분석 솔루션 모델링 및 개발(AWS, python)
-  - 차량 흡연 탐지 시스템 모델링 및 개발(AWS, python, spring boot)
-  - 블랙박스 사고 탐지 object detection 시스템 연구 개발(python opencv)
+- **데이터 표준화 및 분석 플랫폼 구축**
+  - IoT·업무·VOC 데이터 통합 표준화 및 통계 마트 설계
+  - 분석 자동화 파이프라인 구축 (Python, PostgreSQL, AWS)
+
+- **클라우드 기반 데이터 아키텍처 설계 및 운영**
+  - AWS 기반 분석·운영 인프라 구축 및 비용 최적화
+  - MemoryDB, RDS, EC2, Lambda 기반 서비스 인프라 설계
+
+- **분석 자동화 및 운영 효율화**
+  - 주간·월간 분석 리포트 자동 생성 및 배포
+  - 신규 사업소 데이터 자동 등록 및 처리 구조 설계
+
+- **보안·모니터링·운영 안정성 강화**
+  - AWS 통합 모니터링 및 자동 배포 체계 구축
+  - 인프라 보안 진단·조치 및 장애 복구 프로세스 정립
+
+- **추천 시스템 및 머신러닝 연구 경험**
+  - FiFM 기반 추천 알고리즘 연구 및 논문 수상
+  - 대규모 로그 기반 추천·성과 분석 시스템 개발
+
 - [프로젝트 경력 기술 바로가기](https://dasoldasol.github.io/project/)
 
 ### Education
