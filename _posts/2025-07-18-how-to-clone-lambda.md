@@ -9,18 +9,32 @@ categories:
 modified_date: 2025-07-18 09:36:28 +0900
 ---
 
-## 목표
+## 요약
 
-- 기존 함수: `insite-account-autosave`
-- 복제 대상 함수: `insite-account-autosave-multibuilding`
-- 복제 항목: 코드, 환경변수, 레이어, IAM 역할, VPC 설정 등
-- (2025-11-19 수정 사항) 1모듈 1역할의 보안정책을 위해, 역할은 재사용하지않고 복제하여 새로 만드는 것으로 변경
+AWS Lambda 함수를 복제할 때 코드뿐 아니라 환경변수, 레이어, VPC 설정, IAM 역할까지 함께 옮겨야 한다. 이 글에서는 두 가지 방법을 다룬다:
+
+- **수동 복제**: AWS CLI로 단계별로 설정을 확인하고 새 함수를 생성하는 방법
+- **자동화 스크립트**: 전체 과정을 한 번에 처리하는 셸 스크립트
+
+빠르게 복제하려면 [자동화 스크립트](#자동화-스크립트-shell-script) 섹션으로 이동하면 된다.
 
 ---
 
-## 1. 기존 함수 정보 확인
+## 목표
 
-### 환경변수, 레이어, VPC 등 확인
+| 항목 | 값 |
+|------|-----|
+| 기존 함수 | `insite-account-autosave` |
+| 복제 대상 함수 | `insite-account-autosave-multibuilding` |
+| 복제 항목 | 코드, 환경변수, 레이어, IAM 역할, VPC 설정 |
+
+> **2025-11-19 수정**: 1모듈 1역할의 보안정책을 위해, 역할은 재사용하지 않고 복제하여 새로 만드는 것으로 변경
+
+---
+
+## 1단계: 기존 함수 정보 확인 및 코드 다운로드
+
+복제 전에 기존 함수의 설정값을 확인한다. 아래 명령은 런타임, 역할, 핸들러, 타임아웃, 메모리, 환경변수, 레이어, VPC 설정을 한 번에 조회한다.
 
 ```bash
 aws lambda get-function-configuration \
@@ -28,9 +42,11 @@ aws lambda get-function-configuration \
   --query '{Runtime:Runtime,Role:Role,Handler:Handler,Timeout:Timeout,MemorySize:MemorySize,Environment:Environment,Layers:Layers,VpcConfig:VpcConfig,Description:Description}'
 ```
 
----
+출력된 값을 메모해 두거나, 터미널에 띄워둔 채로 다음 단계를 진행한다.
 
-## 2. 기존 함수 코드 다운로드
+### 코드 다운로드
+
+함수 코드의 S3 presigned URL을 조회한다.
 
 ```bash
 aws lambda get-function \
@@ -39,19 +55,21 @@ aws lambda get-function \
   --output text
 ```
 
-- 출력된 **S3 presigned URL**을 브라우저로 다운로드
-- 예: `https://awslambda-ap-northeast-2.s3.amazonaws.com/......`
-- 다운로드 받은 파일을 `lambda-code.zip` 으로 이름 변경
+출력 예시: `https://awslambda-ap-northeast-2.s3.amazonaws.com/......`
 
-또는 `wget` 으로 CloudShell에서 직접 다운로드:
+브라우저에서 URL을 열어 다운로드하거나, CloudShell에서 `wget`으로 직접 받을 수 있다.
 
 ```bash
 wget "https://...signed_url..." -O lambda-code.zip
 ```
 
+다운로드한 파일명이 다르다면 `lambda-code.zip`으로 변경해 둔다.
+
 ---
 
-## 3. 복제 함수 생성
+## 2단계: 복제 함수 생성
+
+1단계에서 확인한 설정값을 바탕으로 새 함수를 생성한다. 아래 명령에서 환경변수, 레이어 ARN, VPC 설정 등을 실제 값으로 교체해야 한다.
 
 ```bash
 aws lambda create-function \
@@ -81,34 +99,44 @@ aws lambda create-function \
   --description "복제함수 from insite-account-autosave"
 ```
 
-> ❗주의  
-> `--zip-file fileb://lambda-code.zip` 에서 `fileb://`는 **바이너리 파일 업로드 시 필수**  
-> `--environment` 전체는 작은 따옴표 `'`로 감싸야 CLI 파싱 오류가 없음
+> ❗ **주의**
+> - `--zip-file fileb://lambda-code.zip`에서 `fileb://`는 바이너리 파일 업로드 시 필수
+> - `--environment` 전체는 작은따옴표 `'`로 감싸야 CLI 파싱 오류가 없음
 
 ---
 
-## 4. 트리거 설정 (필요시)
+## 3단계: 트리거 설정 및 테스트
 
-예: EventBridge, CloudWatch, S3, API Gateway 등 기존 함수 트리거가 있다면 별도로 복제 필요
+### 트리거 설정 (필요시)
+
+기존 함수에 EventBridge, CloudWatch, S3, API Gateway 등 트리거가 있다면 별도로 복제해야 한다.
 
 ```bash
 aws lambda add-permission ...
 ```
 
----
+트리거 종류에 따라 명령이 다르므로, AWS 콘솔에서 기존 함수의 트리거를 확인 후 동일하게 설정한다.
 
-## 5. 테스트
+### 테스트
 
-- AWS Console → Lambda → `insite-account-autosave-multibuilding`  
-- 수동 테스트 or 기존 이벤트 샘플로 실행
-- 이제 `insite-account-autosave` 함수와 동일한 설정을 가진  `insite-account-autosave-multibuilding` 함수가 생성되었다.
+1. AWS Console → Lambda → `insite-account-autosave-multibuilding` 선택
+2. **테스트** 탭에서 기존 이벤트 샘플 또는 빈 이벤트로 실행
+3. 로그와 응답을 확인하여 정상 동작 여부 검증
 
+여기까지 완료하면 `insite-account-autosave`와 동일한 설정을 가진 `insite-account-autosave-multibuilding` 함수가 생성된 것이다.
 
 ---
 
 ## 자동화 스크립트 (Shell Script)
 
-복제 작업을 자동화하는 스크립트를 사용하면 편리하다. 아래는 전체 복제 과정을 자동화한 스크립트.
+위 과정을 매번 수동으로 하기 번거롭다면, 아래 스크립트로 한 번에 처리할 수 있다.
+
+### 스크립트가 수행하는 작업
+
+1. 기존 Lambda 함수의 설정(런타임, 핸들러, 환경변수, 레이어, VPC 등) 조회
+2. 함수 코드 ZIP 다운로드 (또는 Image URI 확인)
+3. 원본 IAM 역할을 복제하여 새 역할 생성 (1모듈 1역할 보안정책)
+4. 새 Lambda 함수 생성 및 새 역할 연결
 
 ### clone_lambda.sh
 
@@ -292,13 +320,19 @@ done
 echo "[완료] 새 Lambda 함수 '$TARGET_FUNCTION' 생성 및 새 역할 '$DST_ROLE' 연결 완료"
 ```
 
-> ⚠`jq` CLI가 필요. CloudShell에서는 기본 설치되어 있음
+> ⚠ **필수 도구**: `jq` CLI가 필요하다. AWS CloudShell에는 기본 설치되어 있음.
 
 ### 실행 방법
 
 ```bash
 chmod +x clone_lambda.sh
+./clone_lambda.sh <기존함수이름> <새함수이름>
+```
+
+예시:
+
+```bash
 ./clone_lambda.sh insite-account-autosave insite-account-autosave-multibuilding
 ```
 
----
+실행이 완료되면 새 Lambda 함수와 새 IAM 역할이 생성된다.
