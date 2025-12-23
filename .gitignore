@@ -1,0 +1,11 @@
+# Jekyll build artifacts
+_site/
+.sass-cache/
+.jekyll-cache/
+.bundle/
+
+# macOS
+.DS_Store
+
+# Editor / misc
+*.swp
