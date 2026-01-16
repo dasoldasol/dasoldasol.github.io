@@ -39,7 +39,7 @@ flowchart TB
         TAX[(voc_taxonomy<br/>분류 체계)]
     end
 
-    subgraph Training["학습 파이프라인 (nlp_model_ml.py)"]
+    subgraph Training["학습 파이프라인<br/>(nlp_model_ml.py)"]
         direction TB
         T1[검수 완료 데이터 로드]
         T2[텍스트 전처리<br/>Tokenization]
@@ -49,7 +49,7 @@ flowchart TB
         T1 --> T2 --> T3 --> T4
     end
 
-    subgraph Inference["추론 파이프라인 (nlp_model.py)"]
+    subgraph Inference["추론 파이프라인<br/>(nlp_model.py)"]
         direction TB
         I1[VOC 데이터 추출]
         I2[파인튜닝 모델 로드]
