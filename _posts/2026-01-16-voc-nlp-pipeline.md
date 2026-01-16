@@ -6,7 +6,7 @@ toc_sticky: true
 categories:
 - DataPipeline
 - NLP
-- MachineLearning
+- AI
 modified_date: 2026-01-16 09:36:28 +0900
 ---
 
@@ -670,26 +670,30 @@ s3://hdcl-csp-prod/stat/voc/
 
 ## Human-in-the-loop 워크플로우
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                    Human-in-the-loop KoBERT 파이프라인                        │
-└─────────────────────────────────────────────────────────────────────────────┘
-
-    ┌──────────┐      ┌──────────┐      ┌──────────┐      ┌──────────┐
-    │ 1. 추론   │ ──▶ │ 2. 검수   │ ──▶ │ 3. 반영   │ ──▶ │ 4. 학습   │
-    │ (full)   │      │          │      │ (refresh)│      │          │
-    │          │      │          │      │          │      │          │
-    │ nlp_     │      │ Google   │      │ HTML     │      │ nlp_     │
-    │ model.py │      │ Sheets   │      │ 재생성   │      │ model_   │
-    │          │      │          │      │          │      │ ml.py    │
-    └──────────┘      └──────────┘      └──────────┘      └──────────┘
-         │                 │                 │                 │
-         ▼                 ▼                 ▼                 ▼
-    ┌──────────┐      ┌──────────┐      ┌──────────┐      ┌──────────┐
-    │ KoBERT   │      │ 수동     │      │ 검수된   │      │ KoBERT   │
-    │ 자동     │      │ 검수     │      │ 결과로   │      │ 파인튜닝 │
-    │ 태깅     │      │ 완료     │      │ 리포트   │      │ (정확도↑)│
-    └──────────┘      └──────────┘      └──────────┘      └──────────┘
+```mermaid
+flowchart LR
+    subgraph Step1["1. 추론 (full)"]
+        A1[nlp_model.py]
+        A2[KoBERT자동 태깅]
+    end
+    
+    subgraph Step2["2. 검수"]
+        B1[Google Sheets]
+        B2[수동 검수완료]
+    end
+    
+    subgraph Step3["3. 반영 (refresh)"]
+        C1[HTML 재생성]
+        C2[검수된결과로 리포트]
+    end
+    
+    subgraph Step4["4. 학습"]
+        D1[nlp_model_ml.py]
+        D2[KoBERT파인튜닝정확도↑]
+    end
+    
+    Step1 --> Step2 --> Step3 --> Step4
+    Step4 -.->|다음 월| Step1
 ```
 
 **월간 운영 사이클:**
