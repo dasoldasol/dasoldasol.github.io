@@ -39,27 +39,34 @@ flowchart TB
         TAX[(voc_taxonomy<br/>분류 체계)]
     end
 
-    subgraph Training["학습 파이프라인<br/>(nlp_model_ml.py)"]
+    subgraph Training[" "]
         direction TB
+        TTitle[["학습 파이프라인<br/>(nlp_model_ml.py)"]]
         T1[검수 완료 데이터 로드]
         T2[텍스트 전처리<br/>Tokenization]
         T3[KoBERT 파인튜닝<br/>주제/작업유형 분류]
         T4[모델 저장<br/>S3 + Local]
-        
+
+        TTitle ~~~ T1
         T1 --> T2 --> T3 --> T4
     end
 
-    subgraph Inference["추론 파이프라인<br/>(nlp_model.py)"]
+    subgraph Inference[" "]
         direction TB
+        ITitle[["추론 파이프라인<br/>(nlp_model.py)"]]
         I1[VOC 데이터 추출]
         I2[파인튜닝 모델 로드]
         I3[텍스트 전처리]
         I4[자동 태깅<br/>주제/작업유형 분류]
         I5[태깅 CSV 저장]
-        
+
+        ITitle ~~~ I1
         I1 --> I3 --> I4 --> I5
         I2 --> I4
     end
+
+    style TTitle fill:#e1f5fe,stroke:#01579b
+    style ITitle fill:#fff3e0,stroke:#e65100
 
     subgraph Batch["월간 배치 오케스트레이터 (run_monthly.py)"]
         direction TB
