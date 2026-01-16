@@ -32,6 +32,7 @@ modified_date: 2026-01-16 09:36:28 +0900
 ## 전체 아키텍처
 
 ```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 30, 'rankSpacing': 40}}}%%
 flowchart TB
     subgraph DataSource["데이터 소스"]
         DB[(PostgreSQL<br/>VOC 테이블)]
