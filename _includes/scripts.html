@@ -26,3 +26,17 @@
     <script src="{{ script | relative_url }}"></script>
   {% endfor %}
 {% endif %}
+
+<!-- Mermaid -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: false });
+  document.querySelectorAll('pre code.language-mermaid').forEach(function(code) {
+    var pre = code.parentNode;
+    var div = document.createElement('div');
+    div.className = 'mermaid';
+    div.textContent = code.textContent;
+    pre.parentNode.replaceChild(div, pre);
+  });
+  mermaid.init();
+</script>
