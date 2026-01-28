@@ -1,6 +1,6 @@
 ---
-title: "[DevOps] Jenkins + GitLab + Docker 기반 CI/CD 파이프라인 구축 가이드 (사내 개발서버)"
-excerpt: "GitLab Push 이벤트를 트리거로 Jenkins가 사내 서버에 파일을 전송하고 Docker 이미지를 빌드하는 CI/CD 파이프라인 구축 절차를 정리한 문서이다."
+title: "[DevOps] Jenkins + GitLab + Docker 기반 CI/CD 파이프라인 구축 가이드"
+excerpt: "GitLab Push 이벤트를 트리거로 Jenkins가 서버에 파일을 전송하고 Docker 이미지를 빌드하는 CI/CD 파이프라인 구축 절차를 정리한 문서이다."
 toc: true
 categories:
   - DevOps
