@@ -120,16 +120,14 @@ flowchart LR
     subgraph ENTRYPOINT["entrypoint.sh"]
         E0["source .env.${ENV}"]
         E1{"실행 모드?"}
-        E2["batch 모드<br/>python batch/run_monthly.py"]
-        E3["scheduler 모드<br/>python batch/scheduler.py"]
-        E4["api 모드<br/>uvicorn api.main:app"]
+        E2["scheduler 모드<br/>python batch/scheduler.py<br/>(내부 subprocess로 배치 실행)"]
+        E3["api 모드<br/>uvicorn api.main:app"]
     end
 
     D1 --> D2 --> D3 --> D4 --> D5 --> D6
     D6 --> E0 --> E1
-    E1 -->|"batch"| E2
-    E1 -->|"scheduler"| E3
-    E1 -->|"api"| E4
+    E1 -->|"scheduler"| E2
+    E1 -->|"api"| E3
 ```
 
 ---
