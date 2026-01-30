@@ -93,19 +93,21 @@ flowchart TB
         subgraph EC2["EC2 Instance"]
             E["deploy.sh 실행"]
             F["docker pull"]
-            G[("insite-scheduler<br/>(스케줄러 컨테이너)")]
+            subgraph MODES["실행 모드"]
+                G["scheduler<br/>(상시 실행, 매월 1일 02:00 배치)"]
+                H["api<br/>(API 서버, 향후)"]
+            end
         end
     end
 
     A -->|"git push"| B
     B -->|"Webhook"| C
     C --> C1 --> C2 --> C3 --> C4 --> C5
-    C2 -->|"docker build"| D
     C3 -->|"docker push"| D
     C4 -->|"SSM send-command"| E
     E --> F
     F -->|"docker pull"| D
-    F -->|"docker run scheduler"| G
+    F -->|"docker run"| G
 ```
 
 ## 개발서버 vs 스테이징/운영 비교
