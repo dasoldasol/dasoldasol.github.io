@@ -13,7 +13,7 @@ modified_date: 2026-01-26 09:00:00 +0900
 
 GitLab 저장소의 develop 브랜치에 Push가 발생하면, Jenkins가 자동으로 소스 파일을 사내 개발 서버로 전송하고 Docker 이미지를 빌드하는 CI/CD 파이프라인을 구축한다.
 
-본 문서는 **sshPublisher 플러그인**을 사용한 파일 전송 방식과 **batch/api 듀얼 모드** Docker 이미지 구성을 다루며, 월간 배치 작업을 위한 Cron 설정까지 포함한다.
+본 문서는 **sshPublisher 플러그인**을 사용한 파일 전송 방식과 **batch/scheduler/api 세 가지 모드** Docker 이미지 구성을 다루며, APScheduler 기반 스케줄러 컨테이너를 통한 월간 배치 자동화까지 포함한다.
 
 본 문서의 모든 IP/경로/인증정보는 블로그 공개를 위해 플레이스홀더로 마스킹했다.
 
@@ -47,14 +47,15 @@ GitLab 저장소의 develop 브랜치에 Push가 발생하면, Jenkins가 자동
 
 ```
 <PROJECT_PATH>/
+├── .dockerignore            # Docker 빌드 제외 파일 목록
 ├── .env.dev                 # 환경변수 파일
 ├── Dockerfile               # Docker 이미지 빌드 정의
-├── entrypoint.sh            # 컨테이너 실행 모드 선택 (batch/api)
+├── entrypoint.sh            # 컨테이너 실행 모드 선택 (batch/scheduler/api)
 ├── requirements.txt         # Python 패키지 목록
-├── insite-analysis.sh       # Docker 빌드 스크립트
-├── cron_monthly.sh          # 월간 배치 실행 스크립트
+├── insite-analysis.sh       # Docker 빌드 + 스케줄러 재시작 스크립트
 ├── batch/                   # 배치 처리 코드
-│   └── run_monthly.py       # 배치 메인 스크립트
+│   ├── run_monthly.py       # 배치 메인 스크립트
+│   └── scheduler.py         # APScheduler 기반 월간 스케줄러
 ├── output/                  # 출력 파일 (볼륨 마운트)
 ├── logs/                    # 로그 파일 (볼륨 마운트)
 ├── fonts/                   # 폰트 파일 (볼륨 마운트)
@@ -85,9 +86,12 @@ flowchart TB
 
     subgraph DEVSERVER["개발 서버<br/><DEV_SERVER_IP>"]
         D["파일 수신<br/>batch/, Dockerfile,<br/>entrypoint.sh, requirements.txt"]
-        E["insite-analysis.sh<br/>(Docker 빌드 스크립트)"]
+        E["insite-analysis.sh<br/>(Docker 빌드 + 스케줄러 재시작)"]
         F[["insite-analysis-dev:latest<br/>(Docker Image)"]]
-        G[("컨테이너 실행<br/>batch 또는 api 모드")]
+        subgraph MODES["실행 모드"]
+            G["scheduler<br/>(상시 실행, 매월 1일 02:00 배치)"]
+            H["api<br/>(API 서버, 향후)"]
+        end
     end
 
     A -->|"git push"| B
@@ -109,19 +113,23 @@ flowchart LR
         D2["openjdk-17-jdk-headless<br/>(KoNLPy용)"]
         D3["requirements.txt 설치"]
         D4["batch/ 복사"]
-        D5["entrypoint.sh 복사"]
+        D5[".env.* 복사"]
+        D6["entrypoint.sh 복사"]
     end
 
     subgraph ENTRYPOINT["entrypoint.sh"]
+        E0["source .env.${ENV}"]
         E1{"실행 모드?"}
         E2["batch 모드<br/>python batch/run_monthly.py"]
-        E3["api 모드<br/>uvicorn api.main:app"]
+        E3["scheduler 모드<br/>python batch/scheduler.py"]
+        E4["api 모드<br/>uvicorn api.main:app"]
     end
 
-    D1 --> D2 --> D3 --> D4 --> D5
-    D5 --> E1
+    D1 --> D2 --> D3 --> D4 --> D5 --> D6
+    D6 --> E0 --> E1
     E1 -->|"batch"| E2
-    E1 -->|"api"| E3
+    E1 -->|"scheduler"| E3
+    E1 -->|"api"| E4
 ```
 
 ---
@@ -145,7 +153,16 @@ Jenkins 관리 → System → Publish over SSH 섹션에서 개발 서버 정보
 | Username | (서버 접속 계정) |
 | Remote Directory | `/` |
 
-## 3. 개발 서버 Docker 설치
+## 3. requirements.txt에 APScheduler 추가
+
+스케줄러 모드를 사용하려면 APScheduler 패키지가 필요하다.
+
+```
+# requirements.txt에 추가
+APScheduler
+```
+
+## 4. 개발 서버 Docker 설치
 
 ```bash
 # Ubuntu 20.04 기준
@@ -181,9 +198,12 @@ mkdir -p <PROJECT_PATH>/.credentials
 ```dockerfile
 FROM python:3.11-slim-bookworm
 
-# KoNLPy용 Java 설치
+# KoNLPy용 Java 및 한글 폰트 설치
 RUN apt-get update && apt-get install -y \
     openjdk-17-jdk-headless \
+    fonts-nanum \
+    fontconfig \
+    && fc-cache -fv \
     && rm -rf /var/lib/apt/lists/*
 
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
@@ -197,6 +217,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 소스 복사
 COPY batch/ ./batch/
 # COPY api/ ./api/  # 향후 API 추가 시
+
+# 환경설정 복사 (CRLF → LF 변환)
+COPY .env.* ./
+RUN sed -i 's/\r$//' .env.*
 
 # 엔트리포인트 (CRLF → LF 변환)
 COPY entrypoint.sh .
@@ -213,59 +237,222 @@ ENTRYPOINT ["./entrypoint.sh"]
 |------|------|
 | Base Image | `python:3.11-slim-bookworm` - 경량 Python 이미지 |
 | Java 설치 | KoNLPy(한국어 NLP 라이브러리)가 JDK를 필요로 함 |
+| 한글 폰트 | `fonts-nanum` - HTML 리포트 생성 시 한글 렌더링용 |
+| .env.* 복사 | 환경별 설정 파일을 이미지에 포함 |
 | CRLF → LF | Windows에서 작성 시 줄바꿈 문자 이슈 방지 |
-| ENTRYPOINT | 컨테이너 실행 시 모드 선택 가능 (batch/api) |
+| ENTRYPOINT | 컨테이너 실행 시 모드 선택 가능 (batch/scheduler/api) |
 
-## 3. entrypoint.sh 작성
+## 3. .dockerignore 작성
 
-컨테이너 실행 모드를 선택하는 스크립트이다.
+Docker 빌드 시 제외할 파일을 정의한다. `.env.dev`, `.env.stg`, `.env.prd`는 이미지에 포함되어야 하므로 제외하지 않는다.
+
+```
+.git
+.gitignore
+.dockerignore
+Dockerfile
+*.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# 환경설정 (.env.local만 제외, .env.dev/.stg/.prd는 포함)
+.env
+.env.local
+
+# 로컬 출력물
+output/
+logs/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+```
+
+### 포인트
+
+| 파일 | Docker 이미지 포함 여부 |
+|------|------------------------|
+| `.env.dev`, `.env.stg`, `.env.prd` | O (환경별 설정) |
+| `.env`, `.env.local` | X (로컬 전용) |
+| `output/`, `logs/` | X (볼륨 마운트) |
+
+## 4. entrypoint.sh 작성
+
+컨테이너 실행 모드를 선택하고 환경변수를 로딩하는 스크립트이다.
 
 ```bash
 #!/bin/bash
 set -e
+
+# ENV 환경변수 기반으로 .env 파일 로딩
+if [ -n "${ENV:-}" ] && [ -f "/app/.env.${ENV}" ]; then
+    echo "Loading environment: ${ENV}"
+    set -a
+    source "/app/.env.${ENV}"
+    set +a
+fi
 
 case "$1" in
     batch)
         shift
         exec python batch/run_monthly.py "$@"
         ;;
+    scheduler)
+        shift
+        exec python -m batch.scheduler "$@"
+        ;;
     api)
         shift
         exec uvicorn api.main:app --host 0.0.0.0 --port 8000 "$@"
         ;;
     *)
-        echo "Usage: docker run <image> [batch|api] [args...]"
-        echo "  batch: 월간 VOC 분석 배치 실행"
-        echo "  api:   API 서버 실행 (포트 8000)"
+        echo "Usage: docker run -e ENV=dev <image> [batch|scheduler|api] [args...]"
+        echo "  batch:     월간 VOC 분석 배치 실행"
+        echo "  scheduler: APScheduler 기반 월간 스케줄러 (계속 실행)"
+        echo "  api:       API 서버 실행 (포트 8000)"
         exit 1
         ;;
 esac
 ```
 
+### 환경변수 로딩 방식
+
+| 항목 | 설명 |
+|------|------|
+| ENV 변수 | `docker run -e ENV=dev`로 환경 지정 |
+| .env 파일 | Docker 이미지 내 `/app/.env.${ENV}` 파일을 source |
+| set -a | source한 변수를 export하여 Python에서 `os.getenv()`로 접근 가능 |
+
 ### 실행 예시
 
 ```bash
 # 배치 실행 (실행 후 종료)
-docker run --rm --env-file .env.dev insite-analysis-dev:latest batch --all-buildings
+docker run --rm -e ENV=dev insite-analysis-dev:latest batch --all-buildings
+
+# 스케줄러 실행 (계속 실행, 매월 1일 02:00 KST 자동 배치)
+docker run -d --name insite-scheduler -e ENV=dev insite-analysis-dev:latest scheduler
 
 # API 서버 실행 (백그라운드)
-docker run -d --env-file .env.dev -p 8000:8000 insite-analysis-dev:latest api
+docker run -d -e ENV=dev -p 8000:8000 insite-analysis-dev:latest api
 ```
 
-## 4. Docker 빌드 스크립트 작성
+## 5. scheduler.py 작성
 
-개발 서버에 `insite-analysis.sh`를 생성한다.
+APScheduler 기반 월간 스케줄러이다. 컨테이너가 계속 실행되면서 매월 1일 02:00 KST에 배치를 자동 실행한다.
+
+```python
+#!/usr/bin/env python3
+"""
+VOC 분석 스케줄러
+매월 1일 02:00 KST에 전체 빌딩 배치 실행
+"""
+import subprocess
+import logging
+from datetime import datetime
+from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.triggers.cron import CronTrigger
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+
+def run_batch():
+    """전체 빌딩 배치 실행"""
+    logger.info("=" * 50)
+    logger.info("Starting monthly batch job...")
+
+    run_id = f"scheduler_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+
+    cmd = [
+        "python", "-m", "batch.run_monthly",
+        "--all-buildings",
+        "--auto-month",
+        "--run-id-prefix", run_id
+    ]
+
+    logger.info(f"Command: {' '.join(cmd)}")
+
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        logger.info(f"Batch completed. Return code: {result.returncode}")
+        if result.stdout:
+            logger.info(f"Output (last 2000 chars):\n{result.stdout[-2000:]}")
+        if result.returncode != 0 and result.stderr:
+            logger.error(f"Error:\n{result.stderr[-2000:]}")
+    except Exception as e:
+        logger.error(f"Batch failed with exception: {e}")
+
+    logger.info("=" * 50)
+
+
+def main():
+    scheduler = BlockingScheduler(timezone="Asia/Seoul")
+
+    # 매월 1일 02:00 KST
+    scheduler.add_job(
+        run_batch,
+        CronTrigger(day=1, hour=2, minute=0),
+        id="monthly_batch",
+        name="Monthly VOC Analysis Batch"
+    )
+
+    logger.info("=" * 50)
+    logger.info("VOC Analysis Scheduler Started")
+    logger.info("Schedule: Every 1st day of month at 02:00 KST")
+    logger.info("=" * 50)
+
+    try:
+        scheduler.start()
+    except (KeyboardInterrupt, SystemExit):
+        logger.info("Scheduler stopped.")
+
+
+if __name__ == "__main__":
+    main()
+```
+
+### APScheduler vs Cron 비교
+
+| 항목 | Cron (전통 방식) | APScheduler (채택) |
+|------|-------------|-------------------|
+| 설정 위치 | 호스트 crontab | Python 코드 내 |
+| 컨테이너 | 매번 새로 생성 | 스케줄러 컨테이너 상시 실행 |
+| 로그 관리 | cron 로그 파일 | Docker 로그 (`docker logs`) |
+| 재배포 시 | crontab 수동 등록 필요 | 스크립트가 자동 재시작 |
+| 타임존 | 서버 시스템 시간 | 코드에서 명시적 지정 (KST) |
+
+## 6. Docker 빌드 스크립트 작성
+
+개발 서버에 `insite-analysis.sh`를 생성한다. 배포 시 스케줄러 컨테이너를 자동으로 재시작한다.
 
 ```bash
 #!/bin/bash
 cd <PROJECT_PATH>
 
-# 기존 컨테이너 정지 및 삭제
-docker stop insite-analysis-dev || true
-docker rm insite-analysis-dev || true
+# 기존 스케줄러 컨테이너 정지 및 삭제
+docker stop insite-scheduler 2>/dev/null || true
+docker rm insite-scheduler 2>/dev/null || true
 
-# 이미지 빌드
+# 이미지 빌드 (캐시 문제 시 --no-cache 옵션 사용)
 docker build -t insite-analysis-dev:latest .
+
+# 스케줄러 컨테이너 시작
+docker run -d --name insite-scheduler -e ENV=dev \
+  -v <PROJECT_PATH>/output:/app/output \
+  -v <PROJECT_PATH>/logs:/app/logs \
+  -v <PROJECT_PATH>/.credentials:/app/.credentials \
+  -v <PROJECT_PATH>/fonts:/app/fonts \
+  -v ~/.aws:/root/.aws:ro \
+  insite-analysis-dev:latest scheduler
 
 echo "Deploy completed: $(date)"
 ```
@@ -275,7 +462,14 @@ echo "Deploy completed: $(date)"
 chmod +x <PROJECT_PATH>/insite-analysis.sh
 ```
 
-## 5. Jenkins 파이프라인 생성
+### 스크립트 동작
+
+1. 기존 `insite-scheduler` 컨테이너 정지 및 삭제
+2. Docker 이미지 새로 빌드
+3. 스케줄러 컨테이너 백그라운드 실행 (`-d`)
+4. 스케줄러가 매월 1일 02:00 KST에 배치 자동 실행
+
+## 7. Jenkins 파이프라인 생성
 
 Jenkins → 새 Item → Pipeline 선택 → `insite-analysis-dev-pipeline` 생성
 
@@ -332,7 +526,7 @@ pipeline {
 | execCommand | `insite-analysis.sh` | 전송 후 실행할 명령 |
 | execTimeout | 600000 | 타임아웃 (10분) |
 
-## 6. GitLab Webhook 설정
+## 8. GitLab Webhook 설정
 
 GitLab → 프로젝트 → Settings → Webhooks
 
@@ -350,34 +544,6 @@ MR 승인 워크플로우용:
 |---------|-----|------|
 | Merge Request Events | `http://<DEV_SERVER_IP>:3456/webhook/mr` | MR 승인 업무 생성 |
 | Merge Request Events | `<DOORAY_WEBHOOK_URL>` | 채널 알림 |
-
-## 7. 월간 배치 Cron 설정
-
-### cron_monthly.sh 작성
-
-```bash
-#!/bin/bash
-BASE_DIR="<PROJECT_PATH>"
-
-docker run --rm --env-file ${BASE_DIR}/.env.dev \
-  -v ${BASE_DIR}/output:/app/output \
-  -v ${BASE_DIR}/logs:/app/logs \
-  -v ${BASE_DIR}/.credentials:/app/.credentials \
-  -v ${BASE_DIR}/fonts:/app/fonts \
-  -v ~/.aws:/root/.aws:ro \
-  insite-analysis-dev:latest batch --all-buildings --auto-month --run-id-prefix cron
-```
-
-### crontab 등록
-
-```bash
-crontab -e
-```
-
-추가할 내용 (매월 1일 02:00 KST 실행):
-```
-0 2 1 * * <PROJECT_PATH>/cron_monthly.sh >> <PROJECT_PATH>/logs/cron_monthly.log 2>&1
-```
 
 ---
 
@@ -417,12 +583,28 @@ docker images | grep insite-analysis
 # insite-analysis-dev   latest   abc123def456   2 minutes ago   1.2GB
 ```
 
-## 4. 배치 실행 테스트
+## 4. 스케줄러 컨테이너 확인
 
 ```bash
 # 개발 서버에서
-docker run --rm --env-file <PROJECT_PATH>/.env.dev \
+docker ps | grep insite-scheduler
+# 컨테이너가 실행 중인지 확인
+
+docker logs insite-scheduler
+# Scheduler started. Waiting for scheduled jobs...
+# Next run: 1st day of each month at 02:00 KST
+```
+
+## 5. 배치 실행 테스트
+
+```bash
+# 개발 서버에서 (수동 배치 실행)
+docker run --rm -e ENV=dev \
   -v <PROJECT_PATH>/output:/app/output \
+  -v <PROJECT_PATH>/logs:/app/logs \
+  -v <PROJECT_PATH>/.credentials:/app/.credentials \
+  -v <PROJECT_PATH>/fonts:/app/fonts \
+  -v ~/.aws:/root/.aws:ro \
   insite-analysis-dev:latest batch --help
 ```
 
@@ -456,6 +638,24 @@ docker run --rm --env-file <PROJECT_PATH>/.env.dev \
 - Windows에서 작성 시 CRLF 줄바꿈 문제 발생
 - Dockerfile에서 `sed -i 's/\r$//'` 처리가 되어 있는지 확인
 
+## 환경변수 로딩 안 됨
+
+**증상**: Python에서 `os.getenv()`가 None 반환
+
+**해결**:
+1. Docker 실행 시 `-e ENV=dev` 옵션 확인
+2. `.env.dev` 파일이 Docker 이미지에 포함되었는지 확인: `docker run --rm --entrypoint cat <image> /app/.env.dev`
+3. entrypoint.sh에서 `set -a` / `set +a`로 export 처리 확인
+
+## 스케줄러 컨테이너가 종료됨
+
+**증상**: `docker ps`에서 insite-scheduler가 보이지 않음
+
+**해결**:
+1. `docker logs insite-scheduler` 또는 `docker logs $(docker ps -a -q --filter name=insite-scheduler)`로 로그 확인
+2. APScheduler 또는 Python 코드 오류 확인
+3. 수동 재시작: `docker start insite-scheduler` 또는 빌드 스크립트 재실행
+
 ---
 
 # 결론
@@ -464,7 +664,8 @@ GitLab + Jenkins + Docker 기반 CI/CD 파이프라인을 구축하면 develop �
 
 핵심 포인트:
 1. **sshPublisher**: Jenkins에서 원격 서버로 파일 전송 및 스크립트 실행
-2. **듀얼 모드 Docker**: entrypoint.sh로 batch/api 모드 선택
-3. **Cron 연동**: 월간 배치 작업 자동화
+2. **세 가지 실행 모드**: entrypoint.sh로 batch/scheduler/api 모드 선택
+3. **APScheduler 스케줄러**: 컨테이너 기반 월간 배치 자동화 (Cron 불필요)
+4. **환경변수 로딩**: Docker 이미지에 .env.* 포함, `-e ENV=dev`로 환경 지정
 
 향후 stage/prod 환경은 ECR + SSM 기반으로 별도 파이프라인을 구성할 예정이다.
