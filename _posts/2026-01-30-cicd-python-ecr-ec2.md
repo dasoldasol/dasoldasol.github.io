@@ -2,6 +2,7 @@
 title: "[DevOps] Jenkins + GitLab + ECR + EC2 기반 CI/CD 파이프라인 구축 가이드"
 excerpt: "GitLab Push 이벤트를 트리거로 Jenkins가 Docker 이미지를 ECR에 푸시하고 SSM을 통해 EC2에 배포하는 CI/CD 파이프라인 구축 절차를 정리한 문서이다."
 toc: true
+classes: wide
 categories:
   - DevOps
   - CI/CD
