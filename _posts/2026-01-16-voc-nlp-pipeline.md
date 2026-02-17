@@ -1,5 +1,5 @@
 ---
-title: "[데이터파이프라인] VOC 분류 시스템 - KoBERT 기반 고객 피드백 자동 분류"
+title: "[데이터파이프라인] VOC 분류 시스템 - AI 기반 고객 피드백 자동 분류"
 excerpt: ""
 toc: true
 toc_sticky: true
@@ -27,7 +27,7 @@ modified_date: 2026-01-16 09:36:28 +0900
   - 드롭다운 메뉴로 분류 체계(taxonomy) 선택 → 오분류 항목만 수정
   - 코드 수정 없이 브라우저에서 바로 검수 가능
 - 검수 완료 후 refresh 모드로 HTML 재생성하여 검수 결과 즉각 반영
-- 축적된 검수 데이터로 매월 KoBERT 모델 재학습 → 자동 태깅 정확도 지속 개선 (Human-in-the-loop)
+- 축적된 검수 데이터로 매월 AI 모델 재학습 → 자동 태깅 정확도 지속 개선 (Human-in-the-loop)
 
 ## 전체 아키텍처
 
