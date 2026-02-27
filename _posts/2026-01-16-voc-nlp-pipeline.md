@@ -4,6 +4,7 @@ excerpt: ""
 toc: true
 toc_sticky: true
 classes: wide
+author_profile: false
 categories:
 - DataPipeline
 - NLP
