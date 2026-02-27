@@ -3,6 +3,7 @@ title: "[데이터파이프라인] VOC 분류 시스템 - 실시간 분류 API �
 excerpt: ""
 toc: true
 toc_sticky: true
+classes: wide
 categories:
 - DataPipeline
 - NLP
@@ -10,7 +11,7 @@ categories:
 date: 2026-02-27 09:00:00 +0900
 ---
 
-> 전편: [[데이터파이프라인] VOC 분류 시스템 - 키워드+AI 하이브리드 자동 분류](2026-02-19-voc-nlp-pipeline.md)
+> 전편: [[데이터파이프라인] VOC 분류 시스템 - AI 기반 고객 피드백 자동 분류](https://dasoldasol.github.io/datapipeline/nlp/ai/voc-nlp-pipeline/)
 
 ## 배경
 
