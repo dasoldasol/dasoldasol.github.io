@@ -3,6 +3,7 @@ title: "[데이터파이프라인] VOC 분류 시스템 - AI 기반 고객 피�
 excerpt: ""
 toc: true
 toc_sticky: true
+classes: wide
 categories:
 - DataPipeline
 - NLP
@@ -10,6 +11,10 @@ categories:
 date: 2026-01-16 09:36:28 +0900
 modified_date: 2026-02-27 09:00:00 +0900
 ---
+
+<style>
+.mermaid svg { width: 100% !important; max-width: 100% !important; height: auto !important; }
+</style>
 
 ## 목적
 - 빌딩 관리 서비스에서 수집되는 고객 VOC(Voice of Customer) 데이터를 AI 기반으로 자동 분류(VOC주제, 작업유형)
@@ -44,31 +49,31 @@ flowchart LR
     end
 
     subgraph SYS1["[월간 배치 - full]"]
-        B["키워드+AI 하이브리드\n자동 태깅"]
+        B["키워드+AI 하이브리드<br/>자동 태깅"]
     end
 
     subgraph U2["[작업자]"]
-        C["VOC 확인\n+ 처리"]
+        C["VOC 확인<br/>+ 처리"]
     end
 
     subgraph U3["[도메인 전문가]"]
-        E["Google Sheets 검수\n주제/작업유형 수동 확정"]
+        E["Google Sheets 검수<br/>주제/작업유형 수동 확정"]
     end
 
     subgraph SYS3["[refresh 배치]"]
-        G["is_reviewed=TRUE\nDB UPSERT"]
+        G["is_reviewed=TRUE<br/>DB UPSERT"]
     end
 
     subgraph SYS2["[다음 full 배치]"]
-        F["AI 모델 재학습\n정확도 향상"]
+        F["AI 모델 재학습<br/>정확도 향상"]
     end
 
-    A -->|"주제/작업유형\n자동 분류"| B
+    A -->|"주제/작업유형 자동 분류"| B
     B -->|"classify_source=batch"| C
     C --> E
     E -->|"검수 완료"| G
     G -->|"classify_source=refresh"| F
-    F -.->|"다음 배치부터\n개선된 모델 적용"| B
+    F -.->|"다음 배치부터 개선된 모델 적용"| B
 ```
 
 | 단계 | 주체 | 내용 | classify_source |
@@ -87,11 +92,11 @@ flowchart TB
     subgraph DataSource["데이터 소스"]
         DB[(PostgreSQL VOC)]
         TAX[(voc_taxonomy)]
-        VC[(voc_classification\nis_reviewed=TRUE)]
+        VC[(voc_classification<br/>is_reviewed=TRUE)]
     end
 
     subgraph Training["AI 학습 - ai_classifier.py"]
-        T1["voc_classification.is_reviewed=TRUE\n전체 누적 데이터 로드"]
+        T1["voc_classification.is_reviewed=TRUE<br/>전체 누적 데이터 로드"]
         T2[데이터 전처리]
         T3["AI 모델 학습"]
         T4[모델 저장]
@@ -100,15 +105,15 @@ flowchart TB
 
     subgraph Inference["추론 파이프라인 - Two-pass"]
         I1[VOC 데이터 추출]
-        I2["1차: 키워드 태깅\nnlp_model.py + voc_taxonomy"]
-        I3["2차: AI 오버레이\nai_classifier.py"]
-        I4["주제: 키워드 vs AI 점수 비교\n작업유형: AI 전면 교체"]
+        I2["1차: 키워드 태깅<br/>nlp_model.py + voc_taxonomy"]
+        I3["2차: AI 오버레이<br/>ai_classifier.py"]
+        I4["주제: 키워드 vs AI 점수 비교<br/>작업유형: AI 전면 교체"]
         I5[태깅 CSV 저장]
         I1 --> I2 --> I3 --> I4 --> I5
     end
 
     subgraph Batch["월간 배치 오케스트레이터 - run_monthly.py"]
-        B1["APScheduler\n매월 1일 02:00 KST - full\n매월 15일 02:00 KST - refresh"]
+        B1["APScheduler<br/>매월 1일 02:00 KST - full<br/>매월 15일 02:00 KST - refresh"]
         B2["run_monthly.py --classify ai-hybrid"]
         B3{실행 모드?}
         B1 --> B2 --> B3

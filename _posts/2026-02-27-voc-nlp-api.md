@@ -11,6 +11,10 @@ categories:
 date: 2026-02-27 09:00:00 +0900
 ---
 
+<style>
+.mermaid svg { width: 100% !important; max-width: 100% !important; height: auto !important; }
+</style>
+
 > 전편: [[데이터파이프라인] VOC 분류 시스템 - AI 기반 고객 피드백 자동 분류](https://dasoldasol.github.io/datapipeline/nlp/ai/voc-nlp-pipeline/)
 
 ## 배경
@@ -30,34 +34,34 @@ flowchart LR
     end
 
     subgraph SYS1["[실시간 API]"]
-        B["1차 분류\nPOST /classify\napi_models.pkl\n(reply 제외)"]
-        D["2차 분류 업데이트\nPOST /classify-with-reply\nbatch_models.pkl\n(reply 포함)"]
+        B["1차 분류<br/>POST /classify<br/>api_models.pkl<br/>(reply 제외)"]
+        D["2차 분류 업데이트<br/>POST /classify-with-reply<br/>batch_models.pkl<br/>(reply 포함)"]
     end
 
     subgraph U2["[작업자]"]
-        C["VOC 확인\n+ 답변 작성"]
+        C["VOC 확인<br/>+ 답변 작성"]
     end
 
     subgraph U3["[도메인 전문가]"]
-        E["Google Sheets 검수\n주제/작업유형 수동 확정"]
+        E["Google Sheets 검수<br/>주제/작업유형 수동 확정"]
     end
 
     subgraph SYS3["[refresh 배치]"]
-        G["is_reviewed=TRUE\nDB UPSERT"]
+        G["is_reviewed=TRUE<br/>DB UPSERT"]
     end
 
     subgraph SYS2["[월간 배치 - full]"]
-        F["AI 모델 재학습\nfetch_reviewed_training_data()\nbatch_models + api_models"]
+        F["AI 모델 재학습<br/>fetch_reviewed_training_data()<br/>batch_models + api_models"]
     end
 
-    A -->|"주제/작업유형\n예상 분류"| B
+    A -->|"주제/작업유형 예상 분류"| B
     B -->|"classify_source=api"| C
     C -->|"reply 작성"| D
     D -->|"classify_source=api_reply"| E
     E -->|"검수 완료"| G
     G -->|"classify_source=refresh"| F
-    F -.->|"다음 배치부터\n개선된 모델 적용"| B
-    F -.->|"다음 배치부터\n개선된 모델 적용"| D
+    F -.->|"다음 배치부터 개선된 모델 적용"| B
+    F -.->|"다음 배치부터 개선된 모델 적용"| D
 ```
 
 | 단계 | 주체 | 사용 모델 | classify_source |
