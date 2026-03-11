@@ -81,7 +81,7 @@ flowchart TB
     subgraph JENKINS["Jenkins Server"]
         C["Pipeline Job<br/>(SCM 참조)"]
         C1["Stage 1: Git Clone"]
-        C2["Stage 2: ECR Login & Build"]
+        C2["Stage 2: ECR Login &<br/>docker build<br/>(Dockerfile → entrypoint.sh 포함)"]
         C3["Stage 3: Push to ECR"]
         C4["Stage 4: Deploy via SSM"]
         C5["Stage 5: Cleanup"]
@@ -93,10 +93,10 @@ flowchart TB
         end
         subgraph EC2["EC2 Instance"]
             E["deploy.sh 실행"]
-            F["docker pull"]
-            subgraph MODES["실행 모드"]
-                G["scheduler<br/>(상시 실행, 매월 1일 02:00 배치)"]
-                H["api<br/>(API 서버, 향후)"]
+            F["docker pull + docker run"]
+            subgraph MODES["컨테이너 (entrypoint.sh 분기)"]
+                G["insite-scheduler<br/>scheduler 모드<br/>(매월 1일/15일 02:00 자동 배치)"]
+                H["insite-api<br/>api 모드<br/>(실시간 VOC 분류 API, 포트 8000)"]
             end
         end
     end
@@ -108,7 +108,25 @@ flowchart TB
     C4 -->|"SSM send-command"| E
     E --> F
     F -->|"docker pull"| D
-    F -->|"docker run"| G
+    F -->|"docker run ... scheduler"| G
+    F -->|"docker run ... api"| H
+```
+
+## 배포 단계별 역할
+
+하나의 Docker 이미지 안에 배치/스케줄러/API 코드가 모두 들어있고, 실행 시 인자로 모드를 선택한다.
+
+| 단계 | 파일 | 역할 |
+|------|------|------|
+| 1. 이미지 빌드 | `Dockerfile` | 소스 코드 + `entrypoint.sh`를 이미지에 포함 |
+| 2. 컨테이너 시작 | `deploy.sh` | `docker run ... scheduler`, `docker run ... api`로 컨테이너 2개 기동 |
+| 3. 진입점 분기 | `entrypoint.sh` | 첫 번째 인자(`scheduler`/`api`/`batch`)에 따라 실행할 프로세스 결정 |
+
+```
+deploy.sh
+  └─ docker run ... scheduler  →  entrypoint.sh scheduler  →  python -m batch.scheduler
+  └─ docker run ... api        →  entrypoint.sh api        →  uvicorn api.main:app (포트 80)
+                                                               ↑ 호스트에서 -p 8000:80 매핑
 ```
 
 ## 개발서버 vs 스테이징/운영 비교
@@ -214,39 +232,56 @@ EC2에 배포 스크립트를 생성한다. Jenkins가 SSM을 통해 이 스크�
 
 ### 스테이징용 deploy.sh
 
+`TARGET` 인자로 스케줄러/API를 선택 배포할 수 있다. 인자 없이 실행하면 둘 다 배포한다.
+
 ```bash
 #!/bin/bash
 set -e
-
 DEPLOY_PATH="/home/ssm-user/jupyter/insite-analysis"
 ECR_REGISTRY="<ECR_REGISTRY>"
 IMAGE_NAME="insite-analysis-stg"
+TARGET=${1:-all}
 
 cd ${DEPLOY_PATH}
-
-# ECR 로그인
 aws ecr get-login-password --region ap-northeast-2 | sudo docker login --username AWS --password-stdin ${ECR_REGISTRY}
-
-# 이미지 pull
 sudo docker pull ${ECR_REGISTRY}/${IMAGE_NAME}:latest
 sudo docker tag ${ECR_REGISTRY}/${IMAGE_NAME}:latest ${IMAGE_NAME}:latest
 
-# 기존 스케줄러 컨테이너 정지 및 삭제
-sudo docker stop insite-scheduler 2>/dev/null || true
-sudo docker rm insite-scheduler 2>/dev/null || true
+if [ "$TARGET" = "all" ] || [ "$TARGET" = "batch" ]; then
+    sudo docker stop insite-scheduler 2>/dev/null || true
+    sudo docker rm insite-scheduler 2>/dev/null || true
+    sudo docker run -d --name insite-scheduler -e ENV=stg \
+      --log-opt max-size=50m --log-opt max-file=3 \
+      -v ${DEPLOY_PATH}/output:/app/output \
+      -v ${DEPLOY_PATH}/logs:/app/logs \
+      -v ${DEPLOY_PATH}/.credentials:/app/.credentials \
+      -v ~/.aws:/root/.aws:ro \
+      ${IMAGE_NAME}:latest scheduler
+    echo "Scheduler deployed: $(date)"
+fi
 
-# 스케줄러 컨테이너 시작
-sudo docker run -d --name insite-scheduler -e ENV=stg \
-  -v ${DEPLOY_PATH}/output:/app/output \
-  -v ${DEPLOY_PATH}/logs:/app/logs \
-  -v ${DEPLOY_PATH}/.credentials:/app/.credentials \
-  -v ~/.aws:/root/.aws:ro \
-  ${IMAGE_NAME}:latest scheduler
+if [ "$TARGET" = "all" ] || [ "$TARGET" = "api" ]; then
+    sudo docker stop insite-api 2>/dev/null || true
+    sudo docker rm insite-api 2>/dev/null || true
+    sudo docker run -d --name insite-api -e ENV=stg -p 8000:80 \
+      --log-opt max-size=50m --log-opt max-file=3 \
+      -v ${DEPLOY_PATH}/output:/app/output \
+      -v ${DEPLOY_PATH}/logs:/app/logs \
+      -v ${DEPLOY_PATH}/.credentials:/app/.credentials \
+      -v ~/.aws:/root/.aws:ro \
+      ${IMAGE_NAME}:latest api
+    echo "API deployed: $(date)"
+fi
 
-# dangling 이미지 정리
 sudo docker images | grep "<none>" | awk '{print $3}' | xargs -r sudo docker rmi -f || true
-
 echo "Deploy completed: $(date)"
+```
+
+```bash
+# 사용법
+bash deploy.sh           # 스케줄러 + API 전체 배포
+bash deploy.sh batch     # 스케줄러만 재시작
+bash deploy.sh api       # API만 재시작
 ```
 
 ### 운영용 deploy.sh
@@ -255,8 +290,7 @@ echo "Deploy completed: $(date)"
 
 ```bash
 IMAGE_NAME="insite-analysis-prd"
-# ...
-sudo docker run -d --name insite-scheduler -e ENV=prd \
+# ENV=stg → ENV=prd
 ```
 
 권한 부여:
@@ -483,26 +517,32 @@ aws ecr describe-images --repository-name insite-analysis-stg --region ap-northe
 
 ```bash
 # EC2에서 실행
-sudo docker ps | grep insite-scheduler
-# 컨테이너가 실행 중인지 확인
+sudo docker ps | grep insite
+# insite-scheduler, insite-api 두 컨테이너가 실행 중인지 확인
 
 sudo docker logs insite-scheduler
 # ==================================================
 # VOC Analysis Scheduler Started
 # Schedule: Every 1st day of month at 02:00 KST
 # ==================================================
+
+sudo docker logs insite-api
+# INFO: Uvicorn running on http://0.0.0.0:80
 ```
 
 ## 4. 배치 수동 실행 테스트
 
+스케줄러 컨테이너 안에서 배치를 실행한다. `run_batch.sh` 래퍼 스크립트가 환경변수 주입 + `sudo docker exec`를 처리한다.
+
 ```bash
-# 스테이징
-sudo docker run --rm -e ENV=stg \
-  -v /home/ssm-user/jupyter/insite-analysis/output:/app/output \
-  -v /home/ssm-user/jupyter/insite-analysis/logs:/app/logs \
-  -v /home/ssm-user/jupyter/insite-analysis/.credentials:/app/.credentials \
-  -v ~/.aws:/root/.aws:ro \
-  insite-analysis-stg:latest batch --help
+# run_batch.sh 내용
+#!/bin/bash
+sudo docker exec insite-scheduler bash -c \
+  'eval $(cat /proc/1/environ | tr "\0" "\n" | sed "s/^/export /") && python -m batch.run_monthly '"$*"
+
+# 사용법
+./run_batch.sh --help
+./run_batch.sh --mode full --all-buildings --auto-month --classify ai-hybrid
 ```
 
 ---
