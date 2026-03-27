@@ -1,19 +1,39 @@
 ---
-title: "작업지시 분류 모델 업그레이드: Semi-supervised Learning으로 정확도 개선"
-excerpt: "VOC 5,041건으로 학습한 모델이 작업지시 텍스트에서 왜 정확도가 낮았고, Semi-supervised Learning으로 어떻게 개선했는지"
-categories: [NLP]
-tags: [TF-IDF, Semi-supervised, LinearSVC, 빌딩관리, VOC]
+title: "[데이터파이프라인] VOC-작업지시 통합 분석 - Semi-supervised Learning으로 작업지시 분류 모델 구축"
+excerpt: "VOC 모델이 작업지시에서 왜 정확도가 낮았고, Semi-supervised Learning으로 어떻게 개선했는지"
 toc: true
 toc_sticky: true
+classes: wide
+categories:
+- DataPipeline
+- NLP
+- AI
+date: 2026-03-27 09:00:00 +0900
 ---
 
-> 전편: [[데이터파이프라인] VOC 분류 시스템 - Kiwi 형태소 분석기 도입](https://dasoldasol.github.io/nlp/voc-nlp-kiwi-tokenizer/)
+> 전편: [[데이터파이프라인] VOC 분류 시스템 - Kiwi 형태소 분석기 도입](https://dasoldasol.github.io/datapipeline/nlp/ai/voc-nlp-kiwi-tokenizer/)
 
 ## 배경: 왜 모델이 필요했나
 
 빌딩 관리 VOC(고객 민원) 자동 분류 시스템(Phase 1)이 운영 중이었다. TF-IDF + LinearSVC 하이브리드 모델로 VOC를 주제(22개 클래스)와 작업유형(11개 클래스)으로 분류하고 있었고, 검수 기준 정확도는 88~90%로 안정적이었다.
 
-Phase 2에서는 같은 분류 체계를 **작업지시 데이터 130,000건**에도 적용하고 싶었다. 작업지시는 현장 직원이 작성하는 업무 기록으로, VOC와 동일한 건물 관리 도메인이다. 같은 분류 체계로 태깅하면 VOC와 작업지시를 교차 분석할 수 있다.
+Phase 2에서는 같은 분류 체계를 **작업지시(Work Order) 데이터 130,000건**에도 적용하고 싶었다.
+
+### 작업지시란?
+
+빌딩 관리 현장에서는 설비 점검, 고장 수리, 민원 대응 등의 업무가 발생할 때 "작업지시"를 등록한다. 현장 직원이 작성하는 업무 기록으로, 어떤 건물에서 누가 무슨 작업을 했는지가 기록된다.
+
+| 항목 | 예시 |
+|------|------|
+| 제목 | "B2F 주차장 LED 램프 교체" |
+| 설명 | "지하2층 주차장 B구역 LED 램프 3개 불량" |
+| 조치 내용 | "LED 15.7W 3EA 교체 완료" |
+| 작성자 | 전기팀 김OO |
+| 건물 | 판교세븐벤처밸리 |
+
+VOC가 **고객이 접수하는 민원**이라면, 작업지시는 **현장 직원이 작성하는 업무 기록**이다. 같은 건물 관리 도메인이지만 작성자와 텍스트 스타일이 완전히 다르다.
+
+같은 분류 체계로 VOC와 작업지시를 태깅하면, "이 민원이 어떤 작업으로 이어졌는가?", "반복적으로 같은 작업을 하는 패턴은 없는가?" 같은 교차 분석이 가능해진다.
 
 **문제:** VOC 모델(5,041건 학습)로 작업지시를 분류하면 정확도가 크게 떨어졌다.
 
