@@ -239,8 +239,6 @@ STEP C: 수시 작업지시 96,635건 재태깅
   - 운영 DB에서 수시 작업지시 전체 조회
   - Semi-supervised 모델로 하이브리드 재태깅
   - CSV 저장 (wo_retagging_result_v2.csv)
-
-STEP D: 팀장 보고용 HTML 리포트 생성
 ```
 
 ## 실험 과정에서 배운 것
