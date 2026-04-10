@@ -3,7 +3,6 @@ title: "[데이터파이프라인] VOC-작업지시 통합 분석 - Semi-supervi
 excerpt: "VOC 모델이 작업지시에서 왜 정확도가 낮았고, Semi-supervised Learning으로 어떻게 개선했는지"
 toc: true
 toc_sticky: true
-classes: wide
 categories:
 - DataPipeline
 - NLP

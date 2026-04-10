@@ -3,7 +3,6 @@ title: "[AWS] EC2 모니터링 시스템 구축 — CloudFormation + Lambda + Do
 excerpt: "CloudFormation 5개 스택으로 EC2 사용량·보안 위협·데이터 전송량을 Dooray로 알림하는 모니터링 시스템을 구축한 과정"
 toc: true
 toc_sticky: true
-classes: wide
 categories:
 - AWS
 - CloudFormation
