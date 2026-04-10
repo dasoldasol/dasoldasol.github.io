@@ -1,6 +1,6 @@
 ---
-title: "[데이터파이프라인] 작업지시 분류 모델 - Iterative Self-Training으로 정확도 85% 달성"
-excerpt: "Pseudo-label 품질 문제를 진단하고, Iterative Self-Training + 과적합 진단으로 작업유형 76%→84%, 주제 80%→86%로 개선한 과정"
+title: "[데이터파이프라인] 작업지시 분류 모델 - Iterative Self-Training으로 정확도 개선하기"
+excerpt: "Pseudo-label 품질 문제를 진단하고, Iterative Self-Training + 과적합 진단으로 정확도를 개선한 과정"
 toc: true
 toc_sticky: true
 categories:
