@@ -118,6 +118,63 @@ flowchart LR
 검수된 값은 자동 분류를 항상 이김
 ```
 
+| classify_source | 의미 | 언제 기록되는가 |
+|----------------|------|----------------|
+| `manual` | 개발자가 DB에 직접 UPDATE | 검수 |
+| `sheet` | 비개발자 구글 시트 검수가 sync-sheet 배치로 반영 | 검수 |
+| `batch` | 월 1일 배치가 재태깅 | 자동 |
+| `api_action` | take_action 입력 시 2차 분류 | 자동 |
+| `api` | 작업지시 등록 시 1차 분류 | 자동 |
+
+UPSERT 시 "현재 저장된 source보다 낮은 priority 값"이 들어오면 덮어쓰기 스킵. 예: DB에 `manual`인 행을 `api`가 덮어쓰려 하면 스킵.
+
+## 주제 분류 로직 — 키워드+AI 하이브리드 (α=500)
+
+AI 모델 단독 예측이 아니라 **키워드 매칭(voc_taxonomy)과 AI 확률을 결합한 하이브리드**로 주제를 결정한다. 배치와 실시간 API 모두 동일 규칙 적용.
+
+### 하이브리드 규칙
+
+| 조건 | 채택 |
+|------|------|
+| `kw_score == 0` (키워드 매칭 없음) | AI 라벨 |
+| `ai_proba > kw_conf` (AI가 키워드 신뢰도 이김) | AI 라벨 |
+| 그 외 | 키워드 라벨 |
+
+- `kw_conf = kw_score / (kw_score + α)` — α=500 고정
+- 작업유형은 AI only (하이브리드 적용 안 함)
+
+### 왜 하이브리드인가 — 검증 결과
+
+5-fold CV(주제 검수 4,122건, 주제 대분류>중분류 결합 기준):
+
+| 방식 | accuracy | Δ |
+|------|----------|---|
+| AI only | 0.8132 | — |
+| Keyword only | 0.5674 | -24.58p |
+| **Hybrid α=500** | **0.8382** | **+2.50p** |
+
+5개 fold 전부에서 hybrid > AI only. 키워드 단독은 taxonomy 커버리지 한계로 절반 수준이지만, AI와 결합 시 상호 보완된다. 실제 예:
+
+- `"카드리더기 고장"` → AI 확률 0.42 (애매), 키워드 매칭 score 810 (강함) → 키워드 승, `정보통신/IT`로 정확히 분류
+- `"LED 등 교체"` → AI 확률 0.84 (확신), 키워드 score 750 → AI 승, `전기/조명`
+
+### subject_hybrid_by 필드
+
+어느 신호가 최종 결정을 냈는지 row별로 기록:
+
+| 값 | 의미 |
+|----|------|
+| `ai` | 키워드 신호가 있었으나 AI 확률이 더 높아 AI 라벨 채택 |
+| `keyword` | 키워드 신호가 강해 키워드 라벨 채택 |
+| `ai_default` | 키워드 매칭 없음(`kw_score=0`) → 기본으로 AI 채택 |
+
+⚠️ **`classify_source`** 와 혼동 주의 — 두 필드는 완전히 다른 축이다.
+
+| 필드 | 답하는 질문 | 값 |
+|------|------------|----|
+| `classify_source` | 누가 이 레코드를 저장했는가 (파이프라인 주체) | manual/sheet/batch/api_action/api |
+| `subject_hybrid_by` | 하이브리드 분류가 어떤 신호로 결정했는가 | ai/keyword/ai_default |
+
 ## 전체 아키텍처
 
 ```mermaid
@@ -220,19 +277,25 @@ flowchart TB
 ```
 POST /work-order/classify
 Request  : { "work_order_id": int, "name": str, "description": str }
-Response : { "work_order_id": int, "subject_major": str, "subject_minor": str,
-             "work_major": str, "work_minor": str, "saved_to_db": bool }
+Response : { "work_order_id": int,
+             "subject_major": str, "subject_minor": str,
+             "subject_hybrid_by": "ai"|"keyword"|"ai_default",
+             "work_major": str, "work_minor": str,
+             "save_status": "saved"|"skipped"|"error" }
 
 POST /work-order/classify-with-action
 Request  : { "work_order_id": int, "name": str, "description": str, "take_action": str }
-Response : 동일
+Response : 동일 구조 (wo_batch 모델 사용)
 
 GET /work-order/report?start_date=2026-03-01&end_date=2026-04-01
 Headers  : X-User-Role: admin|building, X-Building-Id: 119
 Response : Content-Type: text/html
 
 GET /work-order/health
-Response : { "status": "ok", "batch_model_loaded": true, "api_model_loaded": true }
+Response : { "status": "ok",
+             "batch_model_loaded": true,
+             "api_model_loaded": true,
+             "keyword_tagger_loaded": true }
 ```
 
 **리포트 기간 파라미터:**
