@@ -45,15 +45,15 @@ flowchart TB
         subgraph VPC["기존 공유 VPC"]
             IALB{{"Internal ALB (공용, 기존)"}}
             L443["443 리스너"]
-            DEFAULT["default action<br/>→ tg-web-8080 (기존)"]
-            RULE["host=visit.example.com [신규]<br/>→ tg-visit-8087"]
+            DEFAULT["default action<br/>tg-web-8080 (기존)"]
+            RULE["host=visit.example.com (신규)<br/>tg-visit-8087"]
             IALB --- L443
             L443 -. default .-> DEFAULT
             L443 --- RULE
 
             subgraph Visit["신규 visit tier"]
-                EC2A["EC2 visit-a<br/>(Private, AZ-a) :8087"]
-                EC2C["EC2 visit-c<br/>(Private, AZ-c) :8087"]
+                EC2A["EC2 visit-a<br/>Private AZ-a 8087"]
+                EC2C["EC2 visit-c<br/>Private AZ-c 8087"]
             end
 
             subgraph DB["기존 DB tier 서브넷"]
@@ -69,7 +69,7 @@ flowchart TB
         end
     end
 
-    TGW ==>|"*.example.com"| IALB
+    TGW ==> IALB
 
     style Hub fill:#fef3c7,stroke:#d97706
     style Visit fill:#dbeafe,stroke:#2563eb
