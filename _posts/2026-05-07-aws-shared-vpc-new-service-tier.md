@@ -30,12 +30,12 @@ date: 2026-05-07 18:00:00 +0900
 
 ```mermaid
 flowchart TB
-    Ext((외부 사용자))
+    Ext[외부 사용자]
 
-    subgraph Hub["Hub 계정 (컨트롤타워)"]
+    subgraph Hub["Hub 계정 컨트롤타워"]
         R53[Route 53 Public]
-        HubALB{{"Hub Public ALB"}}
-        TGW[(Transit Gateway)]
+        HubALB[Hub Public ALB]
+        TGW[Transit Gateway]
         R53 --> HubALB --> TGW
     end
 
@@ -43,12 +43,12 @@ flowchart TB
 
     subgraph Work["Workload 계정"]
         subgraph VPC["기존 공유 VPC"]
-            IALB{{"Internal ALB (공용, 기존)"}}
-            L443["443 리스너"]
-            DEFAULT["default action<br/>tg-web-8080 (기존)"]
-            RULE["host=visit.example.com (신규)<br/>tg-visit-8087"]
+            IALB[Internal ALB 공용 기존]
+            L443[443 리스너]
+            DEFAULT[default action tg-web-8080 기존]
+            RULE["host visit.example.com 신규<br/>tg-visit-8087"]
             IALB --- L443
-            L443 -. default .-> DEFAULT
+            L443 -.->|기본| DEFAULT
             L443 --- RULE
 
             subgraph Visit["신규 visit tier"]
@@ -56,9 +56,9 @@ flowchart TB
                 EC2C["EC2 visit-c<br/>Private AZ-c 8087"]
             end
 
-            subgraph DB["기존 DB tier 서브넷"]
-                RDSP[("RDS Primary<br/>AZ-a")]
-                RDSS[("RDS Standby<br/>AZ-c")]
+            subgraph DBTier["기존 DB tier 서브넷"]
+                RDSP[RDS Primary AZ-a]
+                RDSS[RDS Standby AZ-c]
                 RDSP ==>|동기 복제| RDSS
             end
 
@@ -74,7 +74,7 @@ flowchart TB
     style Hub fill:#fef3c7,stroke:#d97706
     style Visit fill:#dbeafe,stroke:#2563eb
     style RULE fill:#dcfce7,stroke:#16a34a
-    style DB fill:#fce7f3,stroke:#db2777
+    style DBTier fill:#fce7f3,stroke:#db2777
 ```
 
 설명할 것 없이 표준 Hub-and-Spoke 패턴이다. 핵심은 **이번에 추가한 게 어디서 끝나고 기존 인프라가 어디서부터냐**다:
