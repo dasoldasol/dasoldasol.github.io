@@ -6,7 +6,7 @@ toc_sticky: true
 categories:
 - AWS
 - Lambda
-date: 2026-06-04 21:00:00 +0900
+date: 2026-06-04 09:00:00 +0900
 ---
 
 ## 배경: python3.10 함수 19개
