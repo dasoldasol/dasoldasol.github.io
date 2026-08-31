@@ -3,7 +3,7 @@ title: "[Side Project] 나 대신 잔소리하는 봇 만들기 — Discord + Py
 excerpt: "주 3~4일이 한계였던 기록이 전환 첫 주에 7일이 됐다. 기록이 안 되는 건 게으름이 아니라 마찰이었다. 계정 만들기부터 24시간 무료 서버 배포까지, 코드 249줄로 그대로 따라 할 수 있게 정리했다."
 toc: true
 toc_sticky: true
-classes: wide
+classes: []
 categories:
   - Python
   - Discord
